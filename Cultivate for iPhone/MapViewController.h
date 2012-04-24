@@ -14,6 +14,7 @@
 {
     __weak IBOutlet MKMapView *_mapView;
     IBOutlet UIWebView *mapView;
+    
 }
 
 //@property (nonatomic, strong) IBOutlet UIWebView *mapView;

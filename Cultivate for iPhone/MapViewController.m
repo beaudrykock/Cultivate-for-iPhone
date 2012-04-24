@@ -57,6 +57,13 @@
     [super viewWillAppear:animated];
 }
 
+-(IBAction)showNearestStopLocation:(id)sender
+{
+    VegVanStopLocation *nearestAnnotation = [_mapView.annotations objectAtIndex:0]; 
+    [_mapView setCenterCoordinate: [nearestAnnotation coordinate] animated:YES];
+    [_mapView selectAnnotation:[_mapView.annotations objectAtIndex:0] animated:YES];
+}
+
 -(void)plotVegVanStopLocations
 {
     for (id<MKAnnotation> annotation in _mapView.annotations) {

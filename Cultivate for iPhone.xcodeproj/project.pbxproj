@@ -56,6 +56,8 @@
 		9F6A09E71546FE7400B59D0F /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F6A09E61546FE7400B59D0F /* libz.dylib */; };
 		9F6A09EA1546FEE900B59D0F /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F6A09E91546FEE900B59D0F /* Reachability.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		9F6A09ED1546FF7B00B59D0F /* VegVanStopLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F6A09EC1546FF7B00B59D0F /* VegVanStopLocation.m */; };
+		9FC91DBA15470F41008A976E /* Cultivate_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 9FC91DB915470F41008A976E /* Cultivate_logo.png */; };
+		9FC91DBE154710EF008A976E /* AboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FC91DBD154710EF008A976E /* AboutViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -144,6 +146,9 @@
 		9F6A09E91546FEE900B59D0F /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 		9F6A09EB1546FF7B00B59D0F /* VegVanStopLocation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VegVanStopLocation.h; sourceTree = "<group>"; };
 		9F6A09EC1546FF7B00B59D0F /* VegVanStopLocation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VegVanStopLocation.m; sourceTree = "<group>"; };
+		9FC91DB915470F41008A976E /* Cultivate_logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Cultivate_logo.png; sourceTree = "<group>"; };
+		9FC91DBC154710EF008A976E /* AboutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutViewController.h; sourceTree = "<group>"; };
+		9FC91DBD154710EF008A976E /* AboutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -246,6 +251,7 @@
 		9F6A095D1546E54000B59D0F /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				9FC91DB915470F41008A976E /* Cultivate_logo.png */,
 				9F6A095C1546E52D00B59D0F /* Tab icons */,
 			);
 			name = Resources;
@@ -260,6 +266,8 @@
 				9F6A09391546D4C500B59D0F /* MapViewController.m */,
 				9F6A093F1546D4C500B59D0F /* NotificationsViewController.h */,
 				9F6A09401546D4C500B59D0F /* NotificationsViewController.m */,
+				9FC91DBC154710EF008A976E /* AboutViewController.h */,
+				9FC91DBD154710EF008A976E /* AboutViewController.m */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -400,6 +408,7 @@
 				9F6A095B1546E51E00B59D0F /* 73-radar@2x.png in Resources */,
 				9F6A09611546E5AD00B59D0F /* 11-clock.png in Resources */,
 				9F6A09621546E5AD00B59D0F /* 11-clock@2x.png in Resources */,
+				9FC91DBA15470F41008A976E /* Cultivate_logo.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -438,6 +447,7 @@
 				9F6A09CF1546EA0300B59D0F /* ASIS3ServiceRequest.m in Sources */,
 				9F6A09EA1546FEE900B59D0F /* Reachability.m in Sources */,
 				9F6A09ED1546FF7B00B59D0F /* VegVanStopLocation.m in Sources */,
+				9FC91DBE154710EF008A976E /* AboutViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -549,6 +559,7 @@
 				9F6A094A1546D4C500B59D0F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

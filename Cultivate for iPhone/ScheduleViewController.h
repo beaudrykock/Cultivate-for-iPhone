@@ -7,7 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "SectionHeaderView.h"
 
-@interface ScheduleViewController : UIViewController
+@interface ScheduleViewController : UITableViewController <SectionHeaderViewDelegate>
+{       
+    NSArray *areas;
+    NSDictionary *scheduledStops;
+}
+
+@property (nonatomic, strong) NSArray* areas;
+@property (nonatomic, strong) NSDictionary* scheduledStops;
 
 @end

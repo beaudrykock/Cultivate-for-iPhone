@@ -56,6 +56,8 @@
 		9F6A09E71546FE7400B59D0F /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F6A09E61546FE7400B59D0F /* libz.dylib */; };
 		9F6A09EA1546FEE900B59D0F /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F6A09E91546FEE900B59D0F /* Reachability.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		9F6A09ED1546FF7B00B59D0F /* VegVanStopLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F6A09EC1546FF7B00B59D0F /* VegVanStopLocation.m */; };
+		9F99E0C915481E7900485A23 /* SectionHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F99E0C815481E7900485A23 /* SectionHeaderView.m */; };
+		9F99E0CC154821EC00485A23 /* Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F99E0CB154821EC00485A23 /* Utilities.m */; };
 		9FC91DBA15470F41008A976E /* Cultivate_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 9FC91DB915470F41008A976E /* Cultivate_logo.png */; };
 		9FC91DBE154710EF008A976E /* AboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FC91DBD154710EF008A976E /* AboutViewController.m */; };
 /* End PBXBuildFile section */
@@ -146,6 +148,10 @@
 		9F6A09E91546FEE900B59D0F /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 		9F6A09EB1546FF7B00B59D0F /* VegVanStopLocation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VegVanStopLocation.h; sourceTree = "<group>"; };
 		9F6A09EC1546FF7B00B59D0F /* VegVanStopLocation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VegVanStopLocation.m; sourceTree = "<group>"; };
+		9F99E0C715481E7900485A23 /* SectionHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SectionHeaderView.h; sourceTree = "<group>"; };
+		9F99E0C815481E7900485A23 /* SectionHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SectionHeaderView.m; sourceTree = "<group>"; };
+		9F99E0CA154821EC00485A23 /* Utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utilities.h; sourceTree = "<group>"; };
+		9F99E0CB154821EC00485A23 /* Utilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Utilities.m; sourceTree = "<group>"; };
 		9FC91DB915470F41008A976E /* Cultivate_logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Cultivate_logo.png; sourceTree = "<group>"; };
 		9FC91DBC154710EF008A976E /* AboutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutViewController.h; sourceTree = "<group>"; };
 		9FC91DBD154710EF008A976E /* AboutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutViewController.m; sourceTree = "<group>"; };
@@ -268,6 +274,10 @@
 				9F6A09401546D4C500B59D0F /* NotificationsViewController.m */,
 				9FC91DBC154710EF008A976E /* AboutViewController.h */,
 				9FC91DBD154710EF008A976E /* AboutViewController.m */,
+				9F99E0C715481E7900485A23 /* SectionHeaderView.h */,
+				9F99E0C815481E7900485A23 /* SectionHeaderView.m */,
+				9F99E0CA154821EC00485A23 /* Utilities.h */,
+				9F99E0CB154821EC00485A23 /* Utilities.m */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -448,6 +458,8 @@
 				9F6A09EA1546FEE900B59D0F /* Reachability.m in Sources */,
 				9F6A09ED1546FF7B00B59D0F /* VegVanStopLocation.m in Sources */,
 				9FC91DBE154710EF008A976E /* AboutViewController.m in Sources */,
+				9F99E0C915481E7900485A23 /* SectionHeaderView.m in Sources */,
+				9F99E0CC154821EC00485A23 /* Utilities.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

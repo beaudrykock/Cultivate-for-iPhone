@@ -7,3 +7,12 @@
 //
 
 #define METERS_PER_MILE 1609.344
+
+// USER DEFAULTS
+#define kDefaultMinutesBeforeKey @"defaultMinutesBeforeKey"
+#define kDefaultRepeatPatternKey @"defaultRepeatPatternKey"
+
+// NOTIFICATIONS
+#define kRepeatPatternOneOff 0
+#define kRepeatPatternWeekly 1
+#define kRepeatPatternMonthly 2

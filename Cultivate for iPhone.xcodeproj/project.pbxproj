@@ -7,6 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9F60768015483FCE00105643 /* VegVanStopNotification.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F60767F15483FCE00105643 /* VegVanStopNotification.m */; };
+		9F60769415484AE000105643 /* 20-gear2.png in Resources */ = {isa = PBXBuildFile; fileRef = 9F60769215484AE000105643 /* 20-gear2.png */; };
+		9F60769515484AE000105643 /* 20-gear2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9F60769315484AE000105643 /* 20-gear2@2x.png */; };
+		9F60769815484BD300105643 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F60769715484BD300105643 /* SettingsViewController.m */; };
+		9F60769B1548549500105643 /* 78-stopwatch.png in Resources */ = {isa = PBXBuildFile; fileRef = 9F6076991548549500105643 /* 78-stopwatch.png */; };
+		9F60769C1548549500105643 /* 78-stopwatch@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9F60769A1548549500105643 /* 78-stopwatch@2x.png */; };
+		9F60769F154854CE00105643 /* 74-location.png in Resources */ = {isa = PBXBuildFile; fileRef = 9F60769D154854CE00105643 /* 74-location.png */; };
+		9F6076A0154854CE00105643 /* 74-location@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9F60769E154854CE00105643 /* 74-location@2x.png */; };
 		9F6A09241546D4C500B59D0F /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F6A09231546D4C500B59D0F /* UIKit.framework */; };
 		9F6A09261546D4C500B59D0F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F6A09251546D4C500B59D0F /* Foundation.framework */; };
 		9F6A09281546D4C500B59D0F /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F6A09271546D4C500B59D0F /* CoreGraphics.framework */; };
@@ -17,7 +25,6 @@
 		9F6A093A1546D4C500B59D0F /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F6A09391546D4C500B59D0F /* MapViewController.m */; };
 		9F6A093C1546D4C500B59D0F /* first.png in Resources */ = {isa = PBXBuildFile; fileRef = 9F6A093B1546D4C500B59D0F /* first.png */; };
 		9F6A093E1546D4C500B59D0F /* first@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9F6A093D1546D4C500B59D0F /* first@2x.png */; };
-		9F6A09411546D4C500B59D0F /* NotificationsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F6A09401546D4C500B59D0F /* NotificationsViewController.m */; };
 		9F6A09431546D4C500B59D0F /* second.png in Resources */ = {isa = PBXBuildFile; fileRef = 9F6A09421546D4C500B59D0F /* second.png */; };
 		9F6A09451546D4C500B59D0F /* second@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9F6A09441546D4C500B59D0F /* second@2x.png */; };
 		9F6A094D1546E2D100B59D0F /* ScheduleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F6A094C1546E2D100B59D0F /* ScheduleViewController.m */; };
@@ -63,6 +70,16 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		9F60767E15483FCE00105643 /* VegVanStopNotification.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VegVanStopNotification.h; sourceTree = "<group>"; };
+		9F60767F15483FCE00105643 /* VegVanStopNotification.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VegVanStopNotification.m; sourceTree = "<group>"; };
+		9F60769215484AE000105643 /* 20-gear2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "20-gear2.png"; sourceTree = "<group>"; };
+		9F60769315484AE000105643 /* 20-gear2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "20-gear2@2x.png"; sourceTree = "<group>"; };
+		9F60769615484BD300105643 /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
+		9F60769715484BD300105643 /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
+		9F6076991548549500105643 /* 78-stopwatch.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "78-stopwatch.png"; sourceTree = "<group>"; };
+		9F60769A1548549500105643 /* 78-stopwatch@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "78-stopwatch@2x.png"; sourceTree = "<group>"; };
+		9F60769D154854CE00105643 /* 74-location.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "74-location.png"; sourceTree = "<group>"; };
+		9F60769E154854CE00105643 /* 74-location@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "74-location@2x.png"; sourceTree = "<group>"; };
 		9F6A091F1546D4C500B59D0F /* Cultivate for iPhone.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Cultivate for iPhone.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9F6A09231546D4C500B59D0F /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		9F6A09251546D4C500B59D0F /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -78,8 +95,6 @@
 		9F6A09391546D4C500B59D0F /* MapViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MapViewController.m; sourceTree = "<group>"; };
 		9F6A093B1546D4C500B59D0F /* first.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = first.png; sourceTree = "<group>"; };
 		9F6A093D1546D4C500B59D0F /* first@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "first@2x.png"; sourceTree = "<group>"; };
-		9F6A093F1546D4C500B59D0F /* NotificationsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NotificationsViewController.h; sourceTree = "<group>"; };
-		9F6A09401546D4C500B59D0F /* NotificationsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NotificationsViewController.m; sourceTree = "<group>"; };
 		9F6A09421546D4C500B59D0F /* second.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = second.png; sourceTree = "<group>"; };
 		9F6A09441546D4C500B59D0F /* second@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "second@2x.png"; sourceTree = "<group>"; };
 		9F6A094B1546E2D100B59D0F /* ScheduleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScheduleViewController.h; sourceTree = "<group>"; };
@@ -250,6 +265,8 @@
 				9F6A094E1546E3A700B59D0F /* 136-tractor.png */,
 				9F6A09581546E51E00B59D0F /* 73-radar.png */,
 				9F6A09591546E51E00B59D0F /* 73-radar@2x.png */,
+				9F60769215484AE000105643 /* 20-gear2.png */,
+				9F60769315484AE000105643 /* 20-gear2@2x.png */,
 			);
 			name = "Tab icons";
 			sourceTree = "<group>";
@@ -258,6 +275,10 @@
 			isa = PBXGroup;
 			children = (
 				9FC91DB915470F41008A976E /* Cultivate_logo.png */,
+				9F6076991548549500105643 /* 78-stopwatch.png */,
+				9F60769A1548549500105643 /* 78-stopwatch@2x.png */,
+				9F60769D154854CE00105643 /* 74-location.png */,
+				9F60769E154854CE00105643 /* 74-location@2x.png */,
 				9F6A095C1546E52D00B59D0F /* Tab icons */,
 			);
 			name = Resources;
@@ -270,14 +291,16 @@
 				9F6A094C1546E2D100B59D0F /* ScheduleViewController.m */,
 				9F6A09381546D4C500B59D0F /* MapViewController.h */,
 				9F6A09391546D4C500B59D0F /* MapViewController.m */,
-				9F6A093F1546D4C500B59D0F /* NotificationsViewController.h */,
-				9F6A09401546D4C500B59D0F /* NotificationsViewController.m */,
 				9FC91DBC154710EF008A976E /* AboutViewController.h */,
 				9FC91DBD154710EF008A976E /* AboutViewController.m */,
 				9F99E0C715481E7900485A23 /* SectionHeaderView.h */,
 				9F99E0C815481E7900485A23 /* SectionHeaderView.m */,
 				9F99E0CA154821EC00485A23 /* Utilities.h */,
 				9F99E0CB154821EC00485A23 /* Utilities.m */,
+				9F60767E15483FCE00105643 /* VegVanStopNotification.h */,
+				9F60767F15483FCE00105643 /* VegVanStopNotification.m */,
+				9F60769615484BD300105643 /* SettingsViewController.h */,
+				9F60769715484BD300105643 /* SettingsViewController.m */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -419,6 +442,12 @@
 				9F6A09611546E5AD00B59D0F /* 11-clock.png in Resources */,
 				9F6A09621546E5AD00B59D0F /* 11-clock@2x.png in Resources */,
 				9FC91DBA15470F41008A976E /* Cultivate_logo.png in Resources */,
+				9F60769415484AE000105643 /* 20-gear2.png in Resources */,
+				9F60769515484AE000105643 /* 20-gear2@2x.png in Resources */,
+				9F60769B1548549500105643 /* 78-stopwatch.png in Resources */,
+				9F60769C1548549500105643 /* 78-stopwatch@2x.png in Resources */,
+				9F60769F154854CE00105643 /* 74-location.png in Resources */,
+				9F6076A0154854CE00105643 /* 74-location@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -432,7 +461,6 @@
 				9F6A09301546D4C500B59D0F /* main.m in Sources */,
 				9F6A09341546D4C500B59D0F /* AppDelegate.m in Sources */,
 				9F6A093A1546D4C500B59D0F /* MapViewController.m in Sources */,
-				9F6A09411546D4C500B59D0F /* NotificationsViewController.m in Sources */,
 				9F6A094D1546E2D100B59D0F /* ScheduleViewController.m in Sources */,
 				9F6A09BA1546EA0300B59D0F /* ASIAuthenticationDialog.m in Sources */,
 				9F6A09BB1546EA0300B59D0F /* ASIDataCompressor.m in Sources */,
@@ -460,6 +488,8 @@
 				9FC91DBE154710EF008A976E /* AboutViewController.m in Sources */,
 				9F99E0C915481E7900485A23 /* SectionHeaderView.m in Sources */,
 				9F99E0CC154821EC00485A23 /* Utilities.m in Sources */,
+				9F60768015483FCE00105643 /* VegVanStopNotification.m in Sources */,
+				9F60769815484BD300105643 /* SettingsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

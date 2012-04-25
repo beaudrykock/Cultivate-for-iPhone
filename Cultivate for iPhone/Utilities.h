@@ -7,9 +7,16 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "VegVanStopNotification.h"
 
 @interface Utilities : NSObject
 
 + (UIColor *) colorWithHexString: (NSString *) hexString;
 + (CGFloat) colorComponentFrom: (NSString *) string start: (NSUInteger) start length: (NSUInteger) length;
++(void)scheduleNotificationWithItem:(VegVanStopNotification*)item;
++(void)setDefaultMinutesBefore:(NSInteger)minutesBefore;
++(NSInteger)getDefaultMinutesBefore;
++(void)setDefaultRepeatPattern:(NSInteger)repeatPattern;
++(NSInteger)getDefaultRepeatPattern;
+
 @end

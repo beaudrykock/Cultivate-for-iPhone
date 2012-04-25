@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "SectionHeaderView.h"
+#import "VegVanStopNotification.h"
 
 @interface ScheduleViewController : UITableViewController <SectionHeaderViewDelegate>
 {       
@@ -17,5 +18,7 @@
 
 @property (nonatomic, strong) NSArray* areas;
 @property (nonatomic, strong) NSDictionary* scheduledStops;
+@property (nonatomic,strong) NSManagedObjectContext* managedObjectContext;
 
 @end
+

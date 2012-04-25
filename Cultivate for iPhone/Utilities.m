@@ -60,4 +60,73 @@
     return hexComponent / 255.0;
 }
 
++(void)scheduleNotificationWithItem:(VegVanStopNotification*)item 
+{
+    NSCalendar *calendar = [NSCalendar autoupdatingCurrentCalendar];
+    NSDateComponents *dateComps = [[NSDateComponents alloc] init];
+    [dateComps setDay:[item getDay]];
+    [dateComps setMonth:[item getMonth]];
+    [dateComps setYear:[item getYear]];
+    [dateComps setHour:[item getHour]];
+    [dateComps setMinute:[item getMinute]];
+    NSDate *itemDate = [calendar dateFromComponents:dateComps];
+    
+    UILocalNotification *localNotif = [[UILocalNotification alloc] init];
+    if (localNotif == nil)
+        return;
+    
+    // testing only below - need to figure out how to pass the right date
+    NSDate *date = [NSDate date];
+    localNotif.fireDate = [date dateByAddingTimeInterval:10];//[itemDate dateByAddingTimeInterval:-([item getMinutesBefore]*60)];
+    localNotif.timeZone = [NSTimeZone defaultTimeZone];
+    NSLog(@"fire date = %@", localNotif.fireDate.description);
+    localNotif.alertBody = [NSString stringWithFormat:NSLocalizedString(@"The veg van will be arriving at the %@ stop in %i minutes.", nil),
+                            [item getStopName], [item getMinutesBefore]];
+    localNotif.alertAction = NSLocalizedString(@"View Details", nil);
+    
+    localNotif.soundName = UILocalNotificationDefaultSoundName;
+    localNotif.applicationIconBadgeNumber = 1;
+    localNotif.repeatInterval = NSWeekCalendarUnit; // repeats weekly
+    
+    //NSDictionary *infoDict = [NSDictionary dictionaryWithObject:[item getStopName] forKey:ToDoItemKey];
+    //localNotif.userInfo = infoDict;
+    
+    [[UIApplication sharedApplication] scheduleLocalNotification:localNotif];
+}
+
++(void)setDefaultMinutesBefore:(NSInteger)minutesBefore
+{
+    NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
+    [prefs setInteger:minutesBefore forKey:kDefaultMinutesBeforeKey];
+    [prefs synchronize];
+}
+
++(NSInteger)getDefaultMinutesBefore
+{
+    NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
+    if ([prefs integerForKey:kDefaultMinutesBeforeKey])
+    {
+        return [prefs integerForKey:kDefaultMinutesBeforeKey];
+    }
+    return 5; // otherwise return default
+}
+
++(void)setDefaultRepeatPattern:(NSInteger)repeatPattern
+{
+    NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
+    [prefs setInteger:repeatPattern forKey:kDefaultRepeatPatternKey];
+    [prefs synchronize];
+}
+
++(NSInteger)getDefaultRepeatPattern
+{
+    NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
+    if ([prefs integerForKey:kDefaultRepeatPatternKey])
+    {
+        return [prefs integerForKey:kDefaultRepeatPatternKey];
+    }
+    return 1; // otherwise return default, which is weekly
+}
+
+
 @end

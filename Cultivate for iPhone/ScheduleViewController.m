@@ -9,7 +9,7 @@
 #import "ScheduleViewController.h"
 
 @implementation ScheduleViewController
-@synthesize scheduledStops, areas;
+@synthesize scheduledStops, areas, managedObjectContext;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -89,6 +89,10 @@
     //NSIndexPath * indexPath = [showLocationTableView indexPathForRowAtPoint: [[[event touchesForView: button] anyObject] locationInView: showLocationTableView]];
     if ( indexPath == nil )
         return;
+    
+    VegVanStopNotification *notification = [[VegVanStopNotification alloc] initWithStopName:@"Jericho / 65 Walton St" day:25 month: 4 year:2012 hour:16 minute:00 minutesBefore:5];
+    [Utilities scheduleNotificationWithItem:notification];
+    
     NSLog(@"switch changed in section %i and row %i", [indexPath section], [indexPath row]);
 }
                             

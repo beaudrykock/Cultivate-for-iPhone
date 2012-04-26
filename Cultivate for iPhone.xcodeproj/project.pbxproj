@@ -15,6 +15,7 @@
 		9F60769C1548549500105643 /* 78-stopwatch@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9F60769A1548549500105643 /* 78-stopwatch@2x.png */; };
 		9F60769F154854CE00105643 /* 74-location.png in Resources */ = {isa = PBXBuildFile; fileRef = 9F60769D154854CE00105643 /* 74-location.png */; };
 		9F6076A0154854CE00105643 /* 74-location@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9F60769E154854CE00105643 /* 74-location@2x.png */; };
+		9F65F1721549B52A003B56DF /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F65F1711549B529003B56DF /* CoreLocation.framework */; };
 		9F6A09241546D4C500B59D0F /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F6A09231546D4C500B59D0F /* UIKit.framework */; };
 		9F6A09261546D4C500B59D0F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F6A09251546D4C500B59D0F /* Foundation.framework */; };
 		9F6A09281546D4C500B59D0F /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F6A09271546D4C500B59D0F /* CoreGraphics.framework */; };
@@ -80,6 +81,7 @@
 		9F60769A1548549500105643 /* 78-stopwatch@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "78-stopwatch@2x.png"; sourceTree = "<group>"; };
 		9F60769D154854CE00105643 /* 74-location.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "74-location.png"; sourceTree = "<group>"; };
 		9F60769E154854CE00105643 /* 74-location@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "74-location@2x.png"; sourceTree = "<group>"; };
+		9F65F1711549B529003B56DF /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		9F6A091F1546D4C500B59D0F /* Cultivate for iPhone.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Cultivate for iPhone.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9F6A09231546D4C500B59D0F /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		9F6A09251546D4C500B59D0F /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -177,6 +179,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9F65F1721549B52A003B56DF /* CoreLocation.framework in Frameworks */,
 				9F6A09E71546FE7400B59D0F /* libz.dylib in Frameworks */,
 				9F6A09E51546FE6500B59D0F /* MobileCoreServices.framework in Frameworks */,
 				9F6A09E31546FE5A00B59D0F /* SystemConfiguration.framework in Frameworks */,
@@ -212,6 +215,7 @@
 			isa = PBXGroup;
 			children = (
 				9F6A09E61546FE7400B59D0F /* libz.dylib */,
+				9F65F1711549B529003B56DF /* CoreLocation.framework */,
 				9F6A09E41546FE6500B59D0F /* MobileCoreServices.framework */,
 				9F6A09E21546FE5A00B59D0F /* SystemConfiguration.framework */,
 				9F6A09E01546FE5200B59D0F /* CFNetwork.framework */,

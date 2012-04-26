@@ -10,14 +10,18 @@
 #import <MapKit/MapKit.h>
 #import "VegVanStopLocation.h"
 
-@interface MapViewController : UIViewController <MKMapViewDelegate>
+@interface MapViewController : UIViewController <MKMapViewDelegate, CLLocationManagerDelegate>
 {
     __weak IBOutlet MKMapView *_mapView;
     IBOutlet UIWebView *mapView;
-    
+    CLLocationManager *locationManager;
+    CLLocation *currentLocation;
 }
 
 //@property (nonatomic, strong) IBOutlet UIWebView *mapView;
+@property (nonatomic, strong) CLLocationManager *locationManager;
+@property (nonatomic, strong) CLLocation *currentLocation;
 -(void)plotVegVanStopLocations;
+- (void)startStandardUpdates;
 
 @end

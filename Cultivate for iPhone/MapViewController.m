@@ -10,6 +10,7 @@
 
 @implementation MapViewController
 //@synthesize mapView;
+@synthesize locationManager, currentLocation;
 
 - (void)didReceiveMemoryWarning
 {
@@ -29,7 +30,41 @@
     //NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:url]];
     //[mapView loadRequest:request];
     
+    [self startStandardUpdates];
+}
+
+- (void)startStandardUpdates
+{
+    // Create the location manager if this object does not
+    // already have one.
+    if (nil == locationManager)
+        locationManager = [[CLLocationManager alloc] init];
     
+    locationManager.delegate = self;
+    locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters;
+    
+    // Set a movement threshold for new events.
+    locationManager.distanceFilter = 500;
+    
+    [locationManager startUpdatingLocation];
+}
+
+// Delegate method from the CLLocationManagerDelegate protocol.
+- (void)locationManager:(CLLocationManager *)manager
+    didUpdateToLocation:(CLLocation *)newLocation
+           fromLocation:(CLLocation *)oldLocation
+{
+    // If it's a relatively recent event, turn off updates to save power
+    NSDate* eventDate = newLocation.timestamp;
+    NSTimeInterval howRecent = [eventDate timeIntervalSinceNow];
+    if (abs(howRecent) < 15.0)
+    {
+        currentLocation = newLocation;
+        NSLog(@"latitude %+.6f, longitude %+.6f\n",
+              newLocation.coordinate.latitude,
+              newLocation.coordinate.longitude);
+    }
+    // else skip the event and process the next one.
 }
 
 - (void)viewDidUnload
@@ -54,14 +89,48 @@
     
     [self plotVegVanStopLocations];
     
+    [_mapView setShowsUserLocation:YES];
+    
     [super viewWillAppear:animated];
 }
 
 -(IBAction)showNearestStopLocation:(id)sender
 {
-    VegVanStopLocation *nearestAnnotation = [_mapView.annotations objectAtIndex:0]; 
+    CLLocationDistance shortestDistance;
+    CLLocationDistance meters;
+    NSInteger counter = 0;
+    VegVanStopLocation *annotation;
+    CLLocation *annotationLocation;
+    NSInteger closestAnnotationIndex = 0;
+    while (counter < [[_mapView annotations] count])
+    {
+        annotation = [_mapView.annotations objectAtIndex:counter];
+        if (![annotation isKindOfClass:[MKUserLocation class]])
+        {
+            
+            annotationLocation = [[CLLocation alloc] initWithLatitude:annotation.coordinate.latitude longitude:annotation.coordinate.longitude];
+            meters = [currentLocation distanceFromLocation:annotationLocation];
+            
+            if (counter==0)
+            {
+                shortestDistance = meters;
+            }
+            else
+            {
+                if (meters < shortestDistance)
+                {
+                    shortestDistance = meters;
+                    closestAnnotationIndex = counter;
+                }
+            }
+        }
+        counter++;
+    }
+    
+    VegVanStopLocation *nearestAnnotation = [_mapView.annotations objectAtIndex:closestAnnotationIndex];
+    
     [_mapView setCenterCoordinate: [nearestAnnotation coordinate] animated:YES];
-    [_mapView selectAnnotation:[_mapView.annotations objectAtIndex:0] animated:YES];
+    [_mapView selectAnnotation:nearestAnnotation animated:YES];
 }
 
 -(void)plotVegVanStopLocations

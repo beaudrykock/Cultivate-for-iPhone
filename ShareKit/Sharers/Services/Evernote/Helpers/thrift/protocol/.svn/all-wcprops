@@ -1,0 +1,53 @@
+K 25
+svn:wc:ra_dav:version-url
+V 118
+/HighCountryNews/iPhone_App/svn/!svn/ver/148/HCN-for-iPhone/ShareKit/Sharers/Services/Evernote/Helpers/thrift/protocol
+END
+TProtocolException.m
+K 25
+svn:wc:ra_dav:version-url
+V 139
+/HighCountryNews/iPhone_App/svn/!svn/ver/148/HCN-for-iPhone/ShareKit/Sharers/Services/Evernote/Helpers/thrift/protocol/TProtocolException.m
+END
+TBinaryProtocol.h
+K 25
+svn:wc:ra_dav:version-url
+V 136
+/HighCountryNews/iPhone_App/svn/!svn/ver/148/HCN-for-iPhone/ShareKit/Sharers/Services/Evernote/Helpers/thrift/protocol/TBinaryProtocol.h
+END
+TProtocolFactory.h
+K 25
+svn:wc:ra_dav:version-url
+V 137
+/HighCountryNews/iPhone_App/svn/!svn/ver/148/HCN-for-iPhone/ShareKit/Sharers/Services/Evernote/Helpers/thrift/protocol/TProtocolFactory.h
+END
+TBinaryProtocol.m
+K 25
+svn:wc:ra_dav:version-url
+V 136
+/HighCountryNews/iPhone_App/svn/!svn/ver/148/HCN-for-iPhone/ShareKit/Sharers/Services/Evernote/Helpers/thrift/protocol/TBinaryProtocol.m
+END
+TProtocolUtil.h
+K 25
+svn:wc:ra_dav:version-url
+V 134
+/HighCountryNews/iPhone_App/svn/!svn/ver/148/HCN-for-iPhone/ShareKit/Sharers/Services/Evernote/Helpers/thrift/protocol/TProtocolUtil.h
+END
+TProtocolException.h
+K 25
+svn:wc:ra_dav:version-url
+V 139
+/HighCountryNews/iPhone_App/svn/!svn/ver/148/HCN-for-iPhone/ShareKit/Sharers/Services/Evernote/Helpers/thrift/protocol/TProtocolException.h
+END
+TProtocol.h
+K 25
+svn:wc:ra_dav:version-url
+V 130
+/HighCountryNews/iPhone_App/svn/!svn/ver/148/HCN-for-iPhone/ShareKit/Sharers/Services/Evernote/Helpers/thrift/protocol/TProtocol.h
+END
+TProtocolUtil.m
+K 25
+svn:wc:ra_dav:version-url
+V 134
+/HighCountryNews/iPhone_App/svn/!svn/ver/148/HCN-for-iPhone/ShareKit/Sharers/Services/Evernote/Helpers/thrift/protocol/TProtocolUtil.m
+END

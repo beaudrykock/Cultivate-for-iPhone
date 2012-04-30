@@ -1,0 +1,125 @@
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/HighCountryNews/iPhone_App/svn/!svn/ver/148/HCN-for-iPhone/ShareKit/Core/Helpers/OAuth
+END
+OAServiceTicket.m
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/HighCountryNews/iPhone_App/svn/!svn/ver/148/HCN-for-iPhone/ShareKit/Core/Helpers/OAuth/OAServiceTicket.m
+END
+OAPlaintextSignatureProvider.m
+K 25
+svn:wc:ra_dav:version-url
+V 118
+/HighCountryNews/iPhone_App/svn/!svn/ver/148/HCN-for-iPhone/ShareKit/Core/Helpers/OAuth/OAPlaintextSignatureProvider.m
+END
+OADataFetcher.h
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/HighCountryNews/iPhone_App/svn/!svn/ver/148/HCN-for-iPhone/ShareKit/Core/Helpers/OAuth/OADataFetcher.h
+END
+OAuthConsumer.h
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/HighCountryNews/iPhone_App/svn/!svn/ver/148/HCN-for-iPhone/ShareKit/Core/Helpers/OAuth/OAuthConsumer.h
+END
+OADataFetcher.m
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/HighCountryNews/iPhone_App/svn/!svn/ver/148/HCN-for-iPhone/ShareKit/Core/Helpers/OAuth/OADataFetcher.m
+END
+OAToken.h
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/HighCountryNews/iPhone_App/svn/!svn/ver/148/HCN-for-iPhone/ShareKit/Core/Helpers/OAuth/OAToken.h
+END
+OAHMAC_SHA1SignatureProvider.h
+K 25
+svn:wc:ra_dav:version-url
+V 118
+/HighCountryNews/iPhone_App/svn/!svn/ver/148/HCN-for-iPhone/ShareKit/Core/Helpers/OAuth/OAHMAC_SHA1SignatureProvider.h
+END
+OASignatureProviding.h
+K 25
+svn:wc:ra_dav:version-url
+V 110
+/HighCountryNews/iPhone_App/svn/!svn/ver/148/HCN-for-iPhone/ShareKit/Core/Helpers/OAuth/OASignatureProviding.h
+END
+OAMutableURLRequest.h
+K 25
+svn:wc:ra_dav:version-url
+V 109
+/HighCountryNews/iPhone_App/svn/!svn/ver/148/HCN-for-iPhone/ShareKit/Core/Helpers/OAuth/OAMutableURLRequest.h
+END
+OAToken.m
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/HighCountryNews/iPhone_App/svn/!svn/ver/148/HCN-for-iPhone/ShareKit/Core/Helpers/OAuth/OAToken.m
+END
+OAHMAC_SHA1SignatureProvider.m
+K 25
+svn:wc:ra_dav:version-url
+V 118
+/HighCountryNews/iPhone_App/svn/!svn/ver/148/HCN-for-iPhone/ShareKit/Core/Helpers/OAuth/OAHMAC_SHA1SignatureProvider.m
+END
+OAAsynchronousDataFetcher.h
+K 25
+svn:wc:ra_dav:version-url
+V 115
+/HighCountryNews/iPhone_App/svn/!svn/ver/148/HCN-for-iPhone/ShareKit/Core/Helpers/OAuth/OAAsynchronousDataFetcher.h
+END
+OARequestParameter.h
+K 25
+svn:wc:ra_dav:version-url
+V 108
+/HighCountryNews/iPhone_App/svn/!svn/ver/148/HCN-for-iPhone/ShareKit/Core/Helpers/OAuth/OARequestParameter.h
+END
+OAMutableURLRequest.m
+K 25
+svn:wc:ra_dav:version-url
+V 109
+/HighCountryNews/iPhone_App/svn/!svn/ver/148/HCN-for-iPhone/ShareKit/Core/Helpers/OAuth/OAMutableURLRequest.m
+END
+OAConsumer.h
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/HighCountryNews/iPhone_App/svn/!svn/ver/148/HCN-for-iPhone/ShareKit/Core/Helpers/OAuth/OAConsumer.h
+END
+OAAsynchronousDataFetcher.m
+K 25
+svn:wc:ra_dav:version-url
+V 115
+/HighCountryNews/iPhone_App/svn/!svn/ver/148/HCN-for-iPhone/ShareKit/Core/Helpers/OAuth/OAAsynchronousDataFetcher.m
+END
+OARequestParameter.m
+K 25
+svn:wc:ra_dav:version-url
+V 108
+/HighCountryNews/iPhone_App/svn/!svn/ver/148/HCN-for-iPhone/ShareKit/Core/Helpers/OAuth/OARequestParameter.m
+END
+OAConsumer.m
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/HighCountryNews/iPhone_App/svn/!svn/ver/148/HCN-for-iPhone/ShareKit/Core/Helpers/OAuth/OAConsumer.m
+END
+OAServiceTicket.h
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/HighCountryNews/iPhone_App/svn/!svn/ver/148/HCN-for-iPhone/ShareKit/Core/Helpers/OAuth/OAServiceTicket.h
+END
+OAPlaintextSignatureProvider.h
+K 25
+svn:wc:ra_dav:version-url
+V 118
+/HighCountryNews/iPhone_App/svn/!svn/ver/148/HCN-for-iPhone/ShareKit/Core/Helpers/OAuth/OAPlaintextSignatureProvider.h
+END

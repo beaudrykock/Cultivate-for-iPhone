@@ -1,0 +1,86 @@
+10
+
+dir
+156
+https://pl3.projectlocker.com/HighCountryNews/iPhone_App/svn/HCN-for-iPhone/ShareKit
+https://pl3.projectlocker.com/HighCountryNews/iPhone_App/svn
+
+
+
+2012-01-11T13:40:45.531769Z
+154
+beaudry.kock@mac.com
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+227ca11d-b3af-414d-be6a-f822b3da2252
+
+Customize UI
+dir
+
+Reachability
+dir
+
+JSONKit
+dir
+
+SHKConfig.h
+file
+
+
+
+
+2012-01-11T11:24:42.000000Z
+7d7df34150e062af9e023c1cb0f57a47
+2012-01-11T12:44:57.367677Z
+151
+beaudry.kock@mac.com
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+7919
+
+ShareKit.bundle
+dir
+
+Configuration
+dir
+
+Sharers
+dir
+
+Core
+dir
+
+UI
+dir
+

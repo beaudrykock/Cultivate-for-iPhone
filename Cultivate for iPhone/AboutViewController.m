@@ -24,7 +24,34 @@
 
 -(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
+    
+    if (buttonIndex ==0)
+    {
+        tappedListType = kJoinMainMailingList;
+        [self performSegueWithIdentifier: @"join mailing list" sender: self];
+    }
+    else if (buttonIndex ==1)
+    {
+        tappedListType = kJoinVolunteerMailingList;
+        [self performSegueWithIdentifier: @"join mailing list" sender: self];
+    }
+    
 	NSLog(@"button %i clicked", buttonIndex );
+}
+
+-(IBAction)share:(id)selector
+{
+    // Create the item to share (in this example, a url)
+	NSURL *url = [NSURL URLWithString:@"http://www.cultivateoxford.org"];
+	SHKItem *item = [SHKItem URL:url title:@"Cultivate Oxford"];
+    item.text = @"Sharing text here";
+    //item.image = ?;
+    
+	// Get the ShareKit action sheet
+	SHKActionSheet *actionSheet = [SHKActionSheet actionSheetForItem:item];
+    
+	// Display the action sheet
+	[actionSheet showFromTabBar:self.tabBarController.tabBar];
 }
 
 #pragma mark -
@@ -76,4 +103,12 @@
 	return YES;
 }
 
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender 
+{
+    // Get reference to the destination view controller
+    MailChimpViewController *mcvc = [segue destinationViewController];
+    
+    // Pass any objects to the view controller here, like...
+    [mcvc setListType:tappedListType];
+}
 @end

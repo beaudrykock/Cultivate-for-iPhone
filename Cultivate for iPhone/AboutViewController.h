@@ -7,7 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "SHK.h"
+#import "SHKItem.h"
+#import "ChimpKit.h"
+#import "MailChimpViewController.h"
 
-@interface AboutViewController : UIViewController <UIActionSheetDelegate>
+@interface AboutViewController : UIViewController <UIActionSheetDelegate, ChimpKitDelegate>
+{
+    NSString *tappedListType;
+}
+-(IBAction)share:(id)sender;
 
 @end

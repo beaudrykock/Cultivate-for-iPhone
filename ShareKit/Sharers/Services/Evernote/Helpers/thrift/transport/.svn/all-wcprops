@@ -1,0 +1,47 @@
+K 25
+svn:wc:ra_dav:version-url
+V 119
+/HighCountryNews/iPhone_App/svn/!svn/ver/148/HCN-for-iPhone/ShareKit/Sharers/Services/Evernote/Helpers/thrift/transport
+END
+TMemoryBuffer.m
+K 25
+svn:wc:ra_dav:version-url
+V 135
+/HighCountryNews/iPhone_App/svn/!svn/ver/148/HCN-for-iPhone/ShareKit/Sharers/Services/Evernote/Helpers/thrift/transport/TMemoryBuffer.m
+END
+TTransportException.h
+K 25
+svn:wc:ra_dav:version-url
+V 141
+/HighCountryNews/iPhone_App/svn/!svn/ver/148/HCN-for-iPhone/ShareKit/Sharers/Services/Evernote/Helpers/thrift/transport/TTransportException.h
+END
+TTransport.h
+K 25
+svn:wc:ra_dav:version-url
+V 132
+/HighCountryNews/iPhone_App/svn/!svn/ver/148/HCN-for-iPhone/ShareKit/Sharers/Services/Evernote/Helpers/thrift/transport/TTransport.h
+END
+THTTPClient.h
+K 25
+svn:wc:ra_dav:version-url
+V 133
+/HighCountryNews/iPhone_App/svn/!svn/ver/148/HCN-for-iPhone/ShareKit/Sharers/Services/Evernote/Helpers/thrift/transport/THTTPClient.h
+END
+TTransportException.m
+K 25
+svn:wc:ra_dav:version-url
+V 141
+/HighCountryNews/iPhone_App/svn/!svn/ver/148/HCN-for-iPhone/ShareKit/Sharers/Services/Evernote/Helpers/thrift/transport/TTransportException.m
+END
+TMemoryBuffer.h
+K 25
+svn:wc:ra_dav:version-url
+V 135
+/HighCountryNews/iPhone_App/svn/!svn/ver/148/HCN-for-iPhone/ShareKit/Sharers/Services/Evernote/Helpers/thrift/transport/TMemoryBuffer.h
+END
+THTTPClient.m
+K 25
+svn:wc:ra_dav:version-url
+V 133
+/HighCountryNews/iPhone_App/svn/!svn/ver/148/HCN-for-iPhone/ShareKit/Sharers/Services/Evernote/Helpers/thrift/transport/THTTPClient.m
+END

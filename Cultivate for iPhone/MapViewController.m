@@ -30,7 +30,7 @@
     //NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:url]];
     //[mapView loadRequest:request];
     
-    [self startStandardUpdates];
+    //[self startStandardUpdates];
 }
 
 - (void)startStandardUpdates
@@ -90,6 +90,8 @@
     [self plotVegVanStopLocations];
     
     [_mapView setShowsUserLocation:YES];
+    
+    [self startStandardUpdates];
     
     [super viewWillAppear:animated];
 }
@@ -186,6 +188,8 @@
 
 - (void)viewWillDisappear:(BOOL)animated
 {
+    [locationManager stopUpdatingLocation];
+    
 	[super viewWillDisappear:animated];
 }
 

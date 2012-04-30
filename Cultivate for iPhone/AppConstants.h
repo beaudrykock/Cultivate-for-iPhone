@@ -16,3 +16,10 @@
 #define kRepeatPatternOneOff 0
 #define kRepeatPatternWeekly 1
 #define kRepeatPatternMonthly 2
+
+// MAILCHIMP
+#define kMailChimpAPIKey @"8bb725580c704b42106c4fcedfa2a9c1-us4"
+#define kJoinMainMailingList @"Join mailing list"
+#define kJoinVolunteerMailingList @"Join volunteer mailing list"
+#define kMainMailingListID @"NEEDS LIST ID"
+#define kVolunteerMailingListID @"NEEDS LIST ID"

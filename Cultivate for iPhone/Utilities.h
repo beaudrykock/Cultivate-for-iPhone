@@ -18,5 +18,10 @@
 +(NSInteger)getDefaultMinutesBefore;
 +(void)setDefaultRepeatPattern:(NSInteger)repeatPattern;
 +(NSInteger)getDefaultRepeatPattern;
++(UIInterfaceOrientation) interfaceOrientation;
++(void)storePostcode:(NSString*)postcodeToStore;
++(NSString*)storedPostcode;
++(void)setup;
++(BOOL)postcodeIsValid:(NSString*)postcode;
 
 @end

@@ -64,6 +64,7 @@
 		9F6A09E71546FE7400B59D0F /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F6A09E61546FE7400B59D0F /* libz.dylib */; };
 		9F6A09EA1546FEE900B59D0F /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F6A09E91546FEE900B59D0F /* Reachability.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		9F6A09ED1546FF7B00B59D0F /* VegVanStopLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F6A09EC1546FF7B00B59D0F /* VegVanStopLocation.m */; };
+		9F977EE0155018C3002D04A6 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F977EDF155018C3002D04A6 /* QuartzCore.framework */; };
 		9F99E0C915481E7900485A23 /* SectionHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F99E0C815481E7900485A23 /* SectionHeaderView.m */; };
 		9F99E0CC154821EC00485A23 /* Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F99E0CB154821EC00485A23 /* Utilities.m */; };
 		9FB2B5A2154F0736000F2410 /* SBJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FB2B59B154F0736000F2410 /* SBJSON.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -240,6 +241,7 @@
 		9F6A09E91546FEE900B59D0F /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 		9F6A09EB1546FF7B00B59D0F /* VegVanStopLocation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VegVanStopLocation.h; path = "Cultivate for iPhone/VegVanStopLocation.h"; sourceTree = "<group>"; };
 		9F6A09EC1546FF7B00B59D0F /* VegVanStopLocation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VegVanStopLocation.m; path = "Cultivate for iPhone/VegVanStopLocation.m"; sourceTree = "<group>"; };
+		9F977EDF155018C3002D04A6 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		9F99E0C715481E7900485A23 /* SectionHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SectionHeaderView.h; sourceTree = "<group>"; };
 		9F99E0C815481E7900485A23 /* SectionHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SectionHeaderView.m; sourceTree = "<group>"; };
 		9F99E0CA154821EC00485A23 /* Utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utilities.h; sourceTree = "<group>"; };
@@ -406,6 +408,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9F977EE0155018C3002D04A6 /* QuartzCore.framework in Frameworks */,
 				9FF1E31C154EFAD7000C0337 /* Twitter.framework in Frameworks */,
 				9FF1E31A154EFAC5000C0337 /* MessageUI.framework in Frameworks */,
 				9FF1E318154EFABA000C0337 /* Security.framework in Frameworks */,
@@ -445,6 +448,7 @@
 			isa = PBXGroup;
 			children = (
 				9F6A09E61546FE7400B59D0F /* libz.dylib */,
+				9F977EDF155018C3002D04A6 /* QuartzCore.framework */,
 				9FF1E31B154EFAD7000C0337 /* Twitter.framework */,
 				9FF1E319154EFAC5000C0337 /* MessageUI.framework */,
 				9FF1E317154EFABA000C0337 /* Security.framework */,

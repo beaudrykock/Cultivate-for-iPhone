@@ -11,10 +11,12 @@
 #import "SHKItem.h"
 #import "ChimpKit.h"
 #import "MailChimpViewController.h"
+#import <QuartzCore/QuartzCore.h>
 
 @interface AboutViewController : UIViewController <UIActionSheetDelegate, ChimpKitDelegate>
 {
     NSString *tappedListType;
+    UIView *shakeView;
 }
 -(IBAction)share:(id)sender;
 

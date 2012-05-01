@@ -11,6 +11,7 @@
 // USER DEFAULTS
 #define kDefaultMinutesBeforeKey @"defaultMinutesBeforeKey"
 #define kDefaultRepeatPatternKey @"defaultRepeatPatternKey"
+#define kPostcodeKey @"postcodeKey"
 
 // NOTIFICATIONS
 #define kRepeatPatternOneOff 0
@@ -26,3 +27,10 @@
 
 // MAPS
 #define kPostcodeRegex @"^(([gG][iI][rR] {0,}0[aA]{2})|((([a-pr-uwyzA-PR-UWYZ][a-hk-yA-HK-Y]?[0-9][0-9]?)|(([a-pr-uwyzA-PR-UWYZ][0-9][a-hjkstuwA-HJKSTUW])|([a-pr-uwyzA-PR-UWYZ][a-hk-yA-HK-Y][0-9][abehmnprv-yABEHMNPRV-Y]))) {0,}[0-9][abd-hjlnp-uw-zABD-HJLNP-UW-Z]{2}))$"
+#define kNoPostcodeStored @"No postcode stored"
+
+// GEOMETRY
+#define kScreenWidthPortrait 320
+#define kScreenWidthLandscape 480
+#define kScreenHeightPortrait 480
+#define kScreenHeightLandscape 320

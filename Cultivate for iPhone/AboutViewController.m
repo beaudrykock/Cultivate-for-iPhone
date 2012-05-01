@@ -82,13 +82,36 @@
 }
 */
 
-/*
+
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    // test shake
+    shakeView = [[UIView alloc] initWithFrame:CGRectMake(50.0, 50.0, 100.0, 100.0)];
+    UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    button.frame = CGRectMake(10.0,10.0,50.0,50.0);
+    [button addTarget:self action:@selector(shake) forControlEvents:UIControlEventTouchUpInside];
+    [shakeView addSubview:button];
+    [self.view addSubview:shakeView];
+    
 }
-*/
+
+-(void)shake
+{
+    CAKeyframeAnimation * anim = [ CAKeyframeAnimation animationWithKeyPath:@"transform" ] ;
+    anim.values = [ NSArray arrayWithObjects:
+                   [ NSValue valueWithCATransform3D:CATransform3DMakeTranslation(-5.0f, 0.0f, 0.0f) ],
+                   [ NSValue valueWithCATransform3D:CATransform3DMakeTranslation(5.0f, 0.0f, 0.0f) ], 
+                   nil ] ;
+    anim.autoreverses = YES ;
+    anim.repeatCount = 2.0f ;
+    anim.duration = 0.07f ;
+    
+    [shakeView.layer addAnimation:anim forKey:@"nil" ] ;
+
+}
 
 - (void)viewDidUnload
 {

@@ -23,5 +23,6 @@
 @property (nonatomic, strong) CLLocation *currentLocation;
 -(void)plotVegVanStopLocations;
 - (void)startStandardUpdates;
+-(void)promptForLocationServices;
 
 @end

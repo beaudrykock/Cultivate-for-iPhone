@@ -40,13 +40,66 @@
     if (nil == locationManager)
         locationManager = [[CLLocationManager alloc] init];
     
-    locationManager.delegate = self;
-    locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters;
+    [locationManager setPurpose:@"Cultivate uses your location to determine the nearest VegVan stop."];
     
-    // Set a movement threshold for new events.
-    locationManager.distanceFilter = 500;
+    if ([CLLocationManager locationServicesEnabled] && [CLLocationManager authorizationStatus] == kCLAuthorizationStatusAuthorized)
+    {
+        locationManager.delegate = self;
+        locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters;
+        
+        // Set a movement threshold for new events.
+        locationManager.distanceFilter = 500;
+        
+        [locationManager startUpdatingLocation];
+    }
+}
+
+-(void)promptForLocationServices
+{
+    UIAlertView *prompt = [[UIAlertView alloc] initWithTitle:@"Location Services not enabled for Cultivate"
+                                                        message:@"Supply your postcode below"
+                                                       delegate:self
+                                              cancelButtonTitle:@"Cancel"
+                                              otherButtonTitles:@"OK", nil];
+    [prompt setAlertViewStyle:UIAlertViewStylePlainTextInput];
+    prompt.tag = 0;
+    [prompt show];
+}
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    NSString *title = [alertView buttonTitleAtIndex:buttonIndex];
     
-    [locationManager startUpdatingLocation];
+    if([title isEqualToString:@"OK"])
+    {
+        UITextField *postcodeField = [alertView textFieldAtIndex:0];
+        
+        if (postcodeField.text)
+        {
+            [Utilities storePostcode:postcodeField.text];
+            CLPlacemark *loc = [self forwardGeocode:postcodeField.text];
+            currentLocation = [[CLLocation alloc] initWithLatitude:loc.location.coordinate.latitude longitude:loc.location.coordinate.longitude];
+            [self showNearestStopLocation:nil];
+        }
+    }
+    else {
+        {
+            [alertView dismissWithClickedButtonIndex:1 animated:YES];
+        }
+    }
+}
+
+- (BOOL)alertViewShouldEnableFirstOtherButton:(UIAlertView *)alertView
+{
+    NSString *inputText = [[alertView textFieldAtIndex:0] text];
+    if([Utilities postcodeIsValid:inputText])
+    {
+        return YES;
+    }
+    else
+    {
+        return NO;
+    }
 }
 
 // Delegate method from the CLLocationManagerDelegate protocol.
@@ -98,43 +151,55 @@
 
 -(IBAction)showNearestStopLocation:(id)sender
 {
-    CLLocationDistance shortestDistance;
-    CLLocationDistance meters;
-    NSInteger counter = 0;
-    VegVanStopLocation *annotation;
-    CLLocation *annotationLocation;
-    NSInteger closestAnnotationIndex = 0;
-    while (counter < [[_mapView annotations] count])
+    if ((![CLLocationManager locationServicesEnabled] || [CLLocationManager authorizationStatus] != kCLAuthorizationStatusAuthorized) && [[Utilities storedPostcode] isEqualToString:kNoPostcodeStored])
     {
-        annotation = [_mapView.annotations objectAtIndex:counter];
-        if (![annotation isKindOfClass:[MKUserLocation class]])
+        [self promptForLocationServices];
+    }
+    else {
+        
+        // make sure current location is set to postcode, if location services disabled
+        if ((![CLLocationManager locationServicesEnabled] || [CLLocationManager authorizationStatus] != kCLAuthorizationStatusAuthorized) && ![[Utilities storedPostcode] isEqualToString:kNoPostcodeStored])
         {
-            
-            annotationLocation = [[CLLocation alloc] initWithLatitude:annotation.coordinate.latitude longitude:annotation.coordinate.longitude];
-            meters = [currentLocation distanceFromLocation:annotationLocation];
-            
-            if (counter==0)
+            CLPlacemark *loc = [self forwardGeocode:[Utilities storedPostcode]];
+            currentLocation = [[CLLocation alloc] initWithLatitude:loc.location.coordinate.latitude longitude:loc.location.coordinate.longitude];
+        }
+        CLLocationDistance shortestDistance;
+        CLLocationDistance meters;
+        NSInteger counter = 0;
+        VegVanStopLocation *annotation;
+        CLLocation *annotationLocation;
+        NSInteger closestAnnotationIndex = 0;
+        while (counter < [[_mapView annotations] count])
+        {
+            annotation = [_mapView.annotations objectAtIndex:counter];
+            if (![annotation isKindOfClass:[MKUserLocation class]])
             {
-                shortestDistance = meters;
-            }
-            else
-            {
-                if (meters < shortestDistance)
+                
+                annotationLocation = [[CLLocation alloc] initWithLatitude:annotation.coordinate.latitude longitude:annotation.coordinate.longitude];
+                meters = [currentLocation distanceFromLocation:annotationLocation];
+                
+                if (counter==0)
                 {
                     shortestDistance = meters;
-                    closestAnnotationIndex = counter;
+                }
+                else
+                {
+                    if (meters < shortestDistance)
+                    {
+                        shortestDistance = meters;
+                        closestAnnotationIndex = counter;
+                    }
                 }
             }
+            counter++;
         }
-        counter++;
+        
+        VegVanStopLocation *nearestAnnotation = [_mapView.annotations objectAtIndex:closestAnnotationIndex];
+        
+        [_mapView setCenterCoordinate: [nearestAnnotation coordinate] animated:YES];
+        [_mapView selectAnnotation:nearestAnnotation animated:YES];
     }
-    
-    VegVanStopLocation *nearestAnnotation = [_mapView.annotations objectAtIndex:closestAnnotationIndex];
-    
-    [_mapView setCenterCoordinate: [nearestAnnotation coordinate] animated:YES];
-    [_mapView selectAnnotation:nearestAnnotation animated:YES];
-    
-    [self forwardGeocode:@"OX4 3AG"];
+    //[self forwardGeocode:@"OX4 3AG"];
 }
 
 -(CLPlacemark*)forwardGeocode:(NSString*)postcode

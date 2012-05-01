@@ -10,6 +10,20 @@
 
 @implementation Utilities
 
++(void)setup
+{
+    if ([self storedPostcode]==nil)
+    {
+        [self storePostcode:kNoPostcodeStored];
+    }
+}
+
++(BOOL)postcodeIsValid:(NSString*)postcode
+{
+    NSPredicate *postcodeTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", kPostcodeRegex];
+    return ([postcodeTest evaluateWithObject:postcode]);
+}
+
 // credit to Micah Hainline
 // http://stackoverflow.com/questions/1560081/how-can-i-create-a-uicolor-from-a-hex-string
 //
@@ -128,5 +142,20 @@
     return 1; // otherwise return default, which is weekly
 }
 
++(UIInterfaceOrientation) interfaceOrientation{
+    return [[UIApplication sharedApplication] statusBarOrientation];
+}
+
++(void)storePostcode:(NSString*)postcodeToStore
+{
+    NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
+    [prefs setObject:postcodeToStore forKey:kPostcodeKey];
+    [prefs synchronize];
+}
+
++(NSString*)storedPostcode
+{
+    return (NSString*)[[NSUserDefaults standardUserDefaults] objectForKey:kPostcodeKey];
+}
 
 @end

@@ -34,3 +34,4 @@
 #define kScreenWidthLandscape 480
 #define kScreenHeightPortrait 480
 #define kScreenHeightLandscape 320
+#define kDropdownActive_y 52

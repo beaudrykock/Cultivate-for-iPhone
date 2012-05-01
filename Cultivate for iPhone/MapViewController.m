@@ -10,7 +10,7 @@
 
 @implementation MapViewController
 //@synthesize mapView;
-@synthesize locationManager, currentLocation;
+@synthesize locationManager, currentLocation, locateDropdown, locateVanOptionsPosition, searchBarBackground;
 
 - (void)didReceiveMemoryWarning
 {
@@ -31,6 +31,17 @@
     //[mapView loadRequest:request];
     
     //[self startStandardUpdates];
+    [self positionAndStyleLocateVanDropdown];
+    
+}
+
+-(void)positionAndStyleLocateVanDropdown
+{
+    [locateDropdown removeFromSuperview];
+    [self.view insertSubview:locateDropdown belowSubview:searchBarBackground];
+    [locateDropdown setFrame:CGRectMake(searchBarBackground.frame.origin.x, searchBarBackground.frame.origin.y, locateDropdown.frame.size.width, locateDropdown.frame.size.height)];
+    
+    locateDropdown.layer.cornerRadius = 5.0;
 }
 
 - (void)startStandardUpdates
@@ -102,6 +113,45 @@
     }
 }
 
+-(IBAction)dropdownLocateVanOptionsFromButton:(id)sender
+{
+    [self dropdownLocateVanOptionsWithAnimation:YES];
+}
+
+-(void)dropdownLocateVanOptionsWithAnimation:(BOOL)animation
+{    
+    if (animation)
+    {
+        CGRect frame;
+        if ([locateVanOptionsPosition intValue]==0)
+        {
+            frame = CGRectMake(locateDropdown.frame.origin.x, kDropdownActive_y, locateDropdown.frame.size.width, locateDropdown.frame.size.height);
+            locateVanOptionsPosition = [NSNumber numberWithInt:1];
+        }
+        else {
+            frame = CGRectMake(searchBarBackground.frame.origin.x, searchBarBackground.frame.origin.y, locateDropdown.frame.size.width, locateDropdown.frame.size.height);
+            locateVanOptionsPosition = [NSNumber numberWithInt:0];
+        }
+        [UIView beginAnimations:nil context:NULL];
+        [UIView setAnimationDuration:.5];
+        locateDropdown.frame = frame;
+        //[UIView setAnimationDelegate:self];
+        //[UIView setAnimationDidStopSelector: @selector(quizViewCleared)];
+        [UIView commitAnimations];
+    }
+    else {
+        if ([locateVanOptionsPosition intValue]==0)
+        {
+            locateDropdown.frame = CGRectMake(locateDropdown.frame.origin.x, kDropdownActive_y, locateDropdown.frame.size.width, locateDropdown.frame.size.height);
+            locateVanOptionsPosition = [NSNumber numberWithInt:1];
+        }
+        else {
+            locateDropdown.frame = CGRectMake(locateDropdown.frame.origin.x, searchBarBackground.frame.origin.y, locateDropdown.frame.size.width, locateDropdown.frame.size.height);
+            locateVanOptionsPosition = [NSNumber numberWithInt:0];
+        }
+    }
+}
+
 // Delegate method from the CLLocationManagerDelegate protocol.
 - (void)locationManager:(CLLocationManager *)manager
     didUpdateToLocation:(CLLocation *)newLocation
@@ -130,6 +180,8 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {
+    locateVanOptionsPosition = [NSNumber numberWithInt:0];
+    
     CLLocationCoordinate2D zoomLocation;
     zoomLocation.latitude = 51.751944;
     zoomLocation.longitude= -1.257778;
@@ -141,12 +193,22 @@
     [_mapView setRegion:adjustedRegion animated:YES]; 
     
     [self plotVegVanStopLocations];
-    
-    [_mapView setShowsUserLocation:YES];
-    
+        
     [self startStandardUpdates];
     
     [super viewWillAppear:animated];
+}
+
+-(IBAction)showUserLocation:(id)sender
+{
+    if ([_mapView showsUserLocation])
+    {
+        [_mapView setShowsUserLocation:NO];
+    }
+    else 
+    {
+        [_mapView setShowsUserLocation:YES];
+    }
 }
 
 -(IBAction)showNearestStopLocation:(id)sender
@@ -156,6 +218,8 @@
         [self promptForLocationServices];
     }
     else {
+        
+        [self dropdownLocateVanOptionsWithAnimation:YES];
         
         // make sure current location is set to postcode, if location services disabled
         if ((![CLLocationManager locationServicesEnabled] || [CLLocationManager authorizationStatus] != kCLAuthorizationStatusAuthorized) && ![[Utilities storedPostcode] isEqualToString:kNoPostcodeStored])

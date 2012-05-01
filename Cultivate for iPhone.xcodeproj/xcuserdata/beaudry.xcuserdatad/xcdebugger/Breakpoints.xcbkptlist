@@ -49,11 +49,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Cultivate for iPhone/MapViewController.m"
-         timestampString = "357574227.164336"
+         timestampString = "357584267.436604"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "208"
-         endingLineNumber = "208"
+         startingLineNumber = "272"
+         endingLineNumber = "272"
          landmarkName = "-forwardGeocode:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -75,11 +75,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Cultivate for iPhone/MapViewController.m"
-         timestampString = "357572755.491775"
+         timestampString = "357583950.596426"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "45"
-         endingLineNumber = "45"
+         startingLineNumber = "56"
+         endingLineNumber = "56"
          landmarkName = "-startStandardUpdates"
          landmarkType = "5">
       </FileBreakpoint>
@@ -88,11 +88,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Cultivate for iPhone/MapViewController.m"
-         timestampString = "357574042.456119"
+         timestampString = "357583950.596426"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "71"
-         endingLineNumber = "71"
+         startingLineNumber = "82"
+         endingLineNumber = "82"
          landmarkName = "-alertView:clickedButtonAtIndex:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -101,12 +101,25 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Cultivate for iPhone/MapViewController.m"
-         timestampString = "357574742.269973"
+         timestampString = "357583950.596426"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "94"
-         endingLineNumber = "94"
+         startingLineNumber = "105"
+         endingLineNumber = "105"
          landmarkName = "-alertViewShouldEnableFirstOtherButton:"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "Cultivate for iPhone/MapViewController.m"
+         timestampString = "357583950.596426"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "125"
+         endingLineNumber = "125"
+         landmarkName = "-dropdownLocateVanOptionsWithAnimation:"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>

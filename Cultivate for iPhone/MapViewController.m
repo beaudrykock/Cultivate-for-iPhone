@@ -133,6 +133,28 @@
     
     [_mapView setCenterCoordinate: [nearestAnnotation coordinate] animated:YES];
     [_mapView selectAnnotation:nearestAnnotation animated:YES];
+    
+    [self forwardGeocode:@"OX4 3AG"];
+}
+
+-(CLPlacemark*)forwardGeocode:(NSString*)postcode
+{
+    __block CLPlacemark *placemark = nil;
+    NSPredicate *postcodeTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", kPostcodeRegex];
+    if ([postcodeTest evaluateWithObject:postcode])
+    {
+        CLGeocoder *geocoder = [[CLGeocoder alloc] init];
+        [geocoder geocodeAddressString:postcode completionHandler:^(NSArray *placemarks, NSError *error) {
+            placemark = [placemarks objectAtIndex:0];
+            
+            NSLog(@"lat = %f, long = %f", placemark.location.coordinate.latitude, placemark.location.coordinate.longitude);
+        }];
+    }
+    else
+    {
+        
+    }
+    return placemark;
 }
 
 -(void)plotVegVanStopLocations

@@ -3,11 +3,13 @@
 //  Cultivate for iPhone
 //
 //  Created by Beaudry Kock on 4/25/12.
-//  Copyright (c) 2012 University of Oxford. All rights reserved.
+//  Copyright (c) 2012 Better World Coding. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
 #import "VegVanStopNotification.h"
+#import "Reachability.h"
+#import "AppDelegate.h"
 
 @interface Utilities : NSObject
 
@@ -23,5 +25,8 @@
 +(NSString*)storedPostcode;
 +(void)setup;
 +(BOOL)postcodeIsValid:(NSString*)postcode;
++(BOOL)hasInternet;
++(BOOL)hostReachable;
++(AppDelegate*)sharedAppDelegate;
 
 @end

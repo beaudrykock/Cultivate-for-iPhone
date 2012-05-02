@@ -3,7 +3,7 @@
 //  Cultivate for iPhone
 //
 //  Created by Beaudry Kock on 4/24/12.
-//  Copyright (c) 2012 University of Oxford. All rights reserved.
+//  Copyright (c) 2012 Better World Coding. All rights reserved.
 //
 
 #import "AppDelegate.h"
@@ -11,11 +11,16 @@
 @implementation AppDelegate
 
 @synthesize window = _window;
+@synthesize vegVanStopManager;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
     [Utilities setup];
+    
+    vegVanStopManager = [[VegVanStopManager alloc] init];
+    BOOL successfulLoad = [vegVanStopManager loadVegVanStops];
+    
     return YES;
 }
 							

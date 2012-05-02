@@ -35,3 +35,21 @@
 #define kScreenHeightPortrait 480
 #define kScreenHeightLandscape 320
 #define kDropdownActive_y 52
+
+// XML PARSING
+#define kVegVanStopElement @"stop"
+#define kNameElement @"name"
+#define kAreaElement @"area"
+#define kLongitudeElement @"longitude"
+#define kLatitudeElement @"latitude"
+#define kStreetNumberElement @"streetNumber"
+#define kStreetNameElement @"streetName"
+#define kPostcodeElement @"postcode"
+#define kPhotoURLElement @"photoURL"
+#define kBlurbElement @"blurb"
+#define kManagerElement @"manager"
+#define kScheduleItemsElement @"scheduleItems"
+#define kScheduleItemElement @"scheduleItem"
+#define kStopNameElement @"stopName"
+#define kStopFrequencyElement @"stopFrequency"
+// TODO: implement NSDateComponents

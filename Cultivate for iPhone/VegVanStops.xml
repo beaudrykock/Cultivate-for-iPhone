@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<vegvanstopdata>
+	<stop>
+		<name>Jericho 1</name>
+		<area>Jericho</area>
+		<latitude>51.752487</latitude>
+		<longitude>-1.260338</longitude>
+		<streetNumber>5</streetNumber>
+		<streetName>Walton St</streetName>
+		<postcode>OX1 3QA</postcode>
+		<photoURL>http://www.cultivateoxford.org/jericho_1.png</photoURL>
+		<blurb>Really awesome stop with great veggies</blurb>
+		<manager>John Doe</manager>
+		<scheduleItems>
+			<scheduleItem>
+				<stopName>Jericho 1</stopName>
+				<stopFrequency>Weekly</stopFrequency>
+			</scheduleItem>
+		</scheduleItems>
+	</stop>
+	<stop>
+		<name>Jericho 2</name>
+		<area>Jericho</area>
+		<latitude>51.743984</latitude>
+		<longitude>-1.235147</longitude>
+		<streetNumber>5</streetNumber>
+		<streetName>Walton St</streetName>
+		<postcode>OX1 3QA</postcode>
+		<photoURL>http://www.cultivateoxford.org/jericho_1.png</photoURL>
+		<blurb>Really awesome stop with great veggies</blurb>
+		<manager>John Doe</manager>
+		<scheduleItems>
+			<scheduleItem>
+				<stopName>Jericho 1</stopName>
+				<stopFrequency>Weekly</stopFrequency>
+			</scheduleItem>
+		</scheduleItems>
+	</stop>
+	<stop>
+		<name>Castle 1</name>
+		<area>Central</area>
+		<latitude>51.753602</latitude>
+		<longitude>-1.271281</longitude>
+		<streetNumber>5</streetNumber>
+		<streetName>Walton St</streetName>
+		<postcode>OX1 3QA</postcode>
+		<photoURL>http://www.cultivateoxford.org/jericho_1.png</photoURL>
+		<blurb>Really awesome stop with great veggies</blurb>
+		<manager>John Doe</manager>
+		<scheduleItems>
+			<scheduleItem>
+				<stopName>Jericho 1</stopName>
+				<stopFrequency>Weekly</stopFrequency>
+			</scheduleItem>
+		</scheduleItems>
+	</stop>
+	<stop>
+		<name>East Oxford 1</name>
+		<area>East Oxford</area>
+		<latitude>51.758995</latitude>
+		<longitude>-1.253514</longitude>
+		<streetNumber>5</streetNumber>
+		<streetName>Walton St</streetName>
+		<postcode>OX1 3QA</postcode>
+		<photoURL>http://www.cultivateoxford.org/jericho_1.png</photoURL>
+		<blurb>Really awesome stop with great veggies</blurb>
+		<manager>John Doe</manager>
+		<scheduleItems>
+			<scheduleItem>
+				<stopName>Jericho 1</stopName>
+				<stopFrequency>Weekly</stopFrequency>
+			</scheduleItem>
+		</scheduleItems>
+	</stop>
+	<stop>
+		<name>Headington 1</name>
+		<area>Headington</area>
+		<latitude>51.764122</latitude>
+		<longitude>-1.268921</longitude>
+		<streetNumber>5</streetNumber>
+		<streetName>Walton St</streetName>
+		<postcode>OX1 3QA</postcode>
+		<photoURL>http://www.cultivateoxford.org/jericho_1.png</photoURL>
+		<blurb>Really awesome stop with great veggies</blurb>
+		<manager>John Doe</manager>
+		<scheduleItems>
+			<scheduleItem>
+				<stopName>Jericho 1</stopName>
+				<stopFrequency>Weekly</stopFrequency>
+			</scheduleItem>
+		</scheduleItems>
+	</stop>
+</vegvanstopdata>
+</xml>

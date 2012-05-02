@@ -9,6 +9,14 @@
 /* Begin PBXBuildFile section */
 		9F35E19E155042A1006AE0D2 /* nearest_me_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 9F35E19D155042A1006AE0D2 /* nearest_me_icon.png */; };
 		9F35E1A1155044A8006AE0D2 /* next_nearest_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 9F35E1A0155044A8006AE0D2 /* next_nearest_icon.png */; };
+		9F524AF4155180E6000846E7 /* VegVanStop.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F524AF3155180E6000846E7 /* VegVanStop.m */; };
+		9F524AF8155180F9000846E7 /* VegVanScheduleItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F524AF7155180F9000846E7 /* VegVanScheduleItem.m */; };
+		9F524AFB155183B1000846E7 /* VegVanStopManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F524AFA155183B1000846E7 /* VegVanStopManager.m */; };
+		9F524B0615519139000846E7 /* SMXMLDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F524B0515519139000846E7 /* SMXMLDocument.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		9F524B0815519517000846E7 /* VegVanStops.xml in Resources */ = {isa = PBXBuildFile; fileRef = 9F524B0715519517000846E7 /* VegVanStops.xml */; };
+		9F524B0F1551A10E000846E7 /* ScheduleItemDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F524B0D1551A10E000846E7 /* ScheduleItemDetailViewController.m */; };
+		9F524B101551A10E000846E7 /* ScheduleItemDetailView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9F524B0E1551A10E000846E7 /* ScheduleItemDetailView.xib */; };
+		9F524B121551AC6E000846E7 /* cultivan.png in Resources */ = {isa = PBXBuildFile; fileRef = 9F524B111551AC6E000846E7 /* cultivan.png */; };
 		9F60768015483FCE00105643 /* VegVanStopNotification.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F60767F15483FCE00105643 /* VegVanStopNotification.m */; };
 		9F60769415484AE000105643 /* 20-gear2.png in Resources */ = {isa = PBXBuildFile; fileRef = 9F60769215484AE000105643 /* 20-gear2.png */; };
 		9F60769515484AE000105643 /* 20-gear2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9F60769315484AE000105643 /* 20-gear2@2x.png */; };
@@ -151,8 +159,21 @@
 /* Begin PBXFileReference section */
 		9F35E19D155042A1006AE0D2 /* nearest_me_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nearest_me_icon.png; sourceTree = "<group>"; };
 		9F35E1A0155044A8006AE0D2 /* next_nearest_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = next_nearest_icon.png; sourceTree = "<group>"; };
-		9F60767E15483FCE00105643 /* VegVanStopNotification.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VegVanStopNotification.h; sourceTree = "<group>"; };
-		9F60767F15483FCE00105643 /* VegVanStopNotification.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VegVanStopNotification.m; sourceTree = "<group>"; };
+		9F524AF2155180E6000846E7 /* VegVanStop.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VegVanStop.h; path = "Cultivate for iPhone/VegVanStop.h"; sourceTree = "<group>"; };
+		9F524AF3155180E6000846E7 /* VegVanStop.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VegVanStop.m; path = "Cultivate for iPhone/VegVanStop.m"; sourceTree = "<group>"; };
+		9F524AF6155180F9000846E7 /* VegVanScheduleItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VegVanScheduleItem.h; path = "Cultivate for iPhone/VegVanScheduleItem.h"; sourceTree = "<group>"; };
+		9F524AF7155180F9000846E7 /* VegVanScheduleItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VegVanScheduleItem.m; path = "Cultivate for iPhone/VegVanScheduleItem.m"; sourceTree = "<group>"; };
+		9F524AF9155183B1000846E7 /* VegVanStopManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VegVanStopManager.h; path = "Cultivate for iPhone/VegVanStopManager.h"; sourceTree = "<group>"; };
+		9F524AFA155183B1000846E7 /* VegVanStopManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VegVanStopManager.m; path = "Cultivate for iPhone/VegVanStopManager.m"; sourceTree = "<group>"; };
+		9F524B0415519139000846E7 /* SMXMLDocument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMXMLDocument.h; sourceTree = "<group>"; };
+		9F524B0515519139000846E7 /* SMXMLDocument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMXMLDocument.m; sourceTree = "<group>"; };
+		9F524B0715519517000846E7 /* VegVanStops.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = VegVanStops.xml; sourceTree = "<group>"; };
+		9F524B0C1551A10E000846E7 /* ScheduleItemDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ScheduleItemDetailViewController.h; path = ../ScheduleItemDetailViewController.h; sourceTree = "<group>"; };
+		9F524B0D1551A10E000846E7 /* ScheduleItemDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ScheduleItemDetailViewController.m; path = ../ScheduleItemDetailViewController.m; sourceTree = "<group>"; };
+		9F524B0E1551A10E000846E7 /* ScheduleItemDetailView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ScheduleItemDetailView.xib; path = ../ScheduleItemDetailView.xib; sourceTree = "<group>"; };
+		9F524B111551AC6E000846E7 /* cultivan.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cultivan.png; sourceTree = "<group>"; };
+		9F60767E15483FCE00105643 /* VegVanStopNotification.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VegVanStopNotification.h; path = "Cultivate for iPhone/VegVanStopNotification.h"; sourceTree = "<group>"; };
+		9F60767F15483FCE00105643 /* VegVanStopNotification.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VegVanStopNotification.m; path = "Cultivate for iPhone/VegVanStopNotification.m"; sourceTree = "<group>"; };
 		9F60769215484AE000105643 /* 20-gear2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "20-gear2.png"; sourceTree = "<group>"; };
 		9F60769315484AE000105643 /* 20-gear2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "20-gear2@2x.png"; sourceTree = "<group>"; };
 		9F60769615484BD300105643 /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
@@ -431,6 +452,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		9F524AFE15518480000846E7 /* SMXML */ = {
+			isa = PBXGroup;
+			children = (
+				9F524B0415519139000846E7 /* SMXMLDocument.h */,
+				9F524B0515519139000846E7 /* SMXMLDocument.m */,
+			);
+			name = SMXML;
+			sourceTree = "<group>";
+		};
 		9F6A09141546D4C500B59D0F = {
 			isa = PBXGroup;
 			children = (
@@ -475,6 +505,8 @@
 				9F6A09331546D4C500B59D0F /* AppDelegate.m */,
 				9F6A09351546D4C500B59D0F /* MainStoryboard.storyboard */,
 				9F6A09651546E74000B59D0F /* AppConstants.h */,
+				9F99E0CA154821EC00485A23 /* Utilities.h */,
+				9F99E0CB154821EC00485A23 /* Utilities.m */,
 				9FF1E316154EF7C5000C0337 /* Models */,
 				9FF1E325154F011B000C0337 /* Externals */,
 				9F6A095E1546E55200B59D0F /* View Controllers */,
@@ -518,13 +550,16 @@
 		9F6A095D1546E54000B59D0F /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				9F524B0715519517000846E7 /* VegVanStops.xml */,
 				9FC91DB915470F41008A976E /* Cultivate_logo.png */,
+				9F524B111551AC6E000846E7 /* cultivan.png */,
 				9F6076991548549500105643 /* 78-stopwatch.png */,
 				9F60769A1548549500105643 /* 78-stopwatch@2x.png */,
 				9F60769D154854CE00105643 /* 74-location.png */,
 				9F60769E154854CE00105643 /* 74-location@2x.png */,
 				9F35E19D155042A1006AE0D2 /* nearest_me_icon.png */,
 				9F35E1A0155044A8006AE0D2 /* next_nearest_icon.png */,
+				9F524B0E1551A10E000846E7 /* ScheduleItemDetailView.xib */,
 				9F6A095C1546E52D00B59D0F /* Tab icons */,
 			);
 			name = Resources;
@@ -543,12 +578,10 @@
 				9FF1E38C154F02F4000C0337 /* MailChimpViewController.m */,
 				9F99E0C715481E7900485A23 /* SectionHeaderView.h */,
 				9F99E0C815481E7900485A23 /* SectionHeaderView.m */,
-				9F99E0CA154821EC00485A23 /* Utilities.h */,
-				9F99E0CB154821EC00485A23 /* Utilities.m */,
-				9F60767E15483FCE00105643 /* VegVanStopNotification.h */,
-				9F60767F15483FCE00105643 /* VegVanStopNotification.m */,
 				9F60769615484BD300105643 /* SettingsViewController.h */,
 				9F60769715484BD300105643 /* SettingsViewController.m */,
+				9F524B0C1551A10E000846E7 /* ScheduleItemDetailViewController.h */,
+				9F524B0D1551A10E000846E7 /* ScheduleItemDetailViewController.m */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -986,6 +1019,14 @@
 			children = (
 				9F6A09EB1546FF7B00B59D0F /* VegVanStopLocation.h */,
 				9F6A09EC1546FF7B00B59D0F /* VegVanStopLocation.m */,
+				9F524AF9155183B1000846E7 /* VegVanStopManager.h */,
+				9F524AFA155183B1000846E7 /* VegVanStopManager.m */,
+				9F524AF2155180E6000846E7 /* VegVanStop.h */,
+				9F524AF3155180E6000846E7 /* VegVanStop.m */,
+				9F524AF6155180F9000846E7 /* VegVanScheduleItem.h */,
+				9F524AF7155180F9000846E7 /* VegVanScheduleItem.m */,
+				9F60767E15483FCE00105643 /* VegVanStopNotification.h */,
+				9F60767F15483FCE00105643 /* VegVanStopNotification.m */,
 			);
 			name = Models;
 			path = ..;
@@ -994,6 +1035,7 @@
 		9FF1E325154F011B000C0337 /* Externals */ = {
 			isa = PBXGroup;
 			children = (
+				9F524AFE15518480000846E7 /* SMXML */,
 				9FF1E357154F01BE000C0337 /* MailChimp */,
 				9FF1E166154EF7B3000C0337 /* ShareKit */,
 				9F6A09DF1546FD0300B59D0F /* ASIHttpRequest */,
@@ -1104,6 +1146,9 @@
 				9FF1E364154F01BE000C0337 /* CKAuthViewController.xib in Resources */,
 				9F35E19E155042A1006AE0D2 /* nearest_me_icon.png in Resources */,
 				9F35E1A1155044A8006AE0D2 /* next_nearest_icon.png in Resources */,
+				9F524B0815519517000846E7 /* VegVanStops.xml in Resources */,
+				9F524B101551A10E000846E7 /* ScheduleItemDetailView.xib in Resources */,
+				9F524B121551AC6E000846E7 /* cultivan.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1212,6 +1257,11 @@
 				9FB2B5A3154F0736000F2410 /* SBJsonBase.m in Sources */,
 				9FB2B5A4154F0736000F2410 /* SBJsonParser.m in Sources */,
 				9FB2B5A5154F0736000F2410 /* SBJsonWriter.m in Sources */,
+				9F524AF4155180E6000846E7 /* VegVanStop.m in Sources */,
+				9F524AF8155180F9000846E7 /* VegVanScheduleItem.m in Sources */,
+				9F524AFB155183B1000846E7 /* VegVanStopManager.m in Sources */,
+				9F524B0615519139000846E7 /* SMXMLDocument.m in Sources */,
+				9F524B0F1551A10E000846E7 /* ScheduleItemDetailViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1253,7 +1303,7 @@
 					"$(inherited)",
 				);
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_VERSION = "";
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
@@ -1271,7 +1321,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_VERSION = "";
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;

@@ -3,7 +3,7 @@
 //  Cultivate for iPhone
 //
 //  Created by Beaudry Kock on 4/25/12.
-//  Copyright (c) 2012 University of Oxford. All rights reserved.
+//  Copyright (c) 2012 Better World Coding. All rights reserved.
 //
 
 #import "VegVanStopNotification.h"

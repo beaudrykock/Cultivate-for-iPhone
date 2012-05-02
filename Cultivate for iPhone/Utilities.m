@@ -3,7 +3,7 @@
 //  Cultivate for iPhone
 //
 //  Created by Beaudry Kock on 4/25/12.
-//  Copyright (c) 2012 University of Oxford. All rights reserved.
+//  Copyright (c) 2012 Better World Coding. All rights reserved.
 //
 
 #import "Utilities.h"
@@ -156,6 +156,36 @@
 +(NSString*)storedPostcode
 {
     return (NSString*)[[NSUserDefaults standardUserDefaults] objectForKey:kPostcodeKey];
+}
+
++(BOOL)hasInternet
+{
+    Reachability *reachability = [Reachability reachabilityForInternetConnection];    
+    NetworkStatus internetStatus = [reachability currentReachabilityStatus];
+    if (internetStatus != NotReachable) {
+        return YES;
+    }
+    else {
+        return NO;
+    }
+    
+}
+
++(BOOL)hostReachable
+{
+    Reachability *reachability = [Reachability reachabilityWithHostName:@"http://www.cultivateoxford.org"];    
+    NetworkStatus hostStatus = [reachability currentReachabilityStatus];
+    if (hostStatus != NotReachable) {
+        return YES;
+    }
+    else {
+        return NO;
+    }
+}
+
++(AppDelegate*)sharedAppDelegate 
+{
+    return (AppDelegate*)[[UIApplication sharedApplication] delegate];
 }
 
 @end

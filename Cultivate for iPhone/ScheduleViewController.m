@@ -3,13 +3,13 @@
 //  Cultivate for iPhone
 //
 //  Created by Beaudry Kock on 4/24/12.
-//  Copyright (c) 2012 University of Oxford. All rights reserved.
+//  Copyright (c) 2012 Better World Coding. All rights reserved.
 //
 
 #import "ScheduleViewController.h"
 
 @implementation ScheduleViewController
-@synthesize scheduledStops, areas, managedObjectContext;
+@synthesize areas, managedObjectContext, scheduledStopStringsByArea, sidvc, removeSIDVCPane;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -49,7 +49,7 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
 	NSString *area = [self tableView:tableView titleForHeaderInSection:section];
-	return [[self.scheduledStops valueForKey:area] count];
+	return [[self.scheduledStopStringsByArea valueForKey:area] count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -70,7 +70,7 @@
     
     // Configure the cell...
 	NSString *area = [self tableView:tableView titleForHeaderInSection:indexPath.section];
-	NSString *stop = [[self.scheduledStops valueForKey:area] objectAtIndex:indexPath.row];
+	NSString *stop = [[self.scheduledStopStringsByArea valueForKey:area] objectAtIndex:indexPath.row];
 	
 	cell.textLabel.text = stop;
     [cell.textLabel setFont:[UIFont systemFontOfSize:10.0]];
@@ -140,16 +140,51 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
 	NSString *area = [self tableView:tableView titleForHeaderInSection:indexPath.section];
-	NSString *stop = [[self.scheduledStops valueForKey:area] objectAtIndex:indexPath.row];
+	NSString *stop = [[self.scheduledStopStringsByArea valueForKey:area] objectAtIndex:indexPath.row];
 	
+    if (sidvc == nil)
+    {
+        sidvc = [[ScheduleItemDetailViewController alloc] initWithNibName:@"ScheduleItemDetailView" bundle:nil];
+        [self.view addSubview: sidvc.view];
+        [sidvc addGestureRecognizers];
+        [sidvc.view setFrame: CGRectMake(320.0,0.0,sidvc.view.frame.size.width, sidvc.view.frame.size.height)];
+        [sidvc setDelegate: self];
+        [sidvc prettify];
+    }
+    CGRect frame = CGRectMake(42.0,0.0,sidvc.view.frame.size.width, sidvc.view.frame.size.height);
+    [UIView beginAnimations:nil context:NULL];
+    [UIView setAnimationDuration:.5];
+    sidvc.view.frame = frame;
+    //[UIView setAnimationDelegate:self];
+    //[UIView setAnimationDidStopSelector: @selector(quizViewCleared)];
+    [UIView commitAnimations];
+    
+    // add touch sensitive pane
+    removeSIDVCPane = [[UIView alloc] initWithFrame:CGRectMake(0.0,0.0,42.0,480.0)];
+    UITapGestureRecognizer *gestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideSIDVC)];
+    [removeSIDVCPane addGestureRecognizer:gestureRecognizer];
+    [self.view addSubview:removeSIDVCPane];
+    /*
 	UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil
 													message:[NSString stringWithFormat:@"You selected %@!", stop]
 												   delegate:nil
 										  cancelButtonTitle:@"OK"
 										  otherButtonTitles:nil];
 	[alert show];
-	
+	*/
 	[tableView deselectRowAtIndexPath:indexPath animated:YES];
+}
+
+-(void)hideSIDVC
+{
+    [removeSIDVCPane removeFromSuperview];
+    CGRect frame = CGRectMake(320.0,0.0,sidvc.view.frame.size.width, sidvc.view.frame.size.height);
+    [UIView beginAnimations:nil context:NULL];
+    [UIView setAnimationDuration:.5];
+    sidvc.view.frame = frame;
+    //[UIView setAnimationDelegate:self];
+    //[UIView setAnimationDidStopSelector: @selector(quizViewCleared)];
+    [UIView commitAnimations];
 }
 
 #pragma mark - View lifecycle
@@ -166,11 +201,12 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
+        
+    self.scheduledStopStringsByArea = [[[Utilities sharedAppDelegate] vegVanStopManager] scheduledStopStringsByArea];
     NSArray *jerichoStops = [NSArray arrayWithObjects:@"10 am Tuesdays @ 14 Oxford St", @"3 pm Wednesdays @ 23 Walton St", nil];
     NSArray *eastOxfordStops = [NSArray arrayWithObjects:@"10 am Mondays @ 11 Magdalen Rd", @"11 am Fridays @ 16 London Road", nil];
-    self.scheduledStops = [NSDictionary dictionaryWithObjectsAndKeys:jerichoStops, @"Jericho", eastOxfordStops, @"East Oxford", nil];
-    self.areas = [NSArray arrayWithObjects:@"Jericho", @"East Oxford", nil];
+    //self.scheduledStops = [NSDictionary dictionaryWithObjectsAndKeys:jerichoStops, @"Jericho", eastOxfordStops, @"East Oxford", nil];
+    self.areas = [[[Utilities sharedAppDelegate] vegVanStopManager] vegVanStopAreas];
     //[NSDictionary dictionaryWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"scheduledStops" ofType:@"plist"]];
 }
 

@@ -3,7 +3,7 @@
 //  Cultivate for iPhone
 //
 //  Created by Beaudry Kock on 4/24/12.
-//  Copyright (c) 2012 University of Oxford. All rights reserved.
+//  Copyright (c) 2012 Better World Coding. All rights reserved.
 //
 
 #import "MapViewController.h"
@@ -308,7 +308,7 @@
         MyLocation *annotation = [[MyLocation alloc] initWithName:crimeDescription address:address coordinate:coordinate] ;
         [_mapView addAnnotation:annotation];    
     }*/
-    
+    /*
     NSArray *latitudes = [NSArray arrayWithObjects:[NSNumber numberWithDouble:51.752487],
                                                    [NSNumber numberWithDouble:51.743984],
                                                    [NSNumber numberWithDouble:51.753602],
@@ -321,13 +321,15 @@
                           [NSNumber numberWithDouble:-1.268921],nil];
     NSArray *stopNames = [NSArray arrayWithObjects:@"Jericho",@"East Oxford",@"The Castle",@"Summertown",@"Cowley", nil];
     NSArray *addresses = [NSArray arrayWithObjects:@"OX1 3QA",@"OX1 3QA",@"OX1 3QA",@"OX1 3QA",@"OX1 3QA", nil];
-    
-    for (int i = 0; i<[latitudes count]; i++)
+    */
+    VegVanStop *vegVanStop = nil;
+    for (NSString *eachKey in [[[Utilities sharedAppDelegate] vegVanStopManager] vegVanStops])
     {
+        vegVanStop = [[[[Utilities sharedAppDelegate] vegVanStopManager] vegVanStops] objectForKey:eachKey];
         CLLocationCoordinate2D coordinate;
-        coordinate.latitude = [[latitudes objectAtIndex:i] doubleValue];
-        coordinate.longitude = [[longitudes objectAtIndex:i] doubleValue];            
-        VegVanStopLocation *annotation = [[VegVanStopLocation alloc] initWithName:[stopNames objectAtIndex:i] address:[addresses objectAtIndex:i] coordinate:coordinate] ;
+        coordinate.latitude = vegVanStop.location.coordinate.latitude;
+        coordinate.longitude = vegVanStop.location.coordinate.longitude;            
+        VegVanStopLocation *annotation = [[VegVanStopLocation alloc] initWithName:vegVanStop.name address:[vegVanStop addressAsString] coordinate:coordinate];
         [_mapView addAnnotation:annotation]; 
     }
 }
@@ -371,7 +373,8 @@
         
         annotationView.enabled = YES;
         annotationView.canShowCallout = YES;
-        annotationView.image=[UIImage imageNamed:@"136-tractor.png"];
+        //annotationView.image=[UIImage imageNamed:@"136-tractor.png"];
+        annotationView.image=[UIImage imageNamed:@"cultivan.png"];
         
         return annotationView;
     }

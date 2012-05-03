@@ -29,6 +29,9 @@
     
     UITapGestureRecognizer *gestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideKeyboard)];
     [self.view addGestureRecognizer:gestureRecognizer];
+    
+    // test
+    [self fetchList];
 }
 
 -(void)hideKeyboard
@@ -58,6 +61,15 @@
 
 - (void)ckRequestFailed:(NSError *)error {
     NSLog(@"Response Error: %@", error);
+}
+
+-(void)fetchList
+{
+    ChimpKit *ck = [[ChimpKit alloc] initWithDelegate:self 
+                                            andApiKey:kMailChimpAPIKey];
+    [ck callApiMethod:@"lists" withParams:[NSDictionary dictionaryWithObjectsAndKeys:kMainMailingListID, @"list_id", nil ]];
+    
+    NSLog(@"rd = %@", [ck responseData]);
 }
 
 -(IBAction)joinMailingList:(id)sender

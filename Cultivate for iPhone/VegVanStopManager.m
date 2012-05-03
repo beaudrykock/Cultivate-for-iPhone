@@ -111,6 +111,13 @@
     return [oldString stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
 }
 
+-(float)secondsUntilNextScheduledStopWithName:(NSString*)stopName
+{
+    VegVanStop* stop = [vegVanStops objectForKey:stopName];
+    
+    return [stop secondsUntilNextScheduledStop];
+}
+
 // returns a custom string for the schedule view, organized into arrays and then into a dictionary
 // with the area key
 -(NSMutableDictionary*)scheduledStopStringsByArea
@@ -138,6 +145,21 @@
     }
     
     return scheduledStopStringsByArea;
+}
+
+-(NSMutableArray*)stopNamesInArea:(NSString*)area
+{
+    NSMutableArray *stopNames = [NSMutableArray arrayWithCapacity:10];
+    VegVanStop *stop = nil;
+    for (NSString *aKey in vegVanStops)
+    {
+        stop = [vegVanStops objectForKey: aKey];
+        
+        if ([[stop area] rangeOfString:area options:NSCaseInsensitiveSearch].location != NSNotFound)
+            [stopNames addObject:[stop name]];
+    }
+    
+    return stopNames;
 }
 
 // TODO: implement this

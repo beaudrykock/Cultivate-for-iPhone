@@ -22,8 +22,8 @@
 #define kMailChimpAPIKey @"8bb725580c704b42106c4fcedfa2a9c1-us4"
 #define kJoinMainMailingList @"Join mailing list"
 #define kJoinVolunteerMailingList @"Join volunteer mailing list"
-#define kMainMailingListID @"NEEDS LIST ID"
-#define kVolunteerMailingListID @"NEEDS LIST ID"
+#define kMainMailingListID @"cb1b5af66c"
+#define kVolunteerMailingListID @"0aaf2ad64f"
 
 // MAPS
 #define kPostcodeRegex @"^(([gG][iI][rR] {0,}0[aA]{2})|((([a-pr-uwyzA-PR-UWYZ][a-hk-yA-HK-Y]?[0-9][0-9]?)|(([a-pr-uwyzA-PR-UWYZ][0-9][a-hjkstuwA-HJKSTUW])|([a-pr-uwyzA-PR-UWYZ][a-hk-yA-HK-Y][0-9][abehmnprv-yABEHMNPRV-Y]))) {0,}[0-9][abd-hjlnp-uw-zABD-HJLNP-UW-Z]{2}))$"
@@ -34,7 +34,7 @@
 #define kScreenWidthLandscape 480
 #define kScreenHeightPortrait 480
 #define kScreenHeightLandscape 320
-#define kDropdownActive_y 52
+#define kDropdownActive_y 40
 
 // XML PARSING
 #define kVegVanStopElement @"stop"

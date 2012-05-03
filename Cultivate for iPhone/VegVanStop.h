@@ -32,5 +32,6 @@
 @property (nonatomic, strong) NSMutableArray *scheduleItems;
 
 -(NSString*)addressAsString;
+-(float)secondsUntilNextScheduledStop;
 
 @end

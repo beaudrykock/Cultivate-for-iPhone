@@ -12,7 +12,7 @@
 #import <QuartzCore/QuartzCore.h>
 #import "VegVanStop.h"
 
-@interface MapViewController : UIViewController <MKMapViewDelegate, CLLocationManagerDelegate>
+@interface MapViewController : UIViewController <MKMapViewDelegate, CLLocationManagerDelegate, UISearchBarDelegate>
 {
     __weak IBOutlet MKMapView *_mapView;
     IBOutlet UIWebView *mapView;
@@ -21,6 +21,8 @@
     UIView *locateDropdown;
     UIView *searchBarBackground;
     NSNumber* locateVanOptionsPosition;
+    UISearchBar *stopSearchBar;
+    UIView *touchView;
 }
 
 //@property (nonatomic, strong) IBOutlet UIWebView *mapView;
@@ -29,6 +31,8 @@
 @property (nonatomic, strong) IBOutlet UIView*locateDropdown;
 @property (nonatomic, strong) NSNumber *locateVanOptionsPosition;
 @property (nonatomic, strong) IBOutlet UIView *searchBarBackground;
+@property (nonatomic, strong) IBOutlet UISearchBar *stopSearchBar;
+@property (nonatomic, strong) UIView *touchView;
 
 -(void)plotVegVanStopLocations;
 - (void)startStandardUpdates;
@@ -37,5 +41,10 @@
 -(IBAction)dropdownLocateVanOptionsFromButton:(id)sender;
 -(void)dropdownLocateVanOptionsWithAnimation:(BOOL)animation;
 -(void)positionAndStyleLocateVanDropdown;
+-(IBAction)showNextStopLocation:(id)sender;
+-(IBAction)showNearestStopLocation:(id)sender;
+- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar;
+- (void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar;
+- (void)registerForKeyboardNotifications;
 
 @end

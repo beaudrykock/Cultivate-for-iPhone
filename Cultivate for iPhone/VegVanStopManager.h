@@ -28,5 +28,6 @@
 -(BOOL)loadVegVanStops;
 -(NSArray*)getStopAreasArray;
 -(NSMutableDictionary*)scheduledStopStringsByArea;
-
+-(float)secondsUntilNextScheduledStopWithName:(NSString*)stopName;
+-(NSMutableArray*)stopNamesInArea:(NSString*)area;
 @end

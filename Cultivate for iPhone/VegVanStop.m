@@ -27,4 +27,9 @@
     return (rand() / RAND_MAX) * 100;
 }
 
+-(void)description
+{
+    NSLog(@"name = %@, area = %@", name, area);
+}
+
 @end

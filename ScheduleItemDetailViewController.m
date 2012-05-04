@@ -9,7 +9,7 @@
 #import "ScheduleItemDetailViewController.h"
 
 @implementation ScheduleItemDetailViewController
-@synthesize stopName, stopManager, stopImage, stopAddress, stopBlurb, delegate;
+@synthesize stopName, stopManager, stopAddress, stopBlurb, delegate, stopPhoto, stopManagerContact;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -27,7 +27,7 @@
     
     UISwipeGestureRecognizer *oneFingerSwipeRight = [[UISwipeGestureRecognizer alloc] 
                                                       initWithTarget:self 
-                                                      action:@selector(removeView)];
+                                                     action:@selector(removeView:)];
     [oneFingerSwipeRight setDirection:UISwipeGestureRecognizerDirectionRight];
     [[self view] addGestureRecognizer:oneFingerSwipeRight];
 }
@@ -39,10 +39,14 @@
     self.view.layer.shadowOffset = CGSizeMake(-5, 5);
     self.view.layer.shadowOffset = CGSizeMake(-5, 5);
     self.view.layer.shadowOpacity = 0.5;
+    
+    [stopPhoto.layer setBorderColor: [[Utilities colorWithHexString: @"#588B21"] CGColor]];
+    [stopPhoto.layer setBorderWidth: 2.0];
+    
 }
 
 
--(void)removeView
+-(IBAction)removeView:(id)sender
 {
     [[self delegate] hideSIDVC];
 }

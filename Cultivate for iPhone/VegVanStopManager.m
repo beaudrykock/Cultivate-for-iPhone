@@ -162,6 +162,24 @@
     return stopNames;
 }
 
+// returns an array of 1 stop name per scheduled item in each stop
+-(NSMutableArray*)stopsForScheduledItems
+{
+    NSMutableArray *array = [NSMutableArray arrayWithCapacity:20];
+    NSArray *stops = [vegVanStops allValues];
+    
+    for (int i = 0; i<[stops count]; i++)
+    {
+        VegVanStop *stop = (VegVanStop*)[stops objectAtIndex: i];
+        NSMutableArray *scheduleItems = [stop scheduleItems];
+        for (VegVanScheduleItem *item in scheduleItems)
+        {
+            [array addObject: [item stopName]];
+        }
+    }
+    return array;
+}
+
 // TODO: implement this
 -(VegVanStop*)getVegVanStopForScheduledStopString:(NSString*)scheduledStopString
 {

@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "SBJson.h"
+#import "JSON.h"
 
 @class ChimpKit;
 

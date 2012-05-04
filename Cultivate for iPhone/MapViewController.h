@@ -11,8 +11,9 @@
 #import "VegVanStopLocation.h"
 #import <QuartzCore/QuartzCore.h>
 #import "VegVanStop.h"
+#import "ScheduleItemDetailViewController.h"
 
-@interface MapViewController : UIViewController <MKMapViewDelegate, CLLocationManagerDelegate, UISearchBarDelegate>
+@interface MapViewController : UIViewController <MKMapViewDelegate, CLLocationManagerDelegate, UISearchBarDelegate, ScheduleItemDetailViewControllerDelegate>
 {
     __weak IBOutlet MKMapView *_mapView;
     IBOutlet UIWebView *mapView;
@@ -23,6 +24,7 @@
     NSNumber* locateVanOptionsPosition;
     UISearchBar *stopSearchBar;
     UIView *touchView;
+    ScheduleItemDetailViewController *sidvc;
 }
 
 //@property (nonatomic, strong) IBOutlet UIWebView *mapView;
@@ -33,6 +35,8 @@
 @property (nonatomic, strong) IBOutlet UIView *searchBarBackground;
 @property (nonatomic, strong) IBOutlet UISearchBar *stopSearchBar;
 @property (nonatomic, strong) UIView *touchView;
+@property (nonatomic,strong) ScheduleItemDetailViewController *sidvc;
+
 
 -(void)plotVegVanStopLocations;
 - (void)startStandardUpdates;
@@ -46,5 +50,5 @@
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar;
 - (void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar;
 - (void)registerForKeyboardNotifications;
-
+- (void)hideSIVDC;
 @end

@@ -12,12 +12,18 @@
 #import "ChimpKit.h"
 #import "MailChimpViewController.h"
 #import <QuartzCore/QuartzCore.h>
+#import <MessageUI/MessageUI.h>
+#import <MessageUI/MFMailComposeViewController.h>
 
-@interface AboutViewController : UIViewController <UIActionSheetDelegate, ChimpKitDelegate>
+
+@interface AboutViewController : UIViewController <UIActionSheetDelegate, ChimpKitDelegate, MailChimpViewControllerDelegate>
 {
     NSString *tappedListType;
     UIView *shakeView;
 }
 -(IBAction)share:(id)sender;
+-(IBAction)showPicker:(id)sender;
+-(void)displayComposerSheet;
+-(void)launchMailAppOnDevice;
 
 @end

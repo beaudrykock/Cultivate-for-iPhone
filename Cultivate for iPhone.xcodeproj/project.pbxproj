@@ -83,12 +83,19 @@
 		9F977EE0155018C3002D04A6 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F977EDF155018C3002D04A6 /* QuartzCore.framework */; };
 		9F99E0C915481E7900485A23 /* SectionHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F99E0C815481E7900485A23 /* SectionHeaderView.m */; };
 		9F99E0CC154821EC00485A23 /* Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F99E0CB154821EC00485A23 /* Utilities.m */; };
+		9FA5493115542B5100CA04C7 /* cancel_button.png in Resources */ = {isa = PBXBuildFile; fileRef = 9FA5492F15542B5100CA04C7 /* cancel_button.png */; };
+		9FA5493215542B5100CA04C7 /* subscribe_button.png in Resources */ = {isa = PBXBuildFile; fileRef = 9FA5493015542B5100CA04C7 /* subscribe_button.png */; };
+		9FA5493415542DBF00CA04C7 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 9FA5493315542DBF00CA04C7 /* Default.png */; };
+		9FA5493615542DC300CA04C7 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9FA5493515542DC300CA04C7 /* Default@2x.png */; };
 		9FB2B5A2154F0736000F2410 /* SBJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FB2B59B154F0736000F2410 /* SBJSON.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		9FB2B5A3154F0736000F2410 /* SBJsonBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FB2B59D154F0736000F2410 /* SBJsonBase.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		9FB2B5A4154F0736000F2410 /* SBJsonParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FB2B59F154F0736000F2410 /* SBJsonParser.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		9FB2B5A5154F0736000F2410 /* SBJsonWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FB2B5A1154F0736000F2410 /* SBJsonWriter.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		9FC91DBA15470F41008A976E /* Cultivate_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 9FC91DB915470F41008A976E /* Cultivate_logo.png */; };
 		9FC91DBE154710EF008A976E /* AboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FC91DBD154710EF008A976E /* AboutViewController.m */; };
+		9FDD745915541ABC002CC760 /* stop_placeholder.png in Resources */ = {isa = PBXBuildFile; fileRef = 9FDD745815541ABC002CC760 /* stop_placeholder.png */; };
+		9FDD745D15541D79002CC760 /* back.png in Resources */ = {isa = PBXBuildFile; fileRef = 9FDD745B15541D79002CC760 /* back.png */; };
+		9FDD745E15541D79002CC760 /* back@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9FDD745C15541D79002CC760 /* back@2x.png */; };
 		9FF1E297154EF7B3000C0337 /* DefaultSHKConfigurator.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FF1E169154EF7B3000C0337 /* DefaultSHKConfigurator.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		9FF1E298154EF7B3000C0337 /* LegacySHKConfigurator.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FF1E16B154EF7B3000C0337 /* LegacySHKConfigurator.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		9FF1E299154EF7B3000C0337 /* SHKConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FF1E16D154EF7B3000C0337 /* SHKConfiguration.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -283,6 +290,10 @@
 		9F99E0C815481E7900485A23 /* SectionHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SectionHeaderView.m; sourceTree = "<group>"; };
 		9F99E0CA154821EC00485A23 /* Utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utilities.h; sourceTree = "<group>"; };
 		9F99E0CB154821EC00485A23 /* Utilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Utilities.m; sourceTree = "<group>"; };
+		9FA5492F15542B5100CA04C7 /* cancel_button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cancel_button.png; sourceTree = "<group>"; };
+		9FA5493015542B5100CA04C7 /* subscribe_button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = subscribe_button.png; sourceTree = "<group>"; };
+		9FA5493315542DBF00CA04C7 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
+		9FA5493515542DC300CA04C7 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		9FB2B59A154F0736000F2410 /* SBJSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SBJSON.h; path = ../../../../../../SBJSON.h; sourceTree = "<group>"; };
 		9FB2B59B154F0736000F2410 /* SBJSON.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SBJSON.m; path = ../../../../../../SBJSON.m; sourceTree = "<group>"; };
 		9FB2B59C154F0736000F2410 /* SBJsonBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SBJsonBase.h; path = ../../../../../../SBJsonBase.h; sourceTree = "<group>"; };
@@ -294,6 +305,9 @@
 		9FC91DB915470F41008A976E /* Cultivate_logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Cultivate_logo.png; sourceTree = "<group>"; };
 		9FC91DBC154710EF008A976E /* AboutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutViewController.h; sourceTree = "<group>"; };
 		9FC91DBD154710EF008A976E /* AboutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutViewController.m; sourceTree = "<group>"; };
+		9FDD745815541ABC002CC760 /* stop_placeholder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = stop_placeholder.png; sourceTree = "<group>"; };
+		9FDD745B15541D79002CC760 /* back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = back.png; sourceTree = "<group>"; };
+		9FDD745C15541D79002CC760 /* back@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "back@2x.png"; sourceTree = "<group>"; };
 		9FF1E168154EF7B3000C0337 /* DefaultSHKConfigurator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DefaultSHKConfigurator.h; sourceTree = "<group>"; };
 		9FF1E169154EF7B3000C0337 /* DefaultSHKConfigurator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DefaultSHKConfigurator.m; sourceTree = "<group>"; };
 		9FF1E16A154EF7B3000C0337 /* LegacySHKConfigurator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LegacySHKConfigurator.h; sourceTree = "<group>"; };
@@ -476,6 +490,8 @@
 		9F6A09141546D4C500B59D0F = {
 			isa = PBXGroup;
 			children = (
+				9FA5493515542DC300CA04C7 /* Default@2x.png */,
+				9FA5493315542DBF00CA04C7 /* Default.png */,
 				9F3FFBC71552F70800FA14EE /* radar.png */,
 				9F3FFBC81552F70800FA14EE /* radar@2x.png */,
 				9F8ED09215528A81001FE478 /* cultivate_icon@2x.png */,
@@ -572,12 +588,17 @@
 				9F3FFBC41552F55700FA14EE /* location@2x.png */,
 				9F524B111551AC6E000846E7 /* cultivan.png */,
 				9F6076991548549500105643 /* 78-stopwatch.png */,
+				9FA5492F15542B5100CA04C7 /* cancel_button.png */,
+				9FA5493015542B5100CA04C7 /* subscribe_button.png */,
 				9F60769A1548549500105643 /* 78-stopwatch@2x.png */,
 				9F60769D154854CE00105643 /* 74-location.png */,
 				9F60769E154854CE00105643 /* 74-location@2x.png */,
 				9F35E19D155042A1006AE0D2 /* nearest_me_icon.png */,
 				9F35E1A0155044A8006AE0D2 /* next_nearest_icon.png */,
 				9F524B0E1551A10E000846E7 /* ScheduleItemDetailView.xib */,
+				9FDD745B15541D79002CC760 /* back.png */,
+				9FDD745C15541D79002CC760 /* back@2x.png */,
+				9FDD745815541ABC002CC760 /* stop_placeholder.png */,
 				9F6A095C1546E52D00B59D0F /* Tab icons */,
 			);
 			name = Resources;
@@ -1173,6 +1194,13 @@
 				9F3FFBC61552F55700FA14EE /* location@2x.png in Resources */,
 				9F3FFBC91552F70800FA14EE /* radar.png in Resources */,
 				9F3FFBCA1552F70800FA14EE /* radar@2x.png in Resources */,
+				9FDD745915541ABC002CC760 /* stop_placeholder.png in Resources */,
+				9FDD745D15541D79002CC760 /* back.png in Resources */,
+				9FDD745E15541D79002CC760 /* back@2x.png in Resources */,
+				9FA5493115542B5100CA04C7 /* cancel_button.png in Resources */,
+				9FA5493215542B5100CA04C7 /* subscribe_button.png in Resources */,
+				9FA5493415542DBF00CA04C7 /* Default.png in Resources */,
+				9FA5493615542DC300CA04C7 /* Default@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

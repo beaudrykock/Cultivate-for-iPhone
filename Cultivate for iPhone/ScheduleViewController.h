@@ -17,8 +17,9 @@
     NSDictionary *scheduledStopStringsByArea;
     ScheduleItemDetailViewController *sidvc;
     UIView *removeSIDVCPane;
+    NSMutableArray *stopsForEachItem; // stop name reference for each schedule item
 }
-
+@property (nonatomic, strong) NSMutableArray *stopsForEachItem;
 @property (nonatomic, strong) UIView *removeSIDVCPane;
 @property (nonatomic, strong) NSMutableArray* areas;
 @property (nonatomic, strong) NSDictionary* scheduledStopStringsByArea;
@@ -26,6 +27,7 @@
 @property (nonatomic,strong) ScheduleItemDetailViewController *sidvc;
 
 -(void)hideSIDVC;
+-(NSInteger)getAbsoluteRowNumberForIndexPath:(NSIndexPath*)indexPath andArea: (NSString*)area;
 
 @end
 

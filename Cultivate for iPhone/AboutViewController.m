@@ -17,7 +17,7 @@
                                   delegate:self 
                                   cancelButtonTitle:@"Cancel" 
                                   destructiveButtonTitle:nil
-                                  otherButtonTitles:@"Join mailing list", @"Volunteer", @"Invest", nil
+                                  otherButtonTitles:@"Join mailing list", @"Volunteer", @"Contact us", nil
 								  ];
 	[actionsheet showFromTabBar:self.tabBarController.tabBar];
 }
@@ -35,8 +35,17 @@
         tappedListType = kJoinVolunteerMailingList;
         [self performSegueWithIdentifier: @"join mailing list" sender: self];
     }
+    else if (buttonIndex ==2)
+    {
+        [self showPicker: nil];
+    }
     
-	NSLog(@"button %i clicked", buttonIndex );
+	//NSLog(@"button %i clicked", buttonIndex );
+}
+
+- (void)mailChimpViewControllerDidCancel
+{
+	[self dismissViewControllerAnimated:YES completion:nil];
 }
 
 -(IBAction)share:(id)selector
@@ -87,15 +96,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-    // test shake
-    shakeView = [[UIView alloc] initWithFrame:CGRectMake(50.0, 50.0, 100.0, 100.0)];
-    UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    button.frame = CGRectMake(10.0,10.0,50.0,50.0);
-    [button addTarget:self action:@selector(shake) forControlEvents:UIControlEventTouchUpInside];
-    [shakeView addSubview:button];
-    [self.view addSubview:shakeView];
-    
 }
 
 -(void)shake
@@ -133,5 +133,84 @@
     
     // Pass any objects to the view controller here, like...
     [mcvc setListType:tappedListType];
+    [mcvc setDelegate: self];
 }
+
+#pragma mark -
+#pragma mark Mail composition
+-(IBAction)showPicker:(id)sender
+{
+	Class mailClass = (NSClassFromString(@"MFMailComposeViewController"));
+	if (mailClass != nil)
+	{
+		// We must always check whether the current device is configured for sending emails
+		if ([mailClass canSendMail])
+		{
+			[self displayComposerSheet];
+		}
+		else
+		{
+			[self launchMailAppOnDevice];
+		}
+	}
+	else
+	{
+		[self launchMailAppOnDevice];
+	}
+}
+
+
+#pragma mark -
+#pragma mark Compose Mail
+
+// Displays an email composition interface inside the application. Populates all the Mail fields. 
+-(void)displayComposerSheet 
+{
+	MFMailComposeViewController *picker = [[MFMailComposeViewController alloc] init];
+	picker.mailComposeDelegate = self;
+	
+	[picker setSubject:@"Hello Cultivators!"];
+	
+    
+	// Set up recipients
+	NSArray *toRecipients = [NSArray arrayWithObject:@"info@cultivateoxford.org"];
+	
+	[picker setToRecipients:toRecipients];
+    
+	// Attach an image to the email
+	//NSString *path = [[NSBundle mainBundle] pathForResource:@"rainy" ofType:@"png"];
+    //NSData *myData = [NSData dataWithContentsOfFile:path];
+	//[picker addAttachmentData:myData mimeType:@"image/png" fileName:@"rainy"];
+	
+	// Fill out the email body text
+	NSString *emailBody = @"Cultivate rocks!";
+	[picker setMessageBody:emailBody isHTML:NO];
+	
+	[self presentModalViewController:picker animated:YES];
+    
+}
+
+
+// Dismisses the email composition interface when users tap Cancel or Send. Proceeds to update the message field with the result of the operation.
+- (void)mailComposeController:(MFMailComposeViewController*)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError*)error 
+{	
+	[self dismissModalViewControllerAnimated:YES];
+}
+
+
+#pragma mark -
+#pragma mark Workaround
+
+// Launches the Mail application on the device.
+-(void)launchMailAppOnDevice
+{
+	NSString *recipients = @"mailto:info@cultivateoxford.org&subject=Hello Cultivators!";
+	NSString *body = @"&body=Cultivate rocks!";
+	
+	NSString *email = [NSString stringWithFormat:@"%@%@", recipients, body];
+	email = [email stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+	
+	[[UIApplication sharedApplication] openURL:[NSURL URLWithString:email]];
+}
+
 @end

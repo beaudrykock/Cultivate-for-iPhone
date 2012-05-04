@@ -9,7 +9,7 @@
 #import "ScheduleViewController.h"
 
 @implementation ScheduleViewController
-@synthesize areas, managedObjectContext, scheduledStopStringsByArea, sidvc, removeSIDVCPane;
+@synthesize areas, managedObjectContext, scheduledStopStringsByArea, sidvc, removeSIDVCPane, stopsForEachItem;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -135,6 +135,20 @@
  }
  */
 
+-(NSInteger)getAbsoluteRowNumberForIndexPath:(NSIndexPath*)indexPath andArea: (NSString*)area
+{
+    NSInteger absoluteRow = 0;
+    
+    for (int i = 0; i<indexPath.section; i++)
+    { 
+        absoluteRow += [[self.scheduledStopStringsByArea valueForKey:area] count];
+    }
+    
+    absoluteRow += indexPath.row;
+    
+    return absoluteRow;
+}
+
 #pragma mark - Table view delegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -151,6 +165,18 @@
         [sidvc setDelegate: self];
         [sidvc prettify];
     }
+    
+    // get stop and set sidvc parameters
+    NSInteger absoluteIndex = [self getAbsoluteRowNumberForIndexPath:indexPath andArea: area];
+    NSLog(@"absoluteIndex = %i", absoluteIndex);
+    VegVanStop *vegVanStop = [[[[Utilities sharedAppDelegate] vegVanStopManager] vegVanStops] objectForKey: [stopsForEachItem objectAtIndex: absoluteIndex]];
+    [vegVanStop description];
+    [[sidvc stopName] setText: [vegVanStop name]];
+    [[sidvc stopAddress] setText: [vegVanStop addressAsString]];
+    [[sidvc stopBlurb] setText: [vegVanStop blurb]];
+    //[sdivc setStopImage
+    [[sidvc stopManager] setText: [vegVanStop manager]];
+    
     CGRect frame = CGRectMake(42.0,0.0,sidvc.view.frame.size.width, sidvc.view.frame.size.height);
     [UIView beginAnimations:nil context:NULL];
     [UIView setAnimationDuration:.5];
@@ -201,10 +227,11 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-        
+      
+    self.stopsForEachItem = [[[Utilities sharedAppDelegate] vegVanStopManager] stopsForScheduledItems];
     self.scheduledStopStringsByArea = [[[Utilities sharedAppDelegate] vegVanStopManager] scheduledStopStringsByArea];
-    NSArray *jerichoStops = [NSArray arrayWithObjects:@"10 am Tuesdays @ 14 Oxford St", @"3 pm Wednesdays @ 23 Walton St", nil];
-    NSArray *eastOxfordStops = [NSArray arrayWithObjects:@"10 am Mondays @ 11 Magdalen Rd", @"11 am Fridays @ 16 London Road", nil];
+    //NSArray *jerichoStops = [NSArray arrayWithObjects:@"10 am Tuesdays @ 14 Oxford St", @"3 pm Wednesdays @ 23 Walton St", nil];
+    //NSArray *eastOxfordStops = [NSArray arrayWithObjects:@"10 am Mondays @ 11 Magdalen Rd", @"11 am Fridays @ 16 London Road", nil];
     //self.scheduledStops = [NSDictionary dictionaryWithObjectsAndKeys:jerichoStops, @"Jericho", eastOxfordStops, @"East Oxford", nil];
     self.areas = [[[Utilities sharedAppDelegate] vegVanStopManager] vegVanStopAreas];
     //[NSDictionary dictionaryWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"scheduledStops" ofType:@"plist"]];

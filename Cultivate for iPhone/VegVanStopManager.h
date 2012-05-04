@@ -30,4 +30,6 @@
 -(NSMutableDictionary*)scheduledStopStringsByArea;
 -(float)secondsUntilNextScheduledStopWithName:(NSString*)stopName;
 -(NSMutableArray*)stopNamesInArea:(NSString*)area;
+-(NSMutableArray*)stopsForScheduledItems;
+
 @end

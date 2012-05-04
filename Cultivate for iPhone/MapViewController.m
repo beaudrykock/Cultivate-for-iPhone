@@ -10,7 +10,7 @@
 
 @implementation MapViewController
 //@synthesize mapView;
-@synthesize locationManager, currentLocation, locateDropdown, locateVanOptionsPosition, searchBarBackground, stopSearchBar, touchView;
+@synthesize locationManager, currentLocation, locateDropdown, locateVanOptionsPosition, searchBarBackground, stopSearchBar, touchView, sidvc;
 
 - (void)didReceiveMemoryWarning
 {
@@ -35,13 +35,15 @@
     [self tintSearchBarBackground];
     [self registerForKeyboardNotifications];
     [stopSearchBar setDelegate: self];
+    
+    _mapView.zoomEnabled = YES;
 }
 
 -(void)positionAndStyleLocateVanDropdown
 {
     [locateDropdown removeFromSuperview];
     [self.view insertSubview:locateDropdown belowSubview:searchBarBackground];
-    [locateDropdown setFrame:CGRectMake(215.0, -37, locateDropdown.frame.size.width, locateDropdown.frame.size.height)];
+    [locateDropdown setFrame:CGRectMake(215.0, -45, locateDropdown.frame.size.width, locateDropdown.frame.size.height)];
     
     locateDropdown.layer.cornerRadius = 5.0;
 }
@@ -201,7 +203,7 @@
             locateVanOptionsPosition = [NSNumber numberWithInt:1];
         }
         else {
-            frame = CGRectMake(locateDropdown.frame.origin.x, -37, locateDropdown.frame.size.width, locateDropdown.frame.size.height);
+            frame = CGRectMake(locateDropdown.frame.origin.x, -45, locateDropdown.frame.size.width, locateDropdown.frame.size.height);
             locateVanOptionsPosition = [NSNumber numberWithInt:0];
         }
         [UIView beginAnimations:nil context:NULL];
@@ -218,7 +220,7 @@
             locateVanOptionsPosition = [NSNumber numberWithInt:1];
         }
         else {
-            locateDropdown.frame = CGRectMake(locateDropdown.frame.origin.x, -37, locateDropdown.frame.size.width, locateDropdown.frame.size.height);
+            locateDropdown.frame = CGRectMake(locateDropdown.frame.origin.x, -45, locateDropdown.frame.size.width, locateDropdown.frame.size.height);
             locateVanOptionsPosition = [NSNumber numberWithInt:0];
         }
     }
@@ -497,7 +499,45 @@
 
 - (void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)view calloutAccessoryControlTapped:(UIControl *)control
 {
-    NSLog(@"tapped!");
+    if (sidvc == nil)
+    {
+        sidvc = [[ScheduleItemDetailViewController alloc] initWithNibName:@"ScheduleItemDetailView" bundle:nil];
+        [self.view insertSubview: sidvc.view belowSubview:self.view];
+        [sidvc addGestureRecognizers];
+        [sidvc.view setFrame: CGRectMake(0.0,0.0,320.0, 480.0)];
+        [sidvc setDelegate: self];
+        [sidvc prettify];
+    }
+    
+    // get stop and set sidvc parameters
+    VegVanStopLocation *loc = (VegVanStopLocation*)view.annotation;
+    VegVanStop *stop = [[[[Utilities sharedAppDelegate] vegVanStopManager] vegVanStops] objectForKey: loc.name];
+    
+    [[sidvc stopName] setText: [stop name]];
+    [[sidvc stopAddress] setText: [stop addressAsString]];
+    [[sidvc stopBlurb] setText: [stop blurb]];
+    //[sdivc setStopImage
+    [[sidvc stopManager] setText: [stop manager]];
+    
+    [UIView transitionFromView:self.view 
+                        toView:sidvc.view 
+                      duration:0.5 
+                       options:UIViewAnimationOptionTransitionFlipFromLeft   
+                    completion:^(BOOL finished){
+                        /* do something on animation completion */
+                    }];
+}
+
+-(void)hideSIDVC
+{
+    [UIView transitionFromView:sidvc.view 
+                        toView:self.view 
+                      duration:0.5 
+                       options:UIViewAnimationOptionTransitionFlipFromRight  
+                    completion:^(BOOL finished){
+                        /* do something on animation completion */
+                    }];
+
 }
 
 @end

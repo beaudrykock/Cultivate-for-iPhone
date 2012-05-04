@@ -17,20 +17,22 @@
     UILabel *stopName;
     UILabel *stopAddress;
     UILabel *stopBlurb;
-    UIImageView* stopImage;
     UILabel *stopManager;
+    UILabel *stopManagerContact;
+    UIImageView *stopPhoto;
     __weak id <ScheduleItemDetailViewControllerDelegate> delegate;
 }
 
 @property (nonatomic, retain) IBOutlet UILabel *stopName;
 @property (nonatomic, retain) IBOutlet UILabel *stopAddress;
 @property (nonatomic, retain) IBOutlet UILabel *stopBlurb;
-@property (nonatomic, retain) IBOutlet UIImageView *stopImage;
 @property (nonatomic, retain) IBOutlet UILabel *stopManager;
+@property (nonatomic, retain) IBOutlet UILabel *stopManagerContact;
+@property (nonatomic, retain) IBOutlet UIImageView *stopPhoto;
 @property (weak) id  <ScheduleItemDetailViewControllerDelegate> delegate; 
 
 -(void)addGestureRecognizers;
--(void)removeView;
+-(IBAction)removeView:(id)sender;
 -(void)prettify;
 
 @end

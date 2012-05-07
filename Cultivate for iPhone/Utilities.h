@@ -28,5 +28,7 @@
 +(BOOL)hasInternet;
 +(BOOL)hostReachable;
 +(AppDelegate*)sharedAppDelegate;
-
++(NSDictionary*)cultiRideDetails;
++(BOOL)cultiRideDetailsSet;
++(void)setCultiRideDetailsForName:(NSString*)_name mobile:(NSNumber*)_mobile postcode:(NSString*)_postcode;
 @end

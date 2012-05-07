@@ -188,4 +188,23 @@
     return (AppDelegate*)[[UIApplication sharedApplication] delegate];
 }
 
++(BOOL)cultiRideDetailsSet
+{
+    // TODO - this is testing only
+    return YES;//[[NSUserDefaults standardUserDefaults] boolForKey:kCultiRideDetailsSet];
+}
+
++(void)setCultiRideDetailsForName:(NSString*)_name mobile:(NSNumber*)_mobile postcode:(NSString*)_postcode
+{
+  // TODO   
+}
+
++(NSDictionary*)cultiRideDetails
+{
+    NSDictionary *details = [NSDictionary dictionary]; 
+    // TODO
+    return details;
+}
+
+
 @end

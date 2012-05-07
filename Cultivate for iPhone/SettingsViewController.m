@@ -9,7 +9,7 @@
 #import "SettingsViewController.h"
 
 @implementation SettingsViewController
-@synthesize minutesBeforeLabel, stepper, repeatPatternControl, notificationSettingsBackground;
+@synthesize minutesBeforeLabel, stepper, repeatPatternControl, notificationSettingsBackground, scrollView, name_field, postcode_field, mobile_field, cultiRideSettingsBackground;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -50,8 +50,79 @@
     [minutesBeforeLabel setText:label];
     [repeatPatternControl setSelectedSegmentIndex:[Utilities getDefaultRepeatPattern]];
     notificationSettingsBackground.layer.cornerRadius = 8.0;
+    cultiRideSettingsBackground.layer.cornerRadius = 8.0;
+    
+    [scrollView setBackgroundColor: [Utilities colorWithHexString: @"#639939"]];
+    
+    UITapGestureRecognizer *gestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideKeyboard)];
+    [self.scrollView addGestureRecognizer:gestureRecognizer];
+    
+    // register for keyboard notifications
+    [[NSNotificationCenter defaultCenter] addObserver:self 
+                                             selector:@selector(keyboardWillShow:) 
+                                                 name:UIKeyboardWillShowNotification 
+                                               object:nil];
+    // register for keyboard notifications
+    [[NSNotificationCenter defaultCenter] addObserver:self 
+                                             selector:@selector(keyboardWillHide:) 
+                                                 name:UIKeyboardWillHideNotification 
+                                               object:nil];
+    
+    keyboardIsShown = NO;
+    //make contentSize bigger than your scrollSize (you will need to figure out for your own use case)
+    CGSize scrollContentSize = CGSizeMake(320, 510);
+    self.scrollView.contentSize = scrollContentSize;
+    
+    //scrollView.exclusiveTouch = YES;
+    //scrollView.canCancelContentTouches = NO;
+    //scrollView.delaysContentTouches = NO;
 }
 
+- (void)keyboardWillHide:(NSNotification *)n
+{
+    NSDictionary* userInfo = [n userInfo];
+    
+    // get the size of the keyboard
+    CGSize keyboardSize = [[userInfo objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
+    
+    
+    CGPoint newPoint = self.scrollView.contentOffset;
+    newPoint.y -= keyboardSize.height;
+    [self.scrollView setContentOffset: newPoint animated:YES];
+    
+    keyboardIsShown = NO;
+}
+
+- (void)keyboardWillShow:(NSNotification *)n
+{
+    // This is an ivar I'm using to ensure that we do not do the frame size adjustment on the UIScrollView if the keyboard is already shown.  This can happen if the user, after fixing editing a UITextField, scrolls the resized UIScrollView to another UITextField and attempts to edit the next UITextField.  If we were to resize the UIScrollView again, it would be disastrous.  NOTE: The keyboard notification will fire even when the keyboard is already shown.
+    if (keyboardIsShown) {
+        return;
+    }
+    
+    NSDictionary* userInfo = [n userInfo];
+    
+    // get the size of the keyboard
+    CGSize keyboardSize = [[userInfo objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
+    
+    CGPoint newPoint = self.scrollView.contentOffset;
+    newPoint.y += keyboardSize.height;
+    [self.scrollView setContentOffset: newPoint animated:YES];
+    
+    keyboardIsShown = YES;
+}
+
+-(void)hideKeyboard
+{
+    [name_field resignFirstResponder];
+    [mobile_field resignFirstResponder];
+    [postcode_field resignFirstResponder];
+}
+
+-(IBAction)updateCultiRideDetails
+{
+    // TODO
+}
 
 -(IBAction)stepperPressed:(id)sender
 {

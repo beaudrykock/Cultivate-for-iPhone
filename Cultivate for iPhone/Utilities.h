@@ -31,4 +31,7 @@
 +(NSDictionary*)cultiRideDetails;
 +(BOOL)cultiRideDetailsSet;
 +(void)setCultiRideDetailsForName:(NSString*)_name mobile:(NSNumber*)_mobile postcode:(NSString*)_postcode;
++(void)enableLocalNotifications:(BOOL)enable;
++(BOOL)localNotificationsEnabled;
++(UIImage *)scale:(UIImage *)image toSize:(CGSize)size;
 @end

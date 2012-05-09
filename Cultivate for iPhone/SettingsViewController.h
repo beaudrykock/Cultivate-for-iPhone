@@ -11,6 +11,7 @@
 
 @interface SettingsViewController : UIViewController
 {
+    UISwitch *toggleNotificationsSwitch;
     UILabel *minutesBeforeLabel;
     UIStepper *stepper;
     UISegmentedControl *repeatPatternControl;
@@ -21,8 +22,10 @@
     UITextField *name_field;
     UITextField *mobile_field;
     UITextField *postcode_field;
+    BOOL localNotificationsEnabled;
 }
 
+@property (nonatomic, strong) IBOutlet UISwitch *toggleNotificationsSwitch;
 @property (nonatomic, strong) IBOutlet UILabel *minutesBeforeLabel;
 @property (nonatomic, strong) IBOutlet UIStepper *stepper;
 @property (nonatomic, strong) IBOutlet UISegmentedControl *repeatPatternControl;
@@ -36,5 +39,6 @@
 -(IBAction)patternSegmentChanged:(id)sender;
 -(void)hideKeyboard;
 -(IBAction)updateCultiRideDetails;
+-(IBAction)toggleLocalNotifications:(id)sender;
 
 @end

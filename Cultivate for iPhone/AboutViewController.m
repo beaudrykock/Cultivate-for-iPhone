@@ -9,7 +9,7 @@
 #import "AboutViewController.h"
 
 @implementation AboutViewController
-
+@synthesize share, getInvolved;
 -(IBAction)showGetInvolvedActionSheet
 {
 	UIActionSheet *actionsheet = [[UIActionSheet alloc] 
@@ -96,6 +96,10 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    [share setButtonTitle: @"Share"];
+    [getInvolved setButtonTitle: @"Get Involved"];
+   
 }
 
 -(void)shake
@@ -120,10 +124,12 @@
     // e.g. self.myOutlet = nil;
 }
 
+#pragma mark -
+#pragma mark Rotation
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
     // Return YES for supported orientations
-	return YES;
+	return NO;
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender 

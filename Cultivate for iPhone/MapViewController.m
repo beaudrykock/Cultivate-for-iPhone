@@ -447,6 +447,8 @@
     }
 }
 
+#pragma mark -
+#pragma mark View lifecycle
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
@@ -464,10 +466,12 @@
 	[super viewDidDisappear:animated];
 }
 
+#pragma mark -
+#pragma mark Rotation
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
     // Return YES for supported orientations
-    return (interfaceOrientation != UIInterfaceOrientationPortraitUpsideDown);
+    return NO;
 }
 
 #pragma mark -

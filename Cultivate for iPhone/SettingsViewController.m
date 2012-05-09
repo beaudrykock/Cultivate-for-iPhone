@@ -9,7 +9,7 @@
 #import "SettingsViewController.h"
 
 @implementation SettingsViewController
-@synthesize minutesBeforeLabel, stepper, repeatPatternControl, notificationSettingsBackground, scrollView, name_field, postcode_field, mobile_field, cultiRideSettingsBackground;
+@synthesize minutesBeforeLabel, stepper, repeatPatternControl, notificationSettingsBackground, scrollView, name_field, postcode_field, mobile_field, cultiRideSettingsBackground, toggleNotificationsSwitch;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -42,7 +42,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
+    [toggleNotificationsSwitch setOn: [Utilities localNotificationsEnabled] animated: NO];
     NSInteger currentMinutesBefore = [Utilities getDefaultMinutesBefore];
     [stepper setValue:currentMinutesBefore*1.0];
     NSNumber *value = [NSNumber numberWithDouble:[stepper value]];
@@ -73,11 +73,42 @@
     CGSize scrollContentSize = CGSizeMake(320, 510);
     self.scrollView.contentSize = scrollContentSize;
     
+    if (![toggleNotificationsSwitch isOn])
+    {
+        [stepper setEnabled:NO];
+        [repeatPatternControl setEnabled: NO];
+    }
     //scrollView.exclusiveTouch = YES;
     //scrollView.canCancelContentTouches = NO;
     //scrollView.delaysContentTouches = NO;
 }
 
+- (void)viewDidUnload
+{
+    [super viewDidUnload];
+    // Release any retained subviews of the main view.
+    // e.g. self.myOutlet = nil;
+}
+
+-(IBAction)toggleLocalNotifications:(id)sender
+{
+    UISwitch *switch_control = (UISwitch*)sender;
+    
+    if (![switch_control isOn])
+    {
+        [[UIApplication sharedApplication] cancelAllLocalNotifications];
+        [stepper setEnabled:NO];
+        [repeatPatternControl setEnabled:NO];
+    }   
+    else {
+        [stepper setEnabled:YES];
+        [repeatPatternControl setEnabled:YES];
+    }   
+    localNotificationsEnabled = [switch_control isOn];
+    [Utilities enableLocalNotifications:localNotificationsEnabled];
+}
+
+#pragma mark - Keyboard management
 - (void)keyboardWillHide:(NSNotification *)n
 {
     NSDictionary* userInfo = [n userInfo];
@@ -137,17 +168,14 @@
     [Utilities setDefaultRepeatPattern: [repeatPatternControl selectedSegmentIndex]];
 }
 
-- (void)viewDidUnload
-{
-    [super viewDidUnload];
-    // Release any retained subviews of the main view.
-    // e.g. self.myOutlet = nil;
-}
 
+
+#pragma mark -
+#pragma mark Rotation
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
     // Return YES for supported orientations
-	return YES;
+	return NO;
 }
 
 @end

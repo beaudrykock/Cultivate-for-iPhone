@@ -14,13 +14,19 @@
 #import <QuartzCore/QuartzCore.h>
 #import <MessageUI/MessageUI.h>
 #import <MessageUI/MFMailComposeViewController.h>
-
+#import "CustomButton.h"
 
 @interface AboutViewController : UIViewController <UIActionSheetDelegate, ChimpKitDelegate, MailChimpViewControllerDelegate>
 {
     NSString *tappedListType;
     UIView *shakeView;
+    CustomButton *share;
+    CustomButton *getInvolved;
 }
+
+@property(nonatomic, strong) IBOutlet CustomButton*share;
+@property(nonatomic, strong) IBOutlet CustomButton*getInvolved;
+
 -(IBAction)share:(id)sender;
 -(IBAction)showPicker:(id)sender;
 -(void)displayComposerSheet;

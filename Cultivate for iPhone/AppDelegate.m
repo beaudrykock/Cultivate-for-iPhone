@@ -21,6 +21,9 @@
     vegVanStopManager = [[VegVanStopManager alloc] init];
     BOOL successfulLoad = [vegVanStopManager loadVegVanStops];
     
+    // clear the badge number
+    [[UIApplication sharedApplication] setApplicationIconBadgeNumber:0];
+    
     return YES;
 }
 							

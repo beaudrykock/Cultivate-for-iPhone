@@ -58,13 +58,18 @@
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
         
         UISwitch *switchview = [[UISwitch alloc] initWithFrame:CGRectZero];
          
         [switchview addTarget:self action:@selector(accessorySwitchChanged:withEvent:) forControlEvents:UIControlEventValueChanged];
         
+        if (![Utilities localNotificationsEnabled])
+            [switchview setEnabled: NO];
+        
         cell.accessoryView = switchview;
+        
+            
         
     }
     
@@ -73,8 +78,13 @@
 	NSString *stop = [[self.scheduledStopStringsByArea valueForKey:area] objectAtIndex:indexPath.row];
 	
 	cell.textLabel.text = stop;
-    [cell.textLabel setFont:[UIFont systemFontOfSize:10.0]];
-	
+    cell.detailTextLabel.text = @"Some detail text here";
+    
+    [cell.textLabel setFont:[UIFont systemFontOfSize:12.0]];
+	NSString* testImageFilename = [[NSBundle mainBundle] pathForResource:@"stop_placeholder" ofType:@"png"];
+    UIImage *image = [Utilities scale: [[UIImage alloc] initWithContentsOfFile:testImageFilename] toSize: CGSizeMake(40.0,30.0)];
+    cell.imageView.image = image;//[[UIImage alloc] initWithContentsOfFile:testImageFilename];
+    
 	cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 	
     return cell;
@@ -90,9 +100,40 @@
     if ( indexPath == nil )
         return;
     
-    VegVanStopNotification *notification = [[VegVanStopNotification alloc] initWithStopName:@"Jericho / 65 Walton St" day:25 month: 4 year:2012 hour:16 minute:00 minutesBefore:5];
-    [Utilities scheduleNotificationWithItem:notification];
-    
+    if ([switch1 isOn])
+    {
+        // NOTE: stop name must be included in the alert body, otherwise notification removal method
+        // below will not work
+        VegVanStopNotification *notification = [[VegVanStopNotification alloc] initWithStopName:@"Jericho 1 / 65 Walton St" day:25 month: 4 year:2012 hour:16 minute:00 minutesBefore:5];
+        [Utilities scheduleNotificationWithItem:notification];
+    }
+    else
+    {
+        NSString *area = [self tableView:self.tableView titleForHeaderInSection:indexPath.section];
+        NSInteger absoluteIndex = [self getAbsoluteRowNumberForIndexPath:indexPath andArea: area];
+        VegVanStop *vegVanStop = [[[[Utilities sharedAppDelegate] vegVanStopManager] vegVanStops] objectForKey: [stopsForEachItem objectAtIndex: absoluteIndex]];
+        
+        NSArray *notifications = [[UIApplication sharedApplication] scheduledLocalNotifications];
+        BOOL found = NO;
+        NSInteger counter = 0;
+        NSInteger foundIndex = -1;
+        UILocalNotification* notif = nil;
+        while (!found && counter < [notifications count])
+        {
+            notif = [notifications objectAtIndex: counter];
+            NSLog(@"alertbody = %@", notif.alertBody);
+            if ([notif.alertBody rangeOfString: [vegVanStop name]].location != NSNotFound)
+            {
+                found = YES;
+                foundIndex = counter;
+            }
+            
+            counter++;
+        }
+        
+        if (found)
+            [[UIApplication sharedApplication] cancelLocalNotification:[notifications objectAtIndex: foundIndex]];
+    }
     NSLog(@"switch changed in section %i and row %i", [indexPath section], [indexPath row]);
 }
                             
@@ -201,6 +242,8 @@
 	[tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
+#pragma mark - 
+#pragma mark Handling subviews
 -(void)hideSIDVC
 {
     [removeSIDVCPane removeFromSuperview];
@@ -222,6 +265,11 @@
 }
 */
 
+// tableview data must be reloaded in case notifications switch has been toggled
+-(void)viewWillAppear
+{
+    [self.tableView reloadData];
+}
 
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad
@@ -245,10 +293,12 @@
     // e.g. self.myOutlet = nil;
 }
 
+#pragma mark -
+#pragma mark Rotation
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
     // Return YES for supported orientations
-	return YES;
+	return NO;
 }
 
 @end

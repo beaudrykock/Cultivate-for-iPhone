@@ -89,6 +89,7 @@
     if (localNotif == nil)
         return;
     
+    // TODO
     // testing only below - need to figure out how to pass the right date
     NSDate *date = [NSDate date];
     localNotif.fireDate = [date dateByAddingTimeInterval:10];//[itemDate dateByAddingTimeInterval:-([item getMinutesBefore]*60)];
@@ -206,5 +207,24 @@
     return details;
 }
 
++(void)enableLocalNotifications:(BOOL)enable
+{
+    [[NSUserDefaults standardUserDefaults] setBool:enable forKey:kLocalNotificationsEnabledKey];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
+
++(BOOL)localNotificationsEnabled
+{
+    return [[NSUserDefaults standardUserDefaults] boolForKey:kLocalNotificationsEnabledKey];
+}
+
++ (UIImage *)scale:(UIImage *)image toSize:(CGSize)size
+{
+    UIGraphicsBeginImageContext(size);
+    [image drawInRect:CGRectMake(0, 0, size.width, size.height)];
+    UIImage *scaledImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return scaledImage;
+}
 
 @end

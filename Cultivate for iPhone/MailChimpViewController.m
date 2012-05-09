@@ -20,6 +20,14 @@
     return self;
 }
 
+#pragma mark -
+#pragma mark View lifecycle
+- (void)viewDidUnload
+{
+    [super viewDidUnload];
+    // Release any retained subviews of the main view.
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -69,6 +77,8 @@
     }
 }
 
+#pragma mark -
+#pragma mark Keyboard management
 -(void)hideKeyboard
 {
     [firstname_field resignFirstResponder];
@@ -110,12 +120,8 @@
     keyboardIsShown = YES;
 }
 
-- (void)viewDidUnload
-{
-    [super viewDidUnload];
-    // Release any retained subviews of the main view.
-}
-
+#pragma mark -
+#pragma mark Rotation
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
     return (interfaceOrientation == UIInterfaceOrientationPortrait);

@@ -99,6 +99,8 @@
 		9FA5493215542B5100CA04C7 /* subscribe_button.png in Resources */ = {isa = PBXBuildFile; fileRef = 9FA5493015542B5100CA04C7 /* subscribe_button.png */; };
 		9FA5493415542DBF00CA04C7 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 9FA5493315542DBF00CA04C7 /* Default.png */; };
 		9FA5493615542DC300CA04C7 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9FA5493515542DC300CA04C7 /* Default@2x.png */; };
+		9FAF36AB155D656500151C32 /* SlidingPickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FAF36A9155D656500151C32 /* SlidingPickerViewController.m */; };
+		9FAF36AC155D656500151C32 /* SlidingPickerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9FAF36AA155D656500151C32 /* SlidingPickerView.xib */; };
 		9FB2B5A2154F0736000F2410 /* SBJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FB2B59B154F0736000F2410 /* SBJSON.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		9FB2B5A3154F0736000F2410 /* SBJsonBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FB2B59D154F0736000F2410 /* SBJsonBase.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		9FB2B5A4154F0736000F2410 /* SBJsonParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FB2B59F154F0736000F2410 /* SBJsonParser.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -325,6 +327,9 @@
 		9FA5493015542B5100CA04C7 /* subscribe_button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = subscribe_button.png; sourceTree = "<group>"; };
 		9FA5493315542DBF00CA04C7 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		9FA5493515542DC300CA04C7 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
+		9FAF36A8155D656500151C32 /* SlidingPickerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SlidingPickerViewController.h; path = ../SlidingPickerViewController.h; sourceTree = "<group>"; };
+		9FAF36A9155D656500151C32 /* SlidingPickerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SlidingPickerViewController.m; path = ../SlidingPickerViewController.m; sourceTree = "<group>"; };
+		9FAF36AA155D656500151C32 /* SlidingPickerView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SlidingPickerView.xib; sourceTree = "<group>"; };
 		9FB2B59A154F0736000F2410 /* SBJSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SBJSON.h; path = ../../../../../../SBJSON.h; sourceTree = "<group>"; };
 		9FB2B59B154F0736000F2410 /* SBJSON.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SBJSON.m; path = ../../../../../../SBJSON.m; sourceTree = "<group>"; };
 		9FB2B59C154F0736000F2410 /* SBJsonBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SBJsonBase.h; path = ../../../../../../SBJsonBase.h; sourceTree = "<group>"; };
@@ -660,6 +665,8 @@
 				9F524B0D1551A10E000846E7 /* ScheduleItemDetailViewController.m */,
 				9F995C6C15581EFD007DCA58 /* RideShareViewController.h */,
 				9F995C6D15581EFD007DCA58 /* RideShareViewController.m */,
+				9FAF36A8155D656500151C32 /* SlidingPickerViewController.h */,
+				9FAF36A9155D656500151C32 /* SlidingPickerViewController.m */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -1123,6 +1130,7 @@
 				9F524AF7155180F9000846E7 /* VegVanScheduleItem.m */,
 				9F60767E15483FCE00105643 /* VegVanStopNotification.h */,
 				9F60767F15483FCE00105643 /* VegVanStopNotification.m */,
+				9FAF36AA155D656500151C32 /* SlidingPickerView.xib */,
 			);
 			name = Models;
 			path = ..;
@@ -1266,6 +1274,7 @@
 				9F3240AE155ADC7A00BCA8FB /* get_involved_btn@2x.png in Resources */,
 				9F3240AF155ADC7A00BCA8FB /* share_btn.png in Resources */,
 				9F3240B0155ADC7A00BCA8FB /* share_btn@2x.png in Resources */,
+				9FAF36AC155D656500151C32 /* SlidingPickerView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1385,6 +1394,7 @@
 				9F9962F11558230E007DCA58 /* GDataHTTPFetcher.m in Sources */,
 				9F9962F515582384007DCA58 /* GTMHTTPFetcher.m in Sources */,
 				9F3240BC155AE36F00BCA8FB /* CustomButton.m in Sources */,
+				9FAF36AB155D656500151C32 /* SlidingPickerViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -9,7 +9,7 @@
 #import "MailChimpViewController.h"
 
 @implementation MailChimpViewController
-@synthesize list_title, email_field, firstname_field, lastname_field, listType, introBlurb, postcode_field, delegate, scrollView;
+@synthesize list_title, email_field, firstname_field, lastname_field, listType, introBlurb, postcode_field, delegate, scrollView, volunteerOptionsBtn, picker;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -59,10 +59,85 @@
     scrollView.canCancelContentTouches = NO;
     scrollView.delaysContentTouches = NO;
     // test
+    //[self unsubscribe];
     //[self fetchList];
     //[self fetchListMembers];
+    [self fetchListMemberInfo];
     //[self fetchListTemplate];
     //[self testSubscribe];
+    
+}
+
+-(IBAction)showVolunteerInterestOptions
+{
+    if ([listType isEqualToString: kJoinVolunteerMailingList])
+    {
+        picker = [[SlidingPickerViewController alloc] initWithNibName: @"SlidingPickerView" bundle: nil];
+        picker.view.frame = CGRectMake(0.0, 480.0, 320.0, 288.0);
+        picker.delegate = self;
+        [self.view addSubview: picker.view];
+
+        [UIView beginAnimations:nil context:nil];
+        [UIView setAnimationDuration:0.2];
+        [UIView setAnimationDelay:0.0];
+        [UIView setAnimationCurve:UIViewAnimationCurveEaseOut];
+        
+        picker.view.frame = CGRectMake(0.0, 172.0, 320.0, 288.0);
+        
+        [UIView commitAnimations];
+        
+    }
+    else
+    {
+        // launch tableview with checkboxes
+    }
+}
+
+#pragma mark - Volunteer picker
+-(void)recordGroupSelection:(NSInteger)selection
+{
+    switch (selection) {
+        case 0:
+            volunteerFrequencySelection = kWeekly;
+            break;
+        case 1:
+            volunteerFrequencySelection = kMonthly;
+            break;
+        case 2:
+            volunteerFrequencySelection = kOnceInABlueMoon;
+            break;
+        default:
+            break;
+    }
+    
+    [UIView beginAnimations:nil context:nil];
+    [UIView setAnimationDuration:0.2];
+    [UIView setAnimationDelay:0.5];
+    [UIView setAnimationCurve:UIViewAnimationCurveEaseOut];
+    [UIView setAnimationDelegate:self];
+    [UIView setAnimationDidStopSelector:@selector(removePickerView)];
+    picker.view.frame = CGRectMake(0.0, 480.0, 320.0, 288.0);
+
+    [UIView commitAnimations];
+
+}
+
+-(void)removePickerView
+{
+    [picker.view removeFromSuperview];
+}
+
+-(void)slidingPickerViewControllerDidCancel
+{
+    [UIView beginAnimations:nil context:nil];
+    [UIView setAnimationDuration:0.2];
+    [UIView setAnimationDelay:0.0];
+    [UIView setAnimationCurve:UIViewAnimationCurveEaseOut];
+    [UIView setAnimationDelegate:self];
+    [UIView setAnimationDidStopSelector:@selector(removePickerView)];
+    picker.view.frame = CGRectMake(0.0, 480.0, 320.0, 288.0);
+    
+    [UIView commitAnimations];
 }
 
 -(NSString*)getBlurb
@@ -161,11 +236,29 @@
     [ck callApiMethod:@"listMembers" withParams: [NSDictionary dictionaryWithObjectsAndKeys:kMailChimpAPIKey, @"apikey", kVolunteerMailingListID, @"id", nil ]];
 }
 
+-(void)fetchListMemberInfo
+{
+    ChimpKit *ck = [[ChimpKit alloc] initWithDelegate:self 
+                                            andApiKey:kMailChimpAPIKey];
+    
+    NSMutableDictionary *emails = [NSMutableDictionary dictionary];
+    [emails setValue:@"beaudry.kock@ouce.ox.ac.uk" forKey:@"email_address"];
+    
+    [ck callApiMethod:@"listMemberInfo" withParams: [NSDictionary dictionaryWithObjectsAndKeys:kMailChimpAPIKey, @"apikey", kVolunteerMailingListID, @"id", emails, @"email_address", nil ]];
+}
+
 -(void)fetchListTemplate
 {
     ChimpKit *ck = [[ChimpKit alloc] initWithDelegate:self 
                                             andApiKey:kMailChimpAPIKey];
     [ck callApiMethod:@"templateInfo" withParams: [NSDictionary dictionaryWithObjectsAndKeys:kMailChimpAPIKey, @"apikey", kVolunteerMailingListID, @"tid", nil ]];
+}
+
+-(void)unsubscribe
+{
+    ChimpKit *ck = [[ChimpKit alloc] initWithDelegate:self 
+                                            andApiKey:kMailChimpAPIKey];
+    [ck callApiMethod:@"listUnsubscribe" withParams: [NSDictionary dictionaryWithObjectsAndKeys:kMailChimpAPIKey, @"apikey", kVolunteerMailingListID, @"id", @"beaudry.kock@ouce.ox.ac.uk", @"email_address", @"YES", @"delete_member", @"NO", @"send_goodbye", @"NO", @"send_notify", nil ]];
 }
 
 -(void)testSubscribe
@@ -183,7 +276,8 @@
     NSMutableDictionary *mergeVars = [NSMutableDictionary dictionary];
     [mergeVars setValue:@"beaudry" forKey:@"FNAME"];
     [mergeVars setValue:@"kock" forKey:@"LNAME"];
-    [mergeVars setValue:@"02138" forKey:@"MMERGE3"];
+    [mergeVars setValue:@"OX1 1QY" forKey:@"MMERGE4"];
+    [mergeVars setValue:@"1" forKey: @"group[4913][1]"];
     [params setValue:mergeVars forKey:@"merge_vars"];
     
     NSLog(@"desc = %@", [params description]);

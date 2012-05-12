@@ -30,8 +30,11 @@
 +(AppDelegate*)sharedAppDelegate;
 +(NSDictionary*)cultiRideDetails;
 +(BOOL)cultiRideDetailsSet;
-+(void)setCultiRideDetailsForName:(NSString*)_name mobile:(NSNumber*)_mobile postcode:(NSString*)_postcode;
++(void)setCultiRideDetailsForName:(NSString*)_name mobile:(NSString*)_mobile postcode:(NSString*)_postcode;
 +(void)enableLocalNotifications:(BOOL)enable;
 +(BOOL)localNotificationsEnabled;
 +(UIImage *)scale:(UIImage *)image toSize:(CGSize)size;
++(BOOL)isFirstLaunch;
++(NSMutableArray*)getVolunteerDatesWithRequestStatus;
++(void)updateVolunteerDatesWithRequestStatus:(NSMutableArray*)updatedVolunteerDates;
 @end

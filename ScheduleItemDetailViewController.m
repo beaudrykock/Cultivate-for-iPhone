@@ -9,7 +9,7 @@
 #import "ScheduleItemDetailViewController.h"
 
 @implementation ScheduleItemDetailViewController
-@synthesize stopName, stopManager, stopAddress, stopBlurb, delegate, stopPhoto, stopManagerContact;
+@synthesize stopName, stopManager, stopAddress, stopBlurb, delegate, stopPhoto, stopManagerContact, location;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -34,17 +34,25 @@
 
 -(void)prettify
 {
-    self.view.layer.cornerRadius = 5.0f;
-    self.view.layer.masksToBounds = NO;
-    self.view.layer.shadowOffset = CGSizeMake(-5, 5);
-    self.view.layer.shadowOffset = CGSizeMake(-5, 5);
-    self.view.layer.shadowOpacity = 0.5;
-    
-    [stopPhoto.layer setBorderColor: [[Utilities colorWithHexString: @"#588B21"] CGColor]];
-    [stopPhoto.layer setBorderWidth: 2.0];
+    [stopAddress sizeToFit];
+    [stopAddress setTextAlignment: UITextAlignmentCenter];
+    [stopBlurb sizeToFit];
     
 }
 
+-(IBAction)takeToGoogleMaps:(id)sender
+{
+    NSString *urlString = 
+    [NSString stringWithFormat:@"http://maps.google.com/maps?q=%@ %@&layer=t", [location objectForKey:@"latitude"],[location objectForKey:@"longitude"]];
+    
+    NSString* encodedString =
+    [urlString stringByAddingPercentEscapesUsingEncoding:
+     NSUTF8StringEncoding];
+    
+    NSURL *aURL = [NSURL URLWithString:encodedString];
+    
+    [[UIApplication sharedApplication] openURL:aURL];
+}
 
 -(IBAction)removeView:(id)sender
 {
@@ -55,6 +63,10 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    
+    UITapGestureRecognizer *mapTap = [[UITapGestureRecognizer alloc] initWithTarget: self action:@selector(takeToGoogleMaps:)];
+    [stopPhoto addGestureRecognizer:mapTap];
+    
 }
 
 - (void)viewDidUnload

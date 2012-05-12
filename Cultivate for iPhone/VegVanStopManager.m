@@ -89,8 +89,8 @@
             VegVanScheduleItem *scheduleItem = [[VegVanScheduleItem alloc] init];
             
             [scheduleItem setStopName:[self stringStrippedOfWhitespaceAndNewlines:[scheduleItemElement valueWithPath:kStopNameElement]]];
-            // TODO: implement dates components depending on Cultivate implementation
-            
+            [scheduleItem setStopDay:[self stringStrippedOfWhitespaceAndNewlines:[scheduleItemElement valueWithPath:kStopDayElement]]];
+            [scheduleItem setStopTime:[self stringStrippedOfWhitespaceAndNewlines:[scheduleItemElement valueWithPath:kStopTimeElement]]];
             [scheduleItem setStopFrequency: [self stringStrippedOfWhitespaceAndNewlines:[scheduleItemElement valueWithPath:kStopFrequencyElement]]];
             
             [newStop.scheduleItems addObject:scheduleItem];

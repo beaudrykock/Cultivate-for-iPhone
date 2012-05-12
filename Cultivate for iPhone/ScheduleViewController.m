@@ -9,7 +9,7 @@
 #import "ScheduleViewController.h"
 
 @implementation ScheduleViewController
-@synthesize areas, managedObjectContext, scheduledStopStringsByArea, sidvc, removeSIDVCPane, stopsForEachItem;
+@synthesize areas, managedObjectContext, scheduledStopStringsByArea, sidvc, removeSIDVCPane, stopsForEachItem, background;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -68,19 +68,16 @@
             [switchview setEnabled: NO];
         
         cell.accessoryView = switchview;
-        
-            
-        
     }
+    NSString *area = [self tableView:self.tableView titleForHeaderInSection:indexPath.section];
+    NSInteger absoluteIndex = [self getAbsoluteRowNumberForIndexPath:indexPath andArea: area];
+    VegVanStop *vegVanStop = [[[[Utilities sharedAppDelegate] vegVanStopManager] vegVanStops] objectForKey: [stopsForEachItem objectAtIndex: absoluteIndex]];
     
-    // Configure the cell...
-	NSString *area = [self tableView:tableView titleForHeaderInSection:indexPath.section];
-	NSString *stop = [[self.scheduledStopStringsByArea valueForKey:area] objectAtIndex:indexPath.row];
-	
-	cell.textLabel.text = stop;
-    cell.detailTextLabel.text = @"Some detail text here";
+	cell.textLabel.text = [vegVanStop addressAsString];
+    cell.detailTextLabel.text = [NSString stringWithFormat: @"%@%@", @"Next stop: ",[vegVanStop nextStopTimeAsString]];
     
     [cell.textLabel setFont:[UIFont systemFontOfSize:12.0]];
+    [cell.detailTextLabel setFont:[UIFont systemFontOfSize:12.0]];
 	NSString* testImageFilename = [[NSBundle mainBundle] pathForResource:@"stop_placeholder" ofType:@"png"];
     UIImage *image = [Utilities scale: [[UIImage alloc] initWithContentsOfFile:testImageFilename] toSize: CGSizeMake(40.0,30.0)];
     cell.imageView.image = image;//[[UIImage alloc] initWithContentsOfFile:testImageFilename];
@@ -195,16 +192,13 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
 	NSString *area = [self tableView:tableView titleForHeaderInSection:indexPath.section];
-	NSString *stop = [[self.scheduledStopStringsByArea valueForKey:area] objectAtIndex:indexPath.row];
 	
     if (sidvc == nil)
     {
         sidvc = [[ScheduleItemDetailViewController alloc] initWithNibName:@"ScheduleItemDetailView" bundle:nil];
         [self.view addSubview: sidvc.view];
         [sidvc addGestureRecognizers];
-        [sidvc.view setFrame: CGRectMake(320.0,0.0,sidvc.view.frame.size.width, sidvc.view.frame.size.height)];
         [sidvc setDelegate: self];
-        [sidvc prettify];
     }
     
     // get stop and set sidvc parameters
@@ -215,23 +209,26 @@
     [[sidvc stopName] setText: [vegVanStop name]];
     [[sidvc stopAddress] setText: [vegVanStop addressAsString]];
     [[sidvc stopBlurb] setText: [vegVanStop blurb]];
+    NSString *_lat = [[NSNumber numberWithFloat: [vegVanStop location].coordinate.latitude] stringValue];
+    NSString *_long = [[NSNumber numberWithFloat: [vegVanStop location].coordinate.longitude] stringValue];
+    [sidvc setLocation: [NSDictionary dictionaryWithObjectsAndKeys: _lat, @"latitude", _long, @"longitude", nil]];
     //[sdivc setStopImage
     [[sidvc stopManager] setText: [vegVanStop manager]];
-    
-    CGRect frame = CGRectMake(42.0,0.0,sidvc.view.frame.size.width, sidvc.view.frame.size.height);
-    [UIView beginAnimations:nil context:NULL];
-    [UIView setAnimationDuration:.5];
-    sidvc.view.frame = frame;
-    //[UIView setAnimationDelegate:self];
-    //[UIView setAnimationDidStopSelector: @selector(quizViewCleared)];
-    [UIView commitAnimations];
-    
+    [sidvc prettify];
+    [UIView transitionFromView:self.view 
+                        toView:sidvc.view 
+                      duration:0.5 
+                       options:UIViewAnimationOptionTransitionFlipFromLeft   
+                    completion:^(BOOL finished){
+                        /* do something on animation completion */
+                    }];
+    /*
     // add touch sensitive pane
     removeSIDVCPane = [[UIView alloc] initWithFrame:CGRectMake(0.0,0.0,42.0,480.0)];
     UITapGestureRecognizer *gestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideSIDVC)];
     [removeSIDVCPane addGestureRecognizer:gestureRecognizer];
     [self.view addSubview:removeSIDVCPane];
-    /*
+    
 	UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil
 													message:[NSString stringWithFormat:@"You selected %@!", stop]
 												   delegate:nil
@@ -246,14 +243,13 @@
 #pragma mark Handling subviews
 -(void)hideSIDVC
 {
-    [removeSIDVCPane removeFromSuperview];
-    CGRect frame = CGRectMake(320.0,0.0,sidvc.view.frame.size.width, sidvc.view.frame.size.height);
-    [UIView beginAnimations:nil context:NULL];
-    [UIView setAnimationDuration:.5];
-    sidvc.view.frame = frame;
-    //[UIView setAnimationDelegate:self];
-    //[UIView setAnimationDidStopSelector: @selector(quizViewCleared)];
-    [UIView commitAnimations];
+    [UIView transitionFromView:sidvc.view 
+                        toView:self.view 
+                      duration:0.5 
+                       options:UIViewAnimationOptionTransitionFlipFromRight  
+                    completion:^(BOOL finished){
+                        /* do something on animation completion */
+                    }];
 }
 
 #pragma mark - View lifecycle
@@ -283,6 +279,32 @@
     //self.scheduledStops = [NSDictionary dictionaryWithObjectsAndKeys:jerichoStops, @"Jericho", eastOxfordStops, @"East Oxford", nil];
     self.areas = [[[Utilities sharedAppDelegate] vegVanStopManager] vegVanStopAreas];
     //[NSDictionary dictionaryWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"scheduledStops" ofType:@"plist"]];
+    
+    if ([Utilities isFirstLaunch])
+    {
+        background = [[UIView alloc] initWithFrame:CGRectMake(0.0,0.0,320,480)];
+        [background setBackgroundColor: [UIColor clearColor]];
+        
+        UIView* overlay = [[UIView alloc] initWithFrame:background.frame];
+        [overlay setBackgroundColor:[UIColor blackColor]];
+        [overlay setAlpha: 0.5];
+        [background addSubview: overlay];
+        NSString* overlayPath = [[NSBundle mainBundle] pathForResource:@"schedule_help" ofType:@"png"];
+        UIImage* overlayImage = [[UIImage alloc] initWithContentsOfFile:overlayPath];
+        UIImageView *overlayView = [[UIImageView alloc] initWithImage:overlayImage];
+        [overlayView setFrame: CGRectMake(35,25,250.0,286.0)];
+        [background addSubview:overlayView];
+        [self.view addSubview: background];
+        
+        UITapGestureRecognizer *backgroundTap = [[UITapGestureRecognizer alloc] initWithTarget: self action: @selector(removeHelp)];
+        [background addGestureRecognizer: backgroundTap];
+    }
+    
+}
+
+-(void)removeHelp
+{
+    [background removeFromSuperview];
 }
 
 

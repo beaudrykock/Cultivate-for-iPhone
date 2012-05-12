@@ -20,19 +20,22 @@
     UILabel *stopManager;
     UILabel *stopManagerContact;
     UIImageView *stopPhoto;
+    NSDictionary *location;
     __weak id <ScheduleItemDetailViewControllerDelegate> delegate;
 }
 
-@property (nonatomic, retain) IBOutlet UILabel *stopName;
-@property (nonatomic, retain) IBOutlet UILabel *stopAddress;
-@property (nonatomic, retain) IBOutlet UILabel *stopBlurb;
-@property (nonatomic, retain) IBOutlet UILabel *stopManager;
-@property (nonatomic, retain) IBOutlet UILabel *stopManagerContact;
-@property (nonatomic, retain) IBOutlet UIImageView *stopPhoto;
+@property (nonatomic, strong) IBOutlet UILabel *stopName;
+@property (nonatomic, strong) IBOutlet UILabel *stopAddress;
+@property (nonatomic, strong) IBOutlet UILabel *stopBlurb;
+@property (nonatomic, strong) IBOutlet UILabel *stopManager;
+@property (nonatomic, strong) IBOutlet UILabel *stopManagerContact;
+@property (nonatomic, strong) IBOutlet UIImageView *stopPhoto;
 @property (weak) id  <ScheduleItemDetailViewControllerDelegate> delegate; 
+@property (nonatomic, strong) NSDictionary *location;
 
 -(void)addGestureRecognizers;
 -(IBAction)removeView:(id)sender;
 -(void)prettify;
+-(IBAction)takeToGoogleMaps:(id)sender;
 
 @end

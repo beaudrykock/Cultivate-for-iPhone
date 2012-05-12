@@ -99,8 +99,6 @@
 		9FA5493215542B5100CA04C7 /* subscribe_button.png in Resources */ = {isa = PBXBuildFile; fileRef = 9FA5493015542B5100CA04C7 /* subscribe_button.png */; };
 		9FA5493415542DBF00CA04C7 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 9FA5493315542DBF00CA04C7 /* Default.png */; };
 		9FA5493615542DC300CA04C7 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9FA5493515542DC300CA04C7 /* Default@2x.png */; };
-		9FAF36AB155D656500151C32 /* SlidingPickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FAF36A9155D656500151C32 /* SlidingPickerViewController.m */; };
-		9FAF36AC155D656500151C32 /* SlidingPickerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9FAF36AA155D656500151C32 /* SlidingPickerView.xib */; };
 		9FB2B5A2154F0736000F2410 /* SBJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FB2B59B154F0736000F2410 /* SBJSON.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		9FB2B5A3154F0736000F2410 /* SBJsonBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FB2B59D154F0736000F2410 /* SBJsonBase.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		9FB2B5A4154F0736000F2410 /* SBJsonParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FB2B59F154F0736000F2410 /* SBJsonParser.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -111,6 +109,8 @@
 		9FDD745D15541D79002CC760 /* back.png in Resources */ = {isa = PBXBuildFile; fileRef = 9FDD745B15541D79002CC760 /* back.png */; };
 		9FDD745E15541D79002CC760 /* back@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9FDD745C15541D79002CC760 /* back@2x.png */; };
 		9FEA33D6155E8C00001CEAD3 /* CustomCheckbox.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FEA33D5155E8C00001CEAD3 /* CustomCheckbox.m */; };
+		9FEA33DA155EB84D001CEAD3 /* schedule_help.png in Resources */ = {isa = PBXBuildFile; fileRef = 9FEA33D8155EB84A001CEAD3 /* schedule_help.png */; };
+		9FEA33DB155EB84D001CEAD3 /* schedule_help@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9FEA33D9155EB84C001CEAD3 /* schedule_help@2x.png */; };
 		9FF1E297154EF7B3000C0337 /* DefaultSHKConfigurator.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FF1E169154EF7B3000C0337 /* DefaultSHKConfigurator.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		9FF1E298154EF7B3000C0337 /* LegacySHKConfigurator.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FF1E16B154EF7B3000C0337 /* LegacySHKConfigurator.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		9FF1E299154EF7B3000C0337 /* SHKConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FF1E16D154EF7B3000C0337 /* SHKConfiguration.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -328,9 +328,6 @@
 		9FA5493015542B5100CA04C7 /* subscribe_button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = subscribe_button.png; sourceTree = "<group>"; };
 		9FA5493315542DBF00CA04C7 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		9FA5493515542DC300CA04C7 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
-		9FAF36A8155D656500151C32 /* SlidingPickerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SlidingPickerViewController.h; path = ../SlidingPickerViewController.h; sourceTree = "<group>"; };
-		9FAF36A9155D656500151C32 /* SlidingPickerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SlidingPickerViewController.m; path = ../SlidingPickerViewController.m; sourceTree = "<group>"; };
-		9FAF36AA155D656500151C32 /* SlidingPickerView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SlidingPickerView.xib; sourceTree = "<group>"; };
 		9FB2B59A154F0736000F2410 /* SBJSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SBJSON.h; path = ../../../../../../SBJSON.h; sourceTree = "<group>"; };
 		9FB2B59B154F0736000F2410 /* SBJSON.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SBJSON.m; path = ../../../../../../SBJSON.m; sourceTree = "<group>"; };
 		9FB2B59C154F0736000F2410 /* SBJsonBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SBJsonBase.h; path = ../../../../../../SBJsonBase.h; sourceTree = "<group>"; };
@@ -347,6 +344,8 @@
 		9FDD745C15541D79002CC760 /* back@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "back@2x.png"; sourceTree = "<group>"; };
 		9FEA33D4155E8C00001CEAD3 /* CustomCheckbox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CustomCheckbox.h; path = "Cultivate for iPhone/CustomCheckbox.h"; sourceTree = "<group>"; };
 		9FEA33D5155E8C00001CEAD3 /* CustomCheckbox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CustomCheckbox.m; path = "Cultivate for iPhone/CustomCheckbox.m"; sourceTree = "<group>"; };
+		9FEA33D8155EB84A001CEAD3 /* schedule_help.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = schedule_help.png; sourceTree = "<group>"; };
+		9FEA33D9155EB84C001CEAD3 /* schedule_help@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "schedule_help@2x.png"; sourceTree = "<group>"; };
 		9FF1E168154EF7B3000C0337 /* DefaultSHKConfigurator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DefaultSHKConfigurator.h; sourceTree = "<group>"; };
 		9FF1E169154EF7B3000C0337 /* DefaultSHKConfigurator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DefaultSHKConfigurator.m; sourceTree = "<group>"; };
 		9FF1E16A154EF7B3000C0337 /* LegacySHKConfigurator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LegacySHKConfigurator.h; sourceTree = "<group>"; };
@@ -628,6 +627,8 @@
 				9F524B111551AC6E000846E7 /* cultivan.png */,
 				9F6076991548549500105643 /* 78-stopwatch.png */,
 				9F3240A9155ADC7A00BCA8FB /* get_involved_btn.png */,
+				9FEA33D8155EB84A001CEAD3 /* schedule_help.png */,
+				9FEA33D9155EB84C001CEAD3 /* schedule_help@2x.png */,
 				9F3240AA155ADC7A00BCA8FB /* get_involved_btn@2x.png */,
 				9F3240AB155ADC7A00BCA8FB /* share_btn.png */,
 				9F3240AC155ADC7A00BCA8FB /* share_btn@2x.png */,
@@ -668,8 +669,6 @@
 				9F524B0D1551A10E000846E7 /* ScheduleItemDetailViewController.m */,
 				9F995C6C15581EFD007DCA58 /* RideShareViewController.h */,
 				9F995C6D15581EFD007DCA58 /* RideShareViewController.m */,
-				9FAF36A8155D656500151C32 /* SlidingPickerViewController.h */,
-				9FAF36A9155D656500151C32 /* SlidingPickerViewController.m */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -1135,7 +1134,6 @@
 				9F524AF7155180F9000846E7 /* VegVanScheduleItem.m */,
 				9F60767E15483FCE00105643 /* VegVanStopNotification.h */,
 				9F60767F15483FCE00105643 /* VegVanStopNotification.m */,
-				9FAF36AA155D656500151C32 /* SlidingPickerView.xib */,
 			);
 			name = Models;
 			path = ..;
@@ -1279,7 +1277,8 @@
 				9F3240AE155ADC7A00BCA8FB /* get_involved_btn@2x.png in Resources */,
 				9F3240AF155ADC7A00BCA8FB /* share_btn.png in Resources */,
 				9F3240B0155ADC7A00BCA8FB /* share_btn@2x.png in Resources */,
-				9FAF36AC155D656500151C32 /* SlidingPickerView.xib in Resources */,
+				9FEA33DA155EB84D001CEAD3 /* schedule_help.png in Resources */,
+				9FEA33DB155EB84D001CEAD3 /* schedule_help@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1399,7 +1398,6 @@
 				9F9962F11558230E007DCA58 /* GDataHTTPFetcher.m in Sources */,
 				9F9962F515582384007DCA58 /* GTMHTTPFetcher.m in Sources */,
 				9F3240BC155AE36F00BCA8FB /* CustomButton.m in Sources */,
-				9FAF36AB155D656500151C32 /* SlidingPickerViewController.m in Sources */,
 				9FEA33D6155E8C00001CEAD3 /* CustomCheckbox.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

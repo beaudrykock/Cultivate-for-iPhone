@@ -25,9 +25,11 @@
     UISearchBar *stopSearchBar;
     UIView *touchView;
     ScheduleItemDetailViewController *sidvc;
+    UINavigationBar *bar;
 }
 
 //@property (nonatomic, strong) IBOutlet UIWebView *mapView;
+@property (nonatomic, strong) IBOutlet UINavigationBar *bar;
 @property (nonatomic, strong) CLLocationManager *locationManager;
 @property (nonatomic, strong) CLLocation *currentLocation;
 @property (nonatomic, strong) IBOutlet UIView*locateDropdown;

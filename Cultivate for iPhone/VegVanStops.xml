@@ -14,6 +14,14 @@
 		<scheduleItems>
 			<scheduleItem>
 				<stopName>Jericho 1</stopName>
+                <stopDay>Monday</stopDay>
+                <stopTime>14:00</stopTime>
+				<stopFrequency>Weekly</stopFrequency>
+			</scheduleItem>
+            <scheduleItem>
+				<stopName>Jericho 1</stopName>
+                <stopDay>Friday</stopDay>
+                <stopTime>11:00</stopTime>
 				<stopFrequency>Weekly</stopFrequency>
 			</scheduleItem>
 		</scheduleItems>
@@ -31,7 +39,15 @@
 		<manager>John Doe</manager>
 		<scheduleItems>
 			<scheduleItem>
-				<stopName>Jericho 1</stopName>
+				<stopName>Jericho 2</stopName>
+				<stopDay>Thursday</stopDay>
+                <stopTime>11:00</stopTime>
+				<stopFrequency>Weekly</stopFrequency>
+			</scheduleItem>
+            <scheduleItem>
+				<stopName>Jericho 2</stopName>
+				<stopDay>Monday</stopDay>
+                <stopTime>09:00</stopTime>
 				<stopFrequency>Weekly</stopFrequency>
 			</scheduleItem>
 		</scheduleItems>
@@ -49,7 +65,15 @@
 		<manager>John Doe</manager>
 		<scheduleItems>
 			<scheduleItem>
-				<stopName>Jericho 1</stopName>
+				<stopName>Castle 1</stopName>
+				<stopDay>Tuesday</stopDay>
+                <stopTime>12:30</stopTime>
+				<stopFrequency>Weekly</stopFrequency>
+			</scheduleItem>
+            <scheduleItem>
+				<stopName>Castle 1</stopName>
+				<stopDay>Thursday</stopDay>
+                <stopTime>18:30</stopTime>
 				<stopFrequency>Weekly</stopFrequency>
 			</scheduleItem>
 		</scheduleItems>
@@ -67,7 +91,15 @@
 		<manager>John Doe</manager>
 		<scheduleItems>
 			<scheduleItem>
-				<stopName>Jericho 1</stopName>
+				<stopName>East Oxford 1</stopName>
+                <stopDay>Friday</stopDay>
+                <stopTime>09:00</stopTime>
+				<stopFrequency>Weekly</stopFrequency>
+			</scheduleItem>
+            <scheduleItem>
+				<stopName>East Oxford 1</stopName>
+                <stopDay>Tuesday</stopDay>
+                <stopTime>13:00</stopTime>
 				<stopFrequency>Weekly</stopFrequency>
 			</scheduleItem>
 		</scheduleItems>
@@ -85,7 +117,15 @@
 		<manager>John Doe</manager>
 		<scheduleItems>
 			<scheduleItem>
-				<stopName>Jericho 1</stopName>
+				<stopName>Headington 1</stopName>
+                <stopDay>Wednesday</stopDay>
+                <stopTime>17:00</stopTime>
+				<stopFrequency>Weekly</stopFrequency>
+			</scheduleItem>
+            <scheduleItem>
+				<stopName>Headington 1</stopName>
+                <stopDay>Monday</stopDay>
+                <stopTime>11:00</stopTime>
 				<stopFrequency>Weekly</stopFrequency>
 			</scheduleItem>
 		</scheduleItems>

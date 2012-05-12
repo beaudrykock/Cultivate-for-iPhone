@@ -9,7 +9,6 @@
 #import <UIKit/UIKit.h>
 #import "ChimpKit.h"
 #import "JSON.h"
-#import "SlidingPickerViewController.h"
 #import <QuartzCore/QuartzCore.h>
 #import "CustomCheckbox.h"
 

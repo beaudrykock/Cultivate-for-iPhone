@@ -191,19 +191,20 @@
 
 +(BOOL)cultiRideDetailsSet
 {
-    // TODO - this is testing only
-    return YES;//[[NSUserDefaults standardUserDefaults] boolForKey:kCultiRideDetailsSet];
+    return [[NSUserDefaults standardUserDefaults] boolForKey:kCultiRideDetailsSet];
 }
 
-+(void)setCultiRideDetailsForName:(NSString*)_name mobile:(NSNumber*)_mobile postcode:(NSString*)_postcode
++(void)setCultiRideDetailsForName:(NSString*)_name mobile:(NSString*)_mobile postcode:(NSString*)_postcode
 {
-  // TODO   
+    NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys: _name, kCultiRideName, _mobile, kCultiRideMobile, _postcode, kCultiRideMobile, nil];
+    [[NSUserDefaults standardUserDefaults] setObject: dict forKey: kCultiRideDetails];
+    [[NSUserDefaults standardUserDefaults] setBool: YES forKey: kCultiRideDetailsSet];
+    [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
 +(NSDictionary*)cultiRideDetails
 {
-    NSDictionary *details = [NSDictionary dictionary]; 
-    // TODO
+    NSDictionary *details = (NSDictionary*)[[NSUserDefaults standardUserDefaults] objectForKey: kCultiRideDetails]; 
     return details;
 }
 
@@ -225,6 +226,38 @@
     UIImage *scaledImage = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
     return scaledImage;
+}
+
++(BOOL)isFirstLaunch
+{
+    if ([[NSUserDefaults standardUserDefaults] boolForKey:kFirstLaunchRecorded])
+    {
+        return NO;
+    }
+    else
+    {
+        [[NSUserDefaults standardUserDefaults] setBool: YES forKey: kFirstLaunchRecorded];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+        return YES;
+    }
+
+}
+
++(NSMutableArray*)getVolunteerDatesWithRequestStatus
+{
+    NSMutableArray *volunteerDates = (NSMutableArray*)[[NSUserDefaults standardUserDefaults] objectForKey: kVolunteerDatesKey];
+    if (!volunteerDates)
+    {
+        // TODO: where to get these dates from?
+        volunteerDates = [NSMutableArray arrayWithObjects: @"May 10", @"June 5", @"July 8", @"September 18", nil];
+    }
+    return volunteerDates;
+}
+
++(void)updateVolunteerDatesWithRequestStatus:(NSMutableArray*)updatedVolunteerDates
+{
+    [[NSUserDefaults standardUserDefaults] setObject: updatedVolunteerDates forKey: kVolunteerDatesKey];
+    [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
 @end

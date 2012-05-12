@@ -10,7 +10,7 @@
 
 @implementation MapViewController
 //@synthesize mapView;
-@synthesize locationManager, currentLocation, locateDropdown, locateVanOptionsPosition, searchBarBackground, stopSearchBar, touchView, sidvc;
+@synthesize locationManager, currentLocation, locateDropdown, locateVanOptionsPosition, searchBarBackground, stopSearchBar, touchView, sidvc, bar;
 
 - (void)didReceiveMemoryWarning
 {
@@ -32,17 +32,17 @@
     
     //[self startStandardUpdates];
     [self positionAndStyleLocateVanDropdown];
-    [self tintSearchBarBackground];
+    //[self tintSearchBarBackground];
     [self registerForKeyboardNotifications];
     [stopSearchBar setDelegate: self];
-    
+   
     _mapView.zoomEnabled = YES;
 }
 
 -(void)positionAndStyleLocateVanDropdown
 {
     [locateDropdown removeFromSuperview];
-    [self.view insertSubview:locateDropdown belowSubview:searchBarBackground];
+    [self.view insertSubview:locateDropdown belowSubview:bar];
     [locateDropdown setFrame:CGRectMake(215.0, -45, locateDropdown.frame.size.width, locateDropdown.frame.size.height)];
     
     locateDropdown.layer.cornerRadius = 5.0;
@@ -344,8 +344,8 @@
 {
     [self dropdownLocateVanOptionsWithAnimation:YES];
     
-    float timeToNextStop = 0.0;
-    float shortestTime = 0.0;
+    NSInteger timeToNextStop = 0;
+    NSInteger shortestTime = 0;
     NSInteger counter = 0;
     VegVanStopLocation *annotation;
     NSInteger soonestAnnotationIndex = 0;
@@ -356,7 +356,7 @@
         {
             
             timeToNextStop = [[[Utilities sharedAppDelegate] vegVanStopManager] secondsUntilNextScheduledStopWithName: [annotation name]];
-            
+            NSLog(@"timeToNextStop = %i", timeToNextStop);
             if (counter==0)
             {
                 shortestTime = timeToNextStop;
@@ -509,7 +509,6 @@
         [sidvc addGestureRecognizers];
         [sidvc.view setFrame: CGRectMake(0.0,0.0,320.0, 480.0)];
         [sidvc setDelegate: self];
-        [sidvc prettify];
     }
     
     // get stop and set sidvc parameters
@@ -519,9 +518,13 @@
     [[sidvc stopName] setText: [stop name]];
     [[sidvc stopAddress] setText: [stop addressAsString]];
     [[sidvc stopBlurb] setText: [stop blurb]];
+    NSString *_lat = [[NSNumber numberWithFloat: [stop location].coordinate.latitude] stringValue];
+    NSString *_long = [[NSNumber numberWithFloat: [stop location].coordinate.longitude] stringValue];
+    NSLog(@"lat = %@, long = %@", _lat, _long);
+    [sidvc setLocation: [NSDictionary dictionaryWithObjectsAndKeys: _lat, @"latitude", _long, @"longitude", nil]];
     //[sdivc setStopImage
     [[sidvc stopManager] setText: [stop manager]];
-    
+    [sidvc prettify];
     [UIView transitionFromView:self.view 
                         toView:sidvc.view 
                       duration:0.5 

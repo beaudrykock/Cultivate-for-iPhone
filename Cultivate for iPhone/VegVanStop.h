@@ -34,5 +34,6 @@
 -(NSString*)addressAsString;
 -(float)secondsUntilNextScheduledStop;
 -(void)description;
+-(NSString*)nextStopTimeAsString;
 
 @end

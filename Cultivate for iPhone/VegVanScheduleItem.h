@@ -11,14 +11,19 @@
 @interface VegVanScheduleItem : NSObject
 {
     NSString *stopName;
-    NSDateComponents *stopTime;
+    NSString *stopDay;
+    NSString *stopTime;
     NSString *stopFrequency;
 }
 
 @property (nonatomic, strong) NSString *stopName;
-@property (nonatomic, strong) NSDateComponents *stopTime;
+@property (nonatomic, strong) NSString *stopDay;
+@property (nonatomic, strong) NSString *stopTime;
 @property (nonatomic, strong) NSString *stopFrequency;
 
 -(NSString*)scheduleDetailAsString;
-
+-(NSInteger)getHourAsInteger;
+-(NSInteger)getMinuteAsInteger;
+-(NSInteger)getDayAsInteger;
+-(void)description;
 @end

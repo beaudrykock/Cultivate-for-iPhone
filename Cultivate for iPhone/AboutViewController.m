@@ -53,7 +53,7 @@
     // Create the item to share (in this example, a url)
 	NSURL *url = [NSURL URLWithString:@"http://www.cultivateoxford.org"];
 	SHKItem *item = [SHKItem URL:url title:@"Cultivate Oxford"];
-    item.text = @"Sharing text here";
+    item.text = @"Check out these guys - people-powered food!";
     //item.image = ?;
     
 	// Get the ShareKit action sheet
@@ -188,7 +188,7 @@
 	//[picker addAttachmentData:myData mimeType:@"image/png" fileName:@"rainy"];
 	
 	// Fill out the email body text
-	NSString *emailBody = @"Cultivate rocks!";
+	NSString *emailBody = @"Just wanted to say...";
 	[picker setMessageBody:emailBody isHTML:NO];
 	
 	[self presentModalViewController:picker animated:YES];
@@ -210,7 +210,7 @@
 -(void)launchMailAppOnDevice
 {
 	NSString *recipients = @"mailto:info@cultivateoxford.org&subject=Hello Cultivators!";
-	NSString *body = @"&body=Cultivate rocks!";
+	NSString *body = @"&body=Just wanted to say...";
 	
 	NSString *email = [NSString stringWithFormat:@"%@%@", recipients, body];
 	email = [email stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];

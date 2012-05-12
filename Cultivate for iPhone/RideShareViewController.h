@@ -8,21 +8,27 @@
 
 #import <UIKit/UIKit.h>
 #import "AKFusionTables.h"
+#import "CustomButton.h"
 
-@interface RideShareViewController : UIViewController <UIPickerViewDataSource, UIPickerViewDelegate>
+@interface RideShareViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
 {
-    UIPickerView *picker;
-    NSMutableArray *pickerOptions;
+    NSMutableArray *volunteerDates;
     UILabel *title;
     UILabel *info;
+    UITableView *tableView;
+    NSMutableArray *selectedValues;
+    CustomButton *submitButton;
 }
+
+@property (nonatomic, strong) IBOutlet NSMutableArray *selectedValues;
+@property (nonatomic, strong) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) IBOutlet UILabel *title;
 @property (nonatomic, strong) IBOutlet UILabel *info;
-@property (nonatomic, strong) IBOutlet UIPickerView* picker;
-@property (nonatomic, strong) NSMutableArray *pickerOptions;
+@property (nonatomic, strong) NSMutableArray *volunteerDates;
+@property (nonatomic, strong) IBOutlet CustomButton *submitButton;
 
 -(IBAction)prepareRequest;
 -(void)submitRequest;
 -(void)markPickerRowSelected:(NSInteger)pickerRow;
-
+-(BOOL)dateRequestedAtRow:(NSInteger)row;
 @end

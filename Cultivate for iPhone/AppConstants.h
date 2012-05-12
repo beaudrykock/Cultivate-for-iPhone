@@ -19,13 +19,18 @@
 #define kDefaultRepeatPatternKey @"defaultRepeatPatternKey"
 #define kPostcodeKey @"postcodeKey"
 #define kLocalNotificationsEnabledKey @"localNotificationsEnabledKey"
+#define kFirstLaunchRecorded @"firstLaunchRecorded"
+#define kVolunteerDatesKey @"volunteerDatesKey"
 
 // SETTINGS
 #define kRepeatPatternOneOff 0
 #define kRepeatPatternWeekly 1
 #define kRepeatPatternMonthly 2
 #define kCultiRideDetailsSet @"cultiRideDetailsSet"
-
+#define kCultiRideName @"name"
+#define kCultiRideMobile @"mobile"
+#define kCultiRidePostcode @"postcode"
+#define kCultiRideDetails @"cultiRideDetails"
 
 // MAILCHIMP
 #define kMailChimpAPIKey @"8bb725580c704b42106c4fcedfa2a9c1-us4"
@@ -73,4 +78,5 @@
 #define kScheduleItemElement @"scheduleItem"
 #define kStopNameElement @"stopName"
 #define kStopFrequencyElement @"stopFrequency"
-// TODO: implement NSDateComponents
+#define kStopDayElement @"stopDay"
+#define kStopTimeElement @"stopTime"

@@ -18,7 +18,9 @@
     ScheduleItemDetailViewController *sidvc;
     UIView *removeSIDVCPane;
     NSMutableArray *stopsForEachItem; // stop name reference for each schedule item
+    UIView *background;
 }
+@property (nonatomic, strong) UIView *background;
 @property (nonatomic, strong) NSMutableArray *stopsForEachItem;
 @property (nonatomic, strong) UIView *removeSIDVCPane;
 @property (nonatomic, strong) NSMutableArray* areas;
@@ -28,6 +30,7 @@
 
 -(void)hideSIDVC;
 -(NSInteger)getAbsoluteRowNumberForIndexPath:(NSIndexPath*)indexPath andArea: (NSString*)area;
+-(void)removeHelp;
 
 @end
 

@@ -110,6 +110,7 @@
 		9FDD745915541ABC002CC760 /* stop_placeholder.png in Resources */ = {isa = PBXBuildFile; fileRef = 9FDD745815541ABC002CC760 /* stop_placeholder.png */; };
 		9FDD745D15541D79002CC760 /* back.png in Resources */ = {isa = PBXBuildFile; fileRef = 9FDD745B15541D79002CC760 /* back.png */; };
 		9FDD745E15541D79002CC760 /* back@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9FDD745C15541D79002CC760 /* back@2x.png */; };
+		9FEA33D6155E8C00001CEAD3 /* CustomCheckbox.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FEA33D5155E8C00001CEAD3 /* CustomCheckbox.m */; };
 		9FF1E297154EF7B3000C0337 /* DefaultSHKConfigurator.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FF1E169154EF7B3000C0337 /* DefaultSHKConfigurator.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		9FF1E298154EF7B3000C0337 /* LegacySHKConfigurator.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FF1E16B154EF7B3000C0337 /* LegacySHKConfigurator.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		9FF1E299154EF7B3000C0337 /* SHKConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FF1E16D154EF7B3000C0337 /* SHKConfiguration.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -344,6 +345,8 @@
 		9FDD745815541ABC002CC760 /* stop_placeholder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = stop_placeholder.png; sourceTree = "<group>"; };
 		9FDD745B15541D79002CC760 /* back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = back.png; sourceTree = "<group>"; };
 		9FDD745C15541D79002CC760 /* back@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "back@2x.png"; sourceTree = "<group>"; };
+		9FEA33D4155E8C00001CEAD3 /* CustomCheckbox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CustomCheckbox.h; path = "Cultivate for iPhone/CustomCheckbox.h"; sourceTree = "<group>"; };
+		9FEA33D5155E8C00001CEAD3 /* CustomCheckbox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CustomCheckbox.m; path = "Cultivate for iPhone/CustomCheckbox.m"; sourceTree = "<group>"; };
 		9FF1E168154EF7B3000C0337 /* DefaultSHKConfigurator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DefaultSHKConfigurator.h; sourceTree = "<group>"; };
 		9FF1E169154EF7B3000C0337 /* DefaultSHKConfigurator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DefaultSHKConfigurator.m; sourceTree = "<group>"; };
 		9FF1E16A154EF7B3000C0337 /* LegacySHKConfigurator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LegacySHKConfigurator.h; sourceTree = "<group>"; };
@@ -1126,6 +1129,8 @@
 				9F524AF3155180E6000846E7 /* VegVanStop.m */,
 				9F3240BA155AE36F00BCA8FB /* CustomButton.h */,
 				9F3240BB155AE36F00BCA8FB /* CustomButton.m */,
+				9FEA33D4155E8C00001CEAD3 /* CustomCheckbox.h */,
+				9FEA33D5155E8C00001CEAD3 /* CustomCheckbox.m */,
 				9F524AF6155180F9000846E7 /* VegVanScheduleItem.h */,
 				9F524AF7155180F9000846E7 /* VegVanScheduleItem.m */,
 				9F60767E15483FCE00105643 /* VegVanStopNotification.h */,
@@ -1395,6 +1400,7 @@
 				9F9962F515582384007DCA58 /* GTMHTTPFetcher.m in Sources */,
 				9F3240BC155AE36F00BCA8FB /* CustomButton.m in Sources */,
 				9FAF36AB155D656500151C32 /* SlidingPickerViewController.m in Sources */,
+				9FEA33D6155E8C00001CEAD3 /* CustomCheckbox.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

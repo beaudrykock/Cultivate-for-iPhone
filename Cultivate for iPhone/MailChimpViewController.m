@@ -9,7 +9,7 @@
 #import "MailChimpViewController.h"
 
 @implementation MailChimpViewController
-@synthesize list_title, email_field, firstname_field, lastname_field, listType, introBlurb, postcode_field, delegate, scrollView, volunteerOptionsBtn, picker;
+@synthesize list_title, email_field, firstname_field, lastname_field, listType, introBlurb, postcode_field, delegate, cb_1, cb_2, cb_3, cb_4, cb_5, label_cb_1, label_cb_2, label_cb_3, label_cb_4, label_cb_5, options_title, cancel_btn, subscribe_btn;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -34,122 +34,55 @@
 	// Do any additional setup after loading the view.
     
     [list_title setText: listType];
-    [introBlurb setText: [self getBlurb]];
-    
     UITapGestureRecognizer *gestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideKeyboard)];
-    [self.scrollView addGestureRecognizer:gestureRecognizer];
+    [self.view addGestureRecognizer:gestureRecognizer];
     
-    // register for keyboard notifications
-    [[NSNotificationCenter defaultCenter] addObserver:self 
-                                             selector:@selector(keyboardWillShow:) 
-                                                 name:UIKeyboardWillShowNotification 
-                                               object:nil];
-    // register for keyboard notifications
-    [[NSNotificationCenter defaultCenter] addObserver:self 
-                                             selector:@selector(keyboardWillHide:) 
-                                                 name:UIKeyboardWillHideNotification 
-                                               object:nil];
+    UITapGestureRecognizer *button_tap_1 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(buttonChoiceMade:)];
+    [self.cb_1 addGestureRecognizer:button_tap_1];
+     UITapGestureRecognizer *button_tap_2 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(buttonChoiceMade:)];
+    [self.cb_2 addGestureRecognizer:button_tap_2];
+     UITapGestureRecognizer *button_tap_3 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(buttonChoiceMade:)];
+    [self.cb_3 addGestureRecognizer:button_tap_3];
+     UITapGestureRecognizer *button_tap_4 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(buttonChoiceMade:)];
+    [self.cb_4 addGestureRecognizer:button_tap_4];
+     UITapGestureRecognizer *button_tap_5 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(buttonChoiceMade:)];
+    [self.cb_5 addGestureRecognizer:button_tap_5];
     
-    keyboardIsShown = NO;
-    //make contentSize bigger than your scrollSize (you will need to figure out for your own use case)
-    CGSize scrollContentSize = CGSizeMake(320, 345);
-    self.scrollView.contentSize = scrollContentSize;
+    UITapGestureRecognizer *cancel_tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(cancel:)];
+    [self.cancel_btn addGestureRecognizer:cancel_tap];
+    UITapGestureRecognizer *subscribe_tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(joinMailingList:)];
+    [self.subscribe_btn addGestureRecognizer:subscribe_tap];
     
-    scrollView.exclusiveTouch = YES;
-    scrollView.canCancelContentTouches = NO;
-    scrollView.delaysContentTouches = NO;
+
+    if ([listType isEqualToString: kJoinVolunteerMailingList])
+    {
+        [options_title setText: @"How regularly would you like to volunteer?"];
+        [label_cb_1 setText: @"Weekly"];
+        [label_cb_2 setText: @"Monthly"];
+        [label_cb_3 setText: @"Once in a blue moon"];
+        [label_cb_4 setHidden:YES];
+        [label_cb_5 setHidden:YES];
+        [cb_4 setHidden: YES];
+        [cb_5 setHidden: YES];
+    }
+    else
+    {
+        [options_title setText: @"I'm interested in being..."];
+        [label_cb_1 setText: @"Customer"];
+        [label_cb_2 setText: @"Local champion"];
+        [label_cb_3 setText: @"Member"];
+        [label_cb_4 setText: @"Volunteer"];
+        [label_cb_5 setText: @"Kept informed"];
+    }
+    
     // test
     //[self unsubscribe];
     //[self fetchList];
     //[self fetchListMembers];
-    [self fetchListMemberInfo];
+    //[self fetchListMemberInfo];
     //[self fetchListTemplate];
     //[self testSubscribe];
     
-}
-
--(IBAction)showVolunteerInterestOptions
-{
-    if ([listType isEqualToString: kJoinVolunteerMailingList])
-    {
-        picker = [[SlidingPickerViewController alloc] initWithNibName: @"SlidingPickerView" bundle: nil];
-        picker.view.frame = CGRectMake(0.0, 480.0, 320.0, 288.0);
-        picker.delegate = self;
-        [self.view addSubview: picker.view];
-
-        [UIView beginAnimations:nil context:nil];
-        [UIView setAnimationDuration:0.2];
-        [UIView setAnimationDelay:0.0];
-        [UIView setAnimationCurve:UIViewAnimationCurveEaseOut];
-        
-        picker.view.frame = CGRectMake(0.0, 172.0, 320.0, 288.0);
-        
-        [UIView commitAnimations];
-        
-    }
-    else
-    {
-        // launch tableview with checkboxes
-    }
-}
-
-#pragma mark - Volunteer picker
--(void)recordGroupSelection:(NSInteger)selection
-{
-    switch (selection) {
-        case 0:
-            volunteerFrequencySelection = kWeekly;
-            break;
-        case 1:
-            volunteerFrequencySelection = kMonthly;
-            break;
-        case 2:
-            volunteerFrequencySelection = kOnceInABlueMoon;
-            break;
-        default:
-            break;
-    }
-    
-    [UIView beginAnimations:nil context:nil];
-    [UIView setAnimationDuration:0.2];
-    [UIView setAnimationDelay:0.5];
-    [UIView setAnimationCurve:UIViewAnimationCurveEaseOut];
-    [UIView setAnimationDelegate:self];
-    [UIView setAnimationDidStopSelector:@selector(removePickerView)];
-    picker.view.frame = CGRectMake(0.0, 480.0, 320.0, 288.0);
-
-    [UIView commitAnimations];
-
-}
-
--(void)removePickerView
-{
-    [picker.view removeFromSuperview];
-}
-
--(void)slidingPickerViewControllerDidCancel
-{
-    [UIView beginAnimations:nil context:nil];
-    [UIView setAnimationDuration:0.2];
-    [UIView setAnimationDelay:0.0];
-    [UIView setAnimationCurve:UIViewAnimationCurveEaseOut];
-    [UIView setAnimationDelegate:self];
-    [UIView setAnimationDidStopSelector:@selector(removePickerView)];
-    picker.view.frame = CGRectMake(0.0, 480.0, 320.0, 288.0);
-    
-    [UIView commitAnimations];
-}
-
--(NSString*)getBlurb
-{
-    if ([listType isEqualToString: kJoinMainMailingList])
-    {
-        return @"Keep up with the latest news from the Cultivators. Sign up to the mailing list here.";
-    }
-    else
-    {
-        return @"Would you like to be a regular Cultivate volunteer? Sign up to this list, and we'll keep you in the loop about work days, events, and alternative ways to get involved.";
-    }
 }
 
 #pragma mark -
@@ -161,39 +94,187 @@
     [email_field resignFirstResponder];
 }
 
-- (void)keyboardWillHide:(NSNotification *)n
+-(IBAction)buttonChoiceMade:(UITapGestureRecognizer*)tap
 {
-    NSDictionary* userInfo = [n userInfo];
-    
-    // get the size of the keyboard
-    CGSize keyboardSize = [[userInfo objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
-    
-    
-    CGPoint newPoint = self.scrollView.contentOffset;
-    newPoint.y -= keyboardSize.height-44.0-20-60;
-    [self.scrollView setContentOffset: newPoint animated:YES];
-    
-    keyboardIsShown = NO;
+    if ([listType isEqualToString:kJoinMainMailingList])
+    {
+        BOOL add = NO;
+        NSInteger tag = 0;
+        CustomCheckbox *checkbox = (CustomCheckbox*)tap.view;
+        if (checkbox == cb_1)
+        {
+            tag = 100;
+            if (!cb_1_isOn)
+            {
+                add = YES;
+                cb_1_isOn = YES;
+                
+            }
+            else
+            {
+                cb_1_isOn = NO;
+            }
+            
+        }
+        else if (checkbox == cb_2)
+        {
+            tag = 200;
+            if (!cb_2_isOn)
+            {
+                add = YES;
+                cb_2_isOn = YES;
+                
+            }
+            else
+            {
+                cb_2_isOn = NO;
+            }
+        }
+        else if (checkbox == cb_3)
+        {
+            tag = 300;
+            if (!cb_3_isOn)
+            {
+                add = YES;
+                cb_3_isOn = YES;
+                
+            }
+            else
+            {
+                cb_3_isOn = NO;
+            }
+        }
+        else if (checkbox == cb_4)
+        {
+            tag = 400;
+            if (!cb_4_isOn)
+            {
+                
+                add = YES;
+                cb_4_isOn = YES;
+                
+            }
+            else
+            {
+                cb_4_isOn = NO;
+            }
+        }
+        else if (checkbox == cb_5)
+        {
+             tag = 500;
+            if (!cb_5_isOn)
+            {
+               
+                add = YES;
+                cb_5_isOn = YES;
+                
+            }
+            else
+            {
+                cb_5_isOn = NO;
+            }
+        }
+        
+        if (add)
+        {
+            float x = checkbox.frame.origin.x;
+            float y = checkbox.frame.origin.y;
+            NSString* tractorPath = [[NSBundle mainBundle] pathForResource:@"136-tractor" ofType:@"png"];
+            UIImage* tractorImage = [[UIImage alloc] initWithContentsOfFile:tractorPath];
+            UIImageView *tractorView = [[UIImageView alloc] initWithImage:tractorImage];
+            [tractorView setFrame: CGRectMake(x+4,y+7,27.0,17.0)];
+            tractorView.tag = tag;
+            [self.view addSubview:tractorView];
+        }
+        else
+        {
+            [[self.view viewWithTag: tag] removeFromSuperview];
+        }
+    }
+    else
+    {
+        BOOL add = NO;
+        NSInteger tag = 0;
+        NSInteger discard_1 = 0;
+        NSInteger discard_2 = 0;
+        CustomCheckbox *checkbox = (CustomCheckbox*)tap.view;
+        if (checkbox == cb_1)
+        {
+            tag = 100;
+            if (!cb_1_isOn)
+            {
+                volunteerFrequencySelection = kWeekly;
+                add = YES;
+                cb_1_isOn = YES;
+                cb_2_isOn = NO;
+                cb_3_isOn = NO;
+                discard_1 = 200;
+                discard_2 = 300;
+            }
+            else
+            {
+                cb_1_isOn = NO;
+            }
+            
+        }
+        else if (checkbox == cb_2)
+        {
+            tag = 200;
+            if (!cb_2_isOn)
+            {
+                volunteerFrequencySelection = kMonthly;
+                add = YES;
+                cb_2_isOn = YES;
+                cb_1_isOn = NO;
+                cb_3_isOn = NO;
+                discard_1 = 100;
+                discard_2 = 300;
+            }
+            else
+            {
+                cb_2_isOn = NO;
+            }
+        }
+        else if (checkbox == cb_3)
+        {
+            tag = 300;
+            if (!cb_3_isOn)
+            {
+                volunteerFrequencySelection = kOnceInABlueMoon;
+                add = YES;
+                cb_3_isOn = YES;
+                cb_2_isOn = NO;
+                cb_1_isOn = NO;
+                discard_1 = 200;
+                discard_2 = 100;
+            }
+            else
+            {
+                cb_3_isOn = NO;
+            }
+        }
+        
+        if (add)
+        {
+            float x = checkbox.frame.origin.x;
+            float y = checkbox.frame.origin.y;
+            NSString* tractorPath = [[NSBundle mainBundle] pathForResource:@"136-tractor" ofType:@"png"];
+            UIImage* tractorImage = [[UIImage alloc] initWithContentsOfFile:tractorPath];
+            UIImageView *tractorView = [[UIImageView alloc] initWithImage:tractorImage];
+            [tractorView setFrame: CGRectMake(x+4,y+7,27.0,17.0)];
+            tractorView.tag = tag;
+            [self.view addSubview:tractorView];
+            
+            [[self.view viewWithTag: discard_1] removeFromSuperview];
+            [[self.view viewWithTag: discard_2] removeFromSuperview];
+        }
+        else
+        {
+            [[self.view viewWithTag: tag] removeFromSuperview];
+        }
+    }
 }
 
-- (void)keyboardWillShow:(NSNotification *)n
-{
-    // This is an ivar I'm using to ensure that we do not do the frame size adjustment on the UIScrollView if the keyboard is already shown.  This can happen if the user, after fixing editing a UITextField, scrolls the resized UIScrollView to another UITextField and attempts to edit the next UITextField.  If we were to resize the UIScrollView again, it would be disastrous.  NOTE: The keyboard notification will fire even when the keyboard is already shown.
-    if (keyboardIsShown) {
-        return;
-    }
-    
-    NSDictionary* userInfo = [n userInfo];
-    
-    // get the size of the keyboard
-    CGSize keyboardSize = [[userInfo objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
-    
-    CGPoint newPoint = self.scrollView.contentOffset;
-    newPoint.y += keyboardSize.height-44.0-20-60;
-    [self.scrollView setContentOffset: newPoint animated:YES];
-    
-    keyboardIsShown = YES;
-}
 
 #pragma mark -
 #pragma mark Rotation
@@ -208,6 +289,8 @@
     NSLog(@"HTTP Status Code: %d", [ckRequest responseStatusCode]);
     NSLog(@"Response String: %@", [ckRequest responseString]);
     
+    [self notifySubscriptionSuccess:YES];
+    
     //NSDictionary *jsonDict = [[ckRequest responseString] JSONValue]; 
     
     //NSLog(@"rd = %@", [jsonDict description]);
@@ -220,6 +303,42 @@
     NSDictionary *jsonDict = [[ckRequest responseString] JSONValue]; 
 
     NSLog(@"Response data from failure: %@", [jsonDict description]);
+    
+     [self notifySubscriptionSuccess:NO];
+}
+
+-(void)notifySubscriptionSuccess:(BOOL)successful
+{
+    if (successful)
+    {
+        UIAlertView *successfulSubscribe = [[UIAlertView alloc]
+                                     initWithTitle:@"Thank you!"
+                                     message:@"You will shortly receive an e-mail asking for confirmation of the subscription request"
+                                     delegate:self
+                                     cancelButtonTitle:@"OK"
+                                     otherButtonTitles:nil];
+        successfulSubscribe.tag = 1000;
+        [successfulSubscribe show];
+    }
+    else
+    {
+        UIAlertView *unsuccessfulSubscribe = [[UIAlertView alloc]
+                                            initWithTitle:@"Sorry!"
+                                            message:@"There's a problem and we can't subscribe you - please try again later"
+                                            delegate:self
+                                            cancelButtonTitle:@"OK"
+                                            otherButtonTitles:nil];
+        unsuccessfulSubscribe.tag = 2000;
+        [unsuccessfulSubscribe show];
+    }
+}
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if(alertView.tag == 1000)
+    {
+        [self.delegate mailChimpViewControllerDidCancel];
+    }
 }
 
 -(void)fetchList
@@ -277,9 +396,9 @@
     [mergeVars setValue:@"beaudry" forKey:@"FNAME"];
     [mergeVars setValue:@"kock" forKey:@"LNAME"];
     [mergeVars setValue:@"OX1 1QY" forKey:@"MMERGE4"];
-    [mergeVars setValue:@"1" forKey: @"group[4913][1]"];
+    [mergeVars setValue:@"1" forKey: @"weekly"];
     [params setValue:mergeVars forKey:@"merge_vars"];
-    
+    //[params setValue:@"1" forKey: @"weekly"];
     NSLog(@"desc = %@", [params description]);
     
     [ck callApiMethod:@"listSubscribe" withParams:params];
@@ -298,9 +417,9 @@
         if ([firstname length]>0 && [lastname length]>0)
         {
             
-            if ([postcode length]>0)
+            if ([listType isEqualToString: kJoinMainMailingList] || ([listType isEqualToString: kJoinVolunteerMailingList] && [postcode length]>0))
             {
-                NSString *listID = kVolunteerMailingListID;//[self getListID];
+                NSString *listID = [self getListID];
                 
                 ChimpKit *ck = [[ChimpKit alloc] initWithDelegate:self 
                                                          andApiKey:kMailChimpAPIKey];
@@ -314,6 +433,37 @@
                 [mergeVars setValue:firstname forKey:@"FNAME"];
                 [mergeVars setValue:lastname forKey:@"LNAME"];
                 [mergeVars setValue:postcode forKey:@"MMERGE3"];
+                
+                if ([listType isEqualToString: kJoinMainMailingList])
+                {
+                    if (cb_1_isOn)
+                    {
+                        [mergeVars setValue: @"1" forKey: kCustomer];
+                    }
+                    if (cb_2_isOn)
+                    {
+                        [mergeVars setValue: @"1" forKey: kLocalChampion];
+                    }
+                    if (cb_3_isOn)
+                    {
+                        [mergeVars setValue: @"1" forKey: kMember];
+                    }
+                    if (cb_4_isOn)
+                    {
+                        [mergeVars setValue: @"1" forKey: kVolunteer];
+                    }
+                    if (cb_5_isOn)
+                    {
+                        [mergeVars setValue: @"1" forKey: kInformed];
+                    }
+                }
+                else
+                {
+                    NSLog(@"vfs = %@", volunteerFrequencySelection);
+                    [mergeVars setValue:postcode forKey:@"MMERGE4"];
+                    [mergeVars setValue: @"1" forKey: volunteerFrequencySelection];
+                }
+                
                 [params setValue:mergeVars forKey:@"merge_vars"];
                 
                 [ck callApiMethod:@"listSubscribe" withParams:params];
@@ -416,7 +566,7 @@
     else
     {
         [postcode_field resignFirstResponder];
-        [self joinMailingList: nil];
+        //[self joinMailingList: nil];
     }
 }
 

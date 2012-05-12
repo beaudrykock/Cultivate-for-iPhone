@@ -37,9 +37,14 @@
 #define kVolunteerMailingListGroupQuestion @"I would like to volunteer..."
 #define kMainMailingListType 0
 #define kVolunteerMailingListType 1
-#define kWeekly @"group[4913][1]"
-#define kMonthly @"group[4913][2]"
-#define kOnceInABlueMoon @"group[4913][4]"
+#define kWeekly @"group_1"
+#define kMonthly @"group_2"
+#define kOnceInABlueMoon @"group_4"
+#define kCustomer @"group[397][1]"
+#define kLocalChampion @"group[397][4]"
+#define kMember @"group[397][8]"
+#define kVolunteer @"group[397][16]"
+#define kInformed @"group[397][32]"
 
 // MAPS
 #define kPostcodeRegex @"^(([gG][iI][rR] {0,}0[aA]{2})|((([a-pr-uwyzA-PR-UWYZ][a-hk-yA-HK-Y]?[0-9][0-9]?)|(([a-pr-uwyzA-PR-UWYZ][0-9][a-hjkstuwA-HJKSTUW])|([a-pr-uwyzA-PR-UWYZ][a-hk-yA-HK-Y][0-9][abehmnprv-yABEHMNPRV-Y]))) {0,}[0-9][abd-hjlnp-uw-zABD-HJLNP-UW-Z]{2}))$"

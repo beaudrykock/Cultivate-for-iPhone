@@ -179,11 +179,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Cultivate for iPhone/MailChimpViewController.m"
-         timestampString = "358446317.511841"
+         timestampString = "358524130.991986"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "291"
-         endingLineNumber = "291"
+         startingLineNumber = "410"
+         endingLineNumber = "410"
          landmarkName = "-joinMailingList:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -192,25 +192,12 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Cultivate for iPhone/MailChimpViewController.m"
-         timestampString = "358446317.511841"
+         timestampString = "358524130.991986"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "432"
-         endingLineNumber = "432"
+         startingLineNumber = "582"
+         endingLineNumber = "582"
          landmarkName = "-cancel:"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "No"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         filePath = "Cultivate for iPhone/MailChimpViewController.m"
-         timestampString = "358446317.511841"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "181"
-         endingLineNumber = "181"
-         landmarkName = "-keyboardWillShow:"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
@@ -322,12 +309,38 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Cultivate for iPhone/MailChimpViewController.m"
-         timestampString = "358444856.138688"
+         timestampString = "358522277.934202"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "73"
-         endingLineNumber = "73"
-         landmarkName = "-showVolunteerInterestOptions"
+         startingLineNumber = "104"
+         endingLineNumber = "104"
+         landmarkName = "-buttonChoiceMade:"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "Cultivate for iPhone/MailChimpViewController.m"
+         timestampString = "358522599.947502"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "196"
+         endingLineNumber = "196"
+         landmarkName = "-buttonChoiceMade:"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "Cultivate for iPhone/MailChimpViewController.m"
+         timestampString = "358524130.991986"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "463"
+         endingLineNumber = "463"
+         landmarkName = "-joinMailingList:"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>

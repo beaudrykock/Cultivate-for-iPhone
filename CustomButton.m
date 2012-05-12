@@ -46,7 +46,7 @@
     //// Text Drawing
     CGRect textFrame = CGRectMake(18, 8, 124, 22);
     [[UIColor whiteColor] setFill];
-    [textContent drawInRect: textFrame withFont: [UIFont fontWithName: @"Helvetica" size: 16] lineBreakMode: UILineBreakModeWordWrap alignment: UITextAlignmentCenter];
+    [textContent drawInRect: textFrame withFont: [UIFont fontWithName: @"Helvetica" size: 18] lineBreakMode: UILineBreakModeWordWrap alignment: UITextAlignmentCenter];
     
 }
 

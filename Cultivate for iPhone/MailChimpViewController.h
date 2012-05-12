@@ -11,12 +11,13 @@
 #import "JSON.h"
 #import "SlidingPickerViewController.h"
 #import <QuartzCore/QuartzCore.h>
+#import "CustomCheckbox.h"
 
 @protocol MailChimpViewControllerDelegate
 - (void)mailChimpViewControllerDidCancel;
 @end
 
-@interface MailChimpViewController : UIViewController <ChimpKitDelegate, UITextFieldDelegate, SlidingPickerViewControllerDelegate>
+@interface MailChimpViewController : UIViewController <ChimpKitDelegate, UITextFieldDelegate>
 {
     NSString *listType; // must be set on init
     UILabel *list_title; // customize depending on whether this is mailing list or volunteer list
@@ -27,14 +28,40 @@
     UITextField *postcode_field;
     __weak id delegate;
     BOOL keyboardIsShown;
-    UIScrollView *scrollView;
     NSString* volunteerFrequencySelection;
-    UIButton *volunteerOptionsBtn;
-    SlidingPickerViewController *picker ;
+    CustomCheckbox* cb_1;
+    CustomCheckbox* cb_2;
+    CustomCheckbox* cb_3;
+    CustomCheckbox* cb_4;
+    CustomCheckbox* cb_5;
+    BOOL cb_1_isOn;
+    BOOL cb_2_isOn;
+    BOOL cb_3_isOn;
+    BOOL cb_4_isOn;
+    BOOL cb_5_isOn;
+    UILabel *label_cb_1;
+    UILabel *label_cb_2;
+    UILabel *label_cb_3;
+    UILabel *label_cb_4;
+    UILabel *label_cb_5;
+    UILabel *options_title;
+    UIButton *cancel_btn;
+    UIButton *subscribe_btn;
 }
 
-@property (nonatomic, strong) IBOutlet UIButton *volunteerOptionsBtn;
-@property (nonatomic, strong) IBOutlet UIScrollView *scrollView;
+@property (nonatomic, strong) IBOutlet CustomCheckbox *cb_1;
+@property (nonatomic, strong) IBOutlet CustomCheckbox *cb_2;
+@property (nonatomic, strong) IBOutlet CustomCheckbox *cb_3;
+@property (nonatomic, strong) IBOutlet CustomCheckbox *cb_4;
+@property (nonatomic, strong) IBOutlet CustomCheckbox *cb_5;
+@property (nonatomic, strong) IBOutlet UILabel *label_cb_1;
+@property (nonatomic, strong) IBOutlet UILabel *label_cb_2;
+@property (nonatomic, strong) IBOutlet UILabel *label_cb_3;
+@property (nonatomic, strong) IBOutlet UILabel *label_cb_4;
+@property (nonatomic, strong) IBOutlet UILabel *label_cb_5;
+@property (nonatomic, strong) IBOutlet UILabel *options_title;
+@property (nonatomic, strong) IBOutlet UIButton *cancel_btn;
+@property (nonatomic, strong) IBOutlet UIButton *subscribe_btn;
 @property (nonatomic, strong) NSString *listType;
 @property (nonatomic, strong) IBOutlet UILabel *list_title;
 @property (nonatomic, strong) IBOutlet UILabel *introBlurb;
@@ -43,7 +70,6 @@
 @property (nonatomic, strong) IBOutlet UITextField *lastname_field;
 @property (nonatomic, strong) IBOutlet UITextField *postcode_field;
 @property (nonatomic, weak) id <MailChimpViewControllerDelegate> delegate;
-@property (nonatomic, strong) SlidingPickerViewController *picker;
 
 -(void)alertEmailInvalid;
 -(void)hideKeyboard;
@@ -59,5 +85,6 @@
 -(void)fetchListMemberInfo;
 -(IBAction)showVolunteerInterestOptions;
 -(void)slidingPickerViewControllerDidCancel;
-
+-(IBAction)buttonChoiceMade:(id)sender;
+-(void)notifySubscriptionSuccess:(BOOL)successful;
 @end

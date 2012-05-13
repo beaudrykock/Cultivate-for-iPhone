@@ -59,7 +59,15 @@
     NSString* textContent = buttonTitle;
         
     //// Rounded Rectangle Drawing
-    UIBezierPath* roundedRectanglePath = [UIBezierPath bezierPathWithRoundedRect: CGRectMake(0.5, 0.5, 160, 37) cornerRadius: 8];
+    float width = 160.0;
+    float height = 37.0;
+    if (size.height>0)
+    {
+        width = size.width;
+        height = size.height;
+    }
+    
+    UIBezierPath* roundedRectanglePath = [UIBezierPath bezierPathWithRoundedRect: CGRectMake(0.5, 0.5, width, height) cornerRadius: 8];
     [color setFill];
     [roundedRectanglePath fill];
     
@@ -80,10 +88,22 @@
     }
     
     //// Text Drawing
-    CGRect textFrame = CGRectMake(18, 8, 124, 22);
+    float x = 18.0;
+    float y = 8.0;
+    if (size.height>0)
+    {
+        x = (size.width-124.0)/2.0;
+    }
+    CGRect textFrame = CGRectMake(x, 8, 124, 22);
     [color3 setFill];
     [textContent drawInRect: textFrame withFont: [UIFont fontWithName: @"Calibri" size: 18] lineBreakMode: UILineBreakModeWordWrap alignment: UITextAlignmentCenter];
     
+}
+
+-(void)setSize:(CGSize)sizeToSet
+{
+    size = sizeToSet;
+    [self setNeedsDisplay];
 }
 
 - (void)hesitateUpdate

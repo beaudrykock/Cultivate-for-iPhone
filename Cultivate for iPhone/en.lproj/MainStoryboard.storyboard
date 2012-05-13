@@ -600,7 +600,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="X9D-TP-qep" customClass="CustomButton">
-                                        <rect key="frame" x="131" y="42" width="161" height="38"/>
+                                        <rect key="frame" x="154" y="42" width="131" height="38"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                         <state key="normal">
@@ -614,6 +614,18 @@
                                             <action selector="promptCultiRideDetails:" destination="2eq-V5-S6M" eventType="touchUpInside" id="T6S-0s-PTz"/>
                                         </connections>
                                     </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="ADK-VC-e78" customClass="CustomButton">
+                                        <rect key="frame" x="15" y="42" width="131" height="38"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                        <state key="normal">
+                                            <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <state key="highlighted">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                             </view>
@@ -622,6 +634,7 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="Settings" image="20-gear2.png" id="SD3-uR-afK"/>
                     <connections>
+                        <outlet property="clearCultiRideDetailsButton" destination="ADK-VC-e78" id="FLj-af-9j3"/>
                         <outlet property="minutesBeforeLabel" destination="7Io-6d-oMf" id="scF-9j-r3B"/>
                         <outlet property="notificationSettingsBackground" destination="fCo-5u-2hC" id="eJH-Xl-KUq"/>
                         <outlet property="promptCultiRideDetailsBackground" destination="U5M-kL-Qzs" id="Tlt-qH-5qK"/>
@@ -824,6 +837,7 @@
                 <relationship kind="action" name="promptCultiRideDetails:"/>
                 <relationship kind="action" name="stepperPressed:"/>
                 <relationship kind="action" name="toggleLocalNotifications:"/>
+                <relationship kind="outlet" name="clearCultiRideDetailsButton" candidateClass="CustomButton"/>
                 <relationship kind="outlet" name="minutesBeforeLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="notificationSettingsBackground" candidateClass="UIView"/>
                 <relationship kind="outlet" name="promptCultiRideDetailsBackground" candidateClass="UIView"/>

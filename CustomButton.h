@@ -14,9 +14,12 @@
     UIColor *interiorColorHighlighted;
     UIColor *borderColor;
     UIColor *textColor;
+    CGSize size;
 }
 @property (nonatomic, strong) NSString * buttonTitle;
 
 -(void)drawButton;
 -(void)setFillWith:(UIColor*)color1 andHighlightedFillWith: (UIColor*)color2 andBorderWith: (UIColor*)color3 andTextWith: (UIColor*)color4;
+-(void)setSize:(CGSize)sizeToSet;
+
 @end

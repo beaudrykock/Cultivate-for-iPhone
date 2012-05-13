@@ -29,6 +29,7 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     
+    [Utilities refreshVolunteerDates]; // loads from online XML and merges with existing if necessary
     self.volunteerDates = [Utilities getVolunteerDatesWithRequestStatus];
     [self.viewTitle setTextColor: [Utilities colorWithHexString: kCultivateGreenColor]];
     [self.info setTextColor: [Utilities colorWithHexString: kCultivateGrayColor]];
@@ -88,9 +89,16 @@
 
 -(IBAction)prepareRequest
 {
-    if ([Utilities cultiRideDetailsSet])
+    if ([Utilities cultiRideDetailsSet] && [self requestMade])
     {
-        [self submitRequest];
+        UIAlertView *confirm = [[UIAlertView alloc]
+                                initWithTitle:@"Please confirm request"
+                                message:@"Note: e-mail info@cultivateoxford.org if you wish to cancel a request"
+                                delegate:self
+                                cancelButtonTitle:@"Cancel"
+                                otherButtonTitles:@"Confirm", nil];
+        
+        [confirm show];
     }
     else
     {
@@ -104,6 +112,22 @@
     [self.cultiRideDetailsViewController setDelegate:self];
     [self presentModalViewController:cultiRideDetailsViewController animated:YES];
 }
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    NSString *title = [alertView buttonTitleAtIndex:buttonIndex];
+    
+    if([title isEqualToString:@"Confirm"])
+    {
+        [self submitRequest];
+    }
+    else {
+        
+        [alertView dismissWithClickedButtonIndex:0 animated:YES];
+        
+    }
+}
+
 
 -(void)submitRequest
 {
@@ -250,6 +274,11 @@
             [selectedValues replaceObjectAtIndex:row withObject:@"1"];
         }
     }
+}
+
+-(BOOL)requestMade
+{
+    return [selectedValues containsObject:@"1"];
 }
 
 -(BOOL)dateRequestedAtRow:(NSInteger)row

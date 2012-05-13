@@ -9,7 +9,7 @@
 #import "SettingsViewController.h"
 
 @implementation SettingsViewController
-@synthesize minutesBeforeLabel, stepper, repeatPatternControl, notificationSettingsBackground, toggleNotificationsSwitch, cultiRideDetailsViewController, promptCultiRideDetailsButton, promptCultiRideDetailsBackground, remindersTitleLabel, withRepeatLabel, updateCultiRideDetailsLabel;
+@synthesize minutesBeforeLabel, stepper, repeatPatternControl, notificationSettingsBackground, toggleNotificationsSwitch, cultiRideDetailsViewController, promptCultiRideDetailsButton, promptCultiRideDetailsBackground, remindersTitleLabel, withRepeatLabel, updateCultiRideDetailsLabel, clearCultiRideDetailsButton;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -66,11 +66,20 @@
         [self.repeatPatternControl setEnabled: NO];
     }
     
-    self.promptCultiRideDetailsButton.buttonTitle = @"Update";
+    self.promptCultiRideDetailsButton.buttonTitle = @"Add new";
+    self.clearCultiRideDetailsButton.buttonTitle = @"Clear";
+    
     [self.promptCultiRideDetailsButton setFillWith:[Utilities colorWithHexString: @"#727272"] andHighlightedFillWith: [Utilities colorWithHexString: kCultivateGrayColor]  andBorderWith: [UIColor blackColor] andTextWith: [UIColor whiteColor]];
+    
+    [self.clearCultiRideDetailsButton setFillWith:[Utilities colorWithHexString: @"#727272"] andHighlightedFillWith: [Utilities colorWithHexString: kCultivateGrayColor]  andBorderWith: [UIColor blackColor] andTextWith: [UIColor whiteColor]];
+    [self.clearCultiRideDetailsButton setSize: CGSizeMake(130.0, 37.0)];
+    [self.promptCultiRideDetailsButton setSize: CGSizeMake(130.0, 37.0)];
     
     UITapGestureRecognizer *updateButtonTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(promptCultiRideDetails:)];
     [self.promptCultiRideDetailsButton addGestureRecognizer:updateButtonTap];
+    
+    UITapGestureRecognizer *clearButtonTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(clearCultiRideDetails)];
+    [self.clearCultiRideDetailsButton addGestureRecognizer:clearButtonTap];
     
 }
 
@@ -127,6 +136,11 @@
     self.cultiRideDetailsViewController = [[CultiRideDetailsViewController alloc] initWithNibName: @"CultiRideDetailsView" bundle: nil];
     [self.cultiRideDetailsViewController setDelegate:self];
     [self presentModalViewController:cultiRideDetailsViewController animated:YES];
+}
+
+-(void)clearCultiRideDetails
+{
+    [Utilities setCultiRideDetailsForName: nil mobile: nil postcode: nil];
 }
 
 -(void)cultiRideDetailsViewControllerDidFinish

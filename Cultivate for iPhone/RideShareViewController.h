@@ -35,5 +35,6 @@
 -(void)markPickerRowSelected:(NSInteger)pickerRow;
 -(BOOL)dateRequestedAtRow:(NSInteger)row;
 -(void)cultiRideDetailsViewControllerDidFinish;
+-(BOOL)requestMade;
 
 @end

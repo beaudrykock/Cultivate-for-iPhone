@@ -25,6 +25,7 @@
     BOOL localNotificationsEnabled;
     CultiRideDetailsViewController *cultiRideDetailsViewController;
     CustomButton *promptCultiRideDetailsButton;
+    CustomButton *clearCultiRideDetailsButton;
     
 }
 @property (nonatomic, strong) IBOutlet UISwitch *toggleNotificationsSwitch;
@@ -38,6 +39,7 @@
 @property (nonatomic, strong) IBOutlet UIView *promptCultiRideDetailsBackground;
 @property (nonatomic, strong) CultiRideDetailsViewController *cultiRideDetailsViewController;
 @property (nonatomic, strong) IBOutlet CustomButton *promptCultiRideDetailsButton;
+@property (nonatomic, strong) IBOutlet CustomButton *clearCultiRideDetailsButton;
 
 -(IBAction)stepperPressed:(id)sender;
 -(IBAction)patternSegmentChanged:(id)sender;
@@ -45,5 +47,5 @@
 -(IBAction)toggleLocalNotifications:(id)sender;
 -(IBAction)promptCultiRideDetails:(id)sender;
 -(void)cultiRideDetailsViewControllerDidFinish;
-
+-(void)clearCultiRideDetails;
 @end

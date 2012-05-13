@@ -198,7 +198,15 @@
 {
     NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys: _name, kCultiRideName, _mobile, kCultiRideMobile, _postcode, kCultiRideMobile, nil];
     [[NSUserDefaults standardUserDefaults] setObject: dict forKey: kCultiRideDetails];
-    [[NSUserDefaults standardUserDefaults] setBool: YES forKey: kCultiRideDetailsSet];
+    if (_name == nil)
+    {
+        [[NSUserDefaults standardUserDefaults] setBool: NO forKey: kCultiRideDetailsSet];
+        
+    }
+    else {
+        [[NSUserDefaults standardUserDefaults] setBool: YES forKey: kCultiRideDetailsSet];
+        
+    }
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
@@ -243,14 +251,41 @@
 
 }
 
+// refresh with new content from XML
++(void)refreshVolunteerDates
+{
+    NSMutableArray *volunteerDates = (NSMutableArray*)[[NSUserDefaults standardUserDefaults] objectForKey: kVolunteerDatesKey];
+    
+    // TODO: get new dates from XML, if possible
+    //NSMutableArray *volunteerDatesFromXML = ;
+    
+    if (!volunteerDates)
+    {
+        // TODO test
+        // volunteerDates = NSMutableArray arrayWithArray: volunteerDatesFromXML]; 
+        
+        // TODO remove
+        volunteerDates = [NSMutableArray arrayWithObjects: @"May 10", @"June 5", @"July 8", @"September 18", nil];
+    }
+    else {
+        // merge existing with XML volunteer dates to avoid duplication
+        /*
+         for (NSString *date in volunteerDatesFromXML)
+         {
+         if (![volunteerDates containsObject: date])
+         {
+         [volunteerDates addObject: date]; 
+         }
+         }
+         */
+    }
+    [self updateVolunteerDatesWithRequestStatus:volunteerDates];
+
+}
+
 +(NSMutableArray*)getVolunteerDatesWithRequestStatus
 {
     NSMutableArray *volunteerDates = (NSMutableArray*)[[NSUserDefaults standardUserDefaults] objectForKey: kVolunteerDatesKey];
-    if (!volunteerDates)
-    {
-        // TODO: where to get these dates from?
-        volunteerDates = [NSMutableArray arrayWithObjects: @"May 10", @"June 5", @"July 8", @"September 18", nil];
-    }
     return volunteerDates;
 }
 

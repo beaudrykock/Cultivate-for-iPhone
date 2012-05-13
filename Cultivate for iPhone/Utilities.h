@@ -36,5 +36,6 @@
 +(UIImage *)scale:(UIImage *)image toSize:(CGSize)size;
 +(BOOL)isFirstLaunch;
 +(NSMutableArray*)getVolunteerDatesWithRequestStatus;
++(void)refreshVolunteerDates;
 +(void)updateVolunteerDatesWithRequestStatus:(NSMutableArray*)updatedVolunteerDates;
 @end

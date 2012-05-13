@@ -83,8 +83,6 @@
 		9F6A09E71546FE7400B59D0F /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F6A09E61546FE7400B59D0F /* libz.dylib */; };
 		9F6A09EA1546FEE900B59D0F /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F6A09E91546FEE900B59D0F /* Reachability.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		9F6A09ED1546FF7B00B59D0F /* VegVanStopLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F6A09EC1546FF7B00B59D0F /* VegVanStopLocation.m */; };
-		9F8ED09515529763001FE478 /* cultivate_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9F8ED09215528A81001FE478 /* cultivate_icon@2x.png */; };
-		9F8ED096155297C6001FE478 /* cultivate_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 9F8ED09015528A6A001FE478 /* cultivate_icon.png */; };
 		9F977EE0155018C3002D04A6 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F977EDF155018C3002D04A6 /* QuartzCore.framework */; };
 		9F995C6515581E29007DCA58 /* AKFusionTables.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F995C6415581E29007DCA58 /* AKFusionTables.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		9F995C6A15581ED1007DCA58 /* 112-group.png in Resources */ = {isa = PBXBuildFile; fileRef = 9F995C6815581ED1007DCA58 /* 112-group.png */; };
@@ -99,6 +97,8 @@
 		9FA5493215542B5100CA04C7 /* subscribe_button.png in Resources */ = {isa = PBXBuildFile; fileRef = 9FA5493015542B5100CA04C7 /* subscribe_button.png */; };
 		9FA5493415542DBF00CA04C7 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 9FA5493315542DBF00CA04C7 /* Default.png */; };
 		9FA5493615542DC300CA04C7 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9FA5493515542DC300CA04C7 /* Default@2x.png */; };
+		9FB1DA51156066DE0035055E /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 9FB1DA4F156066D50035055E /* Icon.png */; };
+		9FB1DA53156066E20035055E /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9FB1DA52156066E20035055E /* Icon@2x.png */; };
 		9FB2B5A2154F0736000F2410 /* SBJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FB2B59B154F0736000F2410 /* SBJSON.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		9FB2B5A3154F0736000F2410 /* SBJsonBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FB2B59D154F0736000F2410 /* SBJsonBase.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		9FB2B5A4154F0736000F2410 /* SBJsonParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FB2B59F154F0736000F2410 /* SBJsonParser.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -313,8 +313,6 @@
 		9F6A09E91546FEE900B59D0F /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 		9F6A09EB1546FF7B00B59D0F /* VegVanStopLocation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VegVanStopLocation.h; path = "Cultivate for iPhone/VegVanStopLocation.h"; sourceTree = "<group>"; };
 		9F6A09EC1546FF7B00B59D0F /* VegVanStopLocation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VegVanStopLocation.m; path = "Cultivate for iPhone/VegVanStopLocation.m"; sourceTree = "<group>"; };
-		9F8ED09015528A6A001FE478 /* cultivate_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cultivate_icon.png; sourceTree = "<group>"; };
-		9F8ED09215528A81001FE478 /* cultivate_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cultivate_icon@2x.png"; sourceTree = "<group>"; };
 		9F977EDF155018C3002D04A6 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		9F995C6315581E29007DCA58 /* AKFusionTables.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AKFusionTables.h; sourceTree = "<group>"; };
 		9F995C6415581E29007DCA58 /* AKFusionTables.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AKFusionTables.m; sourceTree = "<group>"; };
@@ -337,6 +335,8 @@
 		9FA5493015542B5100CA04C7 /* subscribe_button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = subscribe_button.png; sourceTree = "<group>"; };
 		9FA5493315542DBF00CA04C7 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		9FA5493515542DC300CA04C7 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
+		9FB1DA4F156066D50035055E /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
+		9FB1DA52156066E20035055E /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2x.png"; sourceTree = "<group>"; };
 		9FB2B59A154F0736000F2410 /* SBJSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SBJSON.h; path = ../../../../../../SBJSON.h; sourceTree = "<group>"; };
 		9FB2B59B154F0736000F2410 /* SBJSON.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SBJSON.m; path = ../../../../../../SBJSON.m; sourceTree = "<group>"; };
 		9FB2B59C154F0736000F2410 /* SBJsonBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SBJsonBase.h; path = ../../../../../../SBJsonBase.h; sourceTree = "<group>"; };
@@ -547,12 +547,12 @@
 		9F6A09141546D4C500B59D0F = {
 			isa = PBXGroup;
 			children = (
+				9FB1DA52156066E20035055E /* Icon@2x.png */,
+				9FB1DA4F156066D50035055E /* Icon.png */,
 				9FA5493515542DC300CA04C7 /* Default@2x.png */,
 				9FA5493315542DBF00CA04C7 /* Default.png */,
 				9F3FFBC71552F70800FA14EE /* radar.png */,
 				9F3FFBC81552F70800FA14EE /* radar@2x.png */,
-				9F8ED09215528A81001FE478 /* cultivate_icon@2x.png */,
-				9F8ED09015528A6A001FE478 /* cultivate_icon.png */,
 				9F6A09291546D4C500B59D0F /* Cultivate for iPhone */,
 				9F6A09221546D4C500B59D0F /* Frameworks */,
 				9F6A09201546D4C500B59D0F /* Products */,
@@ -1311,8 +1311,6 @@
 				9F524B0815519517000846E7 /* VegVanStops.xml in Resources */,
 				9F524B101551A10E000846E7 /* ScheduleItemDetailView.xib in Resources */,
 				9F524B121551AC6E000846E7 /* cultivan.png in Resources */,
-				9F8ED09515529763001FE478 /* cultivate_icon@2x.png in Resources */,
-				9F8ED096155297C6001FE478 /* cultivate_icon.png in Resources */,
 				9F3FFBC51552F55700FA14EE /* location.png in Resources */,
 				9F3FFBC61552F55700FA14EE /* location@2x.png in Resources */,
 				9F3FFBC91552F70800FA14EE /* radar.png in Resources */,
@@ -1340,6 +1338,8 @@
 				9FF78EA4155FBC7E00FAAE67 /* nobile.ttf in Resources */,
 				9FF78EA6155FBF7600FAAE67 /* Calibri.ttf in Resources */,
 				9FF78EA8155FC0CB00FAAE67 /* Calibri Bold.ttf in Resources */,
+				9FB1DA51156066DE0035055E /* Icon.png in Resources */,
+				9FB1DA53156066E20035055E /* Icon@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -22,9 +22,13 @@
     UILabel *list_title; // customize depending on whether this is mailing list or volunteer list
     UILabel *introBlurb;
     UITextField *email_field;
+    UILabel *email_title;
     UITextField *firstname_field;
+    UILabel *firstname_title;
     UITextField *lastname_field;
+    UILabel *lastname_title;
     UITextField *postcode_field;
+    UILabel *postcode_title;
     __weak id delegate;
     BOOL keyboardIsShown;
     NSString* volunteerFrequencySelection;
@@ -57,6 +61,11 @@
 @property (nonatomic, strong) IBOutlet UILabel *label_cb_2;
 @property (nonatomic, strong) IBOutlet UILabel *label_cb_3;
 @property (nonatomic, strong) IBOutlet UILabel *label_cb_4;
+@property (nonatomic, strong) IBOutlet UILabel *email_title;
+@property (nonatomic, strong) IBOutlet UILabel *firstname_title;
+@property (nonatomic, strong) IBOutlet UILabel *lastname_title;
+@property (nonatomic, strong) IBOutlet UILabel *postcode_title;
+
 @property (nonatomic, strong) IBOutlet UILabel *label_cb_5;
 @property (nonatomic, strong) IBOutlet UILabel *options_title;
 @property (nonatomic, strong) IBOutlet UIButton *cancel_btn;

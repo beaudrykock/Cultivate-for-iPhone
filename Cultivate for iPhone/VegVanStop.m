@@ -9,18 +9,23 @@
 #import "VegVanStop.h"
 
 @implementation VegVanStop
-@synthesize name, area, location, address, photoURL, blurb, manager, scheduleItems;
+@synthesize name, area, location, address, photoURL, blurb, manager, scheduleItems, nextScheduledStop;
 
 -(NSString*)addressAsString
 {
     return [NSString stringWithFormat:@"%@%@%@%@%@", [address objectForKey: kStreetNumberElement],@" ", [address objectForKey: kStreetNameElement],@" ", [address objectForKey: kPostcodeElement]];
 }
 
+-(NSString*)postcodeAsString
+{
+    return [address objectForKey: kPostcodeElement];
+}
+
 -(float)secondsUntilNextScheduledStop
 {
     // TODO: finish - need to iterate through schedule items and figure out closest item in time
     // implementation depends on Cultivate choice of scheduling
-    VegVanScheduleItem *nextScheduledStop = [self getNextScheduledStop];
+    VegVanScheduleItem *_nextScheduledStop = [self getNextScheduledStop];
    
     NSCalendar *gregorian = [[NSCalendar alloc]
                              initWithCalendarIdentifier:NSGregorianCalendar];
@@ -32,24 +37,24 @@
     NSInteger minute_now = [components minute];
     
     NSInteger weekSecondsElapsed_now = ((weekday_now-1)*86400)+(hour_now*3600)+(minute_now*60);
-    NSInteger weekSecondsElapsed_item = (([nextScheduledStop getDayAsInteger]-1)*86400)
-                                        +([nextScheduledStop getHourAsInteger]*3600)
-                                        +([nextScheduledStop getMinuteAsInteger]*60);
+    NSInteger weekSecondsElapsed_item = (([_nextScheduledStop getDayAsInteger]-1)*86400)
+                                        +([_nextScheduledStop getHourAsInteger]*3600)
+                                        +([_nextScheduledStop getMinuteAsInteger]*60);
     
     BOOL scheduledDateEarlierInWeek = NO;
-    if ([nextScheduledStop getDayAsInteger]<weekday_now)
+    if ([_nextScheduledStop getDayAsInteger]<weekday_now)
     {
         scheduledDateEarlierInWeek = YES;
     }
-    else if ([nextScheduledStop getDayAsInteger]==weekday_now)
+    else if ([_nextScheduledStop getDayAsInteger]==weekday_now)
     {
-        if ([nextScheduledStop getHourAsInteger]<hour_now)
+        if ([_nextScheduledStop getHourAsInteger]<hour_now)
         {
             scheduledDateEarlierInWeek = YES;
         }
-        else if ([nextScheduledStop getHourAsInteger]==hour_now)
+        else if ([_nextScheduledStop getHourAsInteger]==hour_now)
         {
-            if ([nextScheduledStop getMinuteAsInteger]<minute_now)
+            if ([_nextScheduledStop getMinuteAsInteger]<minute_now)
             {
                 scheduledDateEarlierInWeek = YES;
             }
@@ -67,6 +72,13 @@
     }
     // TEMPORARY ONLY - FOR TESTING
    // return (rand() / RAND_MAX) * 100;
+}
+
+-(NSString*)postcodeAndNextScheduledStopAsString
+{
+    NSString *nextScheduledStopAsString = [self nextStopTimeAsStringLessFrequency];
+    NSString *postcode = [self postcodeAsString];
+    return [NSString stringWithFormat:@"%@%@%@", postcode, @" | ",nextScheduledStopAsString];
 }
 
 -(VegVanScheduleItem*)getNextScheduledStop
@@ -154,12 +166,28 @@
         nextScheduled = soonest;
     }
     
+    nextScheduledStop = nextScheduled;
+    
     return nextScheduled;
 }
 
 -(NSString*)nextStopTimeAsString
 {
-    return @"Wednesday @ 2 pm";
+    VegVanScheduleItem *item = nextScheduledStop;
+    if (item == nil) 
+        item = [self getNextScheduledStop];
+   
+    return [item scheduleDetailAsString];
+}
+
+
+-(NSString*)nextStopTimeAsStringLessFrequency
+{
+    VegVanScheduleItem *item = nextScheduledStop;
+    if (item == nil) 
+        item = [self getNextScheduledStop];
+    
+    return [item scheduleDetailAsStringLessFrequency];
 }
 
 -(void)description

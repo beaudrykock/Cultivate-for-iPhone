@@ -80,7 +80,7 @@
                     annotation = [_mapView.annotations objectAtIndex:counter];
                     if (![annotation isKindOfClass:[MKUserLocation class]])
                     {
-                        if ([[annotation name] isEqualToString: name])
+                        if ([[annotation stopName] isEqualToString: name])
                         {
                             [_mapView selectAnnotation:annotation animated:YES];
                         }
@@ -355,7 +355,7 @@
         if (![annotation isKindOfClass:[MKUserLocation class]])
         {
             
-            timeToNextStop = [[[Utilities sharedAppDelegate] vegVanStopManager] secondsUntilNextScheduledStopWithName: [annotation name]];
+            timeToNextStop = [[[Utilities sharedAppDelegate] vegVanStopManager] secondsUntilNextScheduledStopWithName: [annotation stopName]];
             NSLog(@"timeToNextStop = %i", timeToNextStop);
             if (counter==0)
             {
@@ -442,7 +442,7 @@
         CLLocationCoordinate2D coordinate;
         coordinate.latitude = vegVanStop.location.coordinate.latitude;
         coordinate.longitude = vegVanStop.location.coordinate.longitude;            
-        VegVanStopLocation *annotation = [[VegVanStopLocation alloc] initWithName:vegVanStop.name address:[vegVanStop addressAsString] coordinate:coordinate];
+        VegVanStopLocation *annotation = [[VegVanStopLocation alloc] initWithName: [vegVanStop name] address: [vegVanStop addressAsString] time: [NSString stringWithFormat:@"%@%@", @"Next stop: ",[vegVanStop nextStopTimeAsStringLessFrequency]] coordinate:coordinate];
         [_mapView addAnnotation:annotation]; 
     }
 }
@@ -513,7 +513,7 @@
     
     // get stop and set sidvc parameters
     VegVanStopLocation *loc = (VegVanStopLocation*)view.annotation;
-    VegVanStop *stop = [[[[Utilities sharedAppDelegate] vegVanStopManager] vegVanStops] objectForKey: loc.name];
+    VegVanStop *stop = [[[[Utilities sharedAppDelegate] vegVanStopManager] vegVanStops] objectForKey: loc.stopName];
     
     [[sidvc stopName] setText: [stop name]];
     [[sidvc stopAddress] setText: [stop addressAsString]];

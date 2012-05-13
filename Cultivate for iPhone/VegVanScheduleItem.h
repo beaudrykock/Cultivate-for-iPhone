@@ -22,6 +22,7 @@
 @property (nonatomic, strong) NSString *stopFrequency;
 
 -(NSString*)scheduleDetailAsString;
+-(NSString*)scheduleDetailAsStringLessFrequency;
 -(NSInteger)getHourAsInteger;
 -(NSInteger)getMinuteAsInteger;
 -(NSInteger)getDayAsInteger;

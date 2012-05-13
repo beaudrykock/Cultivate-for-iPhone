@@ -9,37 +9,41 @@
 #import <UIKit/UIKit.h>
 #import <QuartzCore/QuartzCore.h>
 #import "CustomButton.h"
-@interface SettingsViewController : UIViewController
+#import "CultiRideDetailsViewController.h"
+
+@interface SettingsViewController : UIViewController <CultiRideDetailsViewControllerDelegate>
 {
     UISwitch *toggleNotificationsSwitch;
+    UILabel *remindersTitleLabel;
     UILabel *minutesBeforeLabel;
+    UILabel *withRepeatLabel;
+    UILabel *updateCultiRideDetailsLabel;
     UIStepper *stepper;
     UISegmentedControl *repeatPatternControl;
     UIView *notificationSettingsBackground;
-    UIView *cultiRideSettingsBackground;
-    UITextField *name_field;
-    UITextField *mobile_field;
-    UITextField *postcode_field;
+    UIView *promptCultiRideDetailsBackground;
     BOOL localNotificationsEnabled;
-    CustomButton *updateCultiRideDetailsButton;
+    CultiRideDetailsViewController *cultiRideDetailsViewController;
+    CustomButton *promptCultiRideDetailsButton;
+    
 }
-
-@property (nonatomic, strong) IBOutlet CustomButton *updateCultiRideDetailsButton;
 @property (nonatomic, strong) IBOutlet UISwitch *toggleNotificationsSwitch;
 @property (nonatomic, strong) IBOutlet UILabel *minutesBeforeLabel;
+@property (nonatomic, strong) IBOutlet UILabel *remindersTitleLabel;
+@property (nonatomic, strong) IBOutlet UILabel *withRepeatLabel;
+@property (nonatomic, strong) IBOutlet UILabel *updateCultiRideDetailsLabel;
 @property (nonatomic, strong) IBOutlet UIStepper *stepper;
 @property (nonatomic, strong) IBOutlet UISegmentedControl *repeatPatternControl;
 @property (nonatomic, strong) IBOutlet UIView *notificationSettingsBackground;
-@property (nonatomic, strong) IBOutlet UIView *cultiRideSettingsBackground;
-@property (nonatomic, strong) IBOutlet UITextField *name_field;
-@property (nonatomic, strong) IBOutlet UITextField *postcode_field;
-@property (nonatomic, strong) IBOutlet UITextField *mobile_field;
+@property (nonatomic, strong) IBOutlet UIView *promptCultiRideDetailsBackground;
+@property (nonatomic, strong) CultiRideDetailsViewController *cultiRideDetailsViewController;
+@property (nonatomic, strong) IBOutlet CustomButton *promptCultiRideDetailsButton;
+
 -(IBAction)stepperPressed:(id)sender;
 -(IBAction)patternSegmentChanged:(id)sender;
 -(void)hideKeyboard;
--(IBAction)updateCultiRideDetails:(id)sender;
 -(IBAction)toggleLocalNotifications:(id)sender;
--(void)alertIncompleteForm;
--(IBAction)nextField:(id)sender;
+-(IBAction)promptCultiRideDetails:(id)sender;
+-(void)cultiRideDetailsViewControllerDidFinish;
 
 @end

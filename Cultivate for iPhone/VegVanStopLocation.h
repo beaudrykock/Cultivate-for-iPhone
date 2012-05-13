@@ -11,15 +11,17 @@
 
 @interface VegVanStopLocation : NSObject <MKAnnotation>
 {
-    NSString *_name;
-    NSString *_address;
+    NSString *stopName;
+    NSString *stopAddress;
+    NSString *nextStopTime;
     CLLocationCoordinate2D _coordinate;
 }
 
-@property (copy) NSString *name;
-@property (copy) NSString *address;
+@property (copy) NSString *stopName;
+@property (copy) NSString *stopAddress;
+@property (copy) NSString *nextStopTime;
 @property (nonatomic, readonly) CLLocationCoordinate2D coordinate;
 
-- (id)initWithName:(NSString*)name address:(NSString*)address coordinate:(CLLocationCoordinate2D)coordinate;
+- (id)initWithName:(NSString*)name address:(NSString*)address time:(NSString*)time coordinate:(CLLocationCoordinate2D)coordinate;
 
 @end

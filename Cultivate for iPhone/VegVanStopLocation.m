@@ -10,28 +10,30 @@
 
 
 @implementation VegVanStopLocation
-@synthesize name = _name;
-@synthesize address = _address;
+@synthesize stopName;
+@synthesize stopAddress;
+@synthesize nextStopTime;
 @synthesize coordinate = _coordinate;
 
-- (id)initWithName:(NSString*)name address:(NSString*)address coordinate:(CLLocationCoordinate2D)coordinate {
+- (id)initWithName:(NSString*)name address:(NSString*)address time:(NSString*)time coordinate:(CLLocationCoordinate2D)coordinate {
     if ((self = [super init])) {
-        _name = [name copy];
-        _address = [address copy];
+        stopName = [name copy];
+        stopAddress = [address copy];
+        nextStopTime = [time copy];
         _coordinate = coordinate;
     }
     return self;
 }
 
 - (NSString *)title {
-    if ([_name isKindOfClass:[NSNull class]]) 
+    if ([stopAddress isKindOfClass:[NSNull class]]) 
         return @"Unknown";
     else
-        return _name;
+        return stopAddress;
 }
 
 - (NSString *)subtitle {
-    return _address;
+    return nextStopTime;
 }
 
 @end

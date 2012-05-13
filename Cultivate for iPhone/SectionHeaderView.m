@@ -43,12 +43,12 @@
         CGRect areaTitleLabelFrame = CGRectMake(self.bounds.origin.x+5.0, self.bounds.origin.y, self.bounds.size.width/2.0, self.bounds.size.height);
         CGRect notifyColumnTitleLabelFrame = CGRectMake(areaTitleLabelFrame.origin.x+areaTitleLabelFrame.size.width, self.bounds.origin.y, (self.bounds.size.width/2.0)-5.0, self.bounds.size.height);
         
-        areaTitleLabelFrame.origin.y -= 12.5;
-        notifyColumnTitleLabelFrame.origin.y -= 12.5;
+        areaTitleLabelFrame.origin.y -= 10.5;
+        notifyColumnTitleLabelFrame.origin.y -= 10.5;
         areaTitleLabel = [[UILabel alloc] initWithFrame:areaTitleLabelFrame];
         areaTitleLabel.text = title;
         areaTitleLabel.textAlignment = UITextAlignmentLeft;
-        areaTitleLabel.font = [UIFont fontWithName:@"Helvetica" size:15.0];
+        areaTitleLabel.font = [UIFont fontWithName:@"Nobile" size:15.0];
         areaTitleLabel.textColor = [UIColor whiteColor];
         areaTitleLabel.backgroundColor = [UIColor clearColor];
         [self addSubview:areaTitleLabel];
@@ -56,7 +56,7 @@
         notifyColumnTitleLabel = [[UILabel alloc] initWithFrame:notifyColumnTitleLabelFrame];
         notifyColumnTitleLabel.text = @"Notification   ";
         notifyColumnTitleLabel.textAlignment = UITextAlignmentRight;
-        notifyColumnTitleLabel.font = [UIFont fontWithName:@"Helvetica" size:15.0];
+        notifyColumnTitleLabel.font = [UIFont fontWithName:@"Nobile" size:15.0];
         notifyColumnTitleLabel.textColor = [UIColor whiteColor];
         notifyColumnTitleLabel.backgroundColor = [UIColor clearColor];
         [self addSubview:notifyColumnTitleLabel];

@@ -9,7 +9,7 @@
 #import "ScheduleItemDetailViewController.h"
 
 @implementation ScheduleItemDetailViewController
-@synthesize stopName, stopManager, stopAddress, stopBlurb, delegate, stopPhoto, stopManagerContact, location;
+@synthesize stopName, stopManager, stopManagerTitle, stopAddress, stopBlurb, stopBlurbTitle, delegate, stopPhoto, stopManagerContact, stopManagerContactTitle, location;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -34,10 +34,14 @@
 
 -(void)prettify
 {
-    [stopAddress sizeToFit];
-    [stopAddress setTextAlignment: UITextAlignmentCenter];
+    //[stopAddress sizeToFit];
+    //[stopAddress setTextAlignment: UITextAlignmentCenter];
     [stopBlurb sizeToFit];
-    
+    [stopName setFont: [UIFont fontWithName:@"Nobile" size:26]];
+    [stopBlurbTitle setFont: [UIFont fontWithName:@"Nobile" size:17]];
+    [stopManagerTitle setFont: [UIFont fontWithName:@"Nobile" size:17]];
+    [stopManagerContactTitle setFont: [UIFont fontWithName:@"Nobile" size:17]];
+
 }
 
 -(IBAction)takeToGoogleMaps:(id)sender

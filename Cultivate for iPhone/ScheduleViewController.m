@@ -74,11 +74,11 @@
     VegVanStop *vegVanStop = [[[[Utilities sharedAppDelegate] vegVanStopManager] vegVanStops] objectForKey: [stopsForEachItem objectAtIndex: absoluteIndex]];
     
 	cell.textLabel.text = [vegVanStop addressAsString];
-    cell.detailTextLabel.text = [NSString stringWithFormat: @"%@%@", @"Next stop: ",[vegVanStop nextStopTimeAsString]];
+    cell.detailTextLabel.text = [vegVanStop nextStopTimeAsString];
+    cell.textLabel.font = [UIFont fontWithName:@"Calibri" size: 12.0];
+    cell.detailTextLabel.font = [UIFont fontWithName:@"Calibri" size: 12.0];
     
-    [cell.textLabel setFont:[UIFont systemFontOfSize:12.0]];
-    [cell.detailTextLabel setFont:[UIFont systemFontOfSize:12.0]];
-	NSString* testImageFilename = [[NSBundle mainBundle] pathForResource:@"stop_placeholder" ofType:@"png"];
+    NSString* testImageFilename = [[NSBundle mainBundle] pathForResource:@"stop_placeholder" ofType:@"png"];
     UIImage *image = [Utilities scale: [[UIImage alloc] initWithContentsOfFile:testImageFilename] toSize: CGSizeMake(40.0,30.0)];
     cell.imageView.image = image;//[[UIImage alloc] initWithContentsOfFile:testImageFilename];
     

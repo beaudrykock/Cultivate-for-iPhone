@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import <MapKit/MapKit.h>
+#import "VegVanScheduleItem.h"
 
 @interface VegVanStop : NSObject
 {
@@ -19,7 +20,7 @@
     NSString *blurb;
     NSString *manager;
     NSMutableArray *scheduleItems;
-    
+    VegVanScheduleItem *nextScheduledStop;
 }
 
 @property (nonatomic, strong) NSString *name;
@@ -30,10 +31,14 @@
 @property (nonatomic, strong) NSString *blurb;
 @property (nonatomic, strong) NSString *manager;
 @property (nonatomic, strong) NSMutableArray *scheduleItems;
+@property (nonatomic, strong) VegVanScheduleItem *nextScheduledStop;
 
 -(NSString*)addressAsString;
 -(float)secondsUntilNextScheduledStop;
 -(void)description;
 -(NSString*)nextStopTimeAsString;
+-(NSString*)postcodeAndNextScheduledStopAsString;
+-(NSString*)postcodeAsString;
+-(NSString*)nextStopTimeAsStringLessFrequency;
 
 @end

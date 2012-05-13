@@ -9,7 +9,7 @@
 #import "AboutViewController.h"
 
 @implementation AboutViewController
-@synthesize share, getInvolved;
+@synthesize share, getInvolved, mainPara, secondPara;
 -(IBAction)showGetInvolvedActionSheet
 {
 	UIActionSheet *actionsheet = [[UIActionSheet alloc] 
@@ -99,7 +99,8 @@
     
     [share setButtonTitle: @"Share"];
     [getInvolved setButtonTitle: @"Get Involved"];
-   
+    [mainPara setFont: [UIFont fontWithName: @"Calibri" size:self.mainPara.font.pointSize]];
+    [secondPara setFont: [UIFont fontWithName: @"Calibri-Bold" size:self.secondPara.font.pointSize]];
 }
 
 -(void)shake

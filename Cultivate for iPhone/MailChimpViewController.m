@@ -9,7 +9,7 @@
 #import "MailChimpViewController.h"
 
 @implementation MailChimpViewController
-@synthesize list_title, email_field, firstname_field, lastname_field, listType, introBlurb, postcode_field, delegate, cb_1, cb_2, cb_3, cb_4, cb_5, label_cb_1, label_cb_2, label_cb_3, label_cb_4, label_cb_5, options_title, cancel_btn, subscribe_btn;
+@synthesize list_title, email_field, firstname_field, lastname_field, listType, introBlurb, postcode_field, delegate, cb_1, cb_2, cb_3, cb_4, cb_5, label_cb_1, label_cb_2, label_cb_3, label_cb_4, label_cb_5, options_title, cancel_btn, subscribe_btn, firstname_title, lastname_title, postcode_title, email_title;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -33,7 +33,7 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     
-    [list_title setText: listType];
+    [self.list_title setText: listType];
     UITapGestureRecognizer *gestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideKeyboard)];
     [self.view addGestureRecognizer:gestureRecognizer];
     
@@ -56,25 +56,36 @@
 
     if ([listType isEqualToString: kJoinVolunteerMailingList])
     {
-        [options_title setText: @"How regularly would you like to volunteer?"];
-        [label_cb_1 setText: @"Weekly"];
-        [label_cb_2 setText: @"Monthly"];
-        [label_cb_3 setText: @"Once in a blue moon"];
-        [label_cb_4 setHidden:YES];
-        [label_cb_5 setHidden:YES];
-        [cb_4 setHidden: YES];
-        [cb_5 setHidden: YES];
+        [self.options_title setText: @"How regularly would you like to volunteer?"];
+        [self.label_cb_1 setText: @"Weekly"];
+        [self.label_cb_2 setText: @"Monthly"];
+        [self.label_cb_3 setText: @"Once in a blue moon"];
+        [self.label_cb_4 setHidden:YES];
+        [self.label_cb_5 setHidden:YES];
+        [self.cb_4 setHidden: YES];
+        [self.cb_5 setHidden: YES];
     }
     else
     {
-        [options_title setText: @"I'm interested in being..."];
-        [label_cb_1 setText: @"Customer"];
-        [label_cb_2 setText: @"Local champion"];
-        [label_cb_3 setText: @"Member"];
-        [label_cb_4 setText: @"Volunteer"];
-        [label_cb_5 setText: @"Kept informed"];
+        [self.options_title setText: @"I'm interested in being..."];
+        [self.label_cb_1 setText: @"Customer"];
+        [self.label_cb_2 setText: @"Local champion"];
+        [self.label_cb_3 setText: @"Member"];
+        [self.label_cb_4 setText: @"Volunteer"];
+        [self.label_cb_5 setText: @"Kept informed"];
     }
     
+    [self.list_title setFont: [UIFont fontWithName: @"Nobile" size: 26.0]];
+    [self.firstname_title setFont: [UIFont fontWithName: @"Calibri" size: self.firstname_title.font.pointSize]];
+    [self.lastname_title setFont: [UIFont fontWithName: @"Calibri" size: self.lastname_title.font.pointSize]];
+    [self.postcode_title setFont: [UIFont fontWithName: @"Calibri" size: self.postcode_title.font.pointSize]];
+    [self.email_title setFont: [UIFont fontWithName: @"Calibri" size: self.email_title.font.pointSize]];
+    [self.label_cb_1 setFont: [UIFont fontWithName: @"Calibri" size: self.label_cb_1.font.pointSize]];
+    [self.label_cb_2 setFont: [UIFont fontWithName: @"Calibri" size: self.label_cb_2.font.pointSize]];
+    [self.label_cb_3 setFont: [UIFont fontWithName: @"Calibri" size: self.label_cb_3.font.pointSize]];
+    [self.label_cb_4 setFont: [UIFont fontWithName: @"Calibri" size: self.label_cb_4.font.pointSize]];
+    [self.label_cb_5 setFont: [UIFont fontWithName: @"Calibri" size: self.label_cb_5.font.pointSize]];
+    [self.options_title setFont: [UIFont fontWithName: @"Calibri" size: self.options_title.font.pointSize]];
     // test
     //[self unsubscribe];
     //[self fetchList];

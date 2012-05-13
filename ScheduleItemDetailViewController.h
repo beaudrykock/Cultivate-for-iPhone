@@ -17,8 +17,11 @@
     UILabel *stopName;
     UILabel *stopAddress;
     UILabel *stopBlurb;
+    UILabel *stopBlurbTitle;
     UILabel *stopManager;
+    UILabel *stopManagerTitle;
     UILabel *stopManagerContact;
+    UILabel *stopManagerContactTitle;
     UIImageView *stopPhoto;
     NSDictionary *location;
     __weak id <ScheduleItemDetailViewControllerDelegate> delegate;
@@ -29,6 +32,9 @@
 @property (nonatomic, strong) IBOutlet UILabel *stopBlurb;
 @property (nonatomic, strong) IBOutlet UILabel *stopManager;
 @property (nonatomic, strong) IBOutlet UILabel *stopManagerContact;
+@property (nonatomic, strong) IBOutlet UILabel *stopBlurbTitle;
+@property (nonatomic, strong) IBOutlet UILabel *stopManagerTitle;
+@property (nonatomic, strong) IBOutlet UILabel *stopManagerContactTitle;
 @property (nonatomic, strong) IBOutlet UIImageView *stopPhoto;
 @property (weak) id  <ScheduleItemDetailViewControllerDelegate> delegate; 
 @property (nonatomic, strong) NSDictionary *location;

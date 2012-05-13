@@ -13,7 +13,7 @@
 @end
 
 @implementation RideShareViewController
-@synthesize volunteerDates, title, info, tableView, selectedValues, submitButton;
+@synthesize volunteerDates, viewTitle, info, tableView, selectedValues, submitButton, cultiRideDetailsViewController;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -29,9 +29,11 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     
-    volunteerDates = [Utilities getVolunteerDatesWithRequestStatus];
-    [title setTextColor: [Utilities colorWithHexString: kCultivateGreenColor]];
-    [info setTextColor: [Utilities colorWithHexString: kCultivateGrayColor]];
+    self.volunteerDates = [Utilities getVolunteerDatesWithRequestStatus];
+    [self.viewTitle setTextColor: [Utilities colorWithHexString: kCultivateGreenColor]];
+    [self.info setTextColor: [Utilities colorWithHexString: kCultivateGrayColor]];
+    [self.viewTitle setFont: [UIFont fontWithName: @"Nobile" size: 23.0]];
+    [self.info setFont: [UIFont fontWithName: @"Calibri" size: self.info.font.pointSize]];
     
     if (![Utilities cultiRideDetailsSet])
         [self promptCultiRideDetails];
@@ -53,6 +55,8 @@
     
     self.selectedValues = arrayValues;
     [self.submitButton setButtonTitle: @"Submit request"];
+    
+    
 }
 
 
@@ -96,30 +100,10 @@
 
 -(void)promptCultiRideDetails
 {
-    UIAlertView *missingDetails = [[UIAlertView alloc]
-                              initWithTitle:@"Missing contact details"
-                              message:@"CultiRide needs your contact details! Please supply them in Settings"
-                              delegate:self
-                              cancelButtonTitle:@"Cancel"
-                              otherButtonTitles:@"Take me there", nil];
-    
-    [missingDetails show];
-
+    self.cultiRideDetailsViewController = [[CultiRideDetailsViewController alloc] initWithNibName: @"CultiRideDetailsView" bundle: nil];
+    [self.cultiRideDetailsViewController setDelegate:self];
+    [self presentModalViewController:cultiRideDetailsViewController animated:YES];
 }
-
-- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
-{
-    NSString *title = [alertView buttonTitleAtIndex:buttonIndex];
-    
-    if([title isEqualToString:@"Take me there"])
-    {
-        self.tabBarController.selectedViewController = [self.tabBarController.viewControllers objectAtIndex:3];
-    }
-    else {
-        [alertView dismissWithClickedButtonIndex:1 animated:YES];
-    }
-}
-
 
 -(void)submitRequest
 {
@@ -132,7 +116,7 @@
             if ([date rangeOfString: @"requested"].location == NSNotFound)
             {
                 NSString *newDate = [NSString stringWithFormat:@"%@%@",date, @" - requested"];
-                [volunteerDates replaceObjectAtIndex: counter withObject: newDate];
+                [self.volunteerDates replaceObjectAtIndex: counter withObject: newDate];
                 [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
                 AKFusionTables *fusionTables = [[AKFusionTables alloc] initWithUsername:@"beaudrykock@gmail.com" password:@"hLsbp93iLUkbhaenQfcu"];
                 
@@ -151,7 +135,7 @@
         counter++;
     }
     [Utilities updateVolunteerDatesWithRequestStatus:volunteerDates];
-    
+    [self.tableView reloadData];
 }
 
 - (void)viewDidUnload
@@ -173,14 +157,23 @@
     return 1;
 }
 
-- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+/*- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
 	return @"Volunteer dates";
+}*/
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+    return nil;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
 	return [volunteerDates count];
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+    return 0.0;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -192,6 +185,7 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
     cell.textLabel.text = [volunteerDates objectAtIndex: indexPath.row];
+    cell.textLabel.font = [UIFont fontWithName:@"Calibri" size: 15.0];
 	cell.accessoryType = UITableViewCellAccessoryNone;
 	
     return cell;
@@ -264,5 +258,9 @@
     return ([date rangeOfString:@"requested"].location != NSNotFound); 
 }
 
+-(void)cultiRideDetailsViewControllerDidFinish
+{
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
 
 @end

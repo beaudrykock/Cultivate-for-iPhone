@@ -9,7 +9,7 @@
 #import "SettingsViewController.h"
 
 @implementation SettingsViewController
-@synthesize minutesBeforeLabel, stepper, repeatPatternControl, notificationSettingsBackground, name_field, postcode_field, mobile_field, cultiRideSettingsBackground, toggleNotificationsSwitch, updateCultiRideDetailsButton;
+@synthesize minutesBeforeLabel, stepper, repeatPatternControl, notificationSettingsBackground, toggleNotificationsSwitch, cultiRideDetailsViewController, promptCultiRideDetailsButton, promptCultiRideDetailsBackground, remindersTitleLabel, withRepeatLabel, updateCultiRideDetailsLabel;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -42,53 +42,36 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [toggleNotificationsSwitch setOn: [Utilities localNotificationsEnabled] animated: NO];
+    [self.toggleNotificationsSwitch setOn: [Utilities localNotificationsEnabled] animated: NO];
     NSInteger currentMinutesBefore = [Utilities getDefaultMinutesBefore];
-    [stepper setValue:currentMinutesBefore*1.0];
+    [self.stepper setValue:currentMinutesBefore*1.0];
     NSNumber *value = [NSNumber numberWithDouble:[stepper value]];
     NSString *label = [NSString stringWithFormat:@"%i%@",[value intValue], @" minutes before"];
-    [minutesBeforeLabel setText:label];
-    [repeatPatternControl setSelectedSegmentIndex:[Utilities getDefaultRepeatPattern]];
-    notificationSettingsBackground.layer.cornerRadius = 8.0;
-    cultiRideSettingsBackground.layer.cornerRadius = 8.0;
+    [self.minutesBeforeLabel setText:label];
+    [self.repeatPatternControl setSelectedSegmentIndex:[Utilities getDefaultRepeatPattern]];
+    self.notificationSettingsBackground.layer.cornerRadius = 8.0;
+    self.promptCultiRideDetailsBackground.layer.cornerRadius = 8.0;
+    
+    // fonts
+    [self.remindersTitleLabel setFont: [UIFont fontWithName:@"Calibri-Bold" size: self.remindersTitleLabel.font.pointSize]];
+    [self.minutesBeforeLabel setFont: [UIFont fontWithName:@"Calibri" size: self.minutesBeforeLabel.font.pointSize]];
+    [self.withRepeatLabel setFont: [UIFont fontWithName:@"Calibri" size: self.withRepeatLabel.font.pointSize]];
+    [self.updateCultiRideDetailsLabel setFont: [UIFont fontWithName:@"Calibri-Bold" size: self.updateCultiRideDetailsLabel.font.pointSize]];
     
     [self.view setBackgroundColor: [Utilities colorWithHexString: @"#639939"]];
     
-    UITapGestureRecognizer *gestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideKeyboard)];
-    [self.view addGestureRecognizer:gestureRecognizer];
-    
-    UITapGestureRecognizer *updateButtonTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(updateCultiRideDetails:)];
-    [self.updateCultiRideDetailsButton addGestureRecognizer:updateButtonTap];
-    
     if (![toggleNotificationsSwitch isOn])
     {
-        [stepper setEnabled:NO];
-        [repeatPatternControl setEnabled: NO];
+        [self.stepper setEnabled:NO];
+        [self.repeatPatternControl setEnabled: NO];
     }
     
-    [updateCultiRideDetailsButton setFillWith:[Utilities colorWithHexString: @"#727272"] andHighlightedFillWith: [Utilities colorWithHexString: kCultivateGrayColor]  andBorderWith: [UIColor blackColor] andTextWith: [UIColor whiteColor]];
-
-    updateCultiRideDetailsButton.buttonTitle = @"Update";
-}
-
--(IBAction)nextField:(id)sender
-{
-    UITextField*textField = (UITextField*)sender;
-    if (textField.tag == 0)
-    {
-        [name_field resignFirstResponder];
-        [mobile_field becomeFirstResponder];
-    }
-    else if (textField.tag == 1)
-    {
-        [mobile_field resignFirstResponder];
-        [postcode_field becomeFirstResponder];
-    }
-    else
-    {
-        [postcode_field resignFirstResponder];
-        [self updateCultiRideDetails: nil];
-    }
+    self.promptCultiRideDetailsButton.buttonTitle = @"Update";
+    [self.promptCultiRideDetailsButton setFillWith:[Utilities colorWithHexString: @"#727272"] andHighlightedFillWith: [Utilities colorWithHexString: kCultivateGrayColor]  andBorderWith: [UIColor blackColor] andTextWith: [UIColor whiteColor]];
+    
+    UITapGestureRecognizer *updateButtonTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(promptCultiRideDetails:)];
+    [self.promptCultiRideDetailsButton addGestureRecognizer:updateButtonTap];
+    
 }
 
 - (void)viewDidUnload
@@ -109,55 +92,20 @@
         [repeatPatternControl setEnabled:NO];
     }   
     else {
-        [stepper setEnabled:YES];
-        [repeatPatternControl setEnabled:YES];
+        [self.stepper setEnabled:YES];
+        [self.repeatPatternControl setEnabled:YES];
     }   
     localNotificationsEnabled = [switch_control isOn];
     [Utilities enableLocalNotifications:localNotificationsEnabled];
 }
 
--(void)hideKeyboard
-{
-    [name_field resignFirstResponder];
-    [mobile_field resignFirstResponder];
-    [postcode_field resignFirstResponder];
-}
-
--(IBAction)updateCultiRideDetails:(id)sender
-{
-    
-    NSString *name = [name_field text];
-    NSString *mobile = [mobile_field text];
-    NSString *postcode = [postcode_field text];
-    
-    if ([name length]>0 && [mobile length]>0 && [postcode length] >0)
-    {
-        [Utilities setCultiRideDetailsForName: name mobile: mobile postcode: postcode];
-    }
-    else
-    {
-        [self alertIncompleteForm];
-    }
-}
-
--(void)alertIncompleteForm
-{
-    UIAlertView *incompleteForm = [[UIAlertView alloc]
-                              initWithTitle:@"All fields must be filled!"
-                              message:@"Please enter a name, postcode and mobile number"
-                              delegate:self
-                              cancelButtonTitle:@"OK"
-                              otherButtonTitles:nil];
-    
-    [incompleteForm show];
-}
 
 -(IBAction)stepperPressed:(id)sender
 {
     NSNumber *value = [NSNumber numberWithDouble: [stepper value]];
     [Utilities setDefaultMinutesBefore:[value intValue]];
     NSString *label = [NSString stringWithFormat:@"%i%@",[value intValue], @" minutes before"];
-    [minutesBeforeLabel setText:label];
+    [self.minutesBeforeLabel setText:label];
 }
 
 -(IBAction)patternSegmentChanged:(id)sender
@@ -172,6 +120,18 @@
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
    return (interfaceOrientation == UIInterfaceOrientationPortrait);
+}
+
+-(IBAction)promptCultiRideDetails:(id)sender
+{
+    self.cultiRideDetailsViewController = [[CultiRideDetailsViewController alloc] initWithNibName: @"CultiRideDetailsView" bundle: nil];
+    [self.cultiRideDetailsViewController setDelegate:self];
+    [self presentModalViewController:cultiRideDetailsViewController animated:YES];
+}
+
+-(void)cultiRideDetailsViewControllerDidFinish
+{
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 @end

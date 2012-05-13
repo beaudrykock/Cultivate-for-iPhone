@@ -182,6 +182,15 @@
 		9FF1E363154F01BE000C0337 /* SubscribeAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FF1E35E154F01BE000C0337 /* SubscribeAlertView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		9FF1E364154F01BE000C0337 /* CKAuthViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9FF1E360154F01BE000C0337 /* CKAuthViewController.xib */; };
 		9FF1E38D154F02F4000C0337 /* MailChimpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FF1E38C154F02F4000C0337 /* MailChimpViewController.m */; };
+		9FF78E95155FA8DD00FAAE67 /* CultiRideDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FF78E93155FA8DD00FAAE67 /* CultiRideDetailsViewController.m */; };
+		9FF78E96155FA8DD00FAAE67 /* CultiRideDetailsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9FF78E94155FA8DD00FAAE67 /* CultiRideDetailsView.xib */; };
+		9FF78E9D155FB14900FAAE67 /* 298-circlex.png in Resources */ = {isa = PBXBuildFile; fileRef = 9FF78E9B155FB14900FAAE67 /* 298-circlex.png */; };
+		9FF78E9E155FB14900FAAE67 /* 298-circlex@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9FF78E9C155FB14900FAAE67 /* 298-circlex@2x.png */; };
+		9FF78EA1155FBB7300FAAE67 /* 298-circlex-gray.png in Resources */ = {isa = PBXBuildFile; fileRef = 9FF78E9F155FBB7300FAAE67 /* 298-circlex-gray.png */; };
+		9FF78EA2155FBB7300FAAE67 /* 298-circlex-gray@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9FF78EA0155FBB7300FAAE67 /* 298-circlex-gray@2x.png */; };
+		9FF78EA4155FBC7E00FAAE67 /* nobile.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9FF78EA3155FBC7E00FAAE67 /* nobile.ttf */; };
+		9FF78EA6155FBF7600FAAE67 /* Calibri.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9FF78EA5155FBF7600FAAE67 /* Calibri.ttf */; };
+		9FF78EA8155FC0CB00FAAE67 /* Calibri Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9FF78EA7155FC0CB00FAAE67 /* Calibri Bold.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -490,6 +499,16 @@
 		9FF1E360154F01BE000C0337 /* CKAuthViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CKAuthViewController.xib; sourceTree = "<group>"; };
 		9FF1E38B154F02F4000C0337 /* MailChimpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MailChimpViewController.h; sourceTree = "<group>"; };
 		9FF1E38C154F02F4000C0337 /* MailChimpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MailChimpViewController.m; sourceTree = "<group>"; };
+		9FF78E92155FA8DD00FAAE67 /* CultiRideDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CultiRideDetailsViewController.h; sourceTree = "<group>"; };
+		9FF78E93155FA8DD00FAAE67 /* CultiRideDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CultiRideDetailsViewController.m; sourceTree = "<group>"; };
+		9FF78E94155FA8DD00FAAE67 /* CultiRideDetailsView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CultiRideDetailsView.xib; sourceTree = "<group>"; };
+		9FF78E9B155FB14900FAAE67 /* 298-circlex.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "298-circlex.png"; sourceTree = "<group>"; };
+		9FF78E9C155FB14900FAAE67 /* 298-circlex@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "298-circlex@2x.png"; sourceTree = "<group>"; };
+		9FF78E9F155FBB7300FAAE67 /* 298-circlex-gray.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "298-circlex-gray.png"; sourceTree = "<group>"; };
+		9FF78EA0155FBB7300FAAE67 /* 298-circlex-gray@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "298-circlex-gray@2x.png"; sourceTree = "<group>"; };
+		9FF78EA3155FBC7E00FAAE67 /* nobile.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = nobile.ttf; sourceTree = "<group>"; };
+		9FF78EA5155FBF7600FAAE67 /* Calibri.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Calibri.ttf; sourceTree = "<group>"; };
+		9FF78EA7155FC0CB00FAAE67 /* Calibri Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Calibri Bold.ttf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -600,6 +619,8 @@
 		9F6A095C1546E52D00B59D0F /* Tab icons */ = {
 			isa = PBXGroup;
 			children = (
+				9F995C6815581ED1007DCA58 /* 112-group.png */,
+				9F995C6915581ED1007DCA58 /* 112-group@2x.png */,
 				9F6A093B1546D4C500B59D0F /* first.png */,
 				9F6A093D1546D4C500B59D0F /* first@2x.png */,
 				9F6A09421546D4C500B59D0F /* second.png */,
@@ -620,31 +641,13 @@
 		9F6A095D1546E54000B59D0F /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				9FF78EA7155FC0CB00FAAE67 /* Calibri Bold.ttf */,
+				9FF78EA5155FBF7600FAAE67 /* Calibri.ttf */,
+				9FF78EA3155FBC7E00FAAE67 /* nobile.ttf */,
 				9F524B0715519517000846E7 /* VegVanStops.xml */,
-				9FC91DB915470F41008A976E /* Cultivate_logo.png */,
-				9F3FFBC31552F55700FA14EE /* location.png */,
-				9F3FFBC41552F55700FA14EE /* location@2x.png */,
-				9F524B111551AC6E000846E7 /* cultivan.png */,
-				9F6076991548549500105643 /* 78-stopwatch.png */,
-				9F3240A9155ADC7A00BCA8FB /* get_involved_btn.png */,
-				9FEA33D8155EB84A001CEAD3 /* schedule_help.png */,
-				9FEA33D9155EB84C001CEAD3 /* schedule_help@2x.png */,
-				9F3240AA155ADC7A00BCA8FB /* get_involved_btn@2x.png */,
-				9F3240AB155ADC7A00BCA8FB /* share_btn.png */,
-				9F3240AC155ADC7A00BCA8FB /* share_btn@2x.png */,
-				9FA5492F15542B5100CA04C7 /* cancel_button.png */,
-				9FA5493015542B5100CA04C7 /* subscribe_button.png */,
-				9F60769A1548549500105643 /* 78-stopwatch@2x.png */,
-				9F60769D154854CE00105643 /* 74-location.png */,
-				9F60769E154854CE00105643 /* 74-location@2x.png */,
-				9F35E19D155042A1006AE0D2 /* nearest_me_icon.png */,
-				9F35E1A0155044A8006AE0D2 /* next_nearest_icon.png */,
-				9F524B0E1551A10E000846E7 /* ScheduleItemDetailView.xib */,
-				9FDD745B15541D79002CC760 /* back.png */,
-				9FDD745C15541D79002CC760 /* back@2x.png */,
-				9FDD745815541ABC002CC760 /* stop_placeholder.png */,
-				9F995C6815581ED1007DCA58 /* 112-group.png */,
-				9F995C6915581ED1007DCA58 /* 112-group@2x.png */,
+				9FF78E9A155FAC6000FAAE67 /* Miscellaneous images */,
+				9FF78E99155FAC4600FAAE67 /* Button images */,
+				9FF78E98155FAC3300FAAE67 /* Nibs */,
 				9F6A095C1546E52D00B59D0F /* Tab icons */,
 			);
 			name = Resources;
@@ -669,6 +672,8 @@
 				9F524B0D1551A10E000846E7 /* ScheduleItemDetailViewController.m */,
 				9F995C6C15581EFD007DCA58 /* RideShareViewController.h */,
 				9F995C6D15581EFD007DCA58 /* RideShareViewController.m */,
+				9FF78E92155FA8DD00FAAE67 /* CultiRideDetailsViewController.h */,
+				9FF78E93155FA8DD00FAAE67 /* CultiRideDetailsViewController.m */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -1175,6 +1180,54 @@
 			path = Nibs;
 			sourceTree = "<group>";
 		};
+		9FF78E98155FAC3300FAAE67 /* Nibs */ = {
+			isa = PBXGroup;
+			children = (
+				9F524B0E1551A10E000846E7 /* ScheduleItemDetailView.xib */,
+				9FF78E94155FA8DD00FAAE67 /* CultiRideDetailsView.xib */,
+			);
+			name = Nibs;
+			sourceTree = "<group>";
+		};
+		9FF78E99155FAC4600FAAE67 /* Button images */ = {
+			isa = PBXGroup;
+			children = (
+				9FF78E9B155FB14900FAAE67 /* 298-circlex.png */,
+				9FF78E9C155FB14900FAAE67 /* 298-circlex@2x.png */,
+				9FF78E9F155FBB7300FAAE67 /* 298-circlex-gray.png */,
+				9FF78EA0155FBB7300FAAE67 /* 298-circlex-gray@2x.png */,
+				9FDD745B15541D79002CC760 /* back.png */,
+				9FDD745C15541D79002CC760 /* back@2x.png */,
+				9F3FFBC31552F55700FA14EE /* location.png */,
+				9F3FFBC41552F55700FA14EE /* location@2x.png */,
+				9F524B111551AC6E000846E7 /* cultivan.png */,
+				9F6076991548549500105643 /* 78-stopwatch.png */,
+				9F3240A9155ADC7A00BCA8FB /* get_involved_btn.png */,
+				9FEA33D8155EB84A001CEAD3 /* schedule_help.png */,
+				9FEA33D9155EB84C001CEAD3 /* schedule_help@2x.png */,
+				9F3240AA155ADC7A00BCA8FB /* get_involved_btn@2x.png */,
+				9F3240AB155ADC7A00BCA8FB /* share_btn.png */,
+				9F3240AC155ADC7A00BCA8FB /* share_btn@2x.png */,
+				9FA5492F15542B5100CA04C7 /* cancel_button.png */,
+				9FA5493015542B5100CA04C7 /* subscribe_button.png */,
+				9F60769A1548549500105643 /* 78-stopwatch@2x.png */,
+				9F60769D154854CE00105643 /* 74-location.png */,
+				9F60769E154854CE00105643 /* 74-location@2x.png */,
+				9F35E19D155042A1006AE0D2 /* nearest_me_icon.png */,
+				9F35E1A0155044A8006AE0D2 /* next_nearest_icon.png */,
+			);
+			name = "Button images";
+			sourceTree = "<group>";
+		};
+		9FF78E9A155FAC6000FAAE67 /* Miscellaneous images */ = {
+			isa = PBXGroup;
+			children = (
+				9FC91DB915470F41008A976E /* Cultivate_logo.png */,
+				9FDD745815541ABC002CC760 /* stop_placeholder.png */,
+			);
+			name = "Miscellaneous images";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1279,6 +1332,14 @@
 				9F3240B0155ADC7A00BCA8FB /* share_btn@2x.png in Resources */,
 				9FEA33DA155EB84D001CEAD3 /* schedule_help.png in Resources */,
 				9FEA33DB155EB84D001CEAD3 /* schedule_help@2x.png in Resources */,
+				9FF78E96155FA8DD00FAAE67 /* CultiRideDetailsView.xib in Resources */,
+				9FF78E9D155FB14900FAAE67 /* 298-circlex.png in Resources */,
+				9FF78E9E155FB14900FAAE67 /* 298-circlex@2x.png in Resources */,
+				9FF78EA1155FBB7300FAAE67 /* 298-circlex-gray.png in Resources */,
+				9FF78EA2155FBB7300FAAE67 /* 298-circlex-gray@2x.png in Resources */,
+				9FF78EA4155FBC7E00FAAE67 /* nobile.ttf in Resources */,
+				9FF78EA6155FBF7600FAAE67 /* Calibri.ttf in Resources */,
+				9FF78EA8155FC0CB00FAAE67 /* Calibri Bold.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1399,6 +1460,7 @@
 				9F9962F515582384007DCA58 /* GTMHTTPFetcher.m in Sources */,
 				9F3240BC155AE36F00BCA8FB /* CustomButton.m in Sources */,
 				9FEA33D6155E8C00001CEAD3 /* CustomCheckbox.m in Sources */,
+				9FF78E95155FA8DD00FAAE67 /* CultiRideDetailsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

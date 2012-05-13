@@ -22,10 +22,14 @@
     UIView *shakeView;
     CustomButton *share;
     CustomButton *getInvolved;
+    UILabel *mainPara;
+    UILabel *secondPara;
 }
 
 @property(nonatomic, strong) IBOutlet CustomButton*share;
 @property(nonatomic, strong) IBOutlet CustomButton*getInvolved;
+@property(nonatomic, strong) IBOutlet UILabel *mainPara;
+@property(nonatomic, strong) IBOutlet UILabel *secondPara;
 
 -(IBAction)share:(id)sender;
 -(IBAction)showPicker:(id)sender;

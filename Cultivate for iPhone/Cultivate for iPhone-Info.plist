@@ -50,6 +50,12 @@
 	<string>MainStoryboard</string>
 	<key>UIPrerenderedIcon</key>
 	<true/>
+	<key>UIAppFonts</key>
+	<array>
+		<string>Nobile.ttf</string>
+		<string>Calibri.ttf</string>
+		<string>Calibri Bold.ttf</string>
+	</array>
 	<key>UIRequiredDeviceCapabilities</key>
 	<array>
 		<string>gps</string>

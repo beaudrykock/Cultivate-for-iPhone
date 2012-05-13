@@ -13,9 +13,14 @@
 
 -(NSString*)scheduleDetailAsString
 {
-    // TODO: change time representation
-    return [NSString stringWithFormat:@"%@%@%@%@", @"10 am Wednesdays at ", stopName, @", ", stopFrequency];
+    return [NSString stringWithFormat:@"%@%@%@%@%@%@", stopTime, @" on ", stopDay, @", (", stopFrequency, @")"];
 }
+
+-(NSString*)scheduleDetailAsStringLessFrequency
+{
+    return [NSString stringWithFormat:@"%@%@%@", stopTime, @" on ", stopDay];
+}
+
 
 -(NSInteger)getHourAsInteger
 {

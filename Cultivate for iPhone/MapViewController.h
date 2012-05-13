@@ -26,6 +26,7 @@
     UIView *touchView;
     ScheduleItemDetailViewController *sidvc;
     UINavigationBar *bar;
+    UIButton *findButton;
 }
 
 //@property (nonatomic, strong) IBOutlet UIWebView *mapView;
@@ -38,7 +39,7 @@
 @property (nonatomic, strong) IBOutlet UISearchBar *stopSearchBar;
 @property (nonatomic, strong) UIView *touchView;
 @property (nonatomic,strong) ScheduleItemDetailViewController *sidvc;
-
+@property (nonatomic, strong) IBOutlet UIButton* findButton;
 
 -(void)plotVegVanStopLocations;
 - (void)startStandardUpdates;

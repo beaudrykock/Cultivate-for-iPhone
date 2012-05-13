@@ -96,12 +96,15 @@
                                 <state key="highlighted">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="showUserLocation:" destination="2" eventType="touchUpInside" id="X8W-Oz-ygs"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="g78-72-xT9">
                                 <rect key="frame" x="263" y="4" width="54" height="34"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                 <state key="normal" title="Find">
                                     <color key="titleColor" red="0.29803922772407532" green="0.29803922772407532" blue="0.29803922772407532" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -122,6 +125,7 @@
                     <connections>
                         <outlet property="_mapView" destination="5ly-Dm-4fb" id="yRM-G3-Qkc"/>
                         <outlet property="bar" destination="mTz-3c-HdE" id="N53-VS-xcx"/>
+                        <outlet property="findButton" destination="g78-72-xT9" id="0Y5-hl-hL9"/>
                         <outlet property="locateDropdown" destination="B4o-Zq-81D" id="RQa-Sj-XaD"/>
                         <outlet property="stopSearchBar" destination="7Uh-5G-mta" id="r4x-yx-HfP"/>
                     </connections>
@@ -171,7 +175,7 @@
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Cultivate is people-powered! We are a co-operative owned, run and financed by our members." textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" minimumFontSize="10" id="mTq-pY-WoB">
                                 <rect key="frame" x="20" y="237" width="280" height="67"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
                                 <color key="textColor" red="0.13725490868091583" green="0.13725490868091583" blue="0.13725490868091583" alpha="1" colorSpace="deviceRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -179,7 +183,7 @@
                                 <rect key="frame" x="20" y="101" width="280" height="128"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <string key="text">We are a not-for-profit social enterprise that will bring fresh, local, organically-grown food direct from farmers to the city and surrounding communities. Our five-acre market garden and other small farms nearby will provide the produce sold in the VegVan, our mobile greengrocery, which will set up wherever communities want it.</string>
-                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <color key="textColor" red="0.13725490868091583" green="0.13725490868091583" blue="0.13725490868091583" alpha="1" colorSpace="deviceRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -531,39 +535,39 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" id="fCo-5u-2hC">
-                                <rect key="frame" x="20" y="20" width="280" height="198"/>
+                                <rect key="frame" x="10" y="11" width="300" height="134"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <subviews>
                                     <stepper opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="5" minimumValue="1" maximumValue="60" stepValue="5" id="iip-th-3rH">
-                                        <rect key="frame" x="22" y="102" width="94" height="27"/>
+                                        <rect key="frame" x="131" y="50" width="94" height="27"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                         <connections>
                                             <action selector="stepperPressed:" destination="2eq-V5-S6M" eventType="touchUpInside" id="ufR-Xk-yI5"/>
                                         </connections>
                                     </stepper>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Reminders" lineBreakMode="tailTruncation" minimumFontSize="10" id="cDS-un-ZvV">
-                                        <rect key="frame" x="9" y="10" width="271" height="21"/>
+                                        <rect key="frame" x="9" y="13" width="271" height="21"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                         <color key="textColor" red="0.13725490870000001" green="0.13725490870000001" blue="0.13725490870000001" alpha="1" colorSpace="deviceRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="X minutes before" lineBreakMode="tailTruncation" minimumFontSize="10" id="7Io-6d-oMf">
-                                        <rect key="frame" x="9" y="73" width="129" height="21"/>
+                                        <rect key="frame" x="9" y="53" width="129" height="21"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                         <color key="textColor" red="0.13725490868091583" green="0.13725490868091583" blue="0.13725490868091583" alpha="1" colorSpace="deviceRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="With repeat" lineBreakMode="tailTruncation" minimumFontSize="10" id="166-x7-5T6">
-                                        <rect key="frame" x="9" y="137" width="86" height="21"/>
+                                        <rect key="frame" x="9" y="94" width="86" height="21"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                         <color key="textColor" red="0.13725490868091583" green="0.13725490868091583" blue="0.13725490868091583" alpha="1" colorSpace="deviceRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="glF-Zz-mrn">
-                                        <rect key="frame" x="22" y="163" width="168" height="30"/>
+                                        <rect key="frame" x="131" y="90" width="156" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <segments>
                                             <segment title="One-off"/>
@@ -575,7 +579,7 @@
                                         </connections>
                                     </segmentedControl>
                                     <switch opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" id="6G7-kt-AAB">
-                                        <rect key="frame" x="22" y="41" width="79" height="27"/>
+                                        <rect key="frame" x="131" y="10" width="79" height="27"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <connections>
                                             <action selector="toggleLocalNotifications:" destination="2eq-V5-S6M" eventType="valueChanged" id="mSN-3H-Xbc"/>
@@ -585,18 +589,18 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                             </view>
                             <view contentMode="scaleToFill" id="U5M-kL-Qzs">
-                                <rect key="frame" x="20" y="226" width="280" height="100"/>
+                                <rect key="frame" x="10" y="156" width="300" height="94"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Update CultiRide details" lineBreakMode="tailTruncation" minimumFontSize="10" id="Vmk-C3-Uev">
-                                        <rect key="frame" x="12" y="9" width="239" height="31"/>
+                                        <rect key="frame" x="12" y="4" width="239" height="31"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                         <color key="textColor" red="0.13725490870000001" green="0.13725490870000001" blue="0.13725490870000001" alpha="1" colorSpace="deviceRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="X9D-TP-qep" customClass="CustomButton">
-                                        <rect key="frame" x="20" y="48" width="161" height="38"/>
+                                        <rect key="frame" x="131" y="42" width="161" height="38"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                         <state key="normal">
@@ -792,14 +796,12 @@
                 <relationship kind="action" name="showUserLocation:"/>
                 <relationship kind="outlet" name="_mapView" candidateClass="MKMapView"/>
                 <relationship kind="outlet" name="bar" candidateClass="UINavigationBar"/>
+                <relationship kind="outlet" name="findButton" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="locateDropdown" candidateClass="UIView"/>
                 <relationship kind="outlet" name="mapView" candidateClass="UIWebView"/>
                 <relationship kind="outlet" name="searchBarBackground" candidateClass="UIView"/>
                 <relationship kind="outlet" name="stopSearchBar" candidateClass="UISearchBar"/>
             </relationships>
-        </class>
-        <class className="NSMutableArray" superclassName="NSArray">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSMutableArray.h"/>
         </class>
         <class className="RideShareViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/RideShareViewController.h"/>

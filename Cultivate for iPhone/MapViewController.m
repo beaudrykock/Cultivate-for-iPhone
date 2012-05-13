@@ -10,7 +10,7 @@
 
 @implementation MapViewController
 //@synthesize mapView;
-@synthesize locationManager, currentLocation, locateDropdown, locateVanOptionsPosition, searchBarBackground, stopSearchBar, touchView, sidvc, bar;
+@synthesize locationManager, currentLocation, locateDropdown, locateVanOptionsPosition, searchBarBackground, stopSearchBar, touchView, sidvc, bar, findButton;
 
 - (void)didReceiveMemoryWarning
 {
@@ -35,7 +35,7 @@
     //[self tintSearchBarBackground];
     [self registerForKeyboardNotifications];
     [stopSearchBar setDelegate: self];
-   
+    self.findButton.titleLabel.font = [UIFont fontWithName:@"Calibri" size:self.findButton.titleLabel.font.pointSize]; 
     _mapView.zoomEnabled = YES;
 }
 

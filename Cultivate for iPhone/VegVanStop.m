@@ -36,9 +36,9 @@
     NSInteger hour_now = [components hour];
     NSInteger minute_now = [components minute];
     
-    NSInteger weekSecondsElapsed_now = ((weekday_now-1)*86400)+(hour_now*3600)+(minute_now*60);
+    NSInteger weekSecondsElapsed_now = ((weekday_now-1)*86400)+((hour_now-1)*3600)+(minute_now*60);
     NSInteger weekSecondsElapsed_item = (([_nextScheduledStop getDayAsInteger]-1)*86400)
-                                        +([_nextScheduledStop getHourAsInteger]*3600)
+                                        +(([_nextScheduledStop getHourAsInteger]-1)*3600)
                                         +([_nextScheduledStop getMinuteAsInteger]*60);
     
     BOOL scheduledDateEarlierInWeek = NO;
@@ -68,7 +68,7 @@
     }
     else
     {
-        return weekSecondsElapsed_now-weekSecondsElapsed_item;
+        return weekSecondsElapsed_item-weekSecondsElapsed_now;
     }
     // TEMPORARY ONLY - FOR TESTING
    // return (rand() / RAND_MAX) * 100;
@@ -104,19 +104,25 @@
     }
     if ([itemsTodayOrAfterToday count] > 0)
     {
+        NSInteger weekSecondsElapsed_now = ((weekday_now-1)*86400)+((hour_now-1)*3600)+(minute_now*60);
+        NSInteger weekSecondsElapsed_item = 0;
+        NSInteger diff = 0;
+        NSInteger smallestDiff = 691200;
+        
         for (VegVanScheduleItem *item in itemsTodayOrAfterToday)
         {
-            if ([item getHourAsInteger]>hour_now)
+            if ([item getHourAsInteger]>hour_now || [item getHourAsInteger]==hour_now && [item getMinuteAsInteger] > minute_now)
             {
-                nextScheduled = item;
-                break;
-            }
-            else if ([item getHourAsInteger] == hour_now)
-            {
-                if ([item getMinuteAsInteger] > minute_now)
+                weekSecondsElapsed_item = (([item getDayAsInteger]-1)*86400)
+                +(([item getHourAsInteger]-1)*3600)
+                +([item getMinuteAsInteger]*60);
+                
+                diff = weekSecondsElapsed_item-weekSecondsElapsed_now;
+                
+                if (diff<smallestDiff)
                 {
                     nextScheduled = item;
-                    break;
+                    smallestDiff = diff;
                 }
             }
         }
@@ -166,7 +172,7 @@
         nextScheduled = soonest;
     }
     
-    nextScheduledStop = nextScheduled;
+    self.nextScheduledStop = nextScheduled;
     
     return nextScheduled;
 }

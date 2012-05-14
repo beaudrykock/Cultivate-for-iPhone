@@ -12,7 +12,7 @@
 
 @synthesize window = _window;
 @synthesize vegVanStopManager;
-
+@synthesize tweets;
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
@@ -24,9 +24,71 @@
     // clear the badge number
     [[UIApplication sharedApplication] setApplicationIconBadgeNumber:0];
     
+    [self performSelectorInBackground:@selector(getPublicTimeline) withObject:nil];
+    
     return YES;
 }
-							
+
+- (void)getPublicTimeline 
+{
+	// Create a request, which in this example, grabs the public timeline.
+	// This example uses version 1 of the Twitter API.
+	// This may need to be changed to whichever version is currently appropriate.
+	TWRequest *postRequest = [[TWRequest alloc] initWithURL:[NSURL URLWithString:@"http://api.twitter.com/1/statuses/user_timeline/CultivateOxford.json"] parameters:nil requestMethod:TWRequestMethodGET];
+	
+	// Perform the request created above and create a handler block to handle the response.
+	[postRequest performRequestWithHandler:^(NSData *responseData, NSHTTPURLResponse *urlResponse, NSError *error) {
+		NSString *output;
+		
+		if ([urlResponse statusCode] == 200) {
+			// Parse the responseData, which we asked to be in JSON format for this request, into an NSDictionary using NSJSONSerialization.
+			NSError *jsonParsingError = nil;
+			tweets = [NSJSONSerialization JSONObjectWithData:responseData options:0 error:&jsonParsingError];
+            output = [NSString stringWithFormat:@"HTTP response status: %i\nPublic timeline:\n%@", [urlResponse statusCode], tweets];
+            
+            newTweetCount = [Utilities updateTweets:[self tweetTextsFromTweets]];
+            tweetsLoaded = YES;
+            [self performSelectorOnMainThread:@selector(notifyNewTweetCount) withObject:nil waitUntilDone:NO];
+            [self performSelectorOnMainThread:@selector(notifyTweetTab) withObject:nil waitUntilDone:NO];
+		}
+		else {
+			output = [NSString stringWithFormat:@"HTTP response status: %i\n", [urlResponse statusCode]];
+		}
+		
+        
+	}];
+}
+
+-(NSInteger)getNewTweetCount
+{
+    return newTweetCount;
+}
+
+-(BOOL)areTweetsLoaded
+{
+    return tweetsLoaded;
+}
+
+-(void)notifyNewTweetCount
+{
+    [[NSNotificationCenter defaultCenter] postNotificationName:kNewTweetCountGenerated object:nil];
+}
+
+-(void)notifyTweetTab
+{
+    [[NSNotificationCenter defaultCenter] postNotificationName:kTweetsLoaded object:nil];
+}
+
+-(NSMutableArray*)tweetTextsFromTweets
+{
+    NSMutableArray *tweetTexts = [[NSMutableArray alloc] initWithCapacity: [tweets count]];
+    for (NSDictionary *dict in tweets)
+    {
+        [tweetTexts addObject: [dict objectForKey:@"text"]];
+    }
+    return tweetTexts;
+}
+
 - (void)applicationWillResignActive:(UIApplication *)application
 {
     /*

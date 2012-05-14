@@ -37,6 +37,28 @@
     [stopSearchBar setDelegate: self];
     self.findButton.titleLabel.font = [UIFont fontWithName:@"Calibri" size:self.findButton.titleLabel.font.pointSize]; 
     _mapView.zoomEnabled = YES;
+    
+    [self tabBarController].moreNavigationController.navigationBar.barStyle = UIBarStyleBlackOpaque;
+    
+    if ([[Utilities sharedAppDelegate] areTweetsLoaded])
+    {
+        [self updateTweetTabBadge];
+    }
+    else
+    {
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateTweetTabBadge) name: kNewTweetCountGenerated object:nil];
+    }
+    
+    
+}
+
+-(void)updateTweetTabBadge
+{
+    NSInteger tweetCount = [[Utilities sharedAppDelegate] getNewTweetCount];
+    
+    if (tweetCount>0)
+        [[[[[self tabBarController] tabBar] items] objectAtIndex:3] setBadgeValue:[NSString stringWithFormat:@"%i", tweetCount]];
+    
 }
 
 -(void)positionAndStyleLocateVanDropdown

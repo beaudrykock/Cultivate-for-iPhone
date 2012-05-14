@@ -26,6 +26,14 @@
 		9F524B0F1551A10E000846E7 /* ScheduleItemDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F524B0D1551A10E000846E7 /* ScheduleItemDetailViewController.m */; };
 		9F524B101551A10E000846E7 /* ScheduleItemDetailView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9F524B0E1551A10E000846E7 /* ScheduleItemDetailView.xib */; };
 		9F524B121551AC6E000846E7 /* cultivan.png in Resources */ = {isa = PBXBuildFile; fileRef = 9F524B111551AC6E000846E7 /* cultivan.png */; };
+		9F57B62615610A3E00615DEB /* MessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F57B62515610A3E00615DEB /* MessageViewController.m */; };
+		9F57B62915610A9800615DEB /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F57B62815610A9800615DEB /* Accounts.framework */; };
+		9F57B6301561189500615DEB /* IFTweetLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F57B62E1561189500615DEB /* IFTweetLabel.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		9F57B635156118B000615DEB /* RegexKitLite.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F57B632156118B000615DEB /* RegexKitLite.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		9F57B636156118B000615DEB /* RKLMatchEnumerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F57B634156118B000615DEB /* RKLMatchEnumerator.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		9F57B638156118FC00615DEB /* libicucore.A.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F57B637156118FC00615DEB /* libicucore.A.dylib */; };
+		9F57B640156127CF00615DEB /* TweetTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F57B63F156127CF00615DEB /* TweetTableViewCell.m */; };
+		9F57B64C156131B300615DEB /* SVWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F57B64B156131B300615DEB /* SVWebViewController.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		9F60768015483FCE00105643 /* VegVanStopNotification.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F60767F15483FCE00105643 /* VegVanStopNotification.m */; };
 		9F60769415484AE000105643 /* 20-gear2.png in Resources */ = {isa = PBXBuildFile; fileRef = 9F60769215484AE000105643 /* 20-gear2.png */; };
 		9F60769515484AE000105643 /* 20-gear2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9F60769315484AE000105643 /* 20-gear2@2x.png */; };
@@ -83,6 +91,9 @@
 		9F6A09E71546FE7400B59D0F /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F6A09E61546FE7400B59D0F /* libz.dylib */; };
 		9F6A09EA1546FEE900B59D0F /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F6A09E91546FEE900B59D0F /* Reachability.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		9F6A09ED1546FF7B00B59D0F /* VegVanStopLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F6A09EC1546FF7B00B59D0F /* VegVanStopLocation.m */; };
+		9F7E822015613B83002C472F /* 210-twitterbird.png in Resources */ = {isa = PBXBuildFile; fileRef = 9F7E821E15613B83002C472F /* 210-twitterbird.png */; };
+		9F7E822115613B83002C472F /* 210-twitterbird@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9F7E821F15613B83002C472F /* 210-twitterbird@2x.png */; };
+		9F7E8225156149CD002C472F /* TweetHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F7E8224156149CD002C472F /* TweetHeaderView.m */; };
 		9F977EE0155018C3002D04A6 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F977EDF155018C3002D04A6 /* QuartzCore.framework */; };
 		9F995C6515581E29007DCA58 /* AKFusionTables.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F995C6415581E29007DCA58 /* AKFusionTables.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		9F995C6A15581ED1007DCA58 /* 112-group.png in Resources */ = {isa = PBXBuildFile; fileRef = 9F995C6815581ED1007DCA58 /* 112-group.png */; };
@@ -219,6 +230,20 @@
 		9F524B0D1551A10E000846E7 /* ScheduleItemDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ScheduleItemDetailViewController.m; path = ../ScheduleItemDetailViewController.m; sourceTree = "<group>"; };
 		9F524B0E1551A10E000846E7 /* ScheduleItemDetailView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ScheduleItemDetailView.xib; path = ../ScheduleItemDetailView.xib; sourceTree = "<group>"; };
 		9F524B111551AC6E000846E7 /* cultivan.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cultivan.png; sourceTree = "<group>"; };
+		9F57B62415610A3E00615DEB /* MessageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageViewController.h; sourceTree = "<group>"; };
+		9F57B62515610A3E00615DEB /* MessageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageViewController.m; sourceTree = "<group>"; };
+		9F57B62815610A9800615DEB /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
+		9F57B62E1561189500615DEB /* IFTweetLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IFTweetLabel.m; sourceTree = "<group>"; };
+		9F57B62F1561189500615DEB /* IFTweetLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IFTweetLabel.h; sourceTree = "<group>"; };
+		9F57B631156118B000615DEB /* RegexKitLite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegexKitLite.h; sourceTree = "<group>"; };
+		9F57B632156118B000615DEB /* RegexKitLite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegexKitLite.m; sourceTree = "<group>"; };
+		9F57B633156118B000615DEB /* RKLMatchEnumerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RKLMatchEnumerator.h; sourceTree = "<group>"; };
+		9F57B634156118B000615DEB /* RKLMatchEnumerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RKLMatchEnumerator.m; sourceTree = "<group>"; };
+		9F57B637156118FC00615DEB /* libicucore.A.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libicucore.A.dylib; path = usr/lib/libicucore.A.dylib; sourceTree = SDKROOT; };
+		9F57B63E156127CF00615DEB /* TweetTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TweetTableViewCell.h; sourceTree = "<group>"; };
+		9F57B63F156127CF00615DEB /* TweetTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TweetTableViewCell.m; sourceTree = "<group>"; };
+		9F57B64A156131B300615DEB /* SVWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVWebViewController.h; sourceTree = "<group>"; };
+		9F57B64B156131B300615DEB /* SVWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVWebViewController.m; sourceTree = "<group>"; };
 		9F60767E15483FCE00105643 /* VegVanStopNotification.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VegVanStopNotification.h; path = "Cultivate for iPhone/VegVanStopNotification.h"; sourceTree = "<group>"; };
 		9F60767F15483FCE00105643 /* VegVanStopNotification.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VegVanStopNotification.m; path = "Cultivate for iPhone/VegVanStopNotification.m"; sourceTree = "<group>"; };
 		9F60769215484AE000105643 /* 20-gear2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "20-gear2.png"; sourceTree = "<group>"; };
@@ -313,6 +338,10 @@
 		9F6A09E91546FEE900B59D0F /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 		9F6A09EB1546FF7B00B59D0F /* VegVanStopLocation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VegVanStopLocation.h; path = "Cultivate for iPhone/VegVanStopLocation.h"; sourceTree = "<group>"; };
 		9F6A09EC1546FF7B00B59D0F /* VegVanStopLocation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VegVanStopLocation.m; path = "Cultivate for iPhone/VegVanStopLocation.m"; sourceTree = "<group>"; };
+		9F7E821E15613B83002C472F /* 210-twitterbird.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "210-twitterbird.png"; sourceTree = "<group>"; };
+		9F7E821F15613B83002C472F /* 210-twitterbird@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "210-twitterbird@2x.png"; sourceTree = "<group>"; };
+		9F7E8223156149CC002C472F /* TweetHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TweetHeaderView.h; sourceTree = "<group>"; };
+		9F7E8224156149CD002C472F /* TweetHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TweetHeaderView.m; sourceTree = "<group>"; };
 		9F977EDF155018C3002D04A6 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		9F995C6315581E29007DCA58 /* AKFusionTables.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AKFusionTables.h; sourceTree = "<group>"; };
 		9F995C6415581E29007DCA58 /* AKFusionTables.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AKFusionTables.m; sourceTree = "<group>"; };
@@ -516,8 +545,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9F977EE0155018C3002D04A6 /* QuartzCore.framework in Frameworks */,
+				9F57B638156118FC00615DEB /* libicucore.A.dylib in Frameworks */,
 				9FF1E31C154EFAD7000C0337 /* Twitter.framework in Frameworks */,
+				9F57B62915610A9800615DEB /* Accounts.framework in Frameworks */,
+				9F977EE0155018C3002D04A6 /* QuartzCore.framework in Frameworks */,
 				9FF1E31A154EFAC5000C0337 /* MessageUI.framework in Frameworks */,
 				9FF1E318154EFABA000C0337 /* Security.framework in Frameworks */,
 				9F65F1721549B52A003B56DF /* CoreLocation.framework in Frameworks */,
@@ -547,6 +578,8 @@
 		9F6A09141546D4C500B59D0F = {
 			isa = PBXGroup;
 			children = (
+				9F57B637156118FC00615DEB /* libicucore.A.dylib */,
+				9F57B62815610A9800615DEB /* Accounts.framework */,
 				9FB1DA52156066E20035055E /* Icon@2x.png */,
 				9FB1DA4F156066D50035055E /* Icon.png */,
 				9FA5493515542DC300CA04C7 /* Default@2x.png */,
@@ -619,6 +652,8 @@
 		9F6A095C1546E52D00B59D0F /* Tab icons */ = {
 			isa = PBXGroup;
 			children = (
+				9F7E821E15613B83002C472F /* 210-twitterbird.png */,
+				9F7E821F15613B83002C472F /* 210-twitterbird@2x.png */,
 				9F995C6815581ED1007DCA58 /* 112-group.png */,
 				9F995C6915581ED1007DCA58 /* 112-group@2x.png */,
 				9F6A093B1546D4C500B59D0F /* first.png */,
@@ -664,6 +699,8 @@
 				9FC91DBD154710EF008A976E /* AboutViewController.m */,
 				9FF1E38B154F02F4000C0337 /* MailChimpViewController.h */,
 				9FF1E38C154F02F4000C0337 /* MailChimpViewController.m */,
+				9F7E8223156149CC002C472F /* TweetHeaderView.h */,
+				9F7E8224156149CD002C472F /* TweetHeaderView.m */,
 				9F99E0C715481E7900485A23 /* SectionHeaderView.h */,
 				9F99E0C815481E7900485A23 /* SectionHeaderView.m */,
 				9F60769615484BD300105643 /* SettingsViewController.h */,
@@ -672,8 +709,12 @@
 				9F524B0D1551A10E000846E7 /* ScheduleItemDetailViewController.m */,
 				9F995C6C15581EFD007DCA58 /* RideShareViewController.h */,
 				9F995C6D15581EFD007DCA58 /* RideShareViewController.m */,
+				9F57B62415610A3E00615DEB /* MessageViewController.h */,
+				9F57B62515610A3E00615DEB /* MessageViewController.m */,
 				9FF78E92155FA8DD00FAAE67 /* CultiRideDetailsViewController.h */,
 				9FF78E93155FA8DD00FAAE67 /* CultiRideDetailsViewController.m */,
+				9F57B64A156131B300615DEB /* SVWebViewController.h */,
+				9F57B64B156131B300615DEB /* SVWebViewController.m */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -1139,6 +1180,8 @@
 				9F524AF7155180F9000846E7 /* VegVanScheduleItem.m */,
 				9F60767E15483FCE00105643 /* VegVanStopNotification.h */,
 				9F60767F15483FCE00105643 /* VegVanStopNotification.m */,
+				9F57B63E156127CF00615DEB /* TweetTableViewCell.h */,
+				9F57B63F156127CF00615DEB /* TweetTableViewCell.m */,
 			);
 			name = Models;
 			path = ..;
@@ -1147,6 +1190,12 @@
 		9FF1E325154F011B000C0337 /* Externals */ = {
 			isa = PBXGroup;
 			children = (
+				9F57B62F1561189500615DEB /* IFTweetLabel.h */,
+				9F57B62E1561189500615DEB /* IFTweetLabel.m */,
+				9F57B631156118B000615DEB /* RegexKitLite.h */,
+				9F57B632156118B000615DEB /* RegexKitLite.m */,
+				9F57B633156118B000615DEB /* RKLMatchEnumerator.h */,
+				9F57B634156118B000615DEB /* RKLMatchEnumerator.m */,
 				9F995C6715581E35007DCA58 /* FusionTables */,
 				9F524AFE15518480000846E7 /* SMXML */,
 				9FF1E357154F01BE000C0337 /* MailChimp */,
@@ -1340,6 +1389,8 @@
 				9FF78EA8155FC0CB00FAAE67 /* Calibri Bold.ttf in Resources */,
 				9FB1DA51156066DE0035055E /* Icon.png in Resources */,
 				9FB1DA53156066E20035055E /* Icon@2x.png in Resources */,
+				9F7E822015613B83002C472F /* 210-twitterbird.png in Resources */,
+				9F7E822115613B83002C472F /* 210-twitterbird@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1461,6 +1512,13 @@
 				9F3240BC155AE36F00BCA8FB /* CustomButton.m in Sources */,
 				9FEA33D6155E8C00001CEAD3 /* CustomCheckbox.m in Sources */,
 				9FF78E95155FA8DD00FAAE67 /* CultiRideDetailsViewController.m in Sources */,
+				9F57B62615610A3E00615DEB /* MessageViewController.m in Sources */,
+				9F57B6301561189500615DEB /* IFTweetLabel.m in Sources */,
+				9F57B635156118B000615DEB /* RegexKitLite.m in Sources */,
+				9F57B636156118B000615DEB /* RKLMatchEnumerator.m in Sources */,
+				9F57B640156127CF00615DEB /* TweetTableViewCell.m in Sources */,
+				9F57B64C156131B300615DEB /* SVWebViewController.m in Sources */,
+				9F7E8225156149CD002C472F /* TweetHeaderView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -21,6 +21,7 @@
 #define kLocalNotificationsEnabledKey @"localNotificationsEnabledKey"
 #define kFirstLaunchRecorded @"firstLaunchRecorded"
 #define kVolunteerDatesKey @"volunteerDatesKey"
+#define kOldTweetsKey @"oldTweetsKey"
 
 // SETTINGS
 #define kRepeatPatternOneOff 0
@@ -80,3 +81,7 @@
 #define kStopFrequencyElement @"stopFrequency"
 #define kStopDayElement @"stopDay"
 #define kStopTimeElement @"stopTime"
+
+// NOTIFICATIONS
+#define kNewTweetCountGenerated @"New tweet count generated"
+#define kTweetsLoaded @"Tweets loaded"

@@ -49,11 +49,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Cultivate for iPhone/MapViewController.m"
-         timestampString = "358525419.083083"
+         timestampString = "358699743.693107"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "385"
-         endingLineNumber = "385"
+         startingLineNumber = "407"
+         endingLineNumber = "407"
          landmarkName = "-forwardGeocode:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -62,11 +62,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Cultivate for iPhone/MapViewController.m"
-         timestampString = "358525419.083083"
+         timestampString = "358699743.693107"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "130"
-         endingLineNumber = "130"
+         startingLineNumber = "152"
+         endingLineNumber = "152"
          landmarkName = "-startStandardUpdates"
          landmarkType = "5">
       </FileBreakpoint>
@@ -75,11 +75,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Cultivate for iPhone/MapViewController.m"
-         timestampString = "358525419.083083"
+         timestampString = "358699743.693107"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "156"
-         endingLineNumber = "156"
+         startingLineNumber = "178"
+         endingLineNumber = "178"
          landmarkName = "-alertView:clickedButtonAtIndex:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -88,11 +88,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Cultivate for iPhone/MapViewController.m"
-         timestampString = "358525419.083083"
+         timestampString = "358699743.693107"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "179"
-         endingLineNumber = "179"
+         startingLineNumber = "201"
+         endingLineNumber = "201"
          landmarkName = "-alertViewShouldEnableFirstOtherButton:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -101,11 +101,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Cultivate for iPhone/MapViewController.m"
-         timestampString = "358525419.083083"
+         timestampString = "358699743.693107"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "199"
-         endingLineNumber = "199"
+         startingLineNumber = "221"
+         endingLineNumber = "221"
          landmarkName = "-dropdownLocateVanOptionsWithAnimation:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -153,11 +153,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Cultivate for iPhone/MapViewController.m"
-         timestampString = "358525419.083083"
+         timestampString = "358699743.693107"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "63"
-         endingLineNumber = "63"
+         startingLineNumber = "85"
+         endingLineNumber = "85"
          landmarkName = "-searchBarSearchButtonClicked:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -166,11 +166,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Cultivate for iPhone/MapViewController.m"
-         timestampString = "358525419.083083"
+         timestampString = "358699743.693107"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "70"
-         endingLineNumber = "70"
+         startingLineNumber = "92"
+         endingLineNumber = "92"
          landmarkName = "-searchBarSearchButtonClicked:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -387,11 +387,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Cultivate for iPhone/MapViewController.m"
-         timestampString = "358541722.328098"
+         timestampString = "358699743.693107"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "360"
-         endingLineNumber = "360"
+         startingLineNumber = "382"
+         endingLineNumber = "382"
          landmarkName = "-showNextStopLocation:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -523,6 +523,32 @@
          startingLineNumber = "175"
          endingLineNumber = "175"
          landmarkName = "-getNextScheduledStop"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "Cultivate for iPhone/MessageViewController.m"
+         timestampString = "358697691.156759"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "213"
+         endingLineNumber = "213"
+         landmarkName = "-tableView:cellForRowAtIndexPath:"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "Cultivate for iPhone/MessageViewController.m"
+         timestampString = "358698261.927247"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "294"
+         endingLineNumber = "294"
+         landmarkName = "-handleTweetNotification:"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>

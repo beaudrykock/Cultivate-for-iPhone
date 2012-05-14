@@ -38,4 +38,5 @@
 +(NSMutableArray*)getVolunteerDatesWithRequestStatus;
 +(void)refreshVolunteerDates;
 +(void)updateVolunteerDatesWithRequestStatus:(NSMutableArray*)updatedVolunteerDates;
++(NSInteger)updateTweets:(NSMutableArray*)tweets;
 @end

@@ -295,4 +295,28 @@
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
++(NSInteger)updateTweets:(NSMutableArray*)tweets
+{
+    NSArray *oldTweets = [[NSUserDefaults standardUserDefaults] objectForKey: kOldTweetsKey];
+    if (!oldTweets)
+    {
+        // no stored tweets = totally new set of tweets, so just update and return number of tweets in array
+        [[NSUserDefaults standardUserDefaults] setObject: tweets forKey: kOldTweetsKey];
+        return [tweets count];
+    }
+    else
+    {
+        NSInteger newTweetCount = 0;
+        // otherwise compare the new tweets with old
+        for (NSString *tweet in tweets)
+        {
+            if (![oldTweets containsObject: tweet])
+                newTweetCount++;
+        }
+        // replace old tweets
+        [[NSUserDefaults standardUserDefaults] setObject: tweets forKey: kOldTweetsKey];
+        return newTweetCount;
+    }
+}
+
 @end

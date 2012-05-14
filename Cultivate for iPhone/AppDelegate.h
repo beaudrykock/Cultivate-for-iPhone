@@ -10,12 +10,21 @@
 #import "SHKConfiguration.h"
 #import "SHKFacebook.h"
 #import "VegVanStopManager.h"
+#import <Twitter/Twitter.h>
+#import <Accounts/Accounts.h>
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 {
     VegVanStopManager* vegVanStopManager;
+    NSArray *tweets;
+    BOOL tweetsLoaded;
+    NSInteger newTweetCount;
 }
 @property (strong, nonatomic) UIWindow *window;
 @property (strong, nonatomic) VegVanStopManager *vegVanStopManager;
+@property (strong, nonatomic) NSArray *tweets;
+
+-(NSInteger)getNewTweetCount;
+-(BOOL)areTweetsLoaded;
 
 @end

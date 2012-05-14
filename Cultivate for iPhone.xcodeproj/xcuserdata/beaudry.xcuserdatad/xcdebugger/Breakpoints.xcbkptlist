@@ -36,11 +36,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Cultivate for iPhone/AboutViewController.m"
-         timestampString = "357830448.806175"
+         timestampString = "358704813.697113"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "43"
-         endingLineNumber = "43"
+         startingLineNumber = "44"
+         endingLineNumber = "44"
          landmarkName = "-actionSheet:clickedButtonAtIndex:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -127,11 +127,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Cultivate for iPhone/AppDelegate.m"
-         timestampString = "357668374.799069"
+         timestampString = "358700756.257974"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "19"
-         endingLineNumber = "19"
+         startingLineNumber = "20"
+         endingLineNumber = "20"
          landmarkName = "-application:didFinishLaunchingWithOptions:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -179,11 +179,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Cultivate for iPhone/MailChimpViewController.m"
-         timestampString = "358597277.94499"
+         timestampString = "358703422.361216"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "421"
-         endingLineNumber = "421"
+         startingLineNumber = "432"
+         endingLineNumber = "432"
          landmarkName = "-joinMailingList:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -192,11 +192,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Cultivate for iPhone/MailChimpViewController.m"
-         timestampString = "358597277.94499"
+         timestampString = "358704450.663565"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "593"
-         endingLineNumber = "593"
+         startingLineNumber = "620"
+         endingLineNumber = "620"
          landmarkName = "-cancel:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -270,11 +270,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Cultivate for iPhone/SettingsViewController.m"
-         timestampString = "358638497.181395"
+         timestampString = "358700288.298216"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "107"
-         endingLineNumber = "107"
+         startingLineNumber = "108"
+         endingLineNumber = "108"
          landmarkName = "-toggleLocalNotifications:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -309,11 +309,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Cultivate for iPhone/MailChimpViewController.m"
-         timestampString = "358597277.94499"
+         timestampString = "358704450.663565"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "474"
-         endingLineNumber = "474"
+         startingLineNumber = "499"
+         endingLineNumber = "499"
          landmarkName = "-joinMailingList:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -400,11 +400,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Cultivate for iPhone/CultiRideDetailsViewController.m"
-         timestampString = "358600675.198346"
+         timestampString = "358700288.298216"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "135"
-         endingLineNumber = "135"
+         startingLineNumber = "137"
+         endingLineNumber = "137"
          landmarkName = "-cancel:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -413,11 +413,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Cultivate for iPhone/CultiRideDetailsViewController.m"
-         timestampString = "358600675.198346"
+         timestampString = "358700288.298216"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "100"
-         endingLineNumber = "100"
+         startingLineNumber = "102"
+         endingLineNumber = "102"
          landmarkName = "-dismiss"
          landmarkType = "5">
       </FileBreakpoint>
@@ -478,11 +478,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Cultivate for iPhone/SettingsViewController.m"
-         timestampString = "358638497.181395"
+         timestampString = "358700288.298216"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "143"
-         endingLineNumber = "143"
+         startingLineNumber = "144"
+         endingLineNumber = "144"
          landmarkName = "-clearCultiRideDetails"
          landmarkType = "5">
       </FileBreakpoint>
@@ -530,11 +530,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Cultivate for iPhone/MessageViewController.m"
-         timestampString = "358697691.156759"
+         timestampString = "358701849.893583"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "213"
-         endingLineNumber = "213"
+         startingLineNumber = "220"
+         endingLineNumber = "220"
          landmarkName = "-tableView:cellForRowAtIndexPath:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -543,12 +543,51 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Cultivate for iPhone/MessageViewController.m"
-         timestampString = "358698261.927247"
+         timestampString = "358701849.893583"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "294"
-         endingLineNumber = "294"
+         startingLineNumber = "301"
+         endingLineNumber = "301"
          landmarkName = "-handleTweetNotification:"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "Cultivate for iPhone/MessageViewController.m"
+         timestampString = "358701949.778152"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "28"
+         endingLineNumber = "28"
+         landmarkName = "-viewDidLoad"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "Cultivate for iPhone/AppDelegate.m"
+         timestampString = "358705049.490118"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "28"
+         endingLineNumber = "28"
+         landmarkName = "-application:didFinishLaunchingWithOptions:"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "Cultivate for iPhone/AppDelegate.m"
+         timestampString = "358706272.367369"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "49"
+         endingLineNumber = "49"
+         landmarkName = "-getPublicTimeline"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>

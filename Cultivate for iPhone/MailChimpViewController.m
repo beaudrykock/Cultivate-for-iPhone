@@ -93,7 +93,7 @@
     //[self fetchListMemberInfo];
     //[self fetchListTemplate];
     //[self testSubscribe];
-    
+    //[self fetchListInterestGroupings];
 }
 
 #pragma mark -
@@ -366,6 +366,13 @@
     [ck callApiMethod:@"listMembers" withParams: [NSDictionary dictionaryWithObjectsAndKeys:kMailChimpAPIKey, @"apikey", kVolunteerMailingListID, @"id", nil ]];
 }
 
+-(void)fetchListInterestGroupings
+{
+    ChimpKit *ck = [[ChimpKit alloc] initWithDelegate:self 
+                                            andApiKey:kMailChimpAPIKey];
+    [ck callApiMethod:@"listInterestGroupings" withParams: [NSDictionary dictionaryWithObjectsAndKeys:kMailChimpAPIKey, @"apikey", kVolunteerMailingListID, @"id", nil ]];
+}
+
 -(void)fetchListMemberInfo
 {
     ChimpKit *ck = [[ChimpKit alloc] initWithDelegate:self 
@@ -408,6 +415,10 @@
     [mergeVars setValue:@"kock" forKey:@"LNAME"];
     [mergeVars setValue:@"OX1 1QY" forKey:@"MMERGE4"];
     [mergeVars setValue:@"1" forKey: @"weekly"];
+    NSMutableDictionary *groups = [NSMutableDictionary dictionary];
+    [groups setValue:@"4913" forKey:@"id"];
+    [groups setValue:@"Weekly,Monthly" forKey:@"groups"];
+    [mergeVars setValue:[NSArray arrayWithObjects:groups, nil] forKey:@"GROUPINGS"];
     [params setValue:mergeVars forKey:@"merge_vars"];
     //[params setValue:@"1" forKey: @"weekly"];
     NSLog(@"desc = %@", [params description]);
@@ -445,35 +456,51 @@
                 [mergeVars setValue:lastname forKey:@"LNAME"];
                 [mergeVars setValue:postcode forKey:@"MMERGE3"];
                 
+                NSMutableDictionary *groups = [NSMutableDictionary dictionary];
                 if ([listType isEqualToString: kJoinMainMailingList])
                 {
+                    [groups setValue:@"397" forKey:@"id"];
+                    // [groups setValue:@"Weekly,Monthly" forKey:@"groups"];
+                    NSMutableArray *groupingsChosen = [NSMutableArray arrayWithCapacity:5];
                     if (cb_1_isOn)
                     {
-                        [mergeVars setValue: @"1" forKey: kCustomer];
+                        [groupingsChosen addObject:@"being a customer"];
                     }
                     if (cb_2_isOn)
                     {
-                        [mergeVars setValue: @"1" forKey: kLocalChampion];
+                        [groupingsChosen addObject:@"being a local champion"];
                     }
                     if (cb_3_isOn)
                     {
-                        [mergeVars setValue: @"1" forKey: kMember];
+                        [groupingsChosen addObject:@"being a member"];
                     }
                     if (cb_4_isOn)
                     {
-                        [mergeVars setValue: @"1" forKey: kVolunteer];
+                        [groupingsChosen addObject:@"being a volunteer"];
                     }
                     if (cb_5_isOn)
                     {
-                        [mergeVars setValue: @"1" forKey: kInformed];
+                        [groupingsChosen addObject:@"keeping informed"];
                     }
+                    
+                    NSString *finalStr = @"";
+                    for (NSString *string in groupingsChosen)
+                    {
+                        finalStr = [finalStr stringByAppendingFormat:@"%@%@",string,@","];
+                    }
+                    NSLog(@"finalstr = %@", finalStr);
+                    [groups setValue:finalStr forKey:@"groups"];
                 }
                 else
                 {
+                    [groups setValue:@"4913" forKey:@"id"];
+                    [groups setValue:volunteerFrequencySelection forKey:@"groups"];
                     NSLog(@"vfs = %@", volunteerFrequencySelection);
                     [mergeVars setValue:postcode forKey:@"MMERGE4"];
-                    [mergeVars setValue: @"1" forKey: volunteerFrequencySelection];
+                    
                 }
+                [mergeVars setValue:[NSArray arrayWithObjects:groups, nil] forKey:@"GROUPINGS"];
+                [params setValue:mergeVars forKey:@"merge_vars"];
                 
                 [params setValue:mergeVars forKey:@"merge_vars"];
                 

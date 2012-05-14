@@ -51,6 +51,8 @@
     [self.mobile_label setFont: [UIFont fontWithName:@"Calibri" size:15]];
     [self.about_label setFont: [UIFont fontWithName:@"Calibri" size:15]];
     [self.disclaimer_label setFont: [UIFont fontWithName:@"Calibri" size:12]];
+    
+    [self.navigationController setNavigationBarHidden: YES];
 }
 
 - (void)viewDidUnload

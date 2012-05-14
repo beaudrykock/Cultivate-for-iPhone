@@ -81,6 +81,7 @@
     UITapGestureRecognizer *clearButtonTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(clearCultiRideDetails)];
     [self.clearCultiRideDetailsButton addGestureRecognizer:clearButtonTap];
     
+    [self.navigationController setNavigationBarHidden: YES];
 }
 
 - (void)viewDidUnload

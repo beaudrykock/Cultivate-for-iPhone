@@ -13,6 +13,7 @@
 @synthesize window = _window;
 @synthesize vegVanStopManager;
 @synthesize tweets;
+@synthesize tabBarController;
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
@@ -24,8 +25,13 @@
     // clear the badge number
     [[UIApplication sharedApplication] setApplicationIconBadgeNumber:0];
     
-    [self performSelectorInBackground:@selector(getPublicTimeline) withObject:nil];
-    
+    if ([Utilities hasInternet])
+    {
+        //[self getPublicTimeline];
+        [self performSelectorInBackground:@selector(getPublicTimeline) withObject:nil];
+    }
+    tabBarController = (UITabBarController *)self.window.rootViewController;
+    tabBarController.moreNavigationController.navigationBar.hidden = YES;
     return YES;
 }
 
@@ -39,7 +45,6 @@
 	// Perform the request created above and create a handler block to handle the response.
 	[postRequest performRequestWithHandler:^(NSData *responseData, NSHTTPURLResponse *urlResponse, NSError *error) {
 		NSString *output;
-		
 		if ([urlResponse statusCode] == 200) {
 			// Parse the responseData, which we asked to be in JSON format for this request, into an NSDictionary using NSJSONSerialization.
 			NSError *jsonParsingError = nil;
@@ -52,9 +57,12 @@
             [self performSelectorOnMainThread:@selector(notifyTweetTab) withObject:nil waitUntilDone:NO];
 		}
 		else {
-			output = [NSString stringWithFormat:@"HTTP response status: %i\n", [urlResponse statusCode]];
+			output = [NSString stringWithFormat:@"HTTP response status: %i\nerror: %@", [urlResponse statusCode], [error description]];
+            NSError *jsonParsingError = nil;
+            NSDictionary *errorDict = [NSJSONSerialization JSONObjectWithData:responseData options:0 error:&jsonParsingError];
+            NSLog(@"error desc = %@", [errorDict description]);
 		}
-		
+		NSLog(@"output = %@", output);
         
 	}];
 }

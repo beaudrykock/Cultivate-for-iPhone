@@ -126,10 +126,17 @@
                                       UIViewAutoresizingFlexibleRightMargin |
                                       UIViewAutoresizingFlexibleTopMargin |
                                       UIViewAutoresizingFlexibleBottomMargin);
-    [coloredOverlay addSubview:activityWheel];
+    if ([Utilities hasInternet])
+        [coloredOverlay addSubview:activityWheel];
     
     UILabel *downloadingUpdateLabel = [[UILabel alloc] initWithFrame:CGRectMake(35.0, (frame.size.height/2)+15, 250.0, 50.0)];
-    [downloadingUpdateLabel setText:@"Updating tweets..."];
+    if ([Utilities hasInternet])
+    {
+        [downloadingUpdateLabel setText:@"Updating tweets..."];
+    }
+    else {
+        [downloadingUpdateLabel setText:@"Internet not available"];
+    }
     [downloadingUpdateLabel setBackgroundColor:[UIColor clearColor]];
     [downloadingUpdateLabel setFont:[UIFont fontWithName:@"Calibri" size:18.0]];
     [downloadingUpdateLabel setTextColor:[UIColor whiteColor]];
@@ -197,7 +204,7 @@
     }
     
     NSDictionary *aTweet = [tweets objectAtIndex:[indexPath row]];
-    NSLog(@"Adding text %@ at row %i", (NSString*)[aTweet objectForKey:@"text"], [indexPath row]); 
+    //NSLog(@"Adding text %@ at row %i", (NSString*)[aTweet objectForKey:@"text"], [indexPath row]); 
     NSString *imageURLString = [tweetImageURLs objectAtIndex: [indexPath row]];
     [cell setupWithText: [aTweet objectForKey:@"text"] andImageURLString: imageURLString];//[aTweet objectForKey: @"profile_image_url"]];
 	/*

@@ -36,8 +36,6 @@
     {
         [tweetLabel removeFromSuperview];
         tweetLabel = nil;
-        [profileImage removeFromSuperview];
-        profileImage = nil;
     }
     if (labelSize.height < 70.0) 
         labelSize.height = 70.0;
@@ -49,16 +47,19 @@
     [self.tweetLabel setText:text];
     [self.tweetLabel setLinksEnabled:YES];
     [self addSubview:tweetLabel];
-    NSLog(@"frame height = %f", self.frame.size.height);
+    //NSLog(@"frame height = %f", self.frame.size.height);
     NSData *data = [NSData dataWithContentsOfURL:[NSURL URLWithString:urlString]];
-    profileImage = [[UIImageView alloc] initWithImage: [UIImage imageWithData:data]]; 
-    [profileImage setFrame: CGRectMake(5.0,((labelSize.height+20.0)-50)/2.0,50.0,50.0)];
-    profileImage.contentMode = UIViewContentModeScaleAspectFit;
-    CALayer * profileImageLayer = [profileImage layer];
-    [profileImageLayer setMasksToBounds:YES];
-    [profileImageLayer setCornerRadius:8.0];
-    [self addSubview:profileImage];
     
+    if (profileImage == nil)
+    {
+        profileImage = [[UIImageView alloc] initWithImage: [UIImage imageWithData:data]]; 
+        [profileImage setFrame: CGRectMake(5.0,((labelSize.height+20.0)-50)/2.0,50.0,50.0)];
+        profileImage.contentMode = UIViewContentModeScaleAspectFit;
+        CALayer * profileImageLayer = [profileImage layer];
+        [profileImageLayer setMasksToBounds:YES];
+        [profileImageLayer setCornerRadius:8.0];
+        [self addSubview:profileImage];
+    }
 }
 
 @end

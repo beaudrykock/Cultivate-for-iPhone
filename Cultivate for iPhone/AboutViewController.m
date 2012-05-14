@@ -24,7 +24,8 @@
 
 -(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-    
+    [getInvolved setNeedsDisplay];
+    [share setNeedsDisplay];
     if (buttonIndex ==0)
     {
         tappedListType = kJoinMainMailingList;
@@ -46,6 +47,7 @@
 - (void)mailChimpViewControllerDidCancel
 {
 	[self dismissViewControllerAnimated:YES completion:nil];
+    [getInvolved setNeedsDisplay];
 }
 
 -(IBAction)share:(id)selector

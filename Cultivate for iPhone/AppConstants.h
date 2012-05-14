@@ -43,9 +43,9 @@
 #define kVolunteerMailingListGroupQuestion @"I would like to volunteer..."
 #define kMainMailingListType 0
 #define kVolunteerMailingListType 1
-#define kWeekly @"group_1"
-#define kMonthly @"group_2"
-#define kOnceInABlueMoon @"group_4"
+#define kWeekly @"Weekly"
+#define kMonthly @"Monthly"
+#define kOnceInABlueMoon @"Once in a blue moon"
 #define kCustomer @"group[397][1]"
 #define kLocalChampion @"group[397][4]"
 #define kMember @"group[397][8]"

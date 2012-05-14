@@ -19,7 +19,9 @@
     NSArray *tweets;
     BOOL tweetsLoaded;
     NSInteger newTweetCount;
+    __weak UITabBarController *tabBarController;
 }
+@property (weak, nonatomic) IBOutlet UITabBarController *tabBarController;
 @property (strong, nonatomic) UIWindow *window;
 @property (strong, nonatomic) VegVanStopManager *vegVanStopManager;
 @property (strong, nonatomic) NSArray *tweets;

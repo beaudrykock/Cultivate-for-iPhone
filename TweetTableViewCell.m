@@ -26,11 +26,19 @@
     // Configure the view for the selected state
 }
 
--(void)setupWithText:(NSString*)text andImageURLString:(NSString*)urlString
+-(void)setupWithText:(NSString*)text /*andImageURLString:(NSString*)urlString*/ andSize:(NSValue*)sizeAsValue andImage:(UIImage*)image
 {
-    CGSize labelSize = [text sizeWithFont:[UIFont fontWithName:@"Calibri" size:14.0] 
+    CGSize labelSize;
+    if (sizeAsValue != nil)
+    {
+        labelSize = [sizeAsValue CGSizeValue];
+    }
+    else {
+        
+        labelSize = [text sizeWithFont:[UIFont fontWithName:@"Calibri" size:14.0] 
                                                      constrainedToSize:CGSizeMake(240.0f, MAXFLOAT) 
-                                                         lineBreakMode:UILineBreakModeWordWrap];
+                                                        lineBreakMode:UILineBreakModeWordWrap];
+    }
     // Configure the cell...
     if (tweetLabel != nil)
     {
@@ -48,11 +56,11 @@
     [self.tweetLabel setLinksEnabled:YES];
     [self addSubview:tweetLabel];
     //NSLog(@"frame height = %f", self.frame.size.height);
-    NSData *data = [NSData dataWithContentsOfURL:[NSURL URLWithString:urlString]];
+    //NSData *data = [NSData dataWithContentsOfURL:[NSURL URLWithString:urlString]];
     
     if (profileImage == nil)
     {
-        profileImage = [[UIImageView alloc] initWithImage: [UIImage imageWithData:data]]; 
+        profileImage = [[UIImageView alloc] initWithImage:image];//[[UIImageView alloc] initWithImage: [UIImage imageWithData:data]]; 
         [profileImage setFrame: CGRectMake(5.0,((labelSize.height+20.0)-50)/2.0,50.0,50.0)];
         profileImage.contentMode = UIViewContentModeScaleAspectFit;
         CALayer * profileImageLayer = [profileImage layer];

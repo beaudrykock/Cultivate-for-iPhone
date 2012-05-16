@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="1.1" toolsVersion="2182" systemVersion="11D50b" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="4">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="1.1" toolsVersion="2182" systemVersion="11E53" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="4">
     <dependencies>
         <deployment defaultVersion="1296" identifier="iOS"/>
         <development defaultVersion="4200" identifier="xcode"/>
@@ -539,7 +539,7 @@
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <subviews>
                                     <stepper opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="5" minimumValue="1" maximumValue="60" stepValue="5" id="iip-th-3rH">
-                                        <rect key="frame" x="131" y="50" width="94" height="27"/>
+                                        <rect key="frame" x="186" y="50" width="94" height="27"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                         <connections>
                                             <action selector="stepperPressed:" destination="2eq-V5-S6M" eventType="touchUpInside" id="ufR-Xk-yI5"/>
@@ -560,14 +560,14 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="With repeat" lineBreakMode="tailTruncation" minimumFontSize="10" id="166-x7-5T6">
-                                        <rect key="frame" x="9" y="94" width="86" height="21"/>
+                                        <rect key="frame" x="9" y="101" width="86" height="21"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                         <color key="textColor" red="0.13725490868091583" green="0.13725490868091583" blue="0.13725490868091583" alpha="1" colorSpace="deviceRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="glF-Zz-mrn">
-                                        <rect key="frame" x="131" y="90" width="156" height="30"/>
+                                        <rect key="frame" x="124" y="97" width="156" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <segments>
                                             <segment title="One-off"/>
@@ -579,17 +579,27 @@
                                         </connections>
                                     </segmentedControl>
                                     <switch opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" id="6G7-kt-AAB">
-                                        <rect key="frame" x="131" y="10" width="79" height="27"/>
+                                        <rect key="frame" x="201" y="10" width="79" height="27"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <connections>
                                             <action selector="toggleLocalNotifications:" destination="2eq-V5-S6M" eventType="valueChanged" id="mSN-3H-Xbc"/>
                                         </connections>
                                     </switch>
+                                    <view contentMode="scaleToFill" id="PCl-lU-hgd">
+                                        <rect key="frame" x="0.0" y="42" width="300" height="1"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                    </view>
+                                    <view contentMode="scaleToFill" id="kcO-Hh-JKP">
+                                        <rect key="frame" x="0.0" y="86" width="300" height="1"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                    </view>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                             </view>
                             <view contentMode="scaleToFill" id="U5M-kL-Qzs">
-                                <rect key="frame" x="10" y="156" width="300" height="94"/>
+                                <rect key="frame" x="10" y="156" width="300" height="143"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Update CultiRide details" lineBreakMode="tailTruncation" minimumFontSize="10" id="Vmk-C3-Uev">
@@ -600,7 +610,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="X9D-TP-qep" customClass="CustomButton">
-                                        <rect key="frame" x="154" y="42" width="131" height="38"/>
+                                        <rect key="frame" x="150" y="42" width="131" height="38"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                         <state key="normal">
@@ -615,7 +625,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="ADK-VC-e78" customClass="CustomButton">
-                                        <rect key="frame" x="15" y="42" width="131" height="38"/>
+                                        <rect key="frame" x="150" y="94" width="131" height="38"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                         <state key="normal">
@@ -626,6 +636,30 @@
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                     </button>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Add or update your contact details" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="10" id="Rdt-Q8-Vis">
+                                        <rect key="frame" x="12" y="41" width="134" height="40"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Delete your contact details" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="10" id="Wa1-NN-v5Q">
+                                        <rect key="frame" x="12" y="93" width="134" height="40"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <view contentMode="scaleToFill" id="0xg-vS-CeX">
+                                        <rect key="frame" x="0.0" y="34" width="300" height="1"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                    </view>
+                                    <view contentMode="scaleToFill" id="uGn-mo-DEN">
+                                        <rect key="frame" x="0.0" y="86" width="300" height="1"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                    </view>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                             </view>
@@ -634,6 +668,7 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="Settings" image="20-gear2.png" id="SD3-uR-afK"/>
                     <connections>
+                        <outlet property="clearButtonLabel" destination="Wa1-NN-v5Q" id="vbB-RN-TYB"/>
                         <outlet property="clearCultiRideDetailsButton" destination="ADK-VC-e78" id="FLj-af-9j3"/>
                         <outlet property="minutesBeforeLabel" destination="7Io-6d-oMf" id="scF-9j-r3B"/>
                         <outlet property="notificationSettingsBackground" destination="fCo-5u-2hC" id="eJH-Xl-KUq"/>
@@ -643,6 +678,7 @@
                         <outlet property="repeatPatternControl" destination="glF-Zz-mrn" id="xXp-by-rSf"/>
                         <outlet property="stepper" destination="iip-th-3rH" id="FHs-HY-vbs"/>
                         <outlet property="toggleNotificationsSwitch" destination="6G7-kt-AAB" id="RXg-cs-Sdq"/>
+                        <outlet property="updateButtonLabel" destination="Rdt-Q8-Vis" id="HRt-wj-Qve"/>
                         <outlet property="updateCultiRideDetailsLabel" destination="Vmk-C3-Uev" id="Q2N-O1-lvg"/>
                         <outlet property="withRepeatLabel" destination="166-x7-5T6" id="qj3-91-ol5"/>
                     </connections>
@@ -872,6 +908,7 @@
                 <relationship kind="action" name="promptCultiRideDetails:"/>
                 <relationship kind="action" name="stepperPressed:"/>
                 <relationship kind="action" name="toggleLocalNotifications:"/>
+                <relationship kind="outlet" name="clearButtonLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="clearCultiRideDetailsButton" candidateClass="CustomButton"/>
                 <relationship kind="outlet" name="minutesBeforeLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="notificationSettingsBackground" candidateClass="UIView"/>
@@ -881,6 +918,7 @@
                 <relationship kind="outlet" name="repeatPatternControl" candidateClass="UISegmentedControl"/>
                 <relationship kind="outlet" name="stepper" candidateClass="UIStepper"/>
                 <relationship kind="outlet" name="toggleNotificationsSwitch" candidateClass="UISwitch"/>
+                <relationship kind="outlet" name="updateButtonLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="updateCultiRideDetailsLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="withRepeatLabel" candidateClass="UILabel"/>
             </relationships>

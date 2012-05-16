@@ -13,7 +13,7 @@
 @end
 
 @implementation MessageViewController
-@synthesize tweets, tweetImageURLs, loadingOverlay;
+@synthesize tweets, tweetImageURLs, loadingOverlay, tableViewCellSizes, tableViewCellImages;
 - (id)initWithStyle:(UITableViewStyle)style
 {
     self = [super initWithStyle:style];
@@ -26,6 +26,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
     [self addLoadingOverlay];
     //[self performSelectorInBackground:@selector(getPublicTimeline) withObject:nil];
     // Uncomment the following line to preserve selection between presentations.
@@ -37,7 +38,8 @@
     
     if ([[Utilities sharedAppDelegate] areTweetsLoaded])
     {
-        [self populateTweetTable];
+        [self performSelectorInBackground:@selector(populateTweetTable) withObject:nil];
+        //[self populateTweetTable];
     }
     else
     {
@@ -46,16 +48,34 @@
 }
 
 -(void)populateTweetTable
-{
-    [self removeLoadingOverlay];
-    tweets = [[Utilities sharedAppDelegate] tweets];
-    if (!tweetImageURLs)
-        tweetImageURLs  = [NSMutableArray arrayWithCapacity: [tweets count]];
+{   
+    
+    self.tweets = [[Utilities sharedAppDelegate] tweets];
+    if (!self.tweetImageURLs)
+    {
+        self.tweetImageURLs  = [NSMutableArray arrayWithCapacity: [tweets count]];
+        self.tableViewCellSizes = [NSMutableArray arrayWithCapacity:[tweets count]];
+        self.tableViewCellImages = [NSMutableArray arrayWithCapacity:[tweets count]];
+    }
+    
+    NSInteger count = 0;
     for (NSDictionary *dict in tweets)
     {
         NSDictionary *user = (NSDictionary*)[dict objectForKey:@"user"];
         [tweetImageURLs addObject: [user objectForKey:@"profile_image_url"]];
+        NSData *data = [NSData dataWithContentsOfURL:[NSURL URLWithString:[tweetImageURLs objectAtIndex:count]]];
+        UIImage *image = [UIImage imageWithData:data];
+        [tableViewCellImages addObject: image];
+        CGSize labelSize = [[dict objectForKey:@"text"] sizeWithFont:[UIFont fontWithName:@"Calibri" size:14.0] 
+                                                  constrainedToSize:CGSizeMake(240.0f, MAXFLOAT) 
+                                                      lineBreakMode:UILineBreakModeWordWrap];
+        if (labelSize.height < 70) 
+            labelSize.height = 70.0;
+            
+        [tableViewCellSizes addObject:[NSValue valueWithCGSize:labelSize]];
+        count++;
     }
+    [self removeLoadingOverlay];
     [self.tableView reloadData];
 }
 
@@ -200,14 +220,55 @@
     static NSString *CellIdentifier = @"Cell";
     TweetTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
-        cell = [[TweetTableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier] ;
+        cell = [[TweetTableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
+    }
+       
+    if (!overlayAdded)
+    {
+    NSDictionary *aTweet = [tweets objectAtIndex:[indexPath row]];
+    UIImage *image = nil; 
+    if ([tableViewCellImages count]>indexPath.row)
+    {
+        image = [tableViewCellImages objectAtIndex:[indexPath row]];
     }
     
-    NSDictionary *aTweet = [tweets objectAtIndex:[indexPath row]];
-    //NSLog(@"Adding text %@ at row %i", (NSString*)[aTweet objectForKey:@"text"], [indexPath row]); 
-    NSString *imageURLString = [tweetImageURLs objectAtIndex: [indexPath row]];
-    [cell setupWithText: [aTweet objectForKey:@"text"] andImageURLString: imageURLString];//[aTweet objectForKey: @"profile_image_url"]];
-	/*
+    if (!image)
+    {
+        //NSLog(@"url = %@", [aTweet objectForKey: @"profile_image_url"]);
+        NSData *data = [NSData dataWithContentsOfURL:[NSURL URLWithString:[tweetImageURLs objectAtIndex:indexPath.row]]];
+        image = [UIImage imageWithData:data];
+        [tableViewCellImages addObject: image];
+    }
+    
+    NSValue* sizeValue = nil;
+    if ([tableViewCellSizes count]>indexPath.row)
+    {
+        sizeValue = [tableViewCellSizes objectAtIndex:[indexPath row]];
+    }
+    
+    CGSize labelSize;
+    if (!sizeValue)
+    {
+        labelSize = [[aTweet objectForKey:@"text"] sizeWithFont:[UIFont fontWithName:@"Calibri" size:14.0] 
+                       constrainedToSize:CGSizeMake(240.0f, MAXFLOAT) 
+                           lineBreakMode:UILineBreakModeWordWrap];
+        if (labelSize.height < 70) 
+            labelSize.height = 70.0;
+        
+        [tableViewCellSizes addObject:[NSValue valueWithCGSize:labelSize]];
+    }
+    else {
+        labelSize = [sizeValue CGSizeValue];
+    }
+    //NSString *imageURLString = [tweetImageURLs objectAtIndex: [indexPath row]];
+    [cell setupWithText:[aTweet objectForKey:@"text"] andSize:[NSValue valueWithCGSize:labelSize] andImage:image];
+    }
+    //NSDictionary *aTweet = [tweets objectAtIndex:[indexPath row]];
+    //NSString *imageURLString = [tweetImageURLs objectAtIndex: [indexPath row]];
+    //[cell setupWithText: [aTweet objectForKey:@"text"] andImageURLString: imageURLString];//[aTweet objectForKey: @"profile_image_url"]];
+	
+    
+    /*
     cell.textLabel.text = [aTweet objectForKey:@"text"];
 	cell.textLabel.adjustsFontSizeToFitWidth = YES;
 	cell.textLabel.font = [UIFont systemFontOfSize:14];
@@ -227,14 +288,26 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSString *string = [[tweets objectAtIndex: indexPath.row] objectForKey:@"text"];
-    
-    CGSize labelSize = [string sizeWithFont:[UIFont fontWithName:@"Calibri" size:14.0] 
-                          constrainedToSize:CGSizeMake(240.0f, MAXFLOAT) 
-                              lineBreakMode:UILineBreakModeWordWrap];
-    if (labelSize.height < 70) 
-        labelSize.height = 70.0;
-    
+    CGSize labelSize;
+    NSValue *val = nil;
+    if ([tableViewCellSizes count]>indexPath.row)
+    {
+        val = (NSValue*)[tableViewCellSizes objectAtIndex:indexPath.row]; 
+        labelSize = [val CGSizeValue];
+    }
+    if (!val)
+    {
+        NSString *string = [[tweets objectAtIndex: indexPath.row] objectForKey:@"text"];
+        
+        labelSize = [string sizeWithFont:[UIFont fontWithName:@"Calibri" size:14.0] 
+                              constrainedToSize:CGSizeMake(240.0f, MAXFLOAT) 
+                                  lineBreakMode:UILineBreakModeWordWrap];
+        if (labelSize.height < 70) 
+            labelSize.height = 70.0;
+        
+        [tableViewCellSizes addObject:[NSValue valueWithCGSize:labelSize] ];
+        NSLog(@"tableViewCellSizes count = %i", [tableViewCellSizes count]);
+    }    
     return labelSize.height + 20;
 }
 
@@ -288,6 +361,8 @@
      // Pass the selected object to the new view controller.
      [self.navigationController pushViewController:detailViewController animated:YES];
      */
+    
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 - (void)handleTweetNotification:(NSNotification *)notification

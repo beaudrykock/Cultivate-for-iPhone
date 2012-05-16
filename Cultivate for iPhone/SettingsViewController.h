@@ -26,6 +26,8 @@
     CultiRideDetailsViewController *cultiRideDetailsViewController;
     CustomButton *promptCultiRideDetailsButton;
     CustomButton *clearCultiRideDetailsButton;
+    UILabel *clearButtonLabel;
+    UILabel *updateButtonLabel;
     
 }
 @property (nonatomic, strong) IBOutlet UISwitch *toggleNotificationsSwitch;
@@ -40,6 +42,8 @@
 @property (nonatomic, strong) CultiRideDetailsViewController *cultiRideDetailsViewController;
 @property (nonatomic, strong) IBOutlet CustomButton *promptCultiRideDetailsButton;
 @property (nonatomic, strong) IBOutlet CustomButton *clearCultiRideDetailsButton;
+@property (nonatomic, strong) IBOutlet UILabel *clearButtonLabel;
+@property (nonatomic, strong) IBOutlet UILabel *updateButtonLabel;
 
 -(IBAction)stepperPressed:(id)sender;
 -(IBAction)patternSegmentChanged:(id)sender;

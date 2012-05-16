@@ -9,7 +9,7 @@
 #import "SettingsViewController.h"
 
 @implementation SettingsViewController
-@synthesize minutesBeforeLabel, stepper, repeatPatternControl, notificationSettingsBackground, toggleNotificationsSwitch, cultiRideDetailsViewController, promptCultiRideDetailsButton, promptCultiRideDetailsBackground, remindersTitleLabel, withRepeatLabel, updateCultiRideDetailsLabel, clearCultiRideDetailsButton;
+@synthesize minutesBeforeLabel, stepper, repeatPatternControl, notificationSettingsBackground, toggleNotificationsSwitch, cultiRideDetailsViewController, promptCultiRideDetailsButton, promptCultiRideDetailsBackground, remindersTitleLabel, withRepeatLabel, updateCultiRideDetailsLabel, clearCultiRideDetailsButton, clearButtonLabel, updateButtonLabel;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -57,6 +57,8 @@
     [self.minutesBeforeLabel setFont: [UIFont fontWithName:@"Calibri" size: self.minutesBeforeLabel.font.pointSize]];
     [self.withRepeatLabel setFont: [UIFont fontWithName:@"Calibri" size: self.withRepeatLabel.font.pointSize]];
     [self.updateCultiRideDetailsLabel setFont: [UIFont fontWithName:@"Calibri-Bold" size: self.updateCultiRideDetailsLabel.font.pointSize]];
+    [self.clearButtonLabel setFont: [UIFont fontWithName:@"Calibri" size: self.clearButtonLabel.font.pointSize]];
+    [self.updateButtonLabel setFont: [UIFont fontWithName:@"Calibri" size: self.updateButtonLabel.font.pointSize]];
     
     [self.view setBackgroundColor: [Utilities colorWithHexString: @"#639939"]];
     
@@ -71,7 +73,7 @@
     
     [self.promptCultiRideDetailsButton setFillWith:[Utilities colorWithHexString: @"#727272"] andHighlightedFillWith: [Utilities colorWithHexString: kCultivateGrayColor]  andBorderWith: [UIColor blackColor] andTextWith: [UIColor whiteColor]];
     
-    [self.clearCultiRideDetailsButton setFillWith:[Utilities colorWithHexString: @"#727272"] andHighlightedFillWith: [Utilities colorWithHexString: kCultivateGrayColor]  andBorderWith: [UIColor blackColor] andTextWith: [UIColor whiteColor]];
+    [self.clearCultiRideDetailsButton setFillWith:[Utilities colorWithHexString: @"#f46459"] andHighlightedFillWith: [Utilities colorWithHexString: kCultivateGrayColor]  andBorderWith: [Utilities colorWithHexString: @"#D41C23"] andTextWith: [UIColor whiteColor]];
     [self.clearCultiRideDetailsButton setSize: CGSizeMake(130.0, 37.0)];
     [self.promptCultiRideDetailsButton setSize: CGSizeMake(130.0, 37.0)];
     
@@ -82,7 +84,12 @@
     [self.clearCultiRideDetailsButton addGestureRecognizer:clearButtonTap];
     
     [self.navigationController setNavigationBarHidden: YES];
-}
+    self.notificationSettingsBackground.layer.borderColor = [UIColor lightGrayColor].CGColor;
+    self.notificationSettingsBackground.layer.borderWidth = 1.0f;
+    
+    self.promptCultiRideDetailsBackground.layer.borderColor = [UIColor lightGrayColor].CGColor;
+    self.promptCultiRideDetailsBackground.layer.borderWidth = 1.0f;
+ }
 
 - (void)viewDidUnload
 {

@@ -18,12 +18,16 @@
 {
     NSArray *tweets;
     NSMutableArray *tweetImageURLs;
+    NSMutableArray *tableViewCellSizes;
+    NSMutableArray *tableViewCellImages;
     UIView *loadingOverlay;
     BOOL overlayAdded;
 }
 
 @property (nonatomic, strong) NSArray *tweets;
 @property (nonatomic, strong) NSMutableArray *tweetImageURLs;
+@property (nonatomic, strong) NSMutableArray *tableViewCellSizes;
+@property (nonatomic, strong) NSMutableArray *tableViewCellImages;
 @property (nonatomic, strong) UIView *loadingOverlay;
 
 - (void)getPublicTimeline;

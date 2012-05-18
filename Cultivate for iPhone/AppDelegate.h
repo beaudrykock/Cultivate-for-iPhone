@@ -28,5 +28,6 @@
 
 -(NSInteger)getNewTweetCount;
 -(BOOL)areTweetsLoaded;
+-(void)checkNotificationsEnabledStatus;
 
 @end

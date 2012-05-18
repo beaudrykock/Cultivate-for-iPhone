@@ -83,98 +83,100 @@
 
 -(VegVanScheduleItem*)getNextScheduledStop
 {
-    VegVanScheduleItem *nextScheduled = nil;
-    NSCalendar *gregorian = [[NSCalendar alloc]
-                             initWithCalendarIdentifier:NSGregorianCalendar];
-    unsigned unitFlags = NSWeekdayCalendarUnit | NSHourCalendarUnit |  NSMinuteCalendarUnit;
-    NSDateComponents *components =[gregorian components:unitFlags fromDate:[NSDate date]];
-    NSInteger weekday_now = [components weekday];
-    NSInteger hour_now = [components hour];
-    NSInteger minute_now = [components minute];
-    
-    NSMutableArray *itemsTodayOrAfterToday = [[NSMutableArray alloc] initWithCapacity:5];
-    // first figure out if any items are today or after today in the week
-    for (VegVanScheduleItem *item in scheduleItems)
+    if (self.nextScheduledStop == nil)
     {
-        [item description];
-        if ([item getDayAsInteger] >= weekday_now)
-        {
-            [itemsTodayOrAfterToday addObject: item];
-        }
-    }
-    if ([itemsTodayOrAfterToday count] > 0)
-    {
-        NSInteger weekSecondsElapsed_now = ((weekday_now-1)*86400)+((hour_now-1)*3600)+(minute_now*60);
-        NSInteger weekSecondsElapsed_item = 0;
-        NSInteger diff = 0;
-        NSInteger smallestDiff = 691200;
+        VegVanScheduleItem *nextScheduled = nil;
+        NSCalendar *gregorian = [[NSCalendar alloc]
+                                 initWithCalendarIdentifier:NSGregorianCalendar];
+        unsigned unitFlags = NSWeekdayCalendarUnit | NSHourCalendarUnit |  NSMinuteCalendarUnit;
+        NSDateComponents *components =[gregorian components:unitFlags fromDate:[NSDate date]];
+        NSInteger weekday_now = [components weekday];
+        NSInteger hour_now = [components hour];
+        NSInteger minute_now = [components minute];
         
-        for (VegVanScheduleItem *item in itemsTodayOrAfterToday)
-        {
-            if ([item getHourAsInteger]>hour_now || [item getHourAsInteger]==hour_now && [item getMinuteAsInteger] > minute_now)
-            {
-                weekSecondsElapsed_item = (([item getDayAsInteger]-1)*86400)
-                +(([item getHourAsInteger]-1)*3600)
-                +([item getMinuteAsInteger]*60);
-                
-                diff = weekSecondsElapsed_item-weekSecondsElapsed_now;
-                
-                if (diff<smallestDiff)
-                {
-                    nextScheduled = item;
-                    smallestDiff = diff;
-                }
-            }
-        }
-    }
-    
-    if (!nextScheduled)
-    {
-        NSInteger earliestDay = -1;
-        NSInteger earliestHour = -1;
-        NSInteger earliestMinute = -1;
-        VegVanScheduleItem *soonest = nil;
-        // no items today or after today in the week, so get item with earliest day, hour and time
+        NSMutableArray *itemsTodayOrAfterToday = [[NSMutableArray alloc] initWithCapacity:5];
+        // first figure out if any items are today or after today in the week
         for (VegVanScheduleItem *item in scheduleItems)
         {
-            if (earliestDay == -1)
+            [item description];
+            if ([item getDayAsInteger] >= weekday_now)
             {
-                earliestDay = [item getDayAsInteger];
-                earliestHour = [item getHourAsInteger];
-                earliestMinute = [item getMinuteAsInteger];
-                soonest = item;
+                [itemsTodayOrAfterToday addObject: item];
             }
-            else
+        }
+        if ([itemsTodayOrAfterToday count] > 0)
+        {
+            NSInteger weekSecondsElapsed_now = ((weekday_now-1)*86400)+((hour_now-1)*3600)+(minute_now*60);
+            NSInteger weekSecondsElapsed_item = 0;
+            NSInteger diff = 0;
+            NSInteger smallestDiff = 691200;
+            
+            for (VegVanScheduleItem *item in itemsTodayOrAfterToday)
             {
-                if ([item getDayAsInteger]<earliestDay)
+                if ([item getHourAsInteger]>hour_now || [item getHourAsInteger]==hour_now && [item getMinuteAsInteger] > minute_now)
+                {
+                    weekSecondsElapsed_item = (([item getDayAsInteger]-1)*86400)
+                    +(([item getHourAsInteger]-1)*3600)
+                    +([item getMinuteAsInteger]*60);
+                    
+                    diff = weekSecondsElapsed_item-weekSecondsElapsed_now;
+                    
+                    if (diff<smallestDiff)
+                    {
+                        nextScheduled = item;
+                        smallestDiff = diff;
+                    }
+                }
+            }
+        }
+        
+        if (!nextScheduled)
+        {
+            NSInteger earliestDay = -1;
+            NSInteger earliestHour = -1;
+            NSInteger earliestMinute = -1;
+            VegVanScheduleItem *soonest = nil;
+            // no items today or after today in the week, so get item with earliest day, hour and time
+            for (VegVanScheduleItem *item in scheduleItems)
+            {
+                if (earliestDay == -1)
                 {
                     earliestDay = [item getDayAsInteger];
+                    earliestHour = [item getHourAsInteger];
+                    earliestMinute = [item getMinuteAsInteger];
                     soonest = item;
                 }
-                else if ([item getDayAsInteger]==earliestDay)
+                else
                 {
-                    if ([item getHourAsInteger]<earliestHour)
+                    if ([item getDayAsInteger]<earliestDay)
                     {
-                        earliestHour = [item getHourAsInteger];
+                        earliestDay = [item getDayAsInteger];
                         soonest = item;
                     }
-                    else if ([item getHourAsInteger]==earliestHour)
+                    else if ([item getDayAsInteger]==earliestDay)
                     {
-                        if ([item getMinuteAsInteger]<earliestMinute)
+                        if ([item getHourAsInteger]<earliestHour)
                         {
-                            earliestMinute = [item getMinuteAsInteger];
+                            earliestHour = [item getHourAsInteger];
                             soonest = item;
+                        }
+                        else if ([item getHourAsInteger]==earliestHour)
+                        {
+                            if ([item getMinuteAsInteger]<earliestMinute)
+                            {
+                                earliestMinute = [item getMinuteAsInteger];
+                                soonest = item;
+                            }
                         }
                     }
                 }
             }
+            nextScheduled = soonest;
         }
-        nextScheduled = soonest;
+        
+        self.nextScheduledStop = nextScheduled;
     }
-    
-    self.nextScheduledStop = nextScheduled;
-    
-    return nextScheduled;
+    return self.nextScheduledStop;
 }
 
 -(NSString*)nextStopTimeAsString

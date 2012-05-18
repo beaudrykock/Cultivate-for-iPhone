@@ -27,4 +27,5 @@
 -(NSInteger)getMinuteAsInteger;
 -(NSInteger)getDayAsInteger;
 -(void)description;
+-(NSInteger)hash; // returns a consistent hash based on ivars
 @end

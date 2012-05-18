@@ -13,7 +13,7 @@
 @end
 
 @implementation CultiRideDetailsViewController
-@synthesize name_field, postcode_field, mobile_field, cultiRideSettingsBackground, updateCultiRideDetailsButton, delegate, cancelButton, viewTitle, name_label, mobile_label, postcode_label, about_label, disclaimer_label;
+@synthesize name_field, postcode_field, mobile_field, updateCultiRideDetailsButton, delegate, cancelButton, viewTitle, name_label, mobile_label, postcode_label, about_label, disclaimer_label, email_label, email_field;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -30,7 +30,8 @@
     // Do any additional setup after loading the view from its nib.
     
     self.updateCultiRideDetailsButton.buttonTitle = @"Update";
-    [self.updateCultiRideDetailsButton setFillWith:[Utilities colorWithHexString: @"#727272"] andHighlightedFillWith: [Utilities colorWithHexString: kCultivateGrayColor]  andBorderWith: [UIColor blackColor] andTextWith: [UIColor whiteColor]];
+    [self.updateCultiRideDetailsButton setFillWith:[Utilities colorWithHexString: @"#379361"] andHighlightedFillWith: [Utilities colorWithHexString: @"#608370"]  andBorderWith: [UIColor blackColor] andTextWith: [UIColor whiteColor]];
+    [self.updateCultiRideDetailsButton setSize: CGSizeMake(130.0, 37.0)];
 
     UITapGestureRecognizer *updateButtonTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(updateCultiRideDetails:)];
     [self.updateCultiRideDetailsButton addGestureRecognizer:updateButtonTap];
@@ -40,17 +41,17 @@
     
     
     [self.view setBackgroundColor: [Utilities colorWithHexString: kCultivateGreenColor]];
-    self.cultiRideSettingsBackground.layer.cornerRadius = 8.0;
     
     UITapGestureRecognizer *gestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideKeyboard)];
     [self.view addGestureRecognizer:gestureRecognizer];
     
-    [self.viewTitle setFont: [UIFont fontWithName:@"Nobile" size:23]];
+    [self.viewTitle setFont: [UIFont fontWithName:@"nobile" size:25]];
     [self.name_label setFont: [UIFont fontWithName:@"Calibri" size:15]];
     [self.postcode_label setFont: [UIFont fontWithName:@"Calibri" size:15]];
     [self.mobile_label setFont: [UIFont fontWithName:@"Calibri" size:15]];
     [self.about_label setFont: [UIFont fontWithName:@"Calibri" size:15]];
     [self.disclaimer_label setFont: [UIFont fontWithName:@"Calibri" size:12]];
+    [self.email_label setFont: [UIFont fontWithName:@"Calibri" size:15]];
     
     [self.navigationController setNavigationBarHidden: YES];
 }
@@ -74,6 +75,7 @@
 {
     [name_field resignFirstResponder];
     [mobile_field resignFirstResponder];
+    [email_field resignFirstResponder];
     [postcode_field resignFirstResponder];
 }
 
@@ -88,6 +90,11 @@
     else if (textField.tag == 1)
     {
         [mobile_field resignFirstResponder];
+        [postcode_field becomeFirstResponder];
+    }
+    else if (textField.tag == 2)
+    {
+        [email_field resignFirstResponder];
         [postcode_field becomeFirstResponder];
     }
     else
@@ -108,10 +115,11 @@
     NSString *name = [name_field text];
     NSString *mobile = [mobile_field text];
     NSString *postcode = [postcode_field text];
+    NSString *email = [email_field text];
     
     if ([name length]>0 && [mobile length]>0 && [postcode length] >0)
     {
-        [Utilities setCultiRideDetailsForName: name mobile: mobile postcode: postcode];
+        [Utilities setCultiRideDetailsForName: name mobile: mobile email: email postcode: postcode];
         [self dismiss];
     }
     else

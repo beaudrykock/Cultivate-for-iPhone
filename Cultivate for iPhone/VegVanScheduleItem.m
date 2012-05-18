@@ -21,6 +21,12 @@
     return [NSString stringWithFormat:@"%@%@%@", stopTime, @" on ", stopDay];
 }
 
+-(NSInteger)hash
+{
+    NSString *hashStr = [NSString stringWithFormat:@"%@%@%i",[stopTime substringToIndex: 2],[stopTime substringFromIndex: 3],[stopName hash]];
+    
+    return [hashStr integerValue];
+}
 
 -(NSInteger)getHourAsInteger
 {

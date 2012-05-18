@@ -9,57 +9,101 @@
 #import "VegVanStopNotification.h"
 
 @implementation VegVanStopNotification
+@synthesize item, stopName, eventDate;
 
--(id)initWithStopName:(NSString*)_stopName day:(NSInteger)_day month: (NSInteger)_month year:(NSInteger)_year hour:(NSInteger)_hour minute:(NSInteger)_minute minutesBefore:(NSInteger)_minutesBefore
+-(id)initWithVegVanScheduleItem:(VegVanScheduleItem*)_item andRepeat:(NSInteger)_repeatPattern andSecondsBefore:(NSInteger)_secondsBefore
 {
     self = [super init];
     
     if (self != nil)
     {
-        stopName = _stopName;
-        day = _day;
-        month = _month;
-        year = _year;
-        minute = _minute;
-        hour = _hour;
-        minutesBefore = minutesBefore;
+        repeatPattern = _repeatPattern;
+        hash = arc4random()%1000;
+        self.item = _item;
+        repeatPattern = _repeatPattern;
+        secondsBefore = _secondsBefore;
+        self.stopName = _item.stopName;
     }
     return self;
 }
 
--(NSInteger)getDay
+-(NSDate*)getRealDateFromItem
 {
-    return day;
+    NSCalendar *gregorian = [[NSCalendar alloc]
+                             initWithCalendarIdentifier:NSGregorianCalendar];
+    unsigned unitFlags = NSWeekdayCalendarUnit | NSHourCalendarUnit |  NSMinuteCalendarUnit;
+    NSDateComponents *components =[gregorian components:unitFlags fromDate:[NSDate date]];
+    NSInteger weekday_now = [components weekday];
+    NSInteger hour_now = [components hour];
+    NSInteger minute_now = [components minute];
+    
+    NSInteger weekday_item = [item getDayAsInteger];
+    NSInteger hour_item = [item getHourAsInteger];
+    NSInteger minute_item = [item getMinuteAsInteger];
+    
+    NSInteger seconds_elasped_now = ((weekday_now-1)*86400)+((hour_now-1)*3600)+(minute_now*60);
+    NSInteger seconds_elasped_item = ((weekday_item-1)*86400)+((hour_item-1)*3600)+(minute_item*60);
+    
+    NSDate *realDate = nil;
+    if (seconds_elasped_now < seconds_elasped_item)
+    {
+        realDate = [[NSDate date] dateByAddingTimeInterval:(seconds_elasped_item-seconds_elasped_now)];
+    }
+    else
+    {
+        NSInteger totalWeekSeconds = 7*24*3600;
+        NSInteger remainingSecsNow = totalWeekSeconds - seconds_elasped_now;
+        realDate = [[NSDate date] dateByAddingTimeInterval: remainingSecsNow + seconds_elasped_item];
+    }
+    
+    return realDate;
 }
 
--(NSInteger)getMonth
+-(void)scheduleNotification 
 {
-    return month;
+    eventDate = [self getRealDateFromItem];
+    NSLog(@"scheduleNotification: eventDate = %@", [eventDate description]);
+    UILocalNotification *localNotif = [[UILocalNotification alloc] init];
+    if (localNotif == nil)
+    return;
+    NSLog(@"scheduleNotification: stopName = %@", self.stopName);
+    NSLog(@"scheduleNotification: secondsbefore = %i", secondsBefore);
+    NSLog(@"scheduleNotification: repeatPattern = %i", repeatPattern);
+    localNotif.fireDate = [eventDate dateByAddingTimeInterval:-1*secondsBefore];
+    localNotif.timeZone = [NSTimeZone defaultTimeZone];
+    NSLog(@"fire date = %@", localNotif.fireDate.description);
+    NSString *address = [[[[[Utilities sharedAppDelegate] vegVanStopManager] vegVanStops] objectForKey: stopName] addressAsString]; 
+     NSLog(@"scheduleNotification: address = %@", address);
+    localNotif.alertBody = [NSString stringWithFormat:NSLocalizedString(@"The veg van will be arriving at %@ in %i minutes.", nil),
+                            address, (secondsBefore/60)];
+    localNotif.alertAction = NSLocalizedString(@"View Details", nil);
+
+    localNotif.soundName = UILocalNotificationDefaultSoundName;
+    localNotif.applicationIconBadgeNumber = 1;
+
+    // default is no repeat
+    if (repeatPattern == kRepeatPatternWeekly)
+    {
+        localNotif.repeatInterval = NSWeekCalendarUnit; // repeats weekly
+    }
+    else if (repeatPattern == kRepeatPatternMonthly)
+    {
+        localNotif.repeatInterval = NSMonthCalendarUnit; // repeats weekly
+    }
+    
+    NSDictionary *infoDict = [NSDictionary dictionaryWithObject:[NSNumber numberWithInt: [item hash]] forKey:kScheduleItemRefKey];
+    localNotif.userInfo = infoDict;
+
+    [[UIApplication sharedApplication] scheduleLocalNotification:localNotif];
 }
 
--(NSInteger)getYear
+-(NSInteger)getSecondsBefore
 {
-    return year;
+    return secondsBefore;
 }
 
--(NSInteger)getHour
+-(NSInteger)getRepeatPattern
 {
-    return hour;
+    return repeatPattern;
 }
-
--(NSInteger)getMinute
-{
-    return minute;
-}
-
--(NSInteger)getMinutesBefore
-{
-    return minutesBefore;
-}
-
--(NSString*)getStopName
-{
-    return stopName;
-}
-
 @end

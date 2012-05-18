@@ -15,23 +15,34 @@
 #define kCultivateGrayColor @"#242424"
 
 // USER DEFAULTS
-#define kDefaultMinutesBeforeKey @"defaultMinutesBeforeKey"
+#define kDefaultSecondsBeforeKey @"defaultSecondsBeforeKey"
 #define kDefaultRepeatPatternKey @"defaultRepeatPatternKey"
 #define kPostcodeKey @"postcodeKey"
 #define kLocalNotificationsEnabledKey @"localNotificationsEnabledKey"
 #define kFirstLaunchRecorded @"firstLaunchRecorded"
 #define kVolunteerDatesKey @"volunteerDatesKey"
 #define kOldTweetsKey @"oldTweetsKey"
+#define kNotificationHashesKey @"notificationHashesKey"
 
-// SETTINGS
+// SETTINGS BUNDLE
+#define pref_showRemindersID @"pref_showReminders"
+#define pref_repeatPatternID @"pref_repeatPattern"
 #define kRepeatPatternOneOff 0
 #define kRepeatPatternWeekly 1
 #define kRepeatPatternMonthly 2
+#define pref_timeBeforeID @"pref_timeBefore"
+#define pref_applySettingsToAllRemindersID @"pref_applySettingsToAllReminders"
 #define kCultiRideDetailsSet @"cultiRideDetailsSet"
+#define pref_nameID @"pref_name"
+#define pref_mobileID @"pref_mobile"
+#define pref_emailID @"pref_email"
+#define pref_postcodeID @"pref_postcode"
+#define pref_resetDetailsID @"pref_resetDetails"
 #define kCultiRideName @"name"
 #define kCultiRideMobile @"mobile"
 #define kCultiRidePostcode @"postcode"
 #define kCultiRideDetails @"cultiRideDetails"
+
 
 // MAILCHIMP
 #define kMailChimpAPIKey @"8bb725580c704b42106c4fcedfa2a9c1-us4"
@@ -85,3 +96,4 @@
 // NOTIFICATIONS
 #define kNewTweetCountGenerated @"New tweet count generated"
 #define kTweetsLoaded @"Tweets loaded"
+#define kScheduleItemRefKey @"scheduleItemRefKey"

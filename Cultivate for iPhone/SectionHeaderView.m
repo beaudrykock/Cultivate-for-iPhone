@@ -54,7 +54,7 @@
         [self addSubview:areaTitleLabel];
         
         notifyColumnTitleLabel = [[UILabel alloc] initWithFrame:notifyColumnTitleLabelFrame];
-        notifyColumnTitleLabel.text = @"Notification   ";
+        notifyColumnTitleLabel.text = @"Reminder     ";
         notifyColumnTitleLabel.textAlignment = UITextAlignmentRight;
         notifyColumnTitleLabel.font = [UIFont fontWithName:@"Nobile" size:15.0];
         notifyColumnTitleLabel.textColor = [UIColor whiteColor];

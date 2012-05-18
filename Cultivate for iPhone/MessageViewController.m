@@ -373,9 +373,14 @@
         NSString *URLString = nil;
         // check if twitter handle
         //NSLog(@"%@",[objectAsStr substringToIndex:1]);
-        if ([[objectAsStr substringToIndex:1] isEqualToString:@"@"])
+        NSString *leadingChar = [objectAsStr substringToIndex:1]; 
+        if ([leadingChar isEqualToString:@"@"])
         {
             URLString = [NSString stringWithFormat:@"%@%@",@"http://www.twitter.com/#!/",objectAsStr];
+        }
+        else if ([leadingChar isEqualToString: @"#"])
+        {
+            URLString = [NSString stringWithFormat:@"%@%@",@"http://www.twitter.com/",objectAsStr];
         }
         else
         {

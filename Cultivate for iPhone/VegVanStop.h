@@ -40,5 +40,6 @@
 -(NSString*)postcodeAndNextScheduledStopAsString;
 -(NSString*)postcodeAsString;
 -(NSString*)nextStopTimeAsStringLessFrequency;
+-(VegVanScheduleItem*)getNextScheduledStop;
 
 @end

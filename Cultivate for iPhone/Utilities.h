@@ -15,9 +15,8 @@
 
 + (UIColor *) colorWithHexString: (NSString *) hexString;
 + (CGFloat) colorComponentFrom: (NSString *) string start: (NSUInteger) start length: (NSUInteger) length;
-+(void)scheduleNotificationWithItem:(VegVanStopNotification*)item;
-+(void)setDefaultMinutesBefore:(NSInteger)minutesBefore;
-+(NSInteger)getDefaultMinutesBefore;
++(void)setDefaultSecondsBefore:(NSInteger)secondsBefore;
++(NSInteger)getDefaultSecondsBefore;
 +(void)setDefaultRepeatPattern:(NSInteger)repeatPattern;
 +(NSInteger)getDefaultRepeatPattern;
 +(UIInterfaceOrientation) interfaceOrientation;
@@ -30,7 +29,7 @@
 +(AppDelegate*)sharedAppDelegate;
 +(NSDictionary*)cultiRideDetails;
 +(BOOL)cultiRideDetailsSet;
-+(void)setCultiRideDetailsForName:(NSString*)_name mobile:(NSString*)_mobile postcode:(NSString*)_postcode;
++(void)setCultiRideDetailsForName:(NSString*)_name mobile:(NSString*)_mobile email:(NSString*)_email postcode:(NSString*)_postcode;
 +(void)enableLocalNotifications:(BOOL)enable;
 +(BOOL)localNotificationsEnabled;
 +(UIImage *)scale:(UIImage *)image toSize:(CGSize)size;
@@ -39,4 +38,9 @@
 +(void)refreshVolunteerDates;
 +(void)updateVolunteerDatesWithRequestStatus:(NSMutableArray*)updatedVolunteerDates;
 +(NSInteger)updateTweets:(NSMutableArray*)tweets;
++(void)checkBundleCompleteness;
++(void)setApplySettingsToAllNotifications:(BOOL)setting;
++(BOOL)applySettingsToAllNotifications;
++(void)prefMaintenance;
+
 @end

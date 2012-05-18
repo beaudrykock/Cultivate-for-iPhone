@@ -16,19 +16,8 @@
     {
         [self storePostcode:kNoPostcodeStored];
     }
-    [self prefMaintenance];
-}
-
-+(void)prefMaintenance
-{
-    [self checkBundleCompleteness];
     
-    if ([[NSUserDefaults standardUserDefaults] boolForKey: pref_resetDetailsID])
-    {
-        [self setCultiRideDetailsForName:nil mobile: nil email: nil postcode: nil];
-        [[NSUserDefaults standardUserDefaults] setBool: NO forKey:pref_resetDetailsID];
-        [[NSUserDefaults standardUserDefaults] synchronize];
-    }
+    [self checkBundleCompleteness];
 }
 
 +(BOOL)postcodeIsValid:(NSString*)postcode
@@ -97,11 +86,8 @@
 +(NSInteger)getDefaultSecondsBefore
 {
     NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
-    NSNumber* secondsbefore = [prefs objectForKey: pref_timeBeforeID];
-    
-    if (secondsbefore != nil)
+    if ([prefs integerForKey:pref_timeBeforeID])
     {
-        NSLog(@"Default seconds before = %i", [prefs integerForKey:pref_timeBeforeID]);
         return [prefs integerForKey:pref_timeBeforeID];
     }
     return 600; // otherwise return default
@@ -179,14 +165,11 @@
     return NO;
 }
 
-+(void)setCultiRideDetailsForName:(NSString*)_name mobile:(NSString*)_mobile email:(NSString*)_email postcode:(NSString*)_postcode
++(void)setCultiRideDetailsForName:(NSString*)_name mobile:(NSString*)_mobile postcode:(NSString*)_postcode
 {
     [[NSUserDefaults standardUserDefaults] setObject:_name forKey:pref_nameID];
     [[NSUserDefaults standardUserDefaults] setObject:_mobile forKey:pref_mobileID];
-    [[NSUserDefaults standardUserDefaults] setObject:_postcode forKey:pref_postcodeID];    
-    if (_email!=nil)
-        [[NSUserDefaults standardUserDefaults] setObject:_email forKey:pref_emailID];
-    
+    [[NSUserDefaults standardUserDefaults] setObject:_postcode forKey:pref_postcodeID];
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
@@ -324,22 +307,11 @@
     
     if (nil == [[NSUserDefaults standardUserDefaults] valueForKey:pref_applySettingsToAllRemindersID])
     {
-        NSLog(@"Utilities says it has fixed a missing pref_applySettingsToAllRemindersID setting");
-        [prefs setBool:NO forKey:pref_applySettingsToAllRemindersID];
+        //NSLog(@"Utilities says it has fixed a missing reset app setting");
+        [prefs setBool:YES forKey:pref_applySettingsToAllRemindersID];
         [prefs synchronize];
     }
     
-}
-
-+(BOOL)applySettingsToAllNotifications
-{
-    return [[NSUserDefaults standardUserDefaults] boolForKey: pref_applySettingsToAllRemindersID];
-}
-
-+(void)setApplySettingsToAllNotifications:(BOOL)setting
-{
-    [[NSUserDefaults standardUserDefaults] setBool:setting forKey: pref_applySettingsToAllRemindersID];
-    [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
 @end

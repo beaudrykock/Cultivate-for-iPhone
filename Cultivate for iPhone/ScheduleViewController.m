@@ -9,7 +9,7 @@
 #import "ScheduleViewController.h"
 
 @implementation ScheduleViewController
-@synthesize areas, managedObjectContext, scheduledStopStringsByArea, sidvc, removeSIDVCPane, stopsForEachItem, background;
+@synthesize areas, managedObjectContext, scheduledStopStringsByArea, sidvc, removeSIDVCPane, stopsForEachItem, background, settingsBackground, notificationSettingsViewController, overlay, vegVanScheduleItems;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -55,6 +55,13 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"ScheduledStopCell";
+    NSString *area = [self tableView:self.tableView titleForHeaderInSection:indexPath.section];
+    NSInteger absoluteIndex = [self getAbsoluteRowNumberForIndexPath:indexPath andArea: area];
+    VegVanStop *vegVanStop = [[[[Utilities sharedAppDelegate] vegVanStopManager] vegVanStops] objectForKey: [stopsForEachItem objectAtIndex: absoluteIndex]];
+    if ([vegVanScheduleItems count] <= absoluteIndex)
+    {
+        [vegVanScheduleItems addObject: [vegVanStop getNextScheduledStop]];
+    }
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
@@ -62,6 +69,11 @@
         
         UISwitch *switchview = [[UISwitch alloc] initWithFrame:CGRectZero];
          
+        if ([self localNotificationInSystemForStopAtIndex:absoluteIndex]) 
+        {
+            [switchview setOn: YES animated: NO];
+        }
+        
         [switchview addTarget:self action:@selector(accessorySwitchChanged:withEvent:) forControlEvents:UIControlEventValueChanged];
         
         if (![Utilities localNotificationsEnabled])
@@ -69,9 +81,6 @@
         
         cell.accessoryView = switchview;
     }
-    NSString *area = [self tableView:self.tableView titleForHeaderInSection:indexPath.section];
-    NSInteger absoluteIndex = [self getAbsoluteRowNumberForIndexPath:indexPath andArea: area];
-    VegVanStop *vegVanStop = [[[[Utilities sharedAppDelegate] vegVanStopManager] vegVanStops] objectForKey: [stopsForEachItem objectAtIndex: absoluteIndex]];
     
 	cell.textLabel.text = [vegVanStop addressAsString];
     cell.detailTextLabel.text = [vegVanStop nextStopTimeAsString];
@@ -97,19 +106,22 @@
     if ( indexPath == nil )
         return;
     
-    if ([switch1 isOn])
+    NSString *area = [self tableView:self.tableView titleForHeaderInSection:indexPath.section];
+    NSInteger absoluteIndex = [self getAbsoluteRowNumberForIndexPath:indexPath andArea: area];
+    VegVanStop *vegVanStop = [[[[Utilities sharedAppDelegate] vegVanStopManager] vegVanStops] objectForKey: [stopsForEachItem objectAtIndex: absoluteIndex]];
+    
+    if ([switch1 isOn] && ![Utilities applySettingsToAllNotifications])
     {
-        // NOTE: stop name must be included in the alert body, otherwise notification removal method
-        // below will not work
-        VegVanStopNotification *notification = [[VegVanStopNotification alloc] initWithStopName:@"Jericho 1 / 65 Walton St" day:25 month: 4 year:2012 hour:16 minute:00 minutesBefore:5];
-        [Utilities scheduleNotificationWithItem:notification];
+        [self promptForNotificationSettingsWithStop:vegVanStop andItem:[vegVanScheduleItems objectAtIndex: absoluteIndex]];
+    }
+    else if ([switch1 isOn] && [Utilities applySettingsToAllNotifications])
+    {
+        VegVanStopNotification *notification = [[VegVanStopNotification alloc] initWithVegVanScheduleItem: [vegVanScheduleItems objectAtIndex: absoluteIndex] andRepeat:[Utilities getDefaultRepeatPattern] andSecondsBefore:[Utilities getDefaultSecondsBefore]];
+        
+        [notification scheduleNotification];
     }
     else
     {
-        NSString *area = [self tableView:self.tableView titleForHeaderInSection:indexPath.section];
-        NSInteger absoluteIndex = [self getAbsoluteRowNumberForIndexPath:indexPath andArea: area];
-        VegVanStop *vegVanStop = [[[[Utilities sharedAppDelegate] vegVanStopManager] vegVanStops] objectForKey: [stopsForEachItem objectAtIndex: absoluteIndex]];
-        
         NSArray *notifications = [[UIApplication sharedApplication] scheduledLocalNotifications];
         BOOL found = NO;
         NSInteger counter = 0;
@@ -119,13 +131,17 @@
         {
             notif = [notifications objectAtIndex: counter];
             NSLog(@"alertbody = %@", notif.alertBody);
-            if ([notif.alertBody rangeOfString: [vegVanStop name]].location != NSNotFound)
+            NSDictionary *userinfo = notif.userInfo;
+            NSNumber *itemHash = [userinfo objectForKey: kScheduleItemRefKey]; 
+            if ([itemHash intValue] == [[self.vegVanScheduleItems objectAtIndex: absoluteIndex] hash])
             {
                 found = YES;
                 foundIndex = counter;
+                
             }
-            
             counter++;
+            
+            if (found) break;
         }
         
         if (found)
@@ -133,7 +149,73 @@
     }
     NSLog(@"switch changed in section %i and row %i", [indexPath section], [indexPath row]);
 }
-                            
+
+-(BOOL)localNotificationInSystemForStopAtIndex:(NSInteger)index
+{
+    NSArray *notifications = [[UIApplication sharedApplication] scheduledLocalNotifications];
+    BOOL found = NO;
+    NSInteger counter = 0;
+    UILocalNotification* notif = nil;
+    while (!found && counter < [notifications count])
+    {
+        notif = [notifications objectAtIndex: counter];
+        NSLog(@"alertbody = %@", notif.alertBody);
+        NSDictionary *userinfo = notif.userInfo;
+        NSNumber *itemHash = [userinfo objectForKey: kScheduleItemRefKey]; 
+        NSLog(@"notification hash = %i", [itemHash intValue]);
+        NSLog(@"stored item hash = %i", [[self.vegVanScheduleItems objectAtIndex: index] hash]);
+        if ([itemHash intValue] == [[self.vegVanScheduleItems objectAtIndex: index] hash])
+        {
+            found = YES;
+        }
+        counter++;
+        
+        if (found) break;
+    }
+    return found;
+}
+
+-(void)promptForNotificationSettingsWithStop:(VegVanStop*)vegVanStop andItem:(VegVanScheduleItem*)item
+{
+    self.tableView.scrollEnabled = NO;
+    
+    settingsBackground = [[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, 320.0, 480.0)];
+    [settingsBackground setBackgroundColor:[UIColor clearColor]];
+    overlay = [[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, 320.0, 480.0)];
+    [overlay setBackgroundColor:[UIColor blackColor]];
+    [overlay setAlpha:0.0];
+    [settingsBackground addSubview:overlay];
+    [self.view addSubview:settingsBackground];
+    
+    notificationSettingsViewController = [[NotificationSettingsViewController alloc] init];
+    [notificationSettingsViewController setVegVanStop: vegVanStop];
+    [notificationSettingsViewController setDelegate:self];
+    [notificationSettingsViewController setVegVanScheduleItem:item];
+    [notificationSettingsViewController.view setFrame:CGRectMake(0.0, -303.0, notificationSettingsViewController.view.frame.size.width, notificationSettingsViewController.view.frame.size.height)];
+    CGRect animateToFrame = notificationSettingsViewController.view.frame;
+    animateToFrame.origin.y = 0.0;
+    [self.view addSubview:notificationSettingsViewController.view];
+    [UIView beginAnimations:nil context:NULL];  
+    
+    [UIView setAnimationDuration:0.4];
+    
+    [UIView setAnimationDelegate:self];
+    //[UIView setAnimationDidStopSelector:@selector(_shrinkDidEnd:finished:contextInfo:)];
+    notificationSettingsViewController.view.frame = animateToFrame;  
+    [overlay setAlpha:0.8];
+    [UIView commitAnimations];
+    
+    /*
+    CABasicAnimation *slideAnimation = [CABasicAnimation animationWithKeyPath:@"transform.translation.y"];
+    slideAnimation.toValue = [NSNumber numberWithDouble:0];
+    
+    CABasicAnimation *fadeInAnimation = [CABasicAnimation animationWithKeyPath:@"opacity"];
+    [fadeOutAnimation setToValue:[NSNumber numberWithFloat:0.3]];
+    fadeOutAnimation.fillMode = kCAFillModeForwards;
+    fadeOutAnimation.removedOnCompletion = NO;
+    */
+    
+}                            
 /*
  // Override to support conditional editing of the table view.
  - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
@@ -185,6 +267,30 @@
     absoluteRow += indexPath.row;
     
     return absoluteRow;
+}
+
+-(void)dismissNotificationSettingsViewController
+{
+    self.tableView.scrollEnabled = YES;
+    [UIView beginAnimations:nil context:NULL];  
+    
+    [UIView setAnimationDuration:0.4];
+    
+    [UIView setAnimationDelegate:self];
+    [UIView setAnimationDidStopSelector:@selector(removeNotificationSettingsViews)];
+    CGRect animateToFrame = notificationSettingsViewController.view.frame;
+    animateToFrame.origin.y = -303.0;
+    notificationSettingsViewController.view.frame = animateToFrame;  
+    [overlay setAlpha:0.0];
+    [UIView commitAnimations];
+}
+
+-(void)removeNotificationSettingsViews
+{
+    [settingsBackground removeFromSuperview];
+    settingsBackground = nil;
+    [notificationSettingsViewController.view removeFromSuperview];
+    notificationSettingsViewController = nil;
 }
 
 #pragma mark - Table view delegate
@@ -272,27 +378,24 @@
 {
     [super viewDidLoad];
       
+    self.vegVanScheduleItems = [NSMutableArray arrayWithCapacity:10];
     self.stopsForEachItem = [[[Utilities sharedAppDelegate] vegVanStopManager] stopsForScheduledItems];
     self.scheduledStopStringsByArea = [[[Utilities sharedAppDelegate] vegVanStopManager] scheduledStopStringsByArea];
-    //NSArray *jerichoStops = [NSArray arrayWithObjects:@"10 am Tuesdays @ 14 Oxford St", @"3 pm Wednesdays @ 23 Walton St", nil];
-    //NSArray *eastOxfordStops = [NSArray arrayWithObjects:@"10 am Mondays @ 11 Magdalen Rd", @"11 am Fridays @ 16 London Road", nil];
-    //self.scheduledStops = [NSDictionary dictionaryWithObjectsAndKeys:jerichoStops, @"Jericho", eastOxfordStops, @"East Oxford", nil];
     self.areas = [[[Utilities sharedAppDelegate] vegVanStopManager] vegVanStopAreas];
-    //[NSDictionary dictionaryWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"scheduledStops" ofType:@"plist"]];
     
     if ([Utilities isFirstLaunch])
     {
         background = [[UIView alloc] initWithFrame:CGRectMake(0.0,0.0,320,480)];
         [background setBackgroundColor: [UIColor clearColor]];
         
-        UIView* overlay = [[UIView alloc] initWithFrame:background.frame];
-        [overlay setBackgroundColor:[UIColor blackColor]];
-        [overlay setAlpha: 0.5];
-        [background addSubview: overlay];
+        UIView* _overlay = [[UIView alloc] initWithFrame:background.frame];
+        [_overlay setBackgroundColor:[UIColor blackColor]];
+        [_overlay setAlpha: 0.5];
+        [background addSubview: _overlay];
         NSString* overlayPath = [[NSBundle mainBundle] pathForResource:@"schedule_help" ofType:@"png"];
         UIImage* overlayImage = [[UIImage alloc] initWithContentsOfFile:overlayPath];
         UIImageView *overlayView = [[UIImageView alloc] initWithImage:overlayImage];
-        [overlayView setFrame: CGRectMake(35,25,250.0,286.0)];
+        [overlayView setFrame: CGRectMake(35,25,250.0,370.0)];
         [background addSubview:overlayView];
         [self.view addSubview: background];
         

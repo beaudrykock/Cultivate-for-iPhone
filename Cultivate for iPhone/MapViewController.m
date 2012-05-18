@@ -57,7 +57,7 @@
     NSInteger tweetCount = [[Utilities sharedAppDelegate] getNewTweetCount];
     
     if (tweetCount>0)
-        [[[[[self tabBarController] tabBar] items] objectAtIndex:3] setBadgeValue:[NSString stringWithFormat:@"%i", tweetCount]];
+        [[[[[self tabBarController] tabBar] items] objectAtIndex:2] setBadgeValue:[NSString stringWithFormat:@"%i", tweetCount]];
     
 }
 

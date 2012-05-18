@@ -19,8 +19,12 @@
     // Override point for customization after application launch.
     [Utilities setup];
     
+    [self checkNotificationsEnabledStatus];
+    
     vegVanStopManager = [[VegVanStopManager alloc] init];
     BOOL successfulLoad = [vegVanStopManager loadVegVanStops];
+    
+    NSAssert(successfulLoad, @"Stops not loaded");
     
     // clear the badge number
     [[UIApplication sharedApplication] setApplicationIconBadgeNumber:0];
@@ -33,6 +37,17 @@
     tabBarController = (UITabBarController *)self.window.rootViewController;
     tabBarController.moreNavigationController.navigationBar.hidden = YES;
     return YES;
+}
+
+-(void)checkNotificationsEnabledStatus
+{
+    if (![Utilities localNotificationsEnabled])
+    {
+        NSArray *notifications = [[UIApplication sharedApplication] scheduledLocalNotifications];
+        if ([notifications count]>0)
+            [[UIApplication sharedApplication] cancelAllLocalNotifications];
+            
+    }
 }
 
 - (void)getPublicTimeline 
@@ -59,8 +74,8 @@
 		else {
 			output = [NSString stringWithFormat:@"HTTP response status: %i\nerror: %@", [urlResponse statusCode], [error description]];
             NSError *jsonParsingError = nil;
-            NSDictionary *errorDict = [NSJSONSerialization JSONObjectWithData:responseData options:0 error:&jsonParsingError];
-            NSLog(@"error desc = %@", [errorDict description]);
+            //NSDictionary *errorDict = [NSJSONSerialization JSONObjectWithData:responseData options:0 error:&jsonParsingError];
+            //NSLog(@"error desc = %@", [errorDict description]);
 		}
 		NSLog(@"output = %@", output);
         

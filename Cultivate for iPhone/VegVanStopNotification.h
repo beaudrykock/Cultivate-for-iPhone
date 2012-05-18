@@ -7,23 +7,26 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "VegVanScheduleItem.h"
 
 @interface VegVanStopNotification : NSObject
 {
     NSString *stopName;
-    NSInteger month;
-    NSInteger day;
-    NSInteger year;
-    NSInteger hour;
-    NSInteger minute;
-    NSInteger minutesBefore;
+    NSDate *eventDate;
+    NSInteger secondsBefore;
+    NSInteger repeatPattern;
+    NSInteger hash;
+    VegVanScheduleItem *item;
 }
--(id)initWithStopName:(NSString*)_stopName day:(NSInteger)_day month: (NSInteger)_month year:(NSInteger)_year hour:(NSInteger)_hour minute:(NSInteger)_minute minutesBefore:(NSInteger)_minutesBefore;
--(NSInteger)getDay;
--(NSInteger)getMonth;
--(NSInteger)getYear;
--(NSInteger)getHour;
--(NSInteger)getMinute;
--(NSInteger)getMinutesBefore;
+
+@property (nonatomic, strong) NSString* stopName;
+@property (nonatomic, strong) NSDate* eventDate;
+@property (nonatomic, strong) VegVanScheduleItem *item;
+
+
+-(id)initWithVegVanScheduleItem:(VegVanScheduleItem*)_item andRepeat:(NSInteger)_repeatPattern andSecondsBefore:(NSInteger)_secondsBefore;
+-(NSInteger)getSecondsBefore;
 -(NSString*)getStopName;
+-(NSInteger)getRepeatPattern;
+-(void)scheduleNotification;
 @end

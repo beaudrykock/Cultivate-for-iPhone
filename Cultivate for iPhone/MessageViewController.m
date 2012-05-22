@@ -380,7 +380,7 @@
         }
         else if ([leadingChar isEqualToString: @"#"])
         {
-            URLString = [NSString stringWithFormat:@"%@%@",@"http://www.twitter.com/",objectAsStr];
+            URLString = [NSString stringWithFormat:@"%@%@",@"http://mobile.twitter.com/search/%23",[objectAsStr substringFromIndex:1]];
         }
         else
         {

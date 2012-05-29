@@ -11,8 +11,9 @@
 #import "VegVanStopNotification.h"
 #import "ScheduleItemDetailViewController.h"
 #import "NotificationSettingsViewController.h"
+#import "PullToRefreshViewController.h"
 
-@interface ScheduleViewController : UITableViewController <SectionHeaderViewDelegate, ScheduleItemDetailViewControllerDelegate, NotificationSettingsViewControllerDelegate>
+@interface ScheduleViewController : PullToRefreshViewController <SectionHeaderViewDelegate, ScheduleItemDetailViewControllerDelegate, NotificationSettingsViewControllerDelegate>
 {       
     NSMutableArray *areas;
     NSDictionary *scheduledStopStringsByArea;
@@ -44,6 +45,7 @@
 -(void)dismissNotificationSettingsViewController;
 -(void)removeNotificationSettingsViews;
 -(BOOL)localNotificationInSystemForStopAtIndex:(NSInteger)indexPath;
-
+-(void)loadingComplete;
+-(void)doRefresh;
 @end
 

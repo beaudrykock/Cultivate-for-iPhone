@@ -97,3 +97,15 @@
 #define kNewTweetCountGenerated @"New tweet count generated"
 #define kTweetsLoaded @"Tweets loaded"
 #define kScheduleItemRefKey @"scheduleItemRefKey"
+#define kTweetTabIndex 3
+
+// GOOGLE ANALYTICS
+// Dispatch period in seconds - every 5 mins only
+static const NSInteger kGANDispatchPeriodSec = 300;
+#define kGoogleAnalyticsKey @"UA-27507588-1"
+#define kAppNavigationEvent @"App navigation"
+#define kMapInteractionEvent @"Map interaction"
+#define kFeedbackEvent @"Feedback"
+#define kSharingEvent @"Sharing"
+#define kNotificationEvent @"Notifications"
+#define kContentInteractionEvent @"Content interaction"

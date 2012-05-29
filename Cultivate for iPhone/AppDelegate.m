@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate.h"
+#import "GANTracker.h"
 
 @implementation AppDelegate
 
@@ -36,7 +37,16 @@
     }
     tabBarController = (UITabBarController *)self.window.rootViewController;
     tabBarController.moreNavigationController.navigationBar.hidden = YES;
+    
+    [self startGoogleAnalytics];
     return YES;
+}
+
+-(void)startGoogleAnalytics
+{
+    [[GANTracker sharedTracker] startTrackerWithAccountID:kGoogleAnalyticsKey
+                                           dispatchPeriod:kGANDispatchPeriodSec
+                                                 delegate:nil];
 }
 
 -(void)checkNotificationsEnabledStatus

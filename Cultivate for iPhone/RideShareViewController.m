@@ -57,6 +57,11 @@
     self.selectedValues = arrayValues;
     [self.submitButton setButtonTitle: @"Submit request"];
     
+    NSError *error;
+    if (![[GANTracker sharedTracker] trackPageview:@"CultiRide view"
+                                         withError:&error]) {
+        NSLog(@"GANTracker error, %@", [error localizedDescription]);
+    }
     
 }
 
@@ -139,6 +144,15 @@
             NSString *date = [volunteerDates objectAtIndex: counter];
             if ([date rangeOfString: @"requested"].location == NSNotFound)
             {
+                NSError *error;
+                if (![[GANTracker sharedTracker] trackEvent:kFeedbackEvent
+                                                     action:@"Requesting a volunteer ride"
+                                                      label:[NSString stringWithFormat:@"Date requested = %@",date]
+                                                      value:0
+                                                  withError:&error]) {
+                    NSLog(@"GANTracker error, %@", [error localizedDescription]);
+                }
+                
                 NSString *newDate = [NSString stringWithFormat:@"%@%@",date, @" - requested"];
                 [self.volunteerDates replaceObjectAtIndex: counter withObject: newDate];
                 [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;

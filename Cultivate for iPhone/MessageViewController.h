@@ -13,8 +13,9 @@
 #import "TweetTableViewCell.h"
 #import "SVWebViewController.h"
 #import "TweetHeaderView.h"
+#import "PullToRefreshViewController.h"
 
-@interface MessageViewController : UITableViewController
+@interface MessageViewController : PullToRefreshViewController
 {
     NSArray *tweets;
     NSMutableArray *tweetImageURLs;
@@ -34,5 +35,7 @@
 - (void)handleTweetNotification:(NSNotification *)notification;
 -(void)launchWebViewWithURLString:(NSString*)urlString;
 -(NSMutableArray*)tweetTextsFromTweets;
+-(void)loadingComplete;
+-(void)doRefresh;
 
 @end

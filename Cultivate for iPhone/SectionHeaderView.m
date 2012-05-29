@@ -66,7 +66,7 @@
         //[topBorder setBackgroundColor:[UIColor whiteColor]];
         //[self addSubview:topBorder];
         
-        [self setBackgroundColor:[Utilities colorWithHexString:@"#91C65F"]];
+        [self setBackgroundColor:[Utilities colorWithHexString:kCultivateGreenColor]];//@"#91C65F"]];
         
     }
     

@@ -83,12 +83,12 @@
     }
     
 	cell.textLabel.text = [vegVanStop addressAsString];
-    cell.detailTextLabel.text = [vegVanStop nextStopTimeAsString];
-    cell.textLabel.font = [UIFont fontWithName:@"Calibri" size: 12.0];
-    cell.detailTextLabel.font = [UIFont fontWithName:@"Calibri" size: 12.0];
+    cell.detailTextLabel.text = [vegVanStop nextStopTimeAsStringLessFrequency];
+    cell.textLabel.font = [UIFont fontWithName:@"Calibri" size: 16.0];
+    cell.detailTextLabel.font = [UIFont fontWithName:@"Calibri" size: 16.0];
     
     NSString* testImageFilename = [[NSBundle mainBundle] pathForResource:@"stop_placeholder" ofType:@"png"];
-    UIImage *image = [Utilities scale: [[UIImage alloc] initWithContentsOfFile:testImageFilename] toSize: CGSizeMake(40.0,30.0)];
+    UIImage *image = [Utilities scale: [[UIImage alloc] initWithContentsOfFile:testImageFilename] toSize: CGSizeMake(50.0,40.0)];
     cell.imageView.image = image;//[[UIImage alloc] initWithContentsOfFile:testImageFilename];
     
 	cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
@@ -96,8 +96,15 @@
     return cell;
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 70.0;
+}
+
 - (void)accessorySwitchChanged:(UIControl*)button withEvent:(UIEvent*)event
 {
+    
+    
     UISwitch *switch1 = (UISwitch *)button;
     UITableViewCell *cell = (UITableViewCell *)switch1.superview;
     NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
@@ -109,6 +116,29 @@
     NSString *area = [self tableView:self.tableView titleForHeaderInSection:indexPath.section];
     NSInteger absoluteIndex = [self getAbsoluteRowNumberForIndexPath:indexPath andArea: area];
     VegVanStop *vegVanStop = [[[[Utilities sharedAppDelegate] vegVanStopManager] vegVanStops] objectForKey: [stopsForEachItem objectAtIndex: absoluteIndex]];
+    
+    if ([switch1 isOn])
+    {
+        NSError *error;
+        if (![[GANTracker sharedTracker] trackEvent:kNotificationEvent
+                                             action:@"Activate notification"
+                                              label:@""
+                                              value:0
+                                          withError:&error]) {
+            NSLog(@"GANTracker error, %@", [error localizedDescription]);
+        }
+    }
+    else {
+        
+        NSError *error;
+        if (![[GANTracker sharedTracker] trackEvent:kNotificationEvent
+                                             action:@"Deactivate notification"
+                                              label:@""
+                                              value:0
+                                          withError:&error]) {
+            NSLog(@"GANTracker error, %@", [error localizedDescription]);
+        }
+    }
     
     if ([switch1 isOn] && ![Utilities applySettingsToAllNotifications])
     {
@@ -215,7 +245,25 @@
     fadeOutAnimation.removedOnCompletion = NO;
     */
     
-}                            
+}       
+
+#pragma mark - Pull-to-refresh functionality
+-(void) loadingComplete  {
+    
+    self.loading = NO;
+}
+-(void) doRefresh  {
+    
+    NSError *error;
+    if (![[GANTracker sharedTracker] trackEvent:kContentInteractionEvent
+                                         action:@"Refresh list of stops"
+                                          label:@""
+                                          value:0
+                                      withError:&error]) {
+        NSLog(@"GANTracker error, %@", [error localizedDescription]);
+    }
+    [self performSelector:@selector(loadingComplete) withObject:nil afterDelay:2];
+}
 /*
  // Override to support conditional editing of the table view.
  - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
@@ -297,6 +345,15 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    NSError *error;
+    if (![[GANTracker sharedTracker] trackEvent:kContentInteractionEvent
+                                         action:@"Load stop detail"
+                                          label:@""
+                                          value:0
+                                      withError:&error]) {
+        NSLog(@"GANTracker error, %@", [error localizedDescription]);
+    }
+    
 	NSString *area = [self tableView:tableView titleForHeaderInSection:indexPath.section];
 	
     if (sidvc == nil)
@@ -402,7 +459,11 @@
         UITapGestureRecognizer *backgroundTap = [[UITapGestureRecognizer alloc] initWithTarget: self action: @selector(removeHelp)];
         [background addGestureRecognizer: backgroundTap];
     }
-    
+    NSError *error;
+    if (![[GANTracker sharedTracker] trackPageview:@"Schedule view"
+                                         withError:&error]) {
+        NSLog(@"GANTracker error, %@", [error localizedDescription]);
+    }
 }
 
 -(void)removeHelp

@@ -29,5 +29,6 @@
 -(NSInteger)getNewTweetCount;
 -(BOOL)areTweetsLoaded;
 -(void)checkNotificationsEnabledStatus;
+-(void)startGoogleAnalytics;
 
 @end

@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import <MapKit/MapKit.h>
 #import "VegVanStopLocation.h"
+#import "FarmAnnotation.h"
 #import <QuartzCore/QuartzCore.h>
 #import "VegVanStop.h"
 #import "ScheduleItemDetailViewController.h"
@@ -27,6 +28,8 @@
     ScheduleItemDetailViewController *sidvc;
     UINavigationBar *bar;
     UIButton *findButton;
+    UIButton *showUserLocationButton;
+    BOOL farmShowing;
 }
 
 //@property (nonatomic, strong) IBOutlet UIWebView *mapView;
@@ -40,7 +43,9 @@
 @property (nonatomic, strong) UIView *touchView;
 @property (nonatomic,strong) ScheduleItemDetailViewController *sidvc;
 @property (nonatomic, strong) IBOutlet UIButton* findButton;
+@property (nonatomic, strong) IBOutlet UIButton* showUserLocationButton;
 
+-(void)promptForLocationServicesFindMe;
 -(void)plotVegVanStopLocations;
 - (void)startStandardUpdates;
 -(void)promptForLocationServices;
@@ -54,4 +59,7 @@
 - (void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar;
 - (void)registerForKeyboardNotifications;
 - (void)hideSIVDC;
+-(IBAction)showFarmLocation:(id)sender;
+-(void)selectFarmAnnotation:(FarmAnnotation*)annotation;
+
 @end

@@ -10,7 +10,7 @@
 
 @implementation MapViewController
 //@synthesize mapView;
-@synthesize locationManager, currentLocation, locateDropdown, locateVanOptionsPosition, searchBarBackground, stopSearchBar, touchView, sidvc, bar, findButton;
+@synthesize locationManager, currentLocation, locateDropdown, locateVanOptionsPosition, searchBarBackground, stopSearchBar, touchView, sidvc, bar, findButton, showUserLocationButton;
 
 - (void)didReceiveMemoryWarning
 {
@@ -48,7 +48,11 @@
     {
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateTweetTabBadge) name: kNewTweetCountGenerated object:nil];
     }
-    
+    NSError *error;
+    if (![[GANTracker sharedTracker] trackPageview:@"Map view"
+                                         withError:&error]) {
+        NSLog(@"GANTracker error, %@", [error localizedDescription]);
+    }
     
 }
 
@@ -57,7 +61,7 @@
     NSInteger tweetCount = [[Utilities sharedAppDelegate] getNewTweetCount];
     
     if (tweetCount>0)
-        [[[[[self tabBarController] tabBar] items] objectAtIndex:2] setBadgeValue:[NSString stringWithFormat:@"%i", tweetCount]];
+        [[[[[self tabBarController] tabBar] items] objectAtIndex:kTweetTabIndex] setBadgeValue:[NSString stringWithFormat:@"%i", tweetCount]];
     
 }
 
@@ -65,7 +69,7 @@
 {
     [locateDropdown removeFromSuperview];
     [self.view insertSubview:locateDropdown belowSubview:bar];
-    [locateDropdown setFrame:CGRectMake(215.0, -45, locateDropdown.frame.size.width, locateDropdown.frame.size.height)];
+    [locateDropdown setFrame:CGRectMake(215.0, -82.0/*-45*/, locateDropdown.frame.size.width, locateDropdown.frame.size.height)];
     
     locateDropdown.layer.cornerRadius = 5.0;
 }
@@ -82,6 +86,14 @@
 
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
 {
+    NSError *error;
+    if (![[GANTracker sharedTracker] trackEvent:kMapInteractionEvent
+                                         action:@"Searching for a stop"
+                                          label:@""
+                                          value:0
+                                      withError:&error]) {
+        NSLog(@"GANTracker error, %@", [error localizedDescription]);
+    }
     NSString *searchTerm = [searchBar text];
     
     NSMutableArray *matchingStopNames = nil;
@@ -144,21 +156,41 @@
 {
     // Create the location manager if this object does not
     // already have one.
-    if (nil == locationManager)
-        locationManager = [[CLLocationManager alloc] init];
-    
-    [locationManager setPurpose:@"Cultivate uses your location to determine the nearest VegVan stop."];
-    
-    if ([CLLocationManager locationServicesEnabled] && [CLLocationManager authorizationStatus] == kCLAuthorizationStatusAuthorized)
-    {
-        locationManager.delegate = self;
-        locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters;
+    //if ([CLLocationManager locationServicesEnabled]/* && [CLLocationManager authorizationStatus] == kCLAuthorizationStatusAuthorized*/)
+    //{
+        if (nil == locationManager)
+        {
+            self.locationManager = [[CLLocationManager alloc] init];
+        }
+        
+        [self.locationManager setPurpose:@"Cultivate needs your location to determine the nearest VegVan stop."];
+        self.locationManager.delegate = self;
+        self.locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters;
         
         // Set a movement threshold for new events.
-        locationManager.distanceFilter = 500;
+        self.locationManager.distanceFilter = 500;
         
-        [locationManager startUpdatingLocation];
-    }
+        [self.locationManager startUpdatingLocation];
+    
+        [_mapView setShowsUserLocation:YES];
+   // }
+    //else
+    //{
+    //    [_mapView setShowsUserLocation:NO];
+    //}
+}
+
+// when user taps the locate me button, this is popped up if location services not enabled
+-(void)promptForLocationServicesFindMe
+{
+    UIAlertView *prompt = [[UIAlertView alloc] initWithTitle:@"Location Services not enabled"
+                                                     message:@"Please go to Settings>Location Services to enable"
+                                                    delegate:self
+                                           cancelButtonTitle:@"Done"
+                                           otherButtonTitles: nil];
+    [prompt setAlertViewStyle:UIAlertViewStyleDefault];
+    prompt.tag = 100;
+    [prompt show];
 }
 
 -(void)promptForLocationServices
@@ -190,27 +222,36 @@
         }
     }
     else {
-        {
-            [alertView dismissWithClickedButtonIndex:1 animated:YES];
-        }
+        [alertView dismissWithClickedButtonIndex:1 animated:YES];
     }
 }
 
 - (BOOL)alertViewShouldEnableFirstOtherButton:(UIAlertView *)alertView
 {
-    NSString *inputText = [[alertView textFieldAtIndex:0] text];
-    if([Utilities postcodeIsValid:inputText])
+    if (alertView.tag == 0)
     {
-        return YES;
-    }
-    else
-    {
-        return NO;
+        NSString *inputText = [[alertView textFieldAtIndex:0] text];
+        if([Utilities postcodeIsValid:inputText])
+        {
+            return YES;
+        }
+        else
+        {
+            return NO;
+        }
     }
 }
 
 -(IBAction)dropdownLocateVanOptionsFromButton:(id)sender
 {
+    NSError *error;
+    if (![[GANTracker sharedTracker] trackEvent:kMapInteractionEvent
+                                         action:@"Open find dropdown"
+                                          label:@""
+                                          value:0
+                                      withError:&error]) {
+        NSLog(@"GANTracker error, %@", [error localizedDescription]);
+    }
     [self dropdownLocateVanOptionsWithAnimation:YES];
 }
 
@@ -225,7 +266,7 @@
             locateVanOptionsPosition = [NSNumber numberWithInt:1];
         }
         else {
-            frame = CGRectMake(locateDropdown.frame.origin.x, -45, locateDropdown.frame.size.width, locateDropdown.frame.size.height);
+            frame = CGRectMake(locateDropdown.frame.origin.x, -82.0/*-45*/, locateDropdown.frame.size.width, locateDropdown.frame.size.height);
             locateVanOptionsPosition = [NSNumber numberWithInt:0];
         }
         [UIView beginAnimations:nil context:NULL];
@@ -242,7 +283,7 @@
             locateVanOptionsPosition = [NSNumber numberWithInt:1];
         }
         else {
-            locateDropdown.frame = CGRectMake(locateDropdown.frame.origin.x, -45, locateDropdown.frame.size.width, locateDropdown.frame.size.height);
+            locateDropdown.frame = CGRectMake(locateDropdown.frame.origin.x, -82.0/*-45*/, locateDropdown.frame.size.width, locateDropdown.frame.size.height);
             locateVanOptionsPosition = [NSNumber numberWithInt:0];
         }
     }
@@ -281,11 +322,8 @@
     CLLocationCoordinate2D zoomLocation;
     zoomLocation.latitude = 51.751944;
     zoomLocation.longitude= -1.257778;
-    // 2
     MKCoordinateRegion viewRegion = MKCoordinateRegionMakeWithDistance(zoomLocation, 3.0*METERS_PER_MILE, 3.0*METERS_PER_MILE);
-    // 3
     MKCoordinateRegion adjustedRegion = [_mapView regionThatFits:viewRegion];                
-    // 4
     [_mapView setRegion:adjustedRegion animated:YES]; 
     
     [self plotVegVanStopLocations];
@@ -295,20 +333,103 @@
     [super viewWillAppear:animated];
 }
 
+#pragma mark - Showing locations
+-(IBAction)showFarmLocation:(id)sender
+{
+    NSError *error;
+    if (![[GANTracker sharedTracker] trackEvent:kMapInteractionEvent
+                                         action:@"Show farm location"
+                                          label:@""
+                                          value:0
+                                      withError:&error]) {
+        NSLog(@"GANTracker error, %@", [error localizedDescription]);
+    }
+    
+    [self dropdownLocateVanOptionsWithAnimation:YES];
+    
+    if (!farmShowing)
+    {
+        CLLocationCoordinate2D coordinate;
+        coordinate.latitude = 51.62959284321353;
+        coordinate.longitude = -1.1913084983825684;            
+        FarmAnnotation *annotation = [[FarmAnnotation alloc] initWithName: @"Cultivate @ the Earth Trust" address: @"Little Wittenham, Oxfordshire, OX14 4QZ" coordinate:coordinate];
+        [_mapView addAnnotation:annotation];
+        farmShowing = YES;
+        
+        CLLocationCoordinate2D zoomLocation;
+        zoomLocation.latitude = 51.62959284321353;
+        zoomLocation.longitude= -1.1913084983825684;
+        MKCoordinateRegion viewRegion = MKCoordinateRegionMakeWithDistance(zoomLocation, 1.0*METERS_PER_MILE, 1.0*METERS_PER_MILE);
+        MKCoordinateRegion adjustedRegion = [_mapView regionThatFits:viewRegion];                
+        [_mapView setRegion:adjustedRegion animated:YES]; 
+        [self performSelector:@selector(selectFarmAnnotation:) withObject:annotation afterDelay:1.5];
+    }
+    else
+    {
+        FarmAnnotation *annotation;
+        BOOL found = NO;
+        NSInteger counter = 0;
+        while (!found && counter < [[_mapView annotations] count])
+        {
+            annotation = [_mapView.annotations objectAtIndex:counter];
+            if ([annotation isKindOfClass:[FarmAnnotation class]])
+            {
+                found = YES;
+            }
+            counter++;
+        }
+        
+        CLLocationCoordinate2D zoomLocation;
+        zoomLocation.latitude = 51.62959284321353;
+        zoomLocation.longitude= -1.1913084983825684;
+        MKCoordinateRegion viewRegion = MKCoordinateRegionMakeWithDistance(zoomLocation, 1.0*METERS_PER_MILE, 1.0*METERS_PER_MILE);
+        MKCoordinateRegion adjustedRegion = [_mapView regionThatFits:viewRegion];                
+        [_mapView setRegion:adjustedRegion animated:YES]; 
+        [self performSelector:@selector(selectFarmAnnotation:) withObject:annotation afterDelay:1.0];
+    }
+}
+
+-(void)selectFarmAnnotation:(FarmAnnotation*)annotation
+{
+    [_mapView selectAnnotation: annotation animated:YES];
+}
+
 -(IBAction)showUserLocation:(id)sender
 {
-    if ([_mapView showsUserLocation])
-    {
-        [_mapView setShowsUserLocation:NO];
+    NSError *error;
+    if (![[GANTracker sharedTracker] trackEvent:kMapInteractionEvent
+                                         action:@"Show user location"
+                                          label:@""
+                                          value:0
+                                      withError:&error]) {
+        NSLog(@"GANTracker error, %@", [error localizedDescription]);
     }
-    else 
+    if ((![CLLocationManager locationServicesEnabled] || [CLLocationManager authorizationStatus] != kCLAuthorizationStatusAuthorized))
+    {
+        [self promptForLocationServicesFindMe];
+    }
+    else
     {
         [_mapView setShowsUserLocation:YES];
+        CLLocationCoordinate2D zoomLocation;
+        zoomLocation.latitude = currentLocation.coordinate.latitude;
+        zoomLocation.longitude= currentLocation.coordinate.longitude;
+        MKCoordinateRegion viewRegion = MKCoordinateRegionMakeWithDistance(zoomLocation, 3.0*METERS_PER_MILE, 3.0*METERS_PER_MILE);
+        MKCoordinateRegion adjustedRegion = [_mapView regionThatFits:viewRegion];                
+        [_mapView setRegion:adjustedRegion animated:YES]; 
     }
 }
 
 -(IBAction)showNearestStopLocation:(id)sender
 {
+    NSError *error;
+    if (![[GANTracker sharedTracker] trackEvent:kMapInteractionEvent
+                                         action:@"Show nearest stop location"
+                                          label:@""
+                                          value:0
+                                      withError:&error]) {
+        NSLog(@"GANTracker error, %@", [error localizedDescription]);
+    }
     if ((![CLLocationManager locationServicesEnabled] || [CLLocationManager authorizationStatus] != kCLAuthorizationStatusAuthorized) && [[Utilities storedPostcode] isEqualToString:kNoPostcodeStored])
     {
         [self promptForLocationServices];
@@ -364,6 +485,14 @@
 
 -(IBAction)showNextStopLocation:(id)sender
 {
+    NSError *error;
+    if (![[GANTracker sharedTracker] trackEvent:kMapInteractionEvent
+                                         action:@"Show next stop location"
+                                          label:@""
+                                          value:0
+                                      withError:&error]) {
+        NSLog(@"GANTracker error, %@", [error localizedDescription]);
+    }
     [self dropdownLocateVanOptionsWithAnimation:YES];
     
     NSInteger timeToNextStop = 0;
@@ -499,9 +628,9 @@
 #pragma mark MKMapViewDelegate methods
 - (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id <MKAnnotation>)annotation {
     
-    static NSString *identifier = @"VegVanstopLocation";   
+      
     if ([annotation isKindOfClass:[VegVanStopLocation class]]) {
-        
+        static NSString *identifier = @"VegVanstopLocation"; 
         MKPinAnnotationView *annotationView = (MKPinAnnotationView *) [_mapView dequeueReusableAnnotationViewWithIdentifier:identifier];
         if (annotationView == nil) {
             annotationView = [[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:identifier];
@@ -518,42 +647,87 @@
         
         return annotationView;
     }
+    else if ([annotation isKindOfClass:[FarmAnnotation class]]) {
+        static NSString *identifier = @"FarmLocation"; 
+        MKPinAnnotationView *annotationView = (MKPinAnnotationView *) [_mapView dequeueReusableAnnotationViewWithIdentifier:identifier];
+        if (annotationView == nil) {
+            annotationView = [[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:identifier];
+        } else {
+            annotationView.annotation = annotation;
+        }
+        
+        annotationView.enabled = YES;
+        UIButton *disclosureButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        disclosureButton.frame = CGRectMake(0, 0, 23, 23);
+        disclosureButton.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
+        disclosureButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
+        
+        [disclosureButton setImage:[UIImage imageNamed:@"113-navigation.png"] forState:UIControlStateNormal];
+        //[disclosureButton addTarget:self action:@selector(showLinks:) forControlEvents:UIControlEventTouchUpInside];
+
+        //UIButton *disclosureButton = [UIButton buttonWithType: UIButtonTypeDetailDisclosure]; 
+        annotationView.canShowCallout = YES;    
+        annotationView.rightCalloutAccessoryView = disclosureButton;
+        annotationView.image=[UIImage imageNamed:@"136-tractor.png"];
+        annotationView.tag = 1000;
+        //annotationView.image=[UIImage imageNamed:@"cultivan.png"];
+        
+        return annotationView;
+    }
     
     return nil;    
 }
 
 - (void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)view calloutAccessoryControlTapped:(UIControl *)control
 {
-    if (sidvc == nil)
+    if (view.tag == 1000)
     {
-        sidvc = [[ScheduleItemDetailViewController alloc] initWithNibName:@"ScheduleItemDetailView" bundle:nil];
-        [self.view insertSubview: sidvc.view belowSubview:self.view];
-        [sidvc addGestureRecognizers];
-        [sidvc.view setFrame: CGRectMake(0.0,0.0,320.0, 480.0)];
-        [sidvc setDelegate: self];
+        NSNumber *latitude = [NSNumber numberWithDouble: currentLocation.coordinate.latitude];
+        NSNumber *longitude = [NSNumber numberWithDouble: currentLocation.coordinate.longitude];
+        NSString *saddr = [NSString stringWithFormat:@"%@,%@",[latitude stringValue], [longitude stringValue]]; 
+        NSString *dirString = [NSString stringWithFormat: @"http://maps.google.com/maps?saddr=%@&daddr=Earth+Trust,+Long+Wittenham,+United+Kingdom&hl=en&sll=37.0625,-95.677068&sspn=57.161276,113.818359&geocode=FS6EFQMdAynt_yk3WXRrSMF2SDEDrCcefgET6A%3BFbrLEwMdieDt_yHkEgqz2uDurw&oq=ox43ag+to+earth+trust&t=h&z=12", saddr];
+        
+        NSString* encodedString =
+        [dirString stringByAddingPercentEscapesUsingEncoding:
+         NSUTF8StringEncoding];
+        
+        NSURL *aURL = [NSURL URLWithString:encodedString];
+        
+        [[UIApplication sharedApplication] openURL:aURL];
     }
-    
-    // get stop and set sidvc parameters
-    VegVanStopLocation *loc = (VegVanStopLocation*)view.annotation;
-    VegVanStop *stop = [[[[Utilities sharedAppDelegate] vegVanStopManager] vegVanStops] objectForKey: loc.stopName];
-    
-    [[sidvc stopName] setText: [stop name]];
-    [[sidvc stopAddress] setText: [stop addressAsString]];
-    [[sidvc stopBlurb] setText: [stop blurb]];
-    NSString *_lat = [[NSNumber numberWithFloat: [stop location].coordinate.latitude] stringValue];
-    NSString *_long = [[NSNumber numberWithFloat: [stop location].coordinate.longitude] stringValue];
-    NSLog(@"lat = %@, long = %@", _lat, _long);
-    [sidvc setLocation: [NSDictionary dictionaryWithObjectsAndKeys: _lat, @"latitude", _long, @"longitude", nil]];
-    //[sdivc setStopImage
-    [[sidvc stopManager] setText: [stop manager]];
-    [sidvc prettify];
-    [UIView transitionFromView:self.view 
-                        toView:sidvc.view 
-                      duration:0.5 
-                       options:UIViewAnimationOptionTransitionFlipFromLeft   
-                    completion:^(BOOL finished){
-                        /* do something on animation completion */
-                    }];
+    else
+        {
+        if (sidvc == nil)
+        {
+            sidvc = [[ScheduleItemDetailViewController alloc] initWithNibName:@"ScheduleItemDetailView" bundle:nil];
+            [self.view insertSubview: sidvc.view belowSubview:self.view];
+            [sidvc addGestureRecognizers];
+            [sidvc.view setFrame: CGRectMake(0.0,0.0,320.0, 480.0)];
+            [sidvc setDelegate: self];
+        }
+        
+        // get stop and set sidvc parameters
+        VegVanStopLocation *loc = (VegVanStopLocation*)view.annotation;
+        VegVanStop *stop = [[[[Utilities sharedAppDelegate] vegVanStopManager] vegVanStops] objectForKey: loc.stopName];
+        
+        [[sidvc stopName] setText: [stop name]];
+        [[sidvc stopAddress] setText: [stop addressAsString]];
+        [[sidvc stopBlurb] setText: [stop blurb]];
+        NSString *_lat = [[NSNumber numberWithFloat: [stop location].coordinate.latitude] stringValue];
+        NSString *_long = [[NSNumber numberWithFloat: [stop location].coordinate.longitude] stringValue];
+        NSLog(@"lat = %@, long = %@", _lat, _long);
+        [sidvc setLocation: [NSDictionary dictionaryWithObjectsAndKeys: _lat, @"latitude", _long, @"longitude", nil]];
+        //[sdivc setStopImage
+        [[sidvc stopManager] setText: [stop manager]];
+        [sidvc prettify];
+        [UIView transitionFromView:self.view 
+                            toView:sidvc.view 
+                          duration:0.5 
+                           options:UIViewAnimationOptionTransitionFlipFromLeft   
+                        completion:^(BOOL finished){
+                            /* do something on animation completion */
+                        }];
+        }
 }
 
 -(void)hideSIDVC

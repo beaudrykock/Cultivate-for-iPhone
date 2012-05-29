@@ -14,9 +14,19 @@
 
 @implementation MessageViewController
 @synthesize tweets, tweetImageURLs, loadingOverlay, tableViewCellSizes, tableViewCellImages;
+/*
 - (id)initWithStyle:(UITableViewStyle)style
 {
     self = [super initWithStyle:style];
+    if (self) {
+        // Custom initialization
+    }
+    return self;
+}*/
+
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+{
+    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
     }
@@ -44,6 +54,12 @@
     else
     {
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(populateTweetTable) name: kTweetsLoaded object:nil];
+    }
+    
+    NSError *error;
+    if (![[GANTracker sharedTracker] trackPageview:@"Tweets view"
+                                         withError:&error]) {
+        NSLog(@"GANTracker error, %@", [error localizedDescription]);
     }
 }
 
@@ -109,13 +125,15 @@
               objectAtIndex:3] setBadgeValue:[NSString stringWithFormat:@"%i", newTweetCount]];
             
             [self.tableView reloadData];
+            
+            if (overlayAdded)
+                [self performSelectorOnMainThread:@selector(removeLoadingOverlay) withObject:nil waitUntilDone:NO];
 		}
 		else {
 			output = [NSString stringWithFormat:@"HTTP response status: %i\n", [urlResponse statusCode]];
 		}
 		
-        if (overlayAdded)
-            [self performSelectorOnMainThread:@selector(removeLoadingOverlay) withObject:nil waitUntilDone:NO];
+        
 	}];
 }
 
@@ -163,7 +181,8 @@
     [downloadingUpdateLabel setTextAlignment:UITextAlignmentCenter];
     [coloredOverlay addSubview:downloadingUpdateLabel];
     [loadingOverlay addSubview:coloredOverlay];
-    [[[coloredOverlay subviews] objectAtIndex:0] startAnimating];
+    if ([Utilities hasInternet])
+        [[[coloredOverlay subviews] objectAtIndex:0] startAnimating];
     
     [self.view addSubview: loadingOverlay];
 }
@@ -398,5 +417,55 @@
     [self presentModalViewController:webViewController animated:YES];	
 }
 
+#pragma mark - Pull-to-refresh functionality
+-(void) loadingComplete  {
+    
+    self.loading = NO;
+}
+-(void) doRefresh  {
+    
+    NSError *error;
+    if (![[GANTracker sharedTracker] trackEvent:kContentInteractionEvent
+                                         action:@"Refresh list of tweets"
+                                          label:@""
+                                          value:0
+                                      withError:&error]) {
+        NSLog(@"GANTracker error, %@", [error localizedDescription]);
+    }
+    [self performSelectorInBackground:@selector(reloadTweetTable) withObject:nil];
+    //[self performSelector:@selector(loadingComplete) withObject:nil afterDelay:2];
+}
+
+-(void)reloadTweetTable
+{   
+    
+    self.tweets = [[Utilities sharedAppDelegate] tweets];
+    if (!self.tweetImageURLs)
+    {
+        self.tweetImageURLs  = [NSMutableArray arrayWithCapacity: [tweets count]];
+        self.tableViewCellSizes = [NSMutableArray arrayWithCapacity:[tweets count]];
+        self.tableViewCellImages = [NSMutableArray arrayWithCapacity:[tweets count]];
+    }
+    
+    NSInteger count = 0;
+    for (NSDictionary *dict in tweets)
+    {
+        NSDictionary *user = (NSDictionary*)[dict objectForKey:@"user"];
+        [tweetImageURLs addObject: [user objectForKey:@"profile_image_url"]];
+        NSData *data = [NSData dataWithContentsOfURL:[NSURL URLWithString:[tweetImageURLs objectAtIndex:count]]];
+        UIImage *image = [UIImage imageWithData:data];
+        [tableViewCellImages addObject: image];
+        CGSize labelSize = [[dict objectForKey:@"text"] sizeWithFont:[UIFont fontWithName:@"Calibri" size:14.0] 
+                                                   constrainedToSize:CGSizeMake(240.0f, MAXFLOAT) 
+                                                       lineBreakMode:UILineBreakModeWordWrap];
+        if (labelSize.height < 70) 
+            labelSize.height = 70.0;
+        
+        [tableViewCellSizes addObject:[NSValue valueWithCGSize:labelSize]];
+        count++;
+    }
+    [self.tableView reloadData];
+    [self loadingComplete]; 
+}
 
 @end

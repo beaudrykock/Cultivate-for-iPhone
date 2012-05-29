@@ -200,6 +200,11 @@
 		[navBar addSubview:forwardButton];	
 		[navBar addSubview:actionButton];	
 	}
+    NSError *error;
+    if (![[GANTracker sharedTracker] trackPageview:@"In-app web view"
+                                         withError:&error]) {
+        NSLog(@"GANTracker error, %@", [error localizedDescription]);
+    }
 }
 
 - (void)viewWillAppear:(BOOL)animated {

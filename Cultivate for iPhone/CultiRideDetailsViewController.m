@@ -30,7 +30,7 @@
     // Do any additional setup after loading the view from its nib.
     
     self.updateCultiRideDetailsButton.buttonTitle = @"Update";
-    [self.updateCultiRideDetailsButton setFillWith:[Utilities colorWithHexString: @"#379361"] andHighlightedFillWith: [Utilities colorWithHexString: @"#608370"]  andBorderWith: [UIColor blackColor] andTextWith: [UIColor whiteColor]];
+    [self.updateCultiRideDetailsButton setFillWith:[Utilities colorWithHexString: kCultivateGrayColor] andHighlightedFillWith: [Utilities colorWithHexString: @"#608370"]  andBorderWith: [UIColor blackColor] andTextWith: [UIColor whiteColor]];
     [self.updateCultiRideDetailsButton setSize: CGSizeMake(130.0, 37.0)];
 
     UITapGestureRecognizer *updateButtonTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(updateCultiRideDetails:)];
@@ -45,7 +45,7 @@
     UITapGestureRecognizer *gestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideKeyboard)];
     [self.view addGestureRecognizer:gestureRecognizer];
     
-    [self.viewTitle setFont: [UIFont fontWithName:@"nobile" size:25]];
+    [self.viewTitle setFont: [UIFont fontWithName:@"nobile" size:24]];
     [self.name_label setFont: [UIFont fontWithName:@"Calibri" size:15]];
     [self.postcode_label setFont: [UIFont fontWithName:@"Calibri" size:15]];
     [self.mobile_label setFont: [UIFont fontWithName:@"Calibri" size:15]];
@@ -54,6 +54,12 @@
     [self.email_label setFont: [UIFont fontWithName:@"Calibri" size:15]];
     
     [self.navigationController setNavigationBarHidden: YES];
+    
+    NSError *error;
+    if (![[GANTracker sharedTracker] trackPageview:@"CultiRide user details view"
+                                         withError:&error]) {
+        NSLog(@"GANTracker error, %@", [error localizedDescription]);
+    }
 }
 
 - (void)viewDidUnload
@@ -111,7 +117,14 @@
 
 -(IBAction)updateCultiRideDetails:(id)sender
 {
-    
+    NSError *error;
+    if (![[GANTracker sharedTracker] trackEvent:kFeedbackEvent
+                                         action:@"Updating user details for CultiRide"
+                                          label:@""
+                                          value:0
+                                      withError:&error]) {
+        NSLog(@"GANTracker error, %@", [error localizedDescription]);
+    }
     NSString *name = [name_field text];
     NSString *mobile = [mobile_field text];
     NSString *postcode = [postcode_field text];

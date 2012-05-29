@@ -94,6 +94,12 @@
     //[self fetchListTemplate];
     //[self testSubscribe];
     //[self fetchListInterestGroupings];
+    
+    NSError *error;
+    if (![[GANTracker sharedTracker] trackPageview:@"Join mailing list view"
+                                         withError:&error]) {
+        NSLog(@"GANTracker error, %@", [error localizedDescription]);
+    }
 }
 
 #pragma mark -
@@ -428,6 +434,14 @@
 
 -(IBAction)joinMailingList:(id)sender
 {
+    NSError *error;
+    if (![[GANTracker sharedTracker] trackEvent:kFeedbackEvent
+                                         action:@"Join mailing list"
+                                          label:@""
+                                          value:0
+                                      withError:&error]) {
+        NSLog(@"GANTracker error, %@", [error localizedDescription]);
+    }
     // parse e-mail
     NSString *email_text = [email_field text];
     NSString *firstname = [firstname_field text];

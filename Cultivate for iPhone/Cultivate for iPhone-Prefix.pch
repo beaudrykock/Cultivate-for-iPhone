@@ -13,4 +13,5 @@
     #import <Foundation/Foundation.h>
     #import "AppConstants.h"
     #import "Utilities.h"
+    #import "GANTracker.h"
 #endif

@@ -46,6 +46,15 @@
 
 -(IBAction)takeToGoogleMaps:(id)sender
 {
+    NSError *error;
+    if (![[GANTracker sharedTracker] trackEvent:kContentInteractionEvent
+                                         action:@"Show veg van stop in Google Maps app"
+                                          label:@""
+                                          value:0
+                                      withError:&error]) {
+        NSLog(@"GANTracker error, %@", [error localizedDescription]);
+    }
+    
     NSString *urlString = 
     [NSString stringWithFormat:@"http://maps.google.com/maps?q=%@ %@&layer=t", [location objectForKey:@"latitude"],[location objectForKey:@"longitude"]];
     
@@ -71,6 +80,11 @@
     UITapGestureRecognizer *mapTap = [[UITapGestureRecognizer alloc] initWithTarget: self action:@selector(takeToGoogleMaps:)];
     [stopPhoto addGestureRecognizer:mapTap];
     
+    NSError *error;
+    if (![[GANTracker sharedTracker] trackPageview:@"Vegvan stop detail view"
+                                         withError:&error]) {
+        NSLog(@"GANTracker error, %@", [error localizedDescription]);
+    }
 }
 
 - (void)viewDidUnload

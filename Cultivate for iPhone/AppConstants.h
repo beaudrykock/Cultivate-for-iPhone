@@ -98,6 +98,7 @@
 #define kTweetsLoaded @"Tweets loaded"
 #define kScheduleItemRefKey @"scheduleItemRefKey"
 #define kTweetTabIndex 3
+#define kRemoveCultiRideDetailsView @"removeCultiRideDetailsView"
 
 // GOOGLE ANALYTICS
 // Dispatch period in seconds - every 5 mins only

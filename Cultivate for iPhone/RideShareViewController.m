@@ -13,7 +13,7 @@
 @end
 
 @implementation RideShareViewController
-@synthesize volunteerDates, viewTitle, info, tableView, selectedValues, submitButton, cultiRideDetailsViewController;
+@synthesize volunteerDates, viewTitle, info, tableView, selectedValues, submitButton, cultiRideDetailsView, overlay;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -36,9 +36,6 @@
     [self.viewTitle setFont: [UIFont fontWithName: @"Nobile" size: 23.0]];
     [self.info setFont: [UIFont fontWithName: @"Calibri" size: self.info.font.pointSize]];
     
-    if (![Utilities cultiRideDetailsSet])
-        [self promptCultiRideDetails];
-    
     NSMutableArray *arrayValues = [[NSMutableArray alloc] initWithCapacity:10];
     
     for (int i = 0; i<[volunteerDates count]; i++)
@@ -57,6 +54,10 @@
     self.selectedValues = arrayValues;
     [self.submitButton setButtonTitle: @"Submit request"];
     
+    //if (![Utilities cultiRideDetailsSet])
+      // [self promptCultiRideDetails];
+    
+    
     NSError *error;
     if (![[GANTracker sharedTracker] trackPageview:@"CultiRide view"
                                          withError:&error]) {
@@ -64,7 +65,6 @@
     }
     
 }
-
 
 -(void)test
 {
@@ -113,9 +113,49 @@
 
 -(void)promptCultiRideDetails
 {
-    self.cultiRideDetailsViewController = [[CultiRideDetailsViewController alloc] initWithNibName: @"CultiRideDetailsView" bundle: nil];
-    [self.cultiRideDetailsViewController setDelegate:self];
-    [self presentModalViewController:cultiRideDetailsViewController animated:YES];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(removeCultiRideDetailsView) name:kRemoveCultiRideDetailsView object:nil];
+    
+    overlay = [[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, 320.0, 480.0)];
+    [overlay setBackgroundColor:[UIColor blackColor]];
+    [overlay setAlpha:0.0];
+    [self.view addSubview:overlay];
+    
+    self.cultiRideDetailsView = [[MoveMeView alloc] initWithFrame:CGRectMake(0.0, -241.0, 320.0, 241.0)];
+    [self.cultiRideDetailsView setDelegate:self];
+    [self.view addSubview:cultiRideDetailsView];
+    
+    
+    
+    [UIView beginAnimations:nil context:nil];
+    [UIView setAnimationDuration:0.5];
+    //[UIView setAnimationDelegate:self];
+    //[UIView setAnimationDidStopSelector:@selector(bounce2AnimationStopped)];
+    cultiRideDetailsView.frame = CGRectMake(0.0, 0.0, cultiRideDetailsView.frame.size.width, cultiRideDetailsView.frame.size.height);
+    [overlay setAlpha:0.8];
+    [UIView setAnimationDelay: UIViewAnimationCurveEaseIn];
+	[UIView commitAnimations];
+    
+}
+
+-(void)removeCultiRideDetailsView
+{
+    [cultiRideDetailsView removeFromSuperview];
+    cultiRideDetailsView = nil;
+    
+    [UIView beginAnimations:nil context:nil];
+    [UIView setAnimationDuration:0.5];
+    [UIView setAnimationDelegate:self];
+    [UIView setAnimationDidStopSelector:@selector(removeOverlay)];
+    [overlay setAlpha:0.0];
+    [UIView setAnimationDelay: UIViewAnimationCurveEaseIn];
+	[UIView commitAnimations];
+
+}
+                                                  
+-(void)removeOverlay
+{
+    [overlay removeFromSuperview];
+    overlay = nil;
 }
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex

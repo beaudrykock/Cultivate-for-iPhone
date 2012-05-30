@@ -570,16 +570,15 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="10" id="4ee-n1-XMi">
-                                <rect key="frame" x="20" y="65" width="280" height="84"/>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Tap on the dates below to let us know which volunteer days you're interested in. We'll see what we can do to arrange a ride." lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="10" id="4ee-n1-XMi">
+                                <rect key="frame" x="20" y="65" width="280" height="58"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <string key="text">Tap on a date below to let us know which volunteer day you're interested in, then make sure to submit your request. We'll see what we can do to arrange a ride.</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="oQr-g8-F8D" customClass="CustomButton">
-                                <rect key="frame" x="80" y="360" width="161" height="38"/>
+                                <rect key="frame" x="80" y="326" width="161" height="38"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal">
@@ -594,7 +593,7 @@
                                 </connections>
                             </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="jmo-ze-qOo">
-                                <rect key="frame" x="20" y="157" width="280" height="201"/>
+                                <rect key="frame" x="20" y="126" width="280" height="197"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <connections>
@@ -602,6 +601,13 @@
                                     <outlet property="delegate" destination="Lbq-6t-Xsw" id="IYh-kL-saR"/>
                                 </connections>
                             </tableView>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Cultivate provides this service as a courtesy only and accepts no liability to any person for any resulting loss or damage. " lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="10" id="y0G-7k-gPw">
+                                <rect key="frame" x="20" y="370" width="280" height="33"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
@@ -756,6 +762,29 @@
         <class className="MessageViewController" superclassName="PullToRefreshViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/MessageViewController.h"/>
         </class>
+        <class className="MoveMeView" superclassName="UIView">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/MoveMeView.h"/>
+            <relationships>
+                <relationship kind="action" name="checkFormCompletionFromField:"/>
+                <relationship kind="action" name="nextField:"/>
+                <relationship kind="action" name="updateCultiRideDetails:"/>
+                <relationship kind="outlet" name="about_label" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="completion_img" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="completion_label" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="disclaimer_label" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="email_field" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="email_label" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="handle" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="mobile_field" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="mobile_label" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="name_field" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="name_label" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="postcode_field" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="postcode_label" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="slideView" candidateClass="UIView"/>
+                <relationship kind="outlet" name="title_label" candidateClass="UILabel"/>
+            </relationships>
+        </class>
         <class className="PullToRefreshViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/PullToRefreshViewController.h"/>
             <relationships>
@@ -766,6 +795,7 @@
             <source key="sourceIdentifier" type="project" relativePath="./Classes/RideShareViewController.h"/>
             <relationships>
                 <relationship kind="action" name="prepareRequest"/>
+                <relationship kind="outlet" name="cultiRideDetailsView" candidateClass="MoveMeView"/>
                 <relationship kind="outlet" name="info" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="selectedValues" candidateClass="NSMutableArray"/>
                 <relationship kind="outlet" name="submitButton" candidateClass="CustomButton"/>

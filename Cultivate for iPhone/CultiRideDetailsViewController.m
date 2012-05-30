@@ -40,7 +40,7 @@
     [self.cancelButton addGestureRecognizer:cancelTap];
     
     
-    [self.view setBackgroundColor: [Utilities colorWithHexString: kCultivateGreenColor]];
+    //[self.view setBackgroundColor: [Utilities colorWithHexString: kCultivateGreenColor]];
     
     UITapGestureRecognizer *gestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideKeyboard)];
     [self.view addGestureRecognizer:gestureRecognizer];

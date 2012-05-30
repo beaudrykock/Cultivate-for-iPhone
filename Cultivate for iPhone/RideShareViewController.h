@@ -10,8 +10,9 @@
 #import "AKFusionTables.h"
 #import "CustomButton.h"
 #import "CultiRideDetailsViewController.h"
+#import "MoveMeView.h"
 
-@interface RideShareViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, CultiRideDetailsViewControllerDelegate>
+@interface RideShareViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, CultiRideDetailsViewControllerDelegate, MoveMeViewDelegate>
 {
     NSMutableArray *volunteerDates;
     UILabel *viewTitle;
@@ -19,16 +20,19 @@
     UITableView *tableView;
     NSMutableArray *selectedValues;
     CustomButton *submitButton;
-    CultiRideDetailsViewController *cultiRideDetailsViewController;
+    MoveMeView *cultiRideDetailsView;
+    UIView *overlay;
 }
 
+
+@property (nonatomic, strong) UIView *overlay;
 @property (nonatomic, strong) IBOutlet NSMutableArray *selectedValues;
 @property (nonatomic, strong) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) IBOutlet UILabel *viewTitle;
 @property (nonatomic, strong) IBOutlet UILabel *info;
 @property (nonatomic, strong) NSMutableArray *volunteerDates;
 @property (nonatomic, strong) IBOutlet CustomButton *submitButton;
-@property (nonatomic, strong) CultiRideDetailsViewController *cultiRideDetailsViewController;
+@property (nonatomic, strong) IBOutlet MoveMeView *cultiRideDetailsView;
 
 -(IBAction)prepareRequest;
 -(void)submitRequest;
@@ -36,5 +40,6 @@
 -(BOOL)dateRequestedAtRow:(NSInteger)row;
 -(void)cultiRideDetailsViewControllerDidFinish;
 -(BOOL)requestMade;
+
 
 @end

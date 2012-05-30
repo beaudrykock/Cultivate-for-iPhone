@@ -53,6 +53,7 @@
 -(void)alertIncompleteForm;
 -(void)hideKeyboard;
 -(IBAction)checkFormCompletionFromField:(id)sender;
+-(void)doneWithKeyboard;
 
 @end
 

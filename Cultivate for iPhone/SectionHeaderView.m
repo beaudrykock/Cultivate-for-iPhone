@@ -41,7 +41,7 @@
         
         // Create and configure the title label.
         CGRect areaTitleLabelFrame = CGRectMake(self.bounds.origin.x+5.0, self.bounds.origin.y, self.bounds.size.width/2.0, self.bounds.size.height);
-        CGRect notifyColumnTitleLabelFrame = CGRectMake(areaTitleLabelFrame.origin.x+areaTitleLabelFrame.size.width, self.bounds.origin.y, (self.bounds.size.width/2.0)-5.0, self.bounds.size.height);
+        CGRect notifyColumnTitleLabelFrame = CGRectMake(areaTitleLabelFrame.origin.x+areaTitleLabelFrame.size.width+10.0, self.bounds.origin.y, (self.bounds.size.width/2.0)-5.0, self.bounds.size.height);
         
         areaTitleLabelFrame.origin.y -= 10.5;
         notifyColumnTitleLabelFrame.origin.y -= 10.5;

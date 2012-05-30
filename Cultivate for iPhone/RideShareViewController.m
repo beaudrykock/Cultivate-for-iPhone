@@ -120,16 +120,17 @@
     [overlay setAlpha:0.0];
     [self.view addSubview:overlay];
     
-    self.cultiRideDetailsView = [[MoveMeView alloc] initWithFrame:CGRectMake(0.0, -241.0, 320.0, 241.0)];
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(removeCultiRideDetailsView)];
+    [overlay addGestureRecognizer:tap];
+    
+    self.cultiRideDetailsView = [[MoveMeView alloc] initWithFrame:CGRectMake(0.0, -245.0, 320.0, 245)];
     [self.cultiRideDetailsView setDelegate:self];
     [self.view addSubview:cultiRideDetailsView];
-    
-    
     
     [UIView beginAnimations:nil context:nil];
     [UIView setAnimationDuration:0.5];
     //[UIView setAnimationDelegate:self];
-    //[UIView setAnimationDidStopSelector:@selector(bounce2AnimationStopped)];
+    //[UIView setAnimationDidStopSelector:@selector(promptTextfieldEntry)];
     cultiRideDetailsView.frame = CGRectMake(0.0, 0.0, cultiRideDetailsView.frame.size.width, cultiRideDetailsView.frame.size.height);
     [overlay setAlpha:0.8];
     [UIView setAnimationDelay: UIViewAnimationCurveEaseIn];
@@ -139,17 +140,21 @@
 
 -(void)removeCultiRideDetailsView
 {
-    [cultiRideDetailsView removeFromSuperview];
-    cultiRideDetailsView = nil;
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:kRemoveCultiRideDetailsView object:nil];
     
-    [UIView beginAnimations:nil context:nil];
-    [UIView setAnimationDuration:0.5];
-    [UIView setAnimationDelegate:self];
-    [UIView setAnimationDidStopSelector:@selector(removeOverlay)];
-    [overlay setAlpha:0.0];
-    [UIView setAnimationDelay: UIViewAnimationCurveEaseIn];
-	[UIView commitAnimations];
-
+    if (cultiRideDetailsView != nil)
+    {
+        [cultiRideDetailsView removeFromSuperview];
+        cultiRideDetailsView = nil;
+        
+        [UIView beginAnimations:nil context:nil];
+        [UIView setAnimationDuration:0.5];
+        [UIView setAnimationDelegate:self];
+        [UIView setAnimationDidStopSelector:@selector(removeOverlay)];
+        [overlay setAlpha:0.0];
+        [UIView setAnimationDelay: UIViewAnimationCurveEaseIn];
+        [UIView commitAnimations];
+    }
 }
                                                   
 -(void)removeOverlay

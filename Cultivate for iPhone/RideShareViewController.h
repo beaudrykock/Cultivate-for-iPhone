@@ -9,10 +9,9 @@
 #import <UIKit/UIKit.h>
 #import "AKFusionTables.h"
 #import "CustomButton.h"
-#import "CultiRideDetailsViewController.h"
 #import "MoveMeView.h"
 
-@interface RideShareViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, CultiRideDetailsViewControllerDelegate, MoveMeViewDelegate>
+@interface RideShareViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, MoveMeViewDelegate>
 {
     NSMutableArray *volunteerDates;
     UILabel *viewTitle;

@@ -34,9 +34,7 @@
         NSArray *subviewArray = [[NSBundle mainBundle] loadNibNamed:@"CultiRideDetailsView" owner:self options:nil];
         UIView *mainView = [subviewArray objectAtIndex:0];
         [self addSubview:mainView];
-        
-        UITapGestureRecognizer *gestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideKeyboard)];
-        [self addGestureRecognizer:gestureRecognizer];
+                
         [self.handle setFont: [UIFont fontWithName:@"nobile" size:24]];
         [self.name_label setFont: [UIFont fontWithName:@"Calibri" size:15]];
         [self.postcode_label setFont: [UIFont fontWithName:@"Calibri" size:15]];
@@ -44,10 +42,22 @@
         [self.about_label setFont: [UIFont fontWithName:@"Calibri" size:15]];
         [self.disclaimer_label setFont: [UIFont fontWithName:@"Calibri" size:12]];
         [self.email_label setFont: [UIFont fontWithName:@"Calibri" size:15]];
-        
-        canAnimateTouches = YES;
+    
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(doneWithKeyboard) name:@"UIKeyboardDidHideNotification" object:nil];
+//       [self performSelector:@selector(editFirstField) withObject:nil afterDelay:2.0];
     }
 	return self;
+}
+
+-(void)editFirstField
+{
+    [self.name_field becomeFirstResponder];
+}
+
+-(void)doneWithKeyboard
+{
+    [self updateCultiRideDetails];
 }
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
@@ -90,8 +100,8 @@
 	if ([touch view] == self.handle) {
         CGPoint location = [touch locationInView:self];
 		CGRect frame = self.slideView.frame;
-        NSLog(@"location.y = %f", location.y);
-        NSLog(@"offset_y = %f", offset_y);
+        //NSLog(@"location.y = %f", location.y);
+        //NSLog(@"offset_y = %f", offset_y);
         frame.origin.y = (location.y - offset_y);
         if (frame.origin.y<=0)
             self.slideView.frame = frame;		
@@ -140,11 +150,13 @@
 
 - (void)animateViewOffScreen {
 	
+    
+    [self hideKeyboard];
 	[UIView beginAnimations:nil context:nil];
     [UIView setAnimationDuration:0.25];
     [UIView setAnimationDelegate:self];
     [UIView setAnimationDidStopSelector:@selector(updateCultiRideDetails)];
-    self.slideView.frame = CGRectMake(0.0, -241.0, self.slideView.frame.size.width, self.slideView.frame.size.height);
+    self.slideView.frame = CGRectMake(0.0, -245.0, self.slideView.frame.size.width, self.slideView.frame.size.height);
 	[UIView setAnimationDelay: UIViewAnimationCurveEaseOut];
     [UIView commitAnimations];
 	
@@ -156,6 +168,7 @@
 #pragma mark Keyboard management
 -(void)hideKeyboard
 {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
     [name_field resignFirstResponder];
     [mobile_field resignFirstResponder];
     [email_field resignFirstResponder];
@@ -231,6 +244,7 @@
     {
         [Utilities setCultiRideDetailsForName: name mobile: mobile email: email postcode: postcode];
     }
+    
     [[NSNotificationCenter defaultCenter] postNotificationName:kRemoveCultiRideDetailsView object: nil];
 }
 

@@ -215,7 +215,6 @@
 		9FF1E363154F01BE000C0337 /* SubscribeAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FF1E35E154F01BE000C0337 /* SubscribeAlertView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		9FF1E364154F01BE000C0337 /* CKAuthViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9FF1E360154F01BE000C0337 /* CKAuthViewController.xib */; };
 		9FF1E38D154F02F4000C0337 /* MailChimpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FF1E38C154F02F4000C0337 /* MailChimpViewController.m */; };
-		9FF78E95155FA8DD00FAAE67 /* CultiRideDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FF78E93155FA8DD00FAAE67 /* CultiRideDetailsViewController.m */; };
 		9FF78E96155FA8DD00FAAE67 /* CultiRideDetailsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9FF78E94155FA8DD00FAAE67 /* CultiRideDetailsView.xib */; };
 		9FF78E9D155FB14900FAAE67 /* 298-circlex.png in Resources */ = {isa = PBXBuildFile; fileRef = 9FF78E9B155FB14900FAAE67 /* 298-circlex.png */; };
 		9FF78E9E155FB14900FAAE67 /* 298-circlex@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9FF78E9C155FB14900FAAE67 /* 298-circlex@2x.png */; };
@@ -578,8 +577,6 @@
 		9FF1E360154F01BE000C0337 /* CKAuthViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CKAuthViewController.xib; sourceTree = "<group>"; };
 		9FF1E38B154F02F4000C0337 /* MailChimpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MailChimpViewController.h; sourceTree = "<group>"; };
 		9FF1E38C154F02F4000C0337 /* MailChimpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MailChimpViewController.m; sourceTree = "<group>"; };
-		9FF78E92155FA8DD00FAAE67 /* CultiRideDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CultiRideDetailsViewController.h; sourceTree = "<group>"; };
-		9FF78E93155FA8DD00FAAE67 /* CultiRideDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CultiRideDetailsViewController.m; sourceTree = "<group>"; };
 		9FF78E94155FA8DD00FAAE67 /* CultiRideDetailsView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CultiRideDetailsView.xib; sourceTree = "<group>"; };
 		9FF78E9B155FB14900FAAE67 /* 298-circlex.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "298-circlex.png"; sourceTree = "<group>"; };
 		9FF78E9C155FB14900FAAE67 /* 298-circlex@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "298-circlex@2x.png"; sourceTree = "<group>"; };
@@ -791,8 +788,6 @@
 				9F995C6D15581EFD007DCA58 /* RideShareViewController.m */,
 				9F57B62415610A3E00615DEB /* MessageViewController.h */,
 				9F57B62515610A3E00615DEB /* MessageViewController.m */,
-				9FF78E92155FA8DD00FAAE67 /* CultiRideDetailsViewController.h */,
-				9FF78E93155FA8DD00FAAE67 /* CultiRideDetailsViewController.m */,
 				9F57B64A156131B300615DEB /* SVWebViewController.h */,
 				9F57B64B156131B300615DEB /* SVWebViewController.m */,
 			);
@@ -1621,7 +1616,6 @@
 				9F9962F515582384007DCA58 /* GTMHTTPFetcher.m in Sources */,
 				9F3240BC155AE36F00BCA8FB /* CustomButton.m in Sources */,
 				9FEA33D6155E8C00001CEAD3 /* CustomCheckbox.m in Sources */,
-				9FF78E95155FA8DD00FAAE67 /* CultiRideDetailsViewController.m in Sources */,
 				9F57B62615610A3E00615DEB /* MessageViewController.m in Sources */,
 				9F57B6301561189500615DEB /* IFTweetLabel.m in Sources */,
 				9F57B635156118B000615DEB /* RegexKitLite.m in Sources */,

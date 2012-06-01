@@ -79,11 +79,12 @@
             newTweetCount = [Utilities updateTweets:[self tweetTextsFromTweets]];
             tweetsLoaded = YES;
             [self performSelectorOnMainThread:@selector(notifyNewTweetCount) withObject:nil waitUntilDone:NO];
-            [self performSelectorOnMainThread:@selector(notifyTweetTab) withObject:nil waitUntilDone:NO];
+            [self performSelectorOnMainThread:@selector(notifySuccessToTweetTab) withObject:nil waitUntilDone:NO];
 		}
 		else {
 			output = [NSString stringWithFormat:@"HTTP response status: %i\nerror: %@", [urlResponse statusCode], [error description]];
             NSError *jsonParsingError = nil;
+            [self performSelectorOnMainThread:@selector(notifyFailureToTweetTab) withObject:nil waitUntilDone:NO];
             //NSDictionary *errorDict = [NSJSONSerialization JSONObjectWithData:responseData options:0 error:&jsonParsingError];
             //NSLog(@"error desc = %@", [errorDict description]);
 		}
@@ -107,9 +108,14 @@
     [[NSNotificationCenter defaultCenter] postNotificationName:kNewTweetCountGenerated object:nil];
 }
 
--(void)notifyTweetTab
+-(void)notifySuccessToTweetTab
 {
     [[NSNotificationCenter defaultCenter] postNotificationName:kTweetsLoaded object:nil];
+}
+
+-(void)notifyFailureToTweetTab
+{
+    [[NSNotificationCenter defaultCenter] postNotificationName:kTweetsLoadingFailed object:nil];
 }
 
 -(NSMutableArray*)tweetTextsFromTweets

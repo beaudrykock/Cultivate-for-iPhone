@@ -23,8 +23,12 @@
     NSMutableArray *tableViewCellImages;
     UIView *loadingOverlay;
     BOOL overlayAdded;
+    UILabel *downloadingUpdateLabel;
+    UIActivityIndicatorView *activityWheel;
 }
 
+@property (nonatomic, strong) UIActivityIndicatorView *activityWheel;
+@property (nonatomic, strong) UILabel *downloadingUpdateLabel;
 @property (nonatomic, strong) NSArray *tweets;
 @property (nonatomic, strong) NSMutableArray *tweetImageURLs;
 @property (nonatomic, strong) NSMutableArray *tableViewCellSizes;

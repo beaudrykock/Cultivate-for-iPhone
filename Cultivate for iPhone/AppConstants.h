@@ -7,6 +7,7 @@
 //
 
 #define METERS_PER_MILE 1609.344
+//#define kDownloadProfileImage // uncomment if want to use Twitter profile image from Cultivate feed
 
 // COLORS
 #define kCultivateGreenColor @"#639939"
@@ -99,6 +100,7 @@
 #define kScheduleItemRefKey @"scheduleItemRefKey"
 #define kTweetTabIndex 3
 #define kRemoveCultiRideDetailsView @"removeCultiRideDetailsView"
+#define kTweetsLoadingFailed @"tweetsLoadingFailed"
 
 // GOOGLE ANALYTICS
 // Dispatch period in seconds - every 5 mins only

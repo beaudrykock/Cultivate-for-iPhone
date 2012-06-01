@@ -13,7 +13,7 @@
 @end
 
 @implementation MessageViewController
-@synthesize tweets, tweetImageURLs, loadingOverlay, tableViewCellSizes, tableViewCellImages;
+@synthesize tweets, tweetImageURLs, loadingOverlay, tableViewCellSizes, tableViewCellImages, downloadingUpdateLabel, activityWheel;
 /*
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -54,6 +54,7 @@
     else
     {
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(populateTweetTable) name: kTweetsLoaded object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateFailureOverlay) name: kTweetsLoadingFailed object:nil];
     }
     
     NSError *error;
@@ -63,10 +64,18 @@
     }
 }
 
+-(void)updateFailureOverlay
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:kTweetsLoadingFailed object:self];
+    [self.downloadingUpdateLabel setText:@"Tweets not currently available"];
+    [self.activityWheel stopAnimating];
+}
+
 -(void)populateTweetTable
 {   
-    
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:kTweetsLoaded object:self];
     self.tweets = [[Utilities sharedAppDelegate] tweets];
+
     if (!self.tweetImageURLs)
     {
         self.tweetImageURLs  = [NSMutableArray arrayWithCapacity: [tweets count]];
@@ -79,8 +88,14 @@
     {
         NSDictionary *user = (NSDictionary*)[dict objectForKey:@"user"];
         [tweetImageURLs addObject: [user objectForKey:@"profile_image_url"]];
-        NSData *data = [NSData dataWithContentsOfURL:[NSURL URLWithString:[tweetImageURLs objectAtIndex:count]]];
-        UIImage *image = [UIImage imageWithData:data];
+        NSLog(@"%@",[user objectForKey:@"profile_image_url"]);
+        UIImage *image = nil;
+        #ifdef kDownloadProfileImage
+            NSData *data = [NSData dataWithContentsOfURL:[NSURL URLWithString:[tweetImageURLs objectAtIndex:count]]];
+            image = [UIImage imageWithData:data];
+        #else
+            image = [UIImage imageNamed:@"droplet_normal.png"];
+        #endif
         [tableViewCellImages addObject: image];
         CGSize labelSize = [[dict objectForKey:@"text"] sizeWithFont:[UIFont fontWithName:@"Calibri" size:14.0] 
                                                   constrainedToSize:CGSizeMake(240.0f, MAXFLOAT) 
@@ -150,41 +165,41 @@
 -(void)addLoadingOverlay
 {
     overlayAdded = YES;
-    loadingOverlay = nil;
-    loadingOverlay = [[UIView alloc] initWithFrame:CGRectMake(0.0,0.0,320.0,480.0)];
-    [loadingOverlay setBackgroundColor: [UIColor clearColor]];
+    self.loadingOverlay = nil;
+    self.loadingOverlay = [[UIView alloc] initWithFrame:CGRectMake(0.0,0.0,320.0,480.0)];
+    [self.loadingOverlay setBackgroundColor: [UIColor clearColor]];
     UIView *coloredOverlay = [[UIView alloc] initWithFrame:CGRectMake(0.0,0.0,320.0,480.0)];
     [coloredOverlay setBackgroundColor: [Utilities colorWithHexString: kCultivateGreenColor]];
     [coloredOverlay setAlpha: 0.8];
     
     CGRect frame = coloredOverlay.frame;
-    UIActivityIndicatorView *activityWheel = [[UIActivityIndicatorView alloc] initWithFrame: CGRectMake((frame.size.width/2)-15, (frame.size.height/2)-15, 30, 30)];
-    activityWheel.activityIndicatorViewStyle = UIActivityIndicatorViewStyleWhite;
-    activityWheel.autoresizingMask = (UIViewAutoresizingFlexibleLeftMargin |
+    self.activityWheel = [[UIActivityIndicatorView alloc] initWithFrame: CGRectMake((frame.size.width/2)-15, (frame.size.height/2)-15, 30, 30)];
+    self.activityWheel.activityIndicatorViewStyle = UIActivityIndicatorViewStyleWhite;
+    self.activityWheel.autoresizingMask = (UIViewAutoresizingFlexibleLeftMargin |
                                       UIViewAutoresizingFlexibleRightMargin |
                                       UIViewAutoresizingFlexibleTopMargin |
                                       UIViewAutoresizingFlexibleBottomMargin);
     if ([Utilities hasInternet])
-        [coloredOverlay addSubview:activityWheel];
+        [coloredOverlay addSubview:self.activityWheel];
     
-    UILabel *downloadingUpdateLabel = [[UILabel alloc] initWithFrame:CGRectMake(35.0, (frame.size.height/2)+15, 250.0, 50.0)];
+    self.downloadingUpdateLabel = [[UILabel alloc] initWithFrame:CGRectMake(35.0, (frame.size.height/2)+15, 250.0, 50.0)];
     if ([Utilities hasInternet])
     {
-        [downloadingUpdateLabel setText:@"Updating tweets..."];
+        [self.downloadingUpdateLabel setText:@"Updating tweets..."];
     }
     else {
-        [downloadingUpdateLabel setText:@"Internet not available"];
+        [self.downloadingUpdateLabel setText:@"Internet not available"];
     }
-    [downloadingUpdateLabel setBackgroundColor:[UIColor clearColor]];
-    [downloadingUpdateLabel setFont:[UIFont fontWithName:@"Calibri" size:18.0]];
-    [downloadingUpdateLabel setTextColor:[UIColor whiteColor]];
-    [downloadingUpdateLabel setTextAlignment:UITextAlignmentCenter];
-    [coloredOverlay addSubview:downloadingUpdateLabel];
-    [loadingOverlay addSubview:coloredOverlay];
+    [self.downloadingUpdateLabel setBackgroundColor:[UIColor clearColor]];
+    [self.downloadingUpdateLabel setFont:[UIFont fontWithName:@"Calibri" size:18.0]];
+    [self.downloadingUpdateLabel setTextColor:[UIColor whiteColor]];
+    [self.downloadingUpdateLabel setTextAlignment:UITextAlignmentCenter];
+    [coloredOverlay addSubview:self.downloadingUpdateLabel];
+    [self.loadingOverlay addSubview:coloredOverlay];
     if ([Utilities hasInternet])
-        [[[coloredOverlay subviews] objectAtIndex:0] startAnimating];
+        [self.activityWheel startAnimating];
     
-    [self.view addSubview: loadingOverlay];
+    [self.view addSubview: self.loadingOverlay];
 }
 
 -(void)removeLoadingOverlay

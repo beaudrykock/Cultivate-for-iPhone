@@ -57,6 +57,7 @@
 
 -(void)doneWithKeyboard
 {
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"UIKeyboardDidHideNotification" object:nil];
     [self updateCultiRideDetails];
 }
 

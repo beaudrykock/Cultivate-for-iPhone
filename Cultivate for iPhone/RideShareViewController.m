@@ -145,7 +145,7 @@
     if (cultiRideDetailsView != nil)
     {
         [cultiRideDetailsView removeFromSuperview];
-        cultiRideDetailsView = nil;
+        //cultiRideDetailsView = nil;
         
         [UIView beginAnimations:nil context:nil];
         [UIView setAnimationDuration:0.5];

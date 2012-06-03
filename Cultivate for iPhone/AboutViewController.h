@@ -45,5 +45,6 @@
 -(void)launchWebViewWithURLString:(NSString*)urlString;
 -(IBAction)launchCultivateWebsite;
 - (IBAction)changePage;
+-(void)addScrollingImages;
 
 @end

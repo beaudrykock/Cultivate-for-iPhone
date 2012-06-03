@@ -9,7 +9,7 @@
 #import "ScheduleItemDetailViewController.h"
 
 @implementation ScheduleItemDetailViewController
-@synthesize stopName, stopManager, stopManagerTitle, stopAddress, stopBlurb, stopBlurbTitle, delegate, stopPhoto, stopManagerContact, stopManagerContactTitle, location;
+@synthesize stopName, stopManager, stopManagerTitle, stopAddress, stopBlurb, delegate, stopManagerContact, stopManagerContactTitle, location, background_blurb, background_deets, background_address, scrollView, pageControl;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -25,6 +25,7 @@
     //UITapGestureRecognizer *gestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(removeView)];
     //[self.view addGestureRecognizer:gestureRecognizer];
     
+   
     UISwipeGestureRecognizer *oneFingerSwipeRight = [[UISwipeGestureRecognizer alloc] 
                                                       initWithTarget:self 
                                                      action:@selector(removeView:)];
@@ -36,11 +37,19 @@
 {
     //[stopAddress sizeToFit];
     //[stopAddress setTextAlignment: UITextAlignmentCenter];
-    [stopBlurb sizeToFit];
-    [stopName setFont: [UIFont fontWithName:@"Nobile" size:26]];
-    [stopBlurbTitle setFont: [UIFont fontWithName:@"Nobile" size:17]];
-    [stopManagerTitle setFont: [UIFont fontWithName:@"Nobile" size:17]];
-    [stopManagerContactTitle setFont: [UIFont fontWithName:@"Nobile" size:17]];
+    
+    // rounded corners to backgrounds
+    self.background_address.layer.cornerRadius = 8.0;
+    self.background_blurb.layer.cornerRadius = 8.0;
+    self.background_deets.layer.cornerRadius = 8.0;
+    
+    [self.stopAddress setFont: [UIFont fontWithName:@"Nobile" size:17]];
+    [self.stopName setFont: [UIFont fontWithName:@"Nobile" size:26]];
+    [self.stopBlurb setFont: [UIFont fontWithName:@"Nobile" size:17]];
+    [self.stopManagerTitle setFont: [UIFont fontWithName:@"Nobile" size:17]];
+    [self.stopManagerContactTitle setFont: [UIFont fontWithName:@"Nobile" size:17]];
+    [self.stopManager setFont: [UIFont fontWithName:@"Nobile" size:17]];
+    [self.stopManagerContact setFont: [UIFont fontWithName:@"Nobile" size:17]];
 
 }
 
@@ -77,14 +86,85 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
-    UITapGestureRecognizer *mapTap = [[UITapGestureRecognizer alloc] initWithTarget: self action:@selector(takeToGoogleMaps:)];
-    [stopPhoto addGestureRecognizer:mapTap];
+    //UITapGestureRecognizer *mapTap = [[UITapGestureRecognizer alloc] initWithTarget: self action:@selector(takeToGoogleMaps:)];
+   // [stopPhoto addGestureRecognizer:mapTap];
+    
+    UITapGestureRecognizer *mapTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(takeToGoogleMaps:)];
+    [self.scrollView addGestureRecognizer:mapTap]; 
+    
+    pageControlBeingUsed = YES;
+    [self addScrollingImages];
     
     NSError *error;
     if (![[GANTracker sharedTracker] trackPageview:@"Vegvan stop detail view"
                                          withError:&error]) {
         NSLog(@"GANTracker error, %@", [error localizedDescription]);
     }
+}
+
+/*- (void)singleTapGestureCaptured:(UITapGestureRecognizer *)gesture
+{ 
+    CGPoint touchPoint=[gesture locationInView:scrollView];
+    NSLog(@"touchPoint x,y = %f,%f", touchPoint.x, touchPoint.y);
+}*/
+
+-(void)addScrollingImages
+{
+    // to do - change number of images
+    for (int i = 0; i<3; i++)
+    {
+        CGRect frame;
+        frame.origin.x = 40.0+(self.scrollView.frame.size.width * i);
+        frame.origin.y = 0;
+        frame.size = self.scrollView.frame.size;
+        frame.size.width = 200.0;
+        UIImageView *subview = [[UIImageView alloc] initWithFrame:frame];
+        NSString* testImageFilename = [[NSBundle mainBundle] pathForResource:@"stop_placeholder" ofType:@"png"];
+        UIImage *image = [Utilities scale: [[UIImage alloc] initWithContentsOfFile:testImageFilename] toSize: CGSizeMake(frame.size.width,frame.size.height)];
+        [subview setImage: image];
+        [subview setContentMode:UIViewContentModeScaleAspectFit];
+        subview.layer.cornerRadius = 8.0;
+        subview.layer.masksToBounds = YES;
+        subview.layer.borderColor = [UIColor whiteColor].CGColor;
+        subview.layer.borderWidth = 2.0;
+        
+        [self.scrollView addSubview:subview];
+    }
+    
+    self.scrollView.contentSize = CGSizeMake(self.scrollView.frame.size.width * 3, self.scrollView.frame.size.height);
+    //180
+    CGRect pageControlFrame = CGRectMake(0.0, 168.0, self.view.frame.size.width, 20.0);
+    self.pageControl = [[CustomPageControl alloc] initWithFrame:pageControlFrame];
+    self.pageControl.numberOfPages = 3;
+    self.pageControl.backgroundColor = [UIColor clearColor];
+    self.pageControl.currentPage = 0;
+    [self.view addSubview:self.pageControl];
+}
+
+#pragma mark - Page control
+- (void)scrollViewDidScroll:(UIScrollView *)sender {
+    // Update the page when more than 50% of the previous/next page is visible
+    CGFloat pageWidth = self.scrollView.frame.size.width;
+    int page = floor((self.scrollView.contentOffset.x - pageWidth / 2) / pageWidth) + 1;
+    self.pageControl.currentPage = page;
+}
+
+- (IBAction)changePage {
+    // update the scroll view to the appropriate page
+    CGRect frame;
+    frame.origin.x = self.scrollView.frame.size.width * self.pageControl.currentPage;
+    frame.origin.y = 0;
+    frame.size = self.scrollView.frame.size;
+    [self.scrollView scrollRectToVisible:frame animated:YES];
+    pageControlBeingUsed = YES;
+}
+
+- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
+    pageControlBeingUsed = NO;
+}
+
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
+    pageControlBeingUsed = NO;
 }
 
 - (void)viewDidUnload

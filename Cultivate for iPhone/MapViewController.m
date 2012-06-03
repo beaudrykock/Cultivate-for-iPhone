@@ -702,7 +702,7 @@
             sidvc = [[ScheduleItemDetailViewController alloc] initWithNibName:@"ScheduleItemDetailView" bundle:nil];
             [self.view insertSubview: sidvc.view belowSubview:self.view];
             [sidvc addGestureRecognizers];
-            [sidvc.view setFrame: CGRectMake(0.0,0.0,320.0, 480.0)];
+            //[sidvc.view setFrame: CGRectMake(0.0,0.0,320.0, 480.0)];
             [sidvc setDelegate: self];
         }
         

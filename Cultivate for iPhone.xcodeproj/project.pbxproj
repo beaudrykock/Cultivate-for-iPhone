@@ -53,6 +53,7 @@
 		9F57B638156118FC00615DEB /* libicucore.A.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F57B637156118FC00615DEB /* libicucore.A.dylib */; };
 		9F57B640156127CF00615DEB /* TweetTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F57B63F156127CF00615DEB /* TweetTableViewCell.m */; };
 		9F57B64C156131B300615DEB /* SVWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F57B64B156131B300615DEB /* SVWebViewController.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		9F5C979A157FAF5E0034F870 /* NewLocationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F5C9799157FAF5E0034F870 /* NewLocationViewController.m */; };
 		9F60768015483FCE00105643 /* VegVanStopNotification.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F60767F15483FCE00105643 /* VegVanStopNotification.m */; };
 		9F60769415484AE000105643 /* 20-gear2.png in Resources */ = {isa = PBXBuildFile; fileRef = 9F60769215484AE000105643 /* 20-gear2.png */; };
 		9F60769515484AE000105643 /* 20-gear2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9F60769315484AE000105643 /* 20-gear2@2x.png */; };
@@ -292,6 +293,8 @@
 		9F57B63F156127CF00615DEB /* TweetTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TweetTableViewCell.m; sourceTree = "<group>"; };
 		9F57B64A156131B300615DEB /* SVWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVWebViewController.h; sourceTree = "<group>"; };
 		9F57B64B156131B300615DEB /* SVWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVWebViewController.m; sourceTree = "<group>"; };
+		9F5C9798157FAF5E0034F870 /* NewLocationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewLocationViewController.h; sourceTree = "<group>"; };
+		9F5C9799157FAF5E0034F870 /* NewLocationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewLocationViewController.m; sourceTree = "<group>"; };
 		9F60767E15483FCE00105643 /* VegVanStopNotification.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VegVanStopNotification.h; path = "Cultivate for iPhone/VegVanStopNotification.h"; sourceTree = "<group>"; };
 		9F60767F15483FCE00105643 /* VegVanStopNotification.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VegVanStopNotification.m; path = "Cultivate for iPhone/VegVanStopNotification.m"; sourceTree = "<group>"; };
 		9F60769215484AE000105643 /* 20-gear2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "20-gear2.png"; sourceTree = "<group>"; };
@@ -794,6 +797,8 @@
 				9F57B62515610A3E00615DEB /* MessageViewController.m */,
 				9F57B64A156131B300615DEB /* SVWebViewController.h */,
 				9F57B64B156131B300615DEB /* SVWebViewController.m */,
+				9F5C9798157FAF5E0034F870 /* NewLocationViewController.h */,
+				9F5C9799157FAF5E0034F870 /* NewLocationViewController.m */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -1637,6 +1642,7 @@
 				9F33D14915751ADE00A4A876 /* CustomPageControl.m in Sources */,
 				9F33D152157522C200A4A876 /* FarmAnnotation.m in Sources */,
 				9F77B65A1576329C002FF320 /* MoveMeView.m in Sources */,
+				9F5C979A157FAF5E0034F870 /* NewLocationViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

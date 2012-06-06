@@ -17,7 +17,7 @@
                                   delegate:self 
                                   cancelButtonTitle:@"Cancel" 
                                   destructiveButtonTitle:nil
-                                  otherButtonTitles:@"Join mailing list", @"Volunteer", @"Contact us", nil
+                                  otherButtonTitles:@"Join mailing list", @"Volunteer", @"Suggest VegVan stop", @"Contact us", nil
 								  ];
 	[actionsheet showFromTabBar:self.tabBarController.tabBar];
 }
@@ -54,6 +54,10 @@
         [self performSegueWithIdentifier: @"join mailing list" sender: self];
     }
     else if (buttonIndex ==2)
+    {
+        [self performSegueWithIdentifier: @"suggest location" sender:self];
+    }
+    else if (buttonIndex ==3)
     {
         [self showPicker: nil];
     }
@@ -140,25 +144,37 @@
 
 -(void)addScrollingText
 {
+    NSArray *textarr = [NSArray arrayWithObjects:@"Cultivate is about new ways of feeding Oxford. We’re a local food co-operative working to bring fresh, local food from our 5-acre market garden and from other Oxfordshire growers directly to you! Cultivate is people-powered! We are a co-operative owned, run and ﬁnanced by our members.",@"The VegVan, our mobile greengrocery, has a set of stops which are the same from week-to-week. You can use this app to find the one closest to you - your home, work, children’s school, church? And if you can’t find a location that works for you, let us know via the Feedback button below. We’re actively looking for new places to stop, so tell us where we should go, and we’ll hope to be near you soon.",@"Cultivate is about bringing people together. We have regular volunteer days and events, where you can learn about what we do and get stuck in. Check out the website (http://www.cultivateoxford.org) to find out what’s coming up soon. We are a membership-based organisation, so if you like what we do and want to get involved (or even if you’d just like a 10% discount on your veg) you can sign up for membership here: http://www.cultivateoxford.org/get-involved/membership.", nil];
+    
+    NSArray *titlearr = [NSArray arrayWithObjects:@"About Us", @"VegVan", @"Join Us", nil];
+    
     for (int i = 0; i<3; i++)
     {
         CGRect frame;
         CGRect titleFrame;
         frame.origin.x = self.scrollView.frame.size.width * i;
-        frame.origin.y = 0;
-        frame.size = self.scrollView.frame.size;
+        titleFrame.origin.x = frame.origin.x;
+        titleFrame.origin.y = 0.0;
+        titleFrame.size = CGSizeMake(self.scrollView.frame.size.width, 30.0);
+        frame.origin.y = titleFrame.origin.y+titleFrame.size.height;
+        frame.size = CGSizeMake(self.scrollView.frame.size.width,self.scrollView.frame.size.height-titleFrame.size.height);
         
-        UILabel *subview = [[UILabel alloc] initWithFrame:frame];
-        [subview setLineBreakMode: UILineBreakModeWordWrap];
-        [subview setNumberOfLines: 0];
-        subview.text = @"We are a not-for-profit social enterprise that will bring fresh, local, organically-grown food direct from farmers to the city and surrounding communities. Our five-acre market garden and other small farms nearby will provide the produce sold in the VegVan, our mobile greengrocery, which will set up wherever communities want it.";
+        UILabel *title = [[UILabel alloc] initWithFrame:titleFrame];
+        [title setText:[titlearr objectAtIndex:i]];
+        [title setTextAlignment:UITextAlignmentCenter];
+        UITextView *subview = [[UITextView alloc] initWithFrame:frame];
+        subview.text = [textarr objectAtIndex:i];
+        [subview setEditable:NO];
+        [title setFont: [UIFont fontWithName: @"nobile" size:17.0]];
         [subview setFont: [UIFont fontWithName: @"Calibri" size:15.0]];
+        subview.dataDetectorTypes = UIDataDetectorTypeAll;
         [self.scrollView addSubview:subview];
+        [self.scrollView addSubview:title];
     }
     
     self.scrollView.contentSize = CGSizeMake(self.scrollView.frame.size.width * 3, self.scrollView.frame.size.height);
     
-    CGRect pageControlFrame = CGRectMake(0.0, 283.0, self.view.frame.size.width, 20.0);
+    CGRect pageControlFrame = CGRectMake(0.0, 312.0, self.view.frame.size.width, 20.0);
     self.pageControl = [[CustomPageControl alloc] initWithFrame:pageControlFrame];
     self.pageControl.numberOfPages = 3;
     self.pageControl.backgroundColor = [UIColor clearColor];
@@ -197,12 +213,19 @@
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender 
 {
-    // Get reference to the destination view controller
-    MailChimpViewController *mcvc = [segue destinationViewController];
-    
-    // Pass any objects to the view controller here, like...
-    [mcvc setListType:tappedListType];
-    [mcvc setDelegate: self];
+    if ([segue.identifier isEqualToString:@"join mailing list"])
+    {
+        // Get reference to the destination view controller
+        MailChimpViewController *mcvc = [segue destinationViewController];
+        
+        // Pass any objects to the view controller here, like...
+        [mcvc setListType:tappedListType];
+        [mcvc setDelegate: self];
+    }
+    else
+    {
+        
+    }
 }
 
 #pragma mark -

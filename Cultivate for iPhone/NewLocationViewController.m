@@ -56,6 +56,7 @@
     
     self.describeView.layer.borderColor = [[UIColor lightGrayColor] CGColor];
     self.describeView.layer.borderWidth = 1.0;
+    self.describeView.delegate = self;
     
     [self.viewTitleLabel setFont: [UIFont fontWithName:@"nobile" size:20]];
     [self.myLocationLabel setFont: [UIFont fontWithName:@"Calibri" size:17.0]];
@@ -311,6 +312,16 @@
             break;
     }
     [self.whatTimesLabel setText:[NSString stringWithFormat:@"@ %@", self.timeForDayChosen]];
+}
+
+- (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text {
+    
+    if([text isEqualToString:@"\n"]) {
+        [textView resignFirstResponder];
+        return NO;
+    }
+    
+    return YES;
 }
 
 - (void)viewDidUnload

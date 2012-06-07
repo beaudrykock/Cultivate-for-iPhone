@@ -12,7 +12,7 @@
 #import "AKFusionTables.h"
 #import "MapViewController.h"
 
-@protocol NewLocationViewControllerDelegate <NSObject>
+@protocol NewLocationViewControllerDelegate <NSObject, UITextViewDelegate>
 
 -(void)dismissVegVanLocationSuggestionView;
 

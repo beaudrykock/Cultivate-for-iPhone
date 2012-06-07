@@ -17,8 +17,9 @@
 #import "CustomButton.h"
 #import "SVWebViewController.h"
 #import "CustomPageControl.h"
+#import "NewLocationViewController.h"
 
-@interface AboutViewController : UIViewController <UIActionSheetDelegate, ChimpKitDelegate, MailChimpViewControllerDelegate>
+@interface AboutViewController : UIViewController <UIActionSheetDelegate, ChimpKitDelegate, MailChimpViewControllerDelegate, NewLocationViewControllerDelegate>
 {
     NSString *tappedListType;
     UIView *shakeView;
@@ -46,5 +47,6 @@
 -(IBAction)launchCultivateWebsite;
 - (IBAction)changePage;
 -(void)addScrollingImages;
+-(void)dismissVegVanLocationSuggestionView;
 
 @end

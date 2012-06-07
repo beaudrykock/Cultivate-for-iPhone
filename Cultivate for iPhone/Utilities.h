@@ -42,5 +42,6 @@
 +(void)setApplySettingsToAllNotifications:(BOOL)setting;
 +(BOOL)applySettingsToAllNotifications;
 +(void)prefMaintenance;
-
++(NSArray*)getLocation;
++(void)writeLocation:(CLLocation*)loc;
 @end

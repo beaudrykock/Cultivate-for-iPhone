@@ -299,7 +299,8 @@
     NSTimeInterval howRecent = [eventDate timeIntervalSinceNow];
     if (abs(howRecent) < 15.0)
     {
-        currentLocation = newLocation;
+        self.currentLocation = newLocation;
+        [Utilities writeLocation: self.currentLocation];
         NSLog(@"latitude %+.6f, longitude %+.6f\n",
               newLocation.coordinate.latitude,
               newLocation.coordinate.longitude);

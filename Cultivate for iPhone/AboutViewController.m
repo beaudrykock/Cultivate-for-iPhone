@@ -71,6 +71,12 @@
     [getInvolved setNeedsDisplay];
 }
 
+-(void)dismissVegVanLocationSuggestionView
+{
+    [self dismissViewControllerAnimated:YES completion:nil];
+    [getInvolved setNeedsDisplay];
+}
+
 -(IBAction)share:(id)selector
 {
     NSError *error;
@@ -222,9 +228,11 @@
         [mcvc setListType:tappedListType];
         [mcvc setDelegate: self];
     }
-    else
+    else if ([segue.identifier isEqualToString:@"suggest location"])
     {
+        NewLocationViewController *nlvc = [segue destinationViewController];
         
+        [nlvc setDelegate:self];
     }
 }
 

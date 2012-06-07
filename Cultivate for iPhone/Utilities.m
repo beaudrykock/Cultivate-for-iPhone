@@ -342,4 +342,15 @@
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
++(void)writeLocation:(CLLocation*)loc
+{
+    NSArray *array = [NSArray arrayWithObjects:[NSNumber numberWithFloat:loc.coordinate.latitude],[NSNumber numberWithFloat:loc.coordinate.longitude], nil];
+    [[NSUserDefaults standardUserDefaults] setObject:array forKey:@"kLocationKey"];
+}
+
++(NSArray*)getLocation
+{
+    return [[NSUserDefaults standardUserDefaults] objectForKey:@"kLocationKey"];
+}
+
 @end

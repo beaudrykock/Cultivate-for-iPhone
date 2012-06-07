@@ -15,7 +15,7 @@
 
 @implementation NewLocationViewController
 
-@synthesize myLocationButton, postcodeField, describeView, or_1, or_2, titleLabel, whatDaysLabel, whatTimesLabel, pick_1, pick_2, submit, topView, middleView, bottomView, dayPicker, timeStepper, dayChosen, timeForDayChosen, latitude, longitude;
+@synthesize myLocationButton, postcodeField, describeView, or_1, or_2, titleLabel, whatDaysLabel, whatTimesLabel, submit, topView, middleView, bottomView, dayPicker, timeStepper, dayChosen, timeForDayChosen, latitude, longitude, myLocationLabel, viewTitleLabel, titleView, delegate;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -30,6 +30,15 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
+    
+    UISwipeGestureRecognizer *swipe = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(dismiss)];
+    [swipe setDirection:UISwipeGestureRecognizerDirectionDown];
+    [self.view addGestureRecognizer:swipe];
+}
+
+-(void)dismiss
+{
+    [self.delegate dismissVegVanLocationSuggestionView];
 }
 
 -(void)viewWillAppear:(BOOL)animated
@@ -39,25 +48,34 @@
 
 -(void)layoutSubviews
 {
+    self.titleView.layer.cornerRadius = 8.0;
     self.topView.layer.cornerRadius = 8.0;
     self.middleView.layer.cornerRadius = 8.0;
     self.bottomView.layer.cornerRadius = 8.0;
     self.describeView.layer.cornerRadius = 8.0;
     
-    self.describeView.layer.borderColor = [[UIColor grayColor] CGColor];
+    self.describeView.layer.borderColor = [[UIColor lightGrayColor] CGColor];
     self.describeView.layer.borderWidth = 1.0;
     
+    [self.viewTitleLabel setFont: [UIFont fontWithName:@"nobile" size:20]];
+    [self.myLocationLabel setFont: [UIFont fontWithName:@"Calibri" size:17.0]];
     [self.titleLabel setFont: [UIFont fontWithName:@"nobile" size:20]];
     [self.or_1 setFont: [UIFont fontWithName:@"Calibri" size:17]];
-    [self.or_2 setFont: [UIFont fontWithName:@"nobile" size:17]];
-    [self.whatDaysLabel setFont: [UIFont fontWithName:@"nobile" size:17]];
-    [self.whatTimesLabel setFont: [UIFont fontWithName:@"nobile" size:17]];
-    [self.describeView setFont:[UIFont fontWithName:@"nobile" size:15]];
+    [self.or_2 setFont: [UIFont fontWithName:@"Calibri" size:17]];
+    [self.whatDaysLabel setFont: [UIFont fontWithName:@"nobile" size:20]];
+    [self.whatTimesLabel setFont: [UIFont fontWithName:@"Calibri" size:20]];
+    [self.describeView setFont:[UIFont fontWithName:@"Calibri" size:15]];
     
     self.dayChosen = @"no day";
     self.timeForDayChosen = @"no time";
-    [self.describeView setText:@"please describe..."];
+    [self.describeView setText:@"e.g. car park at Iffley and Magdalen, East Oxford"];
     [self.whatTimesLabel setText:@"@ what time?"];
+    
+    // custom buttons
+    [self.submit setButtonTitle: @"Submit"];
+    [self.submit setSize: CGSizeMake(279.0, 37.0)];
+    [self.submit setFillWith:[Utilities colorWithHexString:@"#0f4d6f"] andHighlightedFillWith:[Utilities colorWithHexString:@"#092e42"] andBorderWith:[UIColor whiteColor] andTextWith:[UIColor whiteColor]];
+    
 }
 
 -(IBAction)myLocation:(id)sender
@@ -70,12 +88,14 @@
         
         whereChoice = 0;
             
-        // get currentlocation from tab 1
-        __weak MapViewController *mpv = [self.tabBarController.childViewControllers objectAtIndex:0];
+        NSArray *location = [Utilities getLocation];
         
-        CLLocation *loc = mpv.currentLocation;
+        CLLocation *loc = [[CLLocation alloc] initWithLatitude:[[location objectAtIndex:0] floatValue] longitude:[[location objectAtIndex:1] floatValue]];
         self.latitude = [NSNumber numberWithFloat:loc.coordinate.latitude];
         self.longitude = [NSNumber numberWithFloat:loc.coordinate.longitude];
+        
+        [self reverseGeocode:loc];
+        
     }
 }
 
@@ -107,9 +127,8 @@
             NSPredicate *postcodeTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", kPostcodeRegex];
             if ([postcodeTest evaluateWithObject:[self.postcodeField text]])
             {
-                CLPlacemark *loc = [self forwardGeocode:self.postcodeField.text];
-                self.latitude = [NSNumber numberWithFloat:loc.location.coordinate.latitude];
-                self.longitude = [NSNumber numberWithFloat:loc.location.coordinate.longitude];
+                [self forwardGeocode:self.postcodeField.text];
+                
             }
             else {
                 [self promptInvalidPostcode];
@@ -145,20 +164,30 @@
     AKFusionTables *fusionTables = [[AKFusionTables alloc] initWithUsername:@"beaudrykock@gmail.com" password:@"hLsbp93iLUkbhaenQfcu"];
     
     // TODO: customize with actual dates
-    NSString *tableID = @"S532916HW9Z";
-    NSString *query = [NSString stringWithFormat:@"INSERT INTO %@ (Lat, Long, Desc, When, When, Time) VALUES('%@', '%@', '%@', '%@', '%@', '%@')", tableID, self.latitude.stringValue, self.longitude.stringValue, self.describeView.text, self.dayChosen, self.dayChosen, self.timeForDayChosen];
-    NSString *query2 = @"INSERT INTO 1ngoMdAM_oQsh-au8gGuIB5qGlw06rJfZ9rAAQ5s (Lat, Long, Desc, When, Time) VALUES('0', '0', 'desc', 'Monday', '8 am')";
-    NSLog(@"query = %@", query);
-    NSString *query3 = [NSString stringWithFormat: @"INSERT INTO 1XDJMKnYqaclEyzRHr0AuszDyv7Wb7G2zbHtCiyU (name, mobile, postcode, volunteerDate) VALUES('%@', %@, '%@', '%@')", @"Jane Doe", @"077777777", @"OX1 1QA", @"10/10/10"];
+    NSString *tableID = @"1lx5fkmE4V0WAjhOhPmHxMtqmQT0Y1k1UWgU4UZk";
+    NSString *query = [NSString stringWithFormat:@"INSERT INTO %@ (Lat, Long, Desc, When, Time) VALUES('%@', '%@', '%@', '%@', '%@')", tableID, self.latitude.stringValue, self.longitude.stringValue, self.describeView.text, self.dayChosen, self.timeForDayChosen];
+    // access
+    [fusionTables querySql:@"SELECT * FROM 1lx5fkmE4V0WAjhOhPmHxMtqmQT0Y1k1UWgU4UZk" completionHandler:^(NSData *data, NSError *error) {
+        [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+        if (error != nil){
+            NSInteger code = [error code];
+            NSLog(@"Error code %d", code);
+        } else {
+            NSString *content = [[NSString alloc]
+                                 initWithBytes:[data bytes] length:[data length] encoding:NSUTF8StringEncoding];
+            NSLog(@"Content: %@", content);
+        }
+    }];
+    
     [fusionTables modifySql:query completionHandler:^(NSData *data, NSError *error) {
         [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+        [self dismiss];
         if (error != nil){
             NSInteger code = [error code];
             NSLog(@"Error code %d, desc %@", code, [error description]);
         }
     }
      ];
-
     
     [self reset];
 }
@@ -169,9 +198,22 @@
     CLGeocoder *geocoder = [[CLGeocoder alloc] init];
     [geocoder geocodeAddressString:postcode completionHandler:^(NSArray *placemarks, NSError *error) {
             placemark = [placemarks objectAtIndex:0];
-            
+            self.latitude = [NSNumber numberWithFloat:placemark.location.coordinate.latitude];
+            self.longitude = [NSNumber numberWithFloat:placemark.location.coordinate.longitude];
             NSLog(@"lat = %f, long = %f", placemark.location.coordinate.latitude, placemark.location.coordinate.longitude);
         }];
+    return placemark;
+}
+
+-(CLPlacemark*)reverseGeocode:(CLLocation*)loc
+{
+    __block CLPlacemark *placemark = nil;
+    CLGeocoder * geoCoder = [[CLGeocoder alloc] init];
+    [geoCoder reverseGeocodeLocation:loc completionHandler:^(NSArray *placemarks, NSError *error) {
+            placemark = [placemarks objectAtIndex:0];
+        NSLog(@"postal code = %@", placemark.postalCode);
+        [self.myLocationLabel setText: [placemark postalCode]];
+    }];
     return placemark;
 }
 

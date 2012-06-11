@@ -9,6 +9,11 @@
 #define METERS_PER_MILE 1609.344
 //#define kDownloadProfileImage // uncomment if want to use Twitter profile image from Cultivate feed
 
+// FONTS
+#define kTitleFont @"Calibri"//@"Euphemia UCAS"
+#define kTextFont @"Calibri"
+#define kTextFontBold @"Calibri-Bold"
+
 // COLORS
 #define kCultivateGreenColor @"#639939"
 #define kButtonBackgroundColor @"#639939" 

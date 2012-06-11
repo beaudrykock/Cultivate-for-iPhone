@@ -35,13 +35,13 @@
         UIView *mainView = [subviewArray objectAtIndex:0];
         [self addSubview:mainView];
                 
-        [self.handle setFont: [UIFont fontWithName:@"nobile" size:24]];
-        [self.name_label setFont: [UIFont fontWithName:@"Calibri" size:15]];
-        [self.postcode_label setFont: [UIFont fontWithName:@"Calibri" size:15]];
-        [self.mobile_label setFont: [UIFont fontWithName:@"Calibri" size:15]];
-        [self.about_label setFont: [UIFont fontWithName:@"Calibri" size:15]];
-        [self.disclaimer_label setFont: [UIFont fontWithName:@"Calibri" size:12]];
-        [self.email_label setFont: [UIFont fontWithName:@"Calibri" size:15]];
+        [self.handle setFont: [UIFont fontWithName:kTitleFont size:22]];
+        [self.name_label setFont: [UIFont fontWithName:kTextFont size:15]];
+        [self.postcode_label setFont: [UIFont fontWithName:kTextFont size:15]];
+        [self.mobile_label setFont: [UIFont fontWithName:kTextFont size:15]];
+        [self.about_label setFont: [UIFont fontWithName:kTextFont size:15]];
+        [self.disclaimer_label setFont: [UIFont fontWithName:kTextFont size:12]];
+        [self.email_label setFont: [UIFont fontWithName:kTextFont size:15]];
     
         [[NSNotificationCenter defaultCenter] addObserver:self
                                                  selector:@selector(doneWithKeyboard) name:@"UIKeyboardDidHideNotification" object:nil];

@@ -96,7 +96,7 @@
     }
     CGRect textFrame = CGRectMake(x, 8, 124, 22);
     [color3 setFill];
-    [textContent drawInRect: textFrame withFont: [UIFont fontWithName: @"Calibri" size: 18] lineBreakMode: UILineBreakModeWordWrap alignment: UITextAlignmentCenter];
+    [textContent drawInRect: textFrame withFont: [UIFont fontWithName: kTextFont size: 18] lineBreakMode: UILineBreakModeWordWrap alignment: UITextAlignmentCenter];
     
 }
 

@@ -13,7 +13,7 @@
 @end
 
 @implementation RideShareViewController
-@synthesize volunteerDates, viewTitle, info, tableView, selectedValues, submitButton, cultiRideDetailsView, overlay;
+@synthesize volunteerDates, viewTitle, info, tableView, selectedValues, submitButton, cultiRideDetailsView, overlay, disclaimer;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -33,9 +33,9 @@
     self.volunteerDates = [Utilities getVolunteerDatesWithRequestStatus];
     [self.viewTitle setTextColor: [Utilities colorWithHexString: kCultivateGreenColor]];
     [self.info setTextColor: [Utilities colorWithHexString: kCultivateGrayColor]];
-    [self.viewTitle setFont: [UIFont fontWithName: @"Nobile" size: 23.0]];
-    [self.info setFont: [UIFont fontWithName: @"Calibri" size: self.info.font.pointSize]];
-    
+    [self.viewTitle setFont: [UIFont fontWithName: kTitleFont size: 20.0]];
+    [self.info setFont: [UIFont fontWithName: kTextFont size: self.info.font.pointSize]];
+    [self.disclaimer setFont: [UIFont fontWithName: kTextFont size: self.disclaimer.font.pointSize]];
     NSMutableArray *arrayValues = [[NSMutableArray alloc] initWithCapacity:10];
     
     for (int i = 0; i<[volunteerDates count]; i++)
@@ -268,7 +268,7 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
     cell.textLabel.text = [volunteerDates objectAtIndex: indexPath.row];
-    cell.textLabel.font = [UIFont fontWithName:@"Calibri" size: 15.0];
+    cell.textLabel.font = [UIFont fontWithName:kTextFont size: 15.0];
 	cell.accessoryType = UITableViewCellAccessoryNone;
 	
     return cell;

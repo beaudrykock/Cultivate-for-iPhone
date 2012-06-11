@@ -34,6 +34,14 @@
     UISwipeGestureRecognizer *swipe = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(dismiss)];
     [swipe setDirection:UISwipeGestureRecognizerDirectionDown];
     [self.view addGestureRecognizer:swipe];
+    
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissKeyboard)];
+    [self.view addGestureRecognizer:tap];
+}
+
+-(void)dismissKeyboard
+{
+    [self.describeView resignFirstResponder];
 }
 
 -(void)dismiss
@@ -58,14 +66,14 @@
     self.describeView.layer.borderWidth = 1.0;
     self.describeView.delegate = self;
     
-    [self.viewTitleLabel setFont: [UIFont fontWithName:@"nobile" size:20]];
-    [self.myLocationLabel setFont: [UIFont fontWithName:@"Calibri" size:17.0]];
-    [self.titleLabel setFont: [UIFont fontWithName:@"nobile" size:20]];
-    [self.or_1 setFont: [UIFont fontWithName:@"Calibri" size:17]];
-    [self.or_2 setFont: [UIFont fontWithName:@"Calibri" size:17]];
-    [self.whatDaysLabel setFont: [UIFont fontWithName:@"nobile" size:20]];
-    [self.whatTimesLabel setFont: [UIFont fontWithName:@"Calibri" size:20]];
-    [self.describeView setFont:[UIFont fontWithName:@"Calibri" size:15]];
+    [self.viewTitleLabel setFont: [UIFont fontWithName:kTitleFont size:20]];
+    [self.myLocationLabel setFont: [UIFont fontWithName:kTextFont size:17.0]];
+    [self.titleLabel setFont: [UIFont fontWithName:kTitleFont size:20]];
+    [self.or_1 setFont: [UIFont fontWithName:kTextFont size:17]];
+    [self.or_2 setFont: [UIFont fontWithName:kTextFont size:17]];
+    [self.whatDaysLabel setFont: [UIFont fontWithName:kTitleFont size:20]];
+    [self.whatTimesLabel setFont: [UIFont fontWithName:kTextFont size:20]];
+    [self.describeView setFont:[UIFont fontWithName:kTextFont size:15]];
     
     self.dayChosen = @"no day";
     self.timeForDayChosen = @"no time";
@@ -86,7 +94,7 @@
         [self promptForLocationServices];
     }
     else {
-        
+        [self.myLocationLabel setText:@"Locating..."];
         whereChoice = 0;
             
         NSArray *location = [Utilities getLocation];
@@ -162,6 +170,7 @@
 -(void)sendToFusionTable
 {
     [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
+    [self addActivityOverlay];
     AKFusionTables *fusionTables = [[AKFusionTables alloc] initWithUsername:@"beaudrykock@gmail.com" password:@"hLsbp93iLUkbhaenQfcu"];
     
     // TODO: customize with actual dates
@@ -182,6 +191,7 @@
     
     [fusionTables modifySql:query completionHandler:^(NSData *data, NSError *error) {
         [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+        [self removeActivityOverlay];
         [self dismiss];
         if (error != nil){
             NSInteger code = [error code];
@@ -190,7 +200,34 @@
     }
      ];
     
-    [self reset];
+    //[self reset];
+}
+
+-(void)addActivityOverlay
+{
+    UIView *base = [[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, self.view.bounds.size.width, self.view.bounds.size.height)];
+    [base setTag:1000];
+    [base setBackgroundColor:[UIColor clearColor]];
+    UIView *overlay = [[UIView alloc] initWithFrame:base.frame];
+    [overlay setBackgroundColor:[UIColor blackColor]];
+    [overlay setAlpha:0.8];
+    [base addSubview:overlay];
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake((self.view.bounds.size.width/2)-(50.0), (self.view.bounds.size.height/2)-(20.0), 100.0, 40.0)];
+    [base addSubview:label];
+    [label setText:@"Submitting to Cultivate HQ..."];
+    
+}
+
+-(void)removeActivityOverlay
+{
+    for (UIView *view in self.view.subviews)
+    {
+        if (view.tag == 1000)
+        {
+            [view removeFromSuperview];
+            break;
+        }
+    }
 }
 
 -(CLPlacemark*)forwardGeocode:(NSString*)postcode
@@ -213,7 +250,15 @@
     [geoCoder reverseGeocodeLocation:loc completionHandler:^(NSArray *placemarks, NSError *error) {
             placemark = [placemarks objectAtIndex:0];
         NSLog(@"postal code = %@", placemark.postalCode);
-        [self.myLocationLabel setText: [placemark postalCode]];
+        
+        if (placemark.postalCode != NULL)
+        {
+            [self.myLocationLabel setText: [placemark postalCode]];
+        }
+        else 
+        {
+            [self.myLocationLabel setText:@"Location unavailable"];
+        }
     }];
     return placemark;
 }

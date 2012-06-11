@@ -10,7 +10,7 @@
 
 @implementation MapViewController
 //@synthesize mapView;
-@synthesize locationManager, currentLocation, locateDropdown, locateVanOptionsPosition, searchBarBackground, stopSearchBar, touchView, sidvc, bar, findButton, showUserLocationButton;
+@synthesize locationManager, currentLocation, locateDropdown, locateVanOptionsPosition, searchBarBackground, stopSearchBar, touchView, sidvc, bar, findButton, showUserLocationButton, nearestMeLabel, farmLabel, nextLabel;
 
 - (void)didReceiveMemoryWarning
 {
@@ -35,7 +35,10 @@
     //[self tintSearchBarBackground];
     [self registerForKeyboardNotifications];
     [stopSearchBar setDelegate: self];
-    self.findButton.titleLabel.font = [UIFont fontWithName:@"Calibri" size:self.findButton.titleLabel.font.pointSize]; 
+    self.findButton.titleLabel.font = [UIFont fontWithName:kTextFont size:20.0];//size:self.findButton.titleLabel.font.pointSize]; 
+    [self.nearestMeLabel setFont: [UIFont fontWithName:kTextFont size:self.nearestMeLabel.font.pointSize]];
+    [self.nextLabel setFont: [UIFont fontWithName:kTextFont size:self.nextLabel.font.pointSize]];
+    [self.farmLabel setFont: [UIFont fontWithName:kTextFont size:self.farmLabel.font.pointSize]];
     _mapView.zoomEnabled = YES;
     
     [self tabBarController].moreNavigationController.navigationBar.barStyle = UIBarStyleBlackOpaque;
@@ -454,7 +457,7 @@
         while (counter < [[_mapView annotations] count])
         {
             annotation = [_mapView.annotations objectAtIndex:counter];
-            if (![annotation isKindOfClass:[MKUserLocation class]])
+            if (![annotation isKindOfClass:[MKUserLocation class]] && ![annotation isKindOfClass:[FarmAnnotation class]])
             {
                 
                 annotationLocation = [[CLLocation alloc] initWithLatitude:annotation.coordinate.latitude longitude:annotation.coordinate.longitude];
@@ -504,7 +507,7 @@
     while (counter < [[_mapView annotations] count])
     {
         annotation = [_mapView.annotations objectAtIndex:counter];
-        if (![annotation isKindOfClass:[MKUserLocation class]])
+        if (![annotation isKindOfClass:[MKUserLocation class]] && ![annotation isKindOfClass:[FarmAnnotation class]])
         {
             
             timeToNextStop = [[[Utilities sharedAppDelegate] vegVanStopManager] secondsUntilNextScheduledStopWithName: [annotation stopName]];

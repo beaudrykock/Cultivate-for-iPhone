@@ -97,7 +97,7 @@
             image = [UIImage imageNamed:@"droplet_normal.png"];
         #endif
         [tableViewCellImages addObject: image];
-        CGSize labelSize = [[dict objectForKey:@"text"] sizeWithFont:[UIFont fontWithName:@"Calibri" size:14.0] 
+        CGSize labelSize = [[dict objectForKey:@"text"] sizeWithFont:[UIFont fontWithName:kTextFont size:14.0] 
                                                   constrainedToSize:CGSizeMake(240.0f, MAXFLOAT) 
                                                       lineBreakMode:UILineBreakModeWordWrap];
         if (labelSize.height < 70) 
@@ -192,7 +192,7 @@
         [self.downloadingUpdateLabel setText:@"Internet not available"];
     }
     [self.downloadingUpdateLabel setBackgroundColor:[UIColor clearColor]];
-    [self.downloadingUpdateLabel setFont:[UIFont fontWithName:@"Calibri" size:18.0]];
+    [self.downloadingUpdateLabel setFont:[UIFont fontWithName:kTextFont size:18.0]];
     [self.downloadingUpdateLabel setTextColor:[UIColor whiteColor]];
     [self.downloadingUpdateLabel setTextAlignment:UITextAlignmentCenter];
     [coloredOverlay addSubview:self.downloadingUpdateLabel];
@@ -284,7 +284,7 @@
     CGSize labelSize;
     if (!sizeValue)
     {
-        labelSize = [[aTweet objectForKey:@"text"] sizeWithFont:[UIFont fontWithName:@"Calibri" size:14.0] 
+        labelSize = [[aTweet objectForKey:@"text"] sizeWithFont:[UIFont fontWithName:kTextFont size:14.0] 
                        constrainedToSize:CGSizeMake(240.0f, MAXFLOAT) 
                            lineBreakMode:UILineBreakModeWordWrap];
         if (labelSize.height < 70) 
@@ -334,7 +334,7 @@
     {
         NSString *string = [[tweets objectAtIndex: indexPath.row] objectForKey:@"text"];
         
-        labelSize = [string sizeWithFont:[UIFont fontWithName:@"Calibri" size:14.0] 
+        labelSize = [string sizeWithFont:[UIFont fontWithName:kTextFont size:14.0] 
                               constrainedToSize:CGSizeMake(240.0f, MAXFLOAT) 
                                   lineBreakMode:UILineBreakModeWordWrap];
         if (labelSize.height < 70) 
@@ -471,7 +471,7 @@
         NSData *data = [NSData dataWithContentsOfURL:[NSURL URLWithString:[tweetImageURLs objectAtIndex:count]]];
         UIImage *image = [UIImage imageWithData:data];
         [tableViewCellImages addObject: image];
-        CGSize labelSize = [[dict objectForKey:@"text"] sizeWithFont:[UIFont fontWithName:@"Calibri" size:14.0] 
+        CGSize labelSize = [[dict objectForKey:@"text"] sizeWithFont:[UIFont fontWithName:kTextFont size:14.0] 
                                                    constrainedToSize:CGSizeMake(240.0f, MAXFLOAT) 
                                                        lineBreakMode:UILineBreakModeWordWrap];
         if (labelSize.height < 70) 

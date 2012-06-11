@@ -35,7 +35,7 @@
     }
     else {
         
-        labelSize = [text sizeWithFont:[UIFont fontWithName:@"Calibri" size:14.0] 
+        labelSize = [text sizeWithFont:[UIFont fontWithName:kTextFont size:14.0] 
                                                      constrainedToSize:CGSizeMake(240.0f, MAXFLOAT) 
                                                         lineBreakMode:UILineBreakModeWordWrap];
     }
@@ -48,7 +48,7 @@
     if (labelSize.height < 70.0) 
         labelSize.height = 70.0;
     tweetLabel = [[IFTweetLabel alloc] initWithFrame:CGRectMake(60.0, 0.0, labelSize.width, labelSize.height+20.0)];
-    [self.tweetLabel setFont:[UIFont fontWithName:@"Calibri" size:14.0]];
+    [self.tweetLabel setFont:[UIFont fontWithName:kTextFont size:14.0]];
     [self.tweetLabel setTextColor:[UIColor blackColor]];
     [self.tweetLabel setBackgroundColor:[UIColor clearColor]];
     [self.tweetLabel setNumberOfLines:0];

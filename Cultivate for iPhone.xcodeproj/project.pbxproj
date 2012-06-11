@@ -709,7 +709,7 @@
 				9F6A09321546D4C500B59D0F /* AppDelegate.h */,
 				9F6A09331546D4C500B59D0F /* AppDelegate.m */,
 				9F6A09351546D4C500B59D0F /* MainStoryboard.storyboard */,
-				9F01782C15666DC500D0370F /* NotificationSettingsView.xib */,
+				9FF78E98155FAC3300FAAE67 /* Nibs */,
 				9F33D15A15752FC400A4A876 /* Google Analytics */,
 				9F01782315662CC800D0370F /* Settings.bundle */,
 				9F6A09651546E74000B59D0F /* AppConstants.h */,
@@ -770,7 +770,6 @@
 				9F524B0715519517000846E7 /* VegVanStops.xml */,
 				9FF78E9A155FAC6000FAAE67 /* Miscellaneous images */,
 				9FF78E99155FAC4600FAAE67 /* Button images */,
-				9FF78E98155FAC3300FAAE67 /* Nibs */,
 				9F6A095C1546E52D00B59D0F /* Tab icons */,
 			);
 			name = Resources;
@@ -1324,6 +1323,7 @@
 		9FF78E98155FAC3300FAAE67 /* Nibs */ = {
 			isa = PBXGroup;
 			children = (
+				9F01782C15666DC500D0370F /* NotificationSettingsView.xib */,
 				9F524B0E1551A10E000846E7 /* ScheduleItemDetailView.xib */,
 				9FF78E94155FA8DD00FAAE67 /* CultiRideDetailsView.xib */,
 			);

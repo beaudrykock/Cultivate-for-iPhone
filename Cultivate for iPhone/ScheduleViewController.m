@@ -84,8 +84,8 @@
     
 	cell.textLabel.text = [vegVanStop addressAsString];
     cell.detailTextLabel.text = [vegVanStop nextStopTimeAsStringLessFrequency];
-    cell.textLabel.font = [UIFont fontWithName:@"Calibri" size: 16.0];
-    cell.detailTextLabel.font = [UIFont fontWithName:@"Calibri" size: 16.0];
+    cell.textLabel.font = [UIFont fontWithName:kTextFont size: 16.0];
+    cell.detailTextLabel.font = [UIFont fontWithName:kTextFont size: 16.0];
     
     NSString* testImageFilename = [[NSBundle mainBundle] pathForResource:@"stop_placeholder" ofType:@"png"];
     UIImage *image = [Utilities scale: [[UIImage alloc] initWithContentsOfFile:testImageFilename] toSize: CGSizeMake(50.0,40.0)];

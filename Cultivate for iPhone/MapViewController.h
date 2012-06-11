@@ -30,8 +30,14 @@
     UIButton *findButton;
     UIButton *showUserLocationButton;
     BOOL farmShowing;
+    UILabel *nextLabel;
+    UILabel *farmLabel;
+    UILabel *nearestMeLabel;
 }
 
+@property (nonatomic, strong) IBOutlet UILabel *nearestMeLabel;
+@property (nonatomic, strong) IBOutlet UILabel *nextLabel;
+@property (nonatomic, strong) IBOutlet UILabel *farmLabel;
 //@property (nonatomic, strong) IBOutlet UIWebView *mapView;
 @property (nonatomic, strong) IBOutlet UINavigationBar *bar;
 @property (nonatomic, strong) CLLocationManager *locationManager;

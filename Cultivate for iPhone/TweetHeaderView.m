@@ -36,7 +36,7 @@
         titleLabel = [[UILabel alloc] initWithFrame:titleLabelFrame];
         titleLabel.text = title;
         titleLabel.textAlignment = UITextAlignmentLeft;
-        titleLabel.font = [UIFont fontWithName:@"Nobile" size:15.0];
+        titleLabel.font = [UIFont fontWithName:kTitleFont size:15.0];
         titleLabel.textColor = [UIColor whiteColor];
         titleLabel.backgroundColor = [UIColor clearColor];
         [self addSubview:titleLabel];

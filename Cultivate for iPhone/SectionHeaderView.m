@@ -46,17 +46,17 @@
         areaTitleLabelFrame.origin.y -= 10.5;
         notifyColumnTitleLabelFrame.origin.y -= 10.5;
         areaTitleLabel = [[UILabel alloc] initWithFrame:areaTitleLabelFrame];
-        areaTitleLabel.text = title;
+        areaTitleLabel.text = [NSString stringWithFormat:@"  %@",title];
         areaTitleLabel.textAlignment = UITextAlignmentLeft;
-        areaTitleLabel.font = [UIFont fontWithName:@"Nobile" size:15.0];
+        areaTitleLabel.font = [UIFont fontWithName:kTitleFont size:16.0];
         areaTitleLabel.textColor = [UIColor whiteColor];
         areaTitleLabel.backgroundColor = [UIColor clearColor];
         [self addSubview:areaTitleLabel];
         
         notifyColumnTitleLabel = [[UILabel alloc] initWithFrame:notifyColumnTitleLabelFrame];
-        notifyColumnTitleLabel.text = @"Reminder     ";
+        notifyColumnTitleLabel.text = @"Reminder        ";
         notifyColumnTitleLabel.textAlignment = UITextAlignmentRight;
-        notifyColumnTitleLabel.font = [UIFont fontWithName:@"Nobile" size:15.0];
+        notifyColumnTitleLabel.font = [UIFont fontWithName:kTitleFont size:16.0];
         notifyColumnTitleLabel.textColor = [UIColor whiteColor];
         notifyColumnTitleLabel.backgroundColor = [UIColor clearColor];
         [self addSubview:notifyColumnTitleLabel];

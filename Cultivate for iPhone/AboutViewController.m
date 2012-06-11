@@ -138,7 +138,7 @@
     [self.getInvolved setButtonTitle: @"Get Involved"];
     [self.share setSize: CGSizeMake(130.0, 37.0)];
     [self.getInvolved setSize: CGSizeMake(130.0, 37.0)];
-    [mainPara setFont: [UIFont fontWithName: @"Calibri" size:self.mainPara.font.pointSize]];
+    [mainPara setFont: [UIFont fontWithName: kTextFont size:self.mainPara.font.pointSize]];
     pageControlBeingUsed = YES;
     [self addScrollingText];
     NSError *error;
@@ -171,8 +171,8 @@
         UITextView *subview = [[UITextView alloc] initWithFrame:frame];
         subview.text = [textarr objectAtIndex:i];
         [subview setEditable:NO];
-        [title setFont: [UIFont fontWithName: @"nobile" size:17.0]];
-        [subview setFont: [UIFont fontWithName: @"Calibri" size:15.0]];
+        [title setFont: [UIFont fontWithName: kTitleFont size:17.0]];
+        [subview setFont: [UIFont fontWithName: kTextFont size:15.0]];
         subview.dataDetectorTypes = UIDataDetectorTypeAll;
         [self.scrollView addSubview:subview];
         [self.scrollView addSubview:title];

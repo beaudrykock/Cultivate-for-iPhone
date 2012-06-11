@@ -21,9 +21,10 @@
     CustomButton *submitButton;
     MoveMeView *cultiRideDetailsView;
     UIView *overlay;
+    UILabel *disclaimer;
 }
 
-
+@property (nonatomic, strong) IBOutlet UILabel *disclaimer;
 @property (nonatomic, strong) UIView *overlay;
 @property (nonatomic, strong) IBOutlet NSMutableArray *selectedValues;
 @property (nonatomic, strong) IBOutlet UITableView *tableView;

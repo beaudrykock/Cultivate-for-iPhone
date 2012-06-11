@@ -122,14 +122,14 @@
     
     self.repeatPatternControl.selectedSegmentIndex = repeatPattern;
     
-    self.notificationSettingsBackground.layer.cornerRadius = 0.6;
+    self.notificationSettingsBackground.layer.cornerRadius = 8.0;
     [self.view setBackgroundColor: [Utilities colorWithHexString: @"#639939"]];
     
     // fonts
-    [self.remindersTitleLabel setFont: [UIFont fontWithName:@"Calibri-Bold" size: self.remindersTitleLabel.font.pointSize]];
-    [self.minutesBeforeLabel setFont: [UIFont fontWithName:@"Calibri" size: self.minutesBeforeLabel.font.pointSize]];
-    [self.withRepeatLabel setFont: [UIFont fontWithName:@"Calibri" size: self.withRepeatLabel.font.pointSize]];
-    [self.setAsDefaultSettingsLabel setFont: [UIFont fontWithName:@"Calibri" size: self.setAsDefaultSettingsLabel.font.pointSize]]; 
+    [self.remindersTitleLabel setFont: [UIFont fontWithName:kTitleFont size: self.remindersTitleLabel.font.pointSize]];
+    [self.minutesBeforeLabel setFont: [UIFont fontWithName:kTextFont size: self.minutesBeforeLabel.font.pointSize]];
+    [self.withRepeatLabel setFont: [UIFont fontWithName:kTextFont size: self.withRepeatLabel.font.pointSize]];
+    [self.setAsDefaultSettingsLabel setFont: [UIFont fontWithName:kTextFont size: self.setAsDefaultSettingsLabel.font.pointSize]]; 
     //self.notificationSettingsBackground.layer.borderColor = [UIColor lightGrayColor].CGColor;
     //self.notificationSettingsBackground.layer.borderWidth = 1.0f;
     

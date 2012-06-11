@@ -43,13 +43,13 @@
     self.background_blurb.layer.cornerRadius = 8.0;
     self.background_deets.layer.cornerRadius = 8.0;
     
-    [self.stopAddress setFont: [UIFont fontWithName:@"Nobile" size:17]];
-    [self.stopName setFont: [UIFont fontWithName:@"Nobile" size:26]];
-    [self.stopBlurb setFont: [UIFont fontWithName:@"Nobile" size:17]];
-    [self.stopManagerTitle setFont: [UIFont fontWithName:@"Nobile" size:17]];
-    [self.stopManagerContactTitle setFont: [UIFont fontWithName:@"Nobile" size:17]];
-    [self.stopManager setFont: [UIFont fontWithName:@"Nobile" size:17]];
-    [self.stopManagerContact setFont: [UIFont fontWithName:@"Nobile" size:17]];
+    [self.stopAddress setFont: [UIFont fontWithName:kTextFont size:17]];
+    //[self.stopName setFont: [UIFont fontWithName:kTextFont size:26]];
+    [self.stopBlurb setFont: [UIFont fontWithName:kTextFont size:17]];
+    [self.stopManagerTitle setFont: [UIFont fontWithName:kTextFont size:17]];
+    [self.stopManagerContactTitle setFont: [UIFont fontWithName:kTextFont size:17]];
+    [self.stopManager setFont: [UIFont fontWithName:kTextFont size:17]];
+    [self.stopManagerContact setFont: [UIFont fontWithName:kTextFont size:17]];
 
 }
 

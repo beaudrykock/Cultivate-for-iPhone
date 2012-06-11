@@ -11,6 +11,7 @@
 #import "JSON.h"
 #import <QuartzCore/QuartzCore.h>
 #import "CustomCheckbox.h"
+#import "CustomButton.h"
 
 @protocol MailChimpViewControllerDelegate
 - (void)mailChimpViewControllerDidCancel;
@@ -48,10 +49,17 @@
     UILabel *label_cb_4;
     UILabel *label_cb_5;
     UILabel *options_title;
-    UIButton *cancel_btn;
-    UIButton *subscribe_btn;
+    CustomButton *subscribe_btn;
+    
+    UIView *topView;
+    UIView *midView;
+    UIView *botView;
+    
 }
 
+@property (nonatomic, strong) IBOutlet UIView *topView;
+@property (nonatomic, strong) IBOutlet UIView *midView;
+@property (nonatomic, strong) IBOutlet UIView *botView;
 @property (nonatomic, strong) IBOutlet CustomCheckbox *cb_1;
 @property (nonatomic, strong) IBOutlet CustomCheckbox *cb_2;
 @property (nonatomic, strong) IBOutlet CustomCheckbox *cb_3;
@@ -68,8 +76,7 @@
 
 @property (nonatomic, strong) IBOutlet UILabel *label_cb_5;
 @property (nonatomic, strong) IBOutlet UILabel *options_title;
-@property (nonatomic, strong) IBOutlet UIButton *cancel_btn;
-@property (nonatomic, strong) IBOutlet UIButton *subscribe_btn;
+@property (nonatomic, strong) IBOutlet CustomButton *subscribe_btn;
 @property (nonatomic, strong) NSString *listType;
 @property (nonatomic, strong) IBOutlet UILabel *list_title;
 @property (nonatomic, strong) IBOutlet UILabel *introBlurb;

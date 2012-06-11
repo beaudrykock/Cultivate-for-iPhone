@@ -9,7 +9,7 @@
 #import "MailChimpViewController.h"
 
 @implementation MailChimpViewController
-@synthesize list_title, email_field, firstname_field, lastname_field, listType, introBlurb, postcode_field, delegate, cb_1, cb_2, cb_3, cb_4, cb_5, label_cb_1, label_cb_2, label_cb_3, label_cb_4, label_cb_5, options_title, cancel_btn, subscribe_btn, firstname_title, lastname_title, postcode_title, email_title;
+@synthesize list_title, email_field, firstname_field, lastname_field, listType, introBlurb, postcode_field, delegate, cb_1, cb_2, cb_3, cb_4, cb_5, label_cb_1, label_cb_2, label_cb_3, label_cb_4, label_cb_5, options_title, subscribe_btn, firstname_title, lastname_title, postcode_title, email_title, topView, midView, botView;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -33,6 +33,11 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     
+    UISwipeGestureRecognizer *swipe = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(cancel:)];
+    [swipe setDirection:UISwipeGestureRecognizerDirectionDown];
+    [self.view addGestureRecognizer:swipe];
+    
+    
     [self.list_title setText: listType];
     UITapGestureRecognizer *gestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideKeyboard)];
     [self.view addGestureRecognizer:gestureRecognizer];
@@ -48,15 +53,13 @@
      UITapGestureRecognizer *button_tap_5 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(buttonChoiceMade:)];
     [self.cb_5 addGestureRecognizer:button_tap_5];
     
-    UITapGestureRecognizer *cancel_tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(cancel:)];
-    [self.cancel_btn addGestureRecognizer:cancel_tap];
     UITapGestureRecognizer *subscribe_tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(joinMailingList:)];
     [self.subscribe_btn addGestureRecognizer:subscribe_tap];
     
 
     if ([listType isEqualToString: kJoinVolunteerMailingList])
     {
-        [self.options_title setText: @"How regularly would you like to volunteer?"];
+        [self.options_title setText: @"I can volunteer:"];
         [self.label_cb_1 setText: @"Weekly"];
         [self.label_cb_2 setText: @"Monthly"];
         [self.label_cb_3 setText: @"Once in a blue moon"];
@@ -67,7 +70,7 @@
     }
     else
     {
-        [self.options_title setText: @"I'm interested in being..."];
+        [self.options_title setText: @"Sign me up as:"];
         [self.label_cb_1 setText: @"Customer"];
         [self.label_cb_2 setText: @"Local champion"];
         [self.label_cb_3 setText: @"Member"];
@@ -75,17 +78,27 @@
         [self.label_cb_5 setText: @"Kept informed"];
     }
     
-    [self.list_title setFont: [UIFont fontWithName: @"Nobile" size: 26.0]];
-    [self.firstname_title setFont: [UIFont fontWithName: @"Calibri" size: self.firstname_title.font.pointSize]];
-    [self.lastname_title setFont: [UIFont fontWithName: @"Calibri" size: self.lastname_title.font.pointSize]];
-    [self.postcode_title setFont: [UIFont fontWithName: @"Calibri" size: self.postcode_title.font.pointSize]];
-    [self.email_title setFont: [UIFont fontWithName: @"Calibri" size: self.email_title.font.pointSize]];
-    [self.label_cb_1 setFont: [UIFont fontWithName: @"Calibri" size: self.label_cb_1.font.pointSize]];
-    [self.label_cb_2 setFont: [UIFont fontWithName: @"Calibri" size: self.label_cb_2.font.pointSize]];
-    [self.label_cb_3 setFont: [UIFont fontWithName: @"Calibri" size: self.label_cb_3.font.pointSize]];
-    [self.label_cb_4 setFont: [UIFont fontWithName: @"Calibri" size: self.label_cb_4.font.pointSize]];
-    [self.label_cb_5 setFont: [UIFont fontWithName: @"Calibri" size: self.label_cb_5.font.pointSize]];
-    [self.options_title setFont: [UIFont fontWithName: @"Calibri" size: self.options_title.font.pointSize]];
+    [self.list_title setFont: [UIFont fontWithName: kTitleFont size: 26.0]];
+    [self.firstname_title setFont: [UIFont fontWithName: kTextFont size: self.firstname_title.font.pointSize]];
+    [self.lastname_title setFont: [UIFont fontWithName: kTextFont size: self.lastname_title.font.pointSize]];
+    [self.postcode_title setFont: [UIFont fontWithName: kTextFont size: self.postcode_title.font.pointSize]];
+    [self.email_title setFont: [UIFont fontWithName: kTextFont size: self.email_title.font.pointSize]];
+    [self.label_cb_1 setFont: [UIFont fontWithName: kTextFont size: self.label_cb_1.font.pointSize]];
+    [self.label_cb_2 setFont: [UIFont fontWithName: kTextFont size: self.label_cb_2.font.pointSize]];
+    [self.label_cb_3 setFont: [UIFont fontWithName: kTextFont size: self.label_cb_3.font.pointSize]];
+    [self.label_cb_4 setFont: [UIFont fontWithName: kTextFont size: self.label_cb_4.font.pointSize]];
+    [self.label_cb_5 setFont: [UIFont fontWithName: kTextFont size: self.label_cb_5.font.pointSize]];
+    [self.options_title setFont: [UIFont fontWithName: kTextFontBold size: self.options_title.font.pointSize]];
+    
+    self.topView.layer.cornerRadius = 8.0;
+    self.midView.layer.cornerRadius = 8.0;
+    self.botView.layer.cornerRadius = 8.0;
+    
+    [self.subscribe_btn setButtonTitle: @"Subscribe"];
+    [self.subscribe_btn setSize: CGSizeMake(290.0, 37.0)];
+    [self.subscribe_btn setFillWith:[Utilities colorWithHexString:@"#0f4d6f"] andHighlightedFillWith:[Utilities colorWithHexString:@"#092e42"] andBorderWith:[UIColor whiteColor] andTextWith:[UIColor whiteColor]];
+    
+    
     // test
     //[self unsubscribe];
     //[self fetchList];

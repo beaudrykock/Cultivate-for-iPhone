@@ -33,6 +33,7 @@
     UILabel *nextLabel;
     UILabel *farmLabel;
     UILabel *nearestMeLabel;
+    BOOL noInternetOverlayAdded;
 }
 
 @property (nonatomic, strong) IBOutlet UILabel *nearestMeLabel;

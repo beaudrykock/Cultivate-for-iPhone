@@ -9,7 +9,7 @@
 #import "MailChimpViewController.h"
 
 @implementation MailChimpViewController
-@synthesize list_title, email_field, firstname_field, lastname_field, listType, introBlurb, postcode_field, delegate, cb_1, cb_2, cb_3, cb_4, cb_5, label_cb_1, label_cb_2, label_cb_3, label_cb_4, label_cb_5, options_title, subscribe_btn, firstname_title, lastname_title, postcode_title, email_title, topView, midView, botView;
+@synthesize list_title, email_field, firstname_field, lastname_field, listType, introBlurb, postcode_field, delegate, cb_1, cb_2, cb_3, cb_4, cb_5, label_cb_1, label_cb_2, label_cb_3, label_cb_4, label_cb_5, options_title, subscribe_btn, firstname_title, lastname_title, postcode_title, email_title, topView, midView, botView, container, cancel_btn;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -32,10 +32,11 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
+    [self.container setContentSize:CGSizeMake(self.view.frame.size.width, self.view.frame.size.height+230.0)];
     
-    UISwipeGestureRecognizer *swipe = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(cancel:)];
-    [swipe setDirection:UISwipeGestureRecognizerDirectionDown];
-    [self.view addGestureRecognizer:swipe];
+    //UISwipeGestureRecognizer *swipe = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(cancel:)];
+   // [swipe setDirection:UISwipeGestureRecognizerDirectionDown];
+   // [self.view addGestureRecognizer:swipe];
     
     
     [self.list_title setText: listType];
@@ -56,10 +57,13 @@
     UITapGestureRecognizer *subscribe_tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(joinMailingList:)];
     [self.subscribe_btn addGestureRecognizer:subscribe_tap];
     
+    UITapGestureRecognizer *cancel_tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(cancel:)];
+    [self.cancel_btn addGestureRecognizer:cancel_tap];
+    
 
     if ([listType isEqualToString: kJoinVolunteerMailingList])
     {
-        [self.options_title setText: @"I can volunteer:"];
+        [self.options_title setText: @"I can volunteer..."];
         [self.label_cb_1 setText: @"Weekly"];
         [self.label_cb_2 setText: @"Monthly"];
         [self.label_cb_3 setText: @"Once in a blue moon"];
@@ -70,7 +74,7 @@
     }
     else
     {
-        [self.options_title setText: @"Sign me up as:"];
+        [self.options_title setText: @"Sign me up as a..."];
         [self.label_cb_1 setText: @"Customer"];
         [self.label_cb_2 setText: @"Local champion"];
         [self.label_cb_3 setText: @"Member"];
@@ -98,6 +102,9 @@
     [self.subscribe_btn setSize: CGSizeMake(290.0, 37.0)];
     [self.subscribe_btn setFillWith:[Utilities colorWithHexString:@"#0f4d6f"] andHighlightedFillWith:[Utilities colorWithHexString:@"#092e42"] andBorderWith:[UIColor whiteColor] andTextWith:[UIColor whiteColor]];
     
+    [self.cancel_btn setButtonTitle: @"Cancel"];
+    [self.cancel_btn setSize: CGSizeMake(290.0, 37.0)];
+    [self.cancel_btn setFillWith:[Utilities colorWithHexString:@"#771d10"] andHighlightedFillWith:[Utilities colorWithHexString:@"#61180d"] andBorderWith:[UIColor whiteColor] andTextWith:[UIColor whiteColor]];
     
     // test
     //[self unsubscribe];
@@ -214,7 +221,7 @@
             UIImageView *tractorView = [[UIImageView alloc] initWithImage:tractorImage];
             [tractorView setFrame: CGRectMake(x+4,y+7,27.0,17.0)];
             tractorView.tag = tag;
-            [self.view addSubview:tractorView];
+            [self.botView addSubview:tractorView];
         }
         else
         {
@@ -293,7 +300,7 @@
             UIImageView *tractorView = [[UIImageView alloc] initWithImage:tractorImage];
             [tractorView setFrame: CGRectMake(x+4,y+7,27.0,17.0)];
             tractorView.tag = tag;
-            [self.view addSubview:tractorView];
+            [self.botView addSubview:tractorView];
             
             [[self.view viewWithTag: discard_1] removeFromSuperview];
             [[self.view viewWithTag: discard_2] removeFromSuperview];

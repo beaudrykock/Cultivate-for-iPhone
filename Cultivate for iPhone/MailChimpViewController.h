@@ -50,13 +50,17 @@
     UILabel *label_cb_5;
     UILabel *options_title;
     CustomButton *subscribe_btn;
-    
+    CustomButton *cancel_btn;
     UIView *topView;
     UIView *midView;
     UIView *botView;
     
+    UIScrollView *container;
+    
 }
 
+@property (nonatomic, strong) IBOutlet CustomButton *cancel_btn;
+@property (nonatomic, strong) IBOutlet UIScrollView *container;
 @property (nonatomic, strong) IBOutlet UIView *topView;
 @property (nonatomic, strong) IBOutlet UIView *midView;
 @property (nonatomic, strong) IBOutlet UIView *botView;

@@ -334,7 +334,63 @@
         
     [self startStandardUpdates];
     
+    if (![Utilities hasInternet])
+    {
+        if (!noInternetOverlayAdded)
+            [self addNoInternetOverlay];
+    }
+    else 
+    {
+        if (noInternetOverlayAdded)
+            [self removeNoInternetOverlay];
+    }
+    
     [super viewWillAppear:animated];
+}
+
+-(void)addNoInternetOverlay
+{
+    noInternetOverlayAdded = YES;
+    // resize mapview 420 316
+    CGRect newFrame = CGRectMake(_mapView.frame.origin.x, _mapView.frame.origin.y, _mapView.frame.size.width, _mapView.frame.size.height-44.0);
+
+    UIView *overlay = [[UIView alloc] initWithFrame:CGRectMake(0.0, 420.0, 320, 44.0)];
+    [overlay setTag:kInternetOverlayViewTag];
+    [overlay setBackgroundColor:[Utilities colorWithHexString:kCultivateGreenColor]];
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0.0,0.0, 320.0, 44.0)];
+    [label setFont:[UIFont fontWithName:kTextFont size:17.0]];
+    [label setTextColor:[UIColor whiteColor]];
+    [label setText:@"No internet - map functions may be limited"];
+    [label setBackgroundColor:[UIColor clearColor]];
+    [label setTextAlignment:UITextAlignmentCenter];
+    [overlay addSubview:label];
+    [self.view addSubview:overlay];
+    
+    [UIView beginAnimations: @"NoInternetLabel" context: nil];
+    [UIView setAnimationDelegate: self];
+    [UIView setAnimationDuration: 0.35];
+    // use CurveEaseOut to create "spring" effect
+    [UIView setAnimationCurve: UIViewAnimationCurveLinear];	
+    [_mapView setFrame:newFrame];
+    CGRect frame = overlay.frame;
+    frame.origin.y = _mapView.frame.size.height;
+    [overlay setFrame:frame];
+    [UIView commitAnimations];
+}
+
+-(void)removeNoInternetOverlay
+{
+    noInternetOverlayAdded = NO;
+    CGRect newFrame = CGRectMake(_mapView.frame.origin.x, _mapView.frame.origin.y, _mapView.frame.size.width, _mapView.frame.size.height+44.0);
+    
+    [UIView beginAnimations: @"NoInternetLabel" context: nil];
+    [UIView setAnimationDelegate: self];
+    [UIView setAnimationDuration: 0.35];
+    // use CurveEaseOut to create "spring" effect
+    [UIView setAnimationCurve: UIViewAnimationCurveLinear];	
+    [_mapView setFrame:newFrame];
+    [UIView commitAnimations];
+    [[self.view viewWithTag:kInternetOverlayViewTag] removeFromSuperview];
 }
 
 #pragma mark - Showing locations

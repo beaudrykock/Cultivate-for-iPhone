@@ -101,6 +101,7 @@
 #define kStopFrequencyElement @"stopFrequency"
 #define kStopDayElement @"stopDay"
 #define kStopTimeElement @"stopTime"
+#define kStopDurationElement @"stopDuration"
 
 // NOTIFICATIONS
 #define kNewTweetCountGenerated @"New tweet count generated"

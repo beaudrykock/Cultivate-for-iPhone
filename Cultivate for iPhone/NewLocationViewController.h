@@ -34,6 +34,7 @@
     UIView *middleView;
     UIView *bottomView;
     UIView *titleView;
+    UIView *backgroundView;
     UISegmentedControl *dayPicker;
     UIStepper *timeStepper;
     
@@ -49,6 +50,7 @@
     __weak id<NewLocationViewControllerDelegate> delegate;
 }
 
+@property (nonatomic, strong) IBOutlet UIView *backgroundView;
 @property (nonatomic, weak) id<NewLocationViewControllerDelegate> delegate;
 @property (nonatomic, strong) IBOutlet UILabel *myLocationLabel;
 @property (nonatomic, strong) IBOutlet CustomButton *myLocationButton;

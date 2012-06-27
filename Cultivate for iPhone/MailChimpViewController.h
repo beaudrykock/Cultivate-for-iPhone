@@ -54,11 +54,12 @@
     UIView *topView;
     UIView *midView;
     UIView *botView;
-    
+    UIView *backgroundView;
     UIScrollView *container;
     
 }
 
+@property (nonatomic, strong) IBOutlet UIView *backgroundView;
 @property (nonatomic, strong) IBOutlet CustomButton *cancel_btn;
 @property (nonatomic, strong) IBOutlet UIScrollView *container;
 @property (nonatomic, strong) IBOutlet UIView *topView;

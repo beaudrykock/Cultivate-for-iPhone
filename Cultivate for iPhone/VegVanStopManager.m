@@ -88,11 +88,11 @@
         {
             VegVanScheduleItem *scheduleItem = [[VegVanScheduleItem alloc] init];
             
-            [scheduleItem setStopName:[self stringStrippedOfWhitespaceAndNewlines:[scheduleItemElement valueWithPath:kStopNameElement]]];
+            [scheduleItem setStopName: [newStop name]];//[self stringStrippedOfWhitespaceAndNewlines:[scheduleItemElement valueWithPath:kStopNameElement]]];
             [scheduleItem setStopDay:[self stringStrippedOfWhitespaceAndNewlines:[scheduleItemElement valueWithPath:kStopDayElement]]];
             [scheduleItem setStopTime:[self stringStrippedOfWhitespaceAndNewlines:[scheduleItemElement valueWithPath:kStopTimeElement]]];
             [scheduleItem setStopFrequency: [self stringStrippedOfWhitespaceAndNewlines:[scheduleItemElement valueWithPath:kStopFrequencyElement]]];
-            
+            [scheduleItem setStopDuration: [self stringStrippedOfWhitespaceAndNewlines:[scheduleItemElement valueWithPath:kStopDurationElement]]];
             [newStop.scheduleItems addObject:scheduleItem];
             
         }
@@ -131,19 +131,25 @@
         [scheduledStopStringsByArea setObject: [NSMutableArray arrayWithCapacity: 5] forKey: area];
     }
     
-    NSMutableArray *arrayForArea = nil;
     for (NSString *aKey in vegVanStops)
     {
+        NSLog(@"key = %@", aKey);
         stop = [vegVanStops objectForKey: aKey];
-        
-        arrayForArea = [scheduledStopStringsByArea objectForKey: [stop area]];
+        NSMutableArray * arrayForArea = [scheduledStopStringsByArea objectForKey: [stop area]];
         
         for (VegVanScheduleItem *item in [stop scheduleItems])
         {
+            NSLog(@"Adding to array %@", [item scheduleDetailAsString]);
             [arrayForArea addObject: [item scheduleDetailAsString]];
         }
     }
     
+    for (NSString *aKey in scheduledStopStringsByArea)
+    {
+        NSLog(@"For area %@", aKey);
+        NSMutableArray *arr = [scheduledStopStringsByArea objectForKey: aKey];
+        NSLog(@"Count = %i", [arr count]);
+    }
     return scheduledStopStringsByArea;
 }
 

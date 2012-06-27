@@ -23,8 +23,6 @@
 
 -(float)secondsUntilNextScheduledStop
 {
-    // TODO: finish - need to iterate through schedule items and figure out closest item in time
-    // implementation depends on Cultivate choice of scheduling
     VegVanScheduleItem *_nextScheduledStop = [self getNextScheduledStop];
    
     NSCalendar *gregorian = [[NSCalendar alloc]
@@ -93,15 +91,20 @@
         NSInteger weekday_now = [components weekday];
         NSInteger hour_now = [components hour];
         NSInteger minute_now = [components minute];
-        
+        BOOL specialFrequency = NO;
         NSMutableArray *itemsTodayOrAfterToday = [[NSMutableArray alloc] initWithCapacity:5];
         // first figure out if any items are today or after today in the week
         for (VegVanScheduleItem *item in scheduleItems)
         {
-            [item description];
-            if ([item getDayAsInteger] >= weekday_now)
+            //[item description];
+            if ([item getDayAsInteger] >= weekday_now && [item getDayAsInteger] != -1)
             {
                 [itemsTodayOrAfterToday addObject: item];
+            }
+            else if ([item getDayAsInteger] == -1)
+            {
+                // special frequency, e.g. 1st Monday each month, and this week is not that week
+                specialFrequency = YES;
             }
         }
         if ([itemsTodayOrAfterToday count] > 0)
@@ -130,7 +133,7 @@
             }
         }
         
-        if (!nextScheduled)
+        if (!nextScheduled && !specialFrequency)
         {
             NSInteger earliestDay = -1;
             NSInteger earliestHour = -1;
@@ -139,39 +142,47 @@
             // no items today or after today in the week, so get item with earliest day, hour and time
             for (VegVanScheduleItem *item in scheduleItems)
             {
-                if (earliestDay == -1)
+                // to handle stops with special frequencies (e.g. monthly, 1st Friday, etc)
+                if ([item getDayAsInteger] != -1) 
                 {
-                    earliestDay = [item getDayAsInteger];
-                    earliestHour = [item getHourAsInteger];
-                    earliestMinute = [item getMinuteAsInteger];
-                    soonest = item;
-                }
-                else
-                {
-                    if ([item getDayAsInteger]<earliestDay)
+                    if (earliestDay == -1)
                     {
                         earliestDay = [item getDayAsInteger];
+                        earliestHour = [item getHourAsInteger];
+                        earliestMinute = [item getMinuteAsInteger];
                         soonest = item;
                     }
-                    else if ([item getDayAsInteger]==earliestDay)
+                    else
                     {
-                        if ([item getHourAsInteger]<earliestHour)
+                        if ([item getDayAsInteger]<earliestDay)
                         {
-                            earliestHour = [item getHourAsInteger];
+                            earliestDay = [item getDayAsInteger];
                             soonest = item;
                         }
-                        else if ([item getHourAsInteger]==earliestHour)
+                        else if ([item getDayAsInteger]==earliestDay)
                         {
-                            if ([item getMinuteAsInteger]<earliestMinute)
+                            if ([item getHourAsInteger]<earliestHour)
                             {
-                                earliestMinute = [item getMinuteAsInteger];
+                                earliestHour = [item getHourAsInteger];
                                 soonest = item;
+                            }
+                            else if ([item getHourAsInteger]==earliestHour)
+                            {
+                                if ([item getMinuteAsInteger]<earliestMinute)
+                                {
+                                    earliestMinute = [item getMinuteAsInteger];
+                                    soonest = item;
+                                }
                             }
                         }
                     }
                 }
             }
             nextScheduled = soonest;
+        }
+        else if (!nextScheduled && specialFrequency)
+        {
+            nextScheduled = [self.scheduleItems objectAtIndex:0];
         }
         
         self.nextScheduledStop = nextScheduled;
@@ -197,6 +208,16 @@
     
     return [item scheduleDetailAsStringLessFrequency];
 }
+
+-(NSString*)nextStopTimeAndDurationAsStringLessFrequency
+{
+    VegVanScheduleItem *item = nextScheduledStop;
+    if (item == nil) 
+        item = [self getNextScheduledStop];
+    
+    return [item scheduleDetailWithDurationAsStringLessFrequency];
+}
+
 
 -(void)description
 {

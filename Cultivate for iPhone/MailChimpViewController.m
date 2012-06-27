@@ -9,7 +9,7 @@
 #import "MailChimpViewController.h"
 
 @implementation MailChimpViewController
-@synthesize list_title, email_field, firstname_field, lastname_field, listType, introBlurb, postcode_field, delegate, cb_1, cb_2, cb_3, cb_4, cb_5, label_cb_1, label_cb_2, label_cb_3, label_cb_4, label_cb_5, options_title, subscribe_btn, firstname_title, lastname_title, postcode_title, email_title, topView, midView, botView, container, cancel_btn;
+@synthesize list_title, email_field, firstname_field, lastname_field, listType, introBlurb, postcode_field, delegate, cb_1, cb_2, cb_3, cb_4, cb_5, label_cb_1, label_cb_2, label_cb_3, label_cb_4, label_cb_5, options_title, subscribe_btn, firstname_title, lastname_title, postcode_title, email_title, topView, midView, botView, container, cancel_btn, backgroundView;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -106,6 +106,7 @@
     [self.cancel_btn setSize: CGSizeMake(290.0, 37.0)];
     [self.cancel_btn setFillWith:[Utilities colorWithHexString:@"#771d10"] andHighlightedFillWith:[Utilities colorWithHexString:@"#61180d"] andBorderWith:[UIColor whiteColor] andTextWith:[UIColor whiteColor]];
     
+    [self.backgroundView setBackgroundColor:[Utilities colorWithHexString:kCultivateGreenColor]];
     // test
     //[self unsubscribe];
     //[self fetchList];

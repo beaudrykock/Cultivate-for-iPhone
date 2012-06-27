@@ -15,7 +15,7 @@
 
 @implementation NewLocationViewController
 
-@synthesize myLocationButton, postcodeField, describeView, or_1, or_2, titleLabel, whatDaysLabel, whatTimesLabel, submit, topView, middleView, bottomView, dayPicker, timeStepper, dayChosen, timeForDayChosen, latitude, longitude, myLocationLabel, viewTitleLabel, titleView, delegate;
+@synthesize myLocationButton, postcodeField, describeView, or_1, or_2, titleLabel, whatDaysLabel, whatTimesLabel, submit, topView, middleView, bottomView, dayPicker, timeStepper, dayChosen, timeForDayChosen, latitude, longitude, myLocationLabel, viewTitleLabel, titleView, delegate, backgroundView;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -31,12 +31,14 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     
+    [self.backgroundView setBackgroundColor:[Utilities colorWithHexString:kCultivateGreenColor]];
+    
     UISwipeGestureRecognizer *swipe = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(dismiss)];
     [swipe setDirection:UISwipeGestureRecognizerDirectionDown];
     [self.view addGestureRecognizer:swipe];
     
-    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissKeyboard)];
-    [self.view addGestureRecognizer:tap];
+    //UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissKeyboard)];
+    //[self.view addGestureRecognizer:tap];
 }
 
 -(void)dismissKeyboard

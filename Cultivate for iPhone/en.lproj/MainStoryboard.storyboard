@@ -411,6 +411,7 @@
                         <color key="backgroundColor" red="0.38823533058166504" green="0.60000002384185791" blue="0.22352942824363708" alpha="1" colorSpace="deviceRGB"/>
                     </view>
                     <connections>
+                        <outlet property="backgroundView" destination="Mgh-PE-Qk1" id="VzZ-Rk-bTf"/>
                         <outlet property="dayPicker" destination="hGr-fH-o17" id="XQy-sW-TKA"/>
                         <outlet property="describeView" destination="WKT-fR-Afh" id="aSH-mF-8Cc"/>
                         <outlet property="middleView" destination="kBX-Wz-cbd" id="v8H-Rk-NIT"/>
@@ -713,9 +714,10 @@
                                 </subviews>
                             </scrollView>
                         </subviews>
-                        <color key="backgroundColor" red="0.38823533058166504" green="0.60000002384185791" blue="0.22352942824363708" alpha="1" colorSpace="deviceRGB"/>
+                        <color key="backgroundColor" red="0.24705882352941178" green="0.59999999999999998" blue="0.22352941176470587" alpha="1" colorSpace="deviceRGB"/>
                     </view>
                     <connections>
+                        <outlet property="backgroundView" destination="QvZ-xw-PsU" id="LMg-Gi-cOb"/>
                         <outlet property="botView" destination="DBT-Vm-NSx" id="9bD-TA-mcJ"/>
                         <outlet property="cancel_btn" destination="9eT-4Z-Awx" id="G5i-gW-Z2E"/>
                         <outlet property="cb_1" destination="shq-Iw-EdF" id="J3X-Fo-XhG"/>
@@ -909,6 +911,7 @@
                 <relationship kind="action" name="joinMailingList:"/>
                 <relationship kind="action" name="nextField:"/>
                 <relationship kind="action" name="showVolunteerInterestOptions"/>
+                <relationship kind="outlet" name="backgroundView" candidateClass="UIView"/>
                 <relationship kind="outlet" name="botView" candidateClass="UIView"/>
                 <relationship kind="outlet" name="cancel_btn" candidateClass="CustomButton"/>
                 <relationship kind="outlet" name="cb_1" candidateClass="CustomCheckbox"/>
@@ -988,6 +991,7 @@
         <class className="NewLocationViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/NewLocationViewController.h"/>
             <relationships>
+                <relationship kind="outlet" name="backgroundView" candidateClass="UIView"/>
                 <relationship kind="outlet" name="bottomView" candidateClass="UIView"/>
                 <relationship kind="outlet" name="dayPicker" candidateClass="UISegmentedControl"/>
                 <relationship kind="outlet" name="describeView" candidateClass="UITextView"/>

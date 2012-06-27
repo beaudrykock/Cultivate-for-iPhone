@@ -82,8 +82,8 @@
         cell.accessoryView = switchview;
     }
     
-	cell.textLabel.text = [vegVanStop addressAsString];
-    cell.detailTextLabel.text = [vegVanStop nextStopTimeAsStringLessFrequency];
+	cell.textLabel.text = [vegVanStop name];//[vegVanStop addressAsString];
+    cell.detailTextLabel.text = [vegVanStop nextStopTimeAndDurationAsStringLessFrequency];
     cell.textLabel.font = [UIFont fontWithName:kTextFont size: 16.0];
     cell.detailTextLabel.font = [UIFont fontWithName:kTextFont size: 16.0];
     
@@ -306,10 +306,9 @@
 -(NSInteger)getAbsoluteRowNumberForIndexPath:(NSIndexPath*)indexPath andArea: (NSString*)area
 {
     NSInteger absoluteRow = 0;
-    
     for (int i = 0; i<indexPath.section; i++)
     { 
-        absoluteRow += [[self.scheduledStopStringsByArea valueForKey:area] count];
+        absoluteRow += [[self.scheduledStopStringsByArea valueForKey:[self.areas objectAtIndex:i]] count];
     }
     
     absoluteRow += indexPath.row;

@@ -87,8 +87,9 @@
     cell.textLabel.font = [UIFont fontWithName:kTextFont size: 16.0];
     cell.detailTextLabel.font = [UIFont fontWithName:kTextFont size: 16.0];
     
-    NSString* testImageFilename = [[NSBundle mainBundle] pathForResource:@"stop_placeholder" ofType:@"png"];
-    UIImage *image = [Utilities scale: [[UIImage alloc] initWithContentsOfFile:testImageFilename] toSize: CGSizeMake(50.0,40.0)];
+    NSString* imageFilename = [[NSBundle mainBundle] pathForResource:@"Cultivate_logo" ofType:@"png"];
+    UIImage *image = [Utilities scale: [[UIImage alloc] initWithContentsOfFile:imageFilename] toSize: CGSizeMake(50.0,25.0)];
+    [cell.imageView setContentMode:UIViewContentModeScaleAspectFit];
     cell.imageView.image = image;//[[UIImage alloc] initWithContentsOfFile:testImageFilename];
     
 	cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;

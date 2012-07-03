@@ -110,8 +110,9 @@
 
 -(void)addScrollingImages
 {
+    NSInteger imageCount = 1;
     // to do - change number of images
-    for (int i = 0; i<3; i++)
+    for (int i = 0; i<imageCount; i++)
     {
         CGRect frame;
         frame.origin.x = 40.0+(self.scrollView.frame.size.width * i);
@@ -119,9 +120,10 @@
         frame.size = self.scrollView.frame.size;
         frame.size.width = 200.0;
         UIImageView *subview = [[UIImageView alloc] initWithFrame:frame];
-        NSString* testImageFilename = [[NSBundle mainBundle] pathForResource:@"stop_placeholder" ofType:@"png"];
-        UIImage *image = [Utilities scale: [[UIImage alloc] initWithContentsOfFile:testImageFilename] toSize: CGSizeMake(frame.size.width,frame.size.height)];
+        NSString* testImageFilename = [[NSBundle mainBundle] pathForResource:@"Cultivate_logo" ofType:@"png"];
+        UIImage *image = [[UIImage alloc] initWithContentsOfFile:testImageFilename];
         [subview setImage: image];
+        [subview setContentMode:UIViewContentModeScaleAspectFit];
         [subview setContentMode:UIViewContentModeScaleAspectFit];
         subview.layer.cornerRadius = 8.0;
         subview.layer.masksToBounds = YES;
@@ -131,11 +133,11 @@
         [self.scrollView addSubview:subview];
     }
     
-    self.scrollView.contentSize = CGSizeMake(self.scrollView.frame.size.width * 3, self.scrollView.frame.size.height);
+    self.scrollView.contentSize = CGSizeMake(self.scrollView.frame.size.width * imageCount, self.scrollView.frame.size.height);
     //180
     CGRect pageControlFrame = CGRectMake(0.0, 168.0, self.view.frame.size.width, 20.0);
     self.pageControl = [[CustomPageControl alloc] initWithFrame:pageControlFrame];
-    self.pageControl.numberOfPages = 3;
+    self.pageControl.numberOfPages = imageCount;
     self.pageControl.backgroundColor = [UIColor clearColor];
     self.pageControl.currentPage = 0;
     [self.view addSubview:self.pageControl];

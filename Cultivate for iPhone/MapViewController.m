@@ -99,12 +99,37 @@
     }
     NSString *searchTerm = [searchBar text];
     
-    NSMutableArray *matchingStopNames = nil;
+    NSMutableArray *stopsByPostcode = nil;
+    NSMutableArray *stopsByStreet = nil;
+    NSMutableArray *stopsByArea = nil;
+    
+    NSMutableArray *matchingStopNames = [NSMutableArray arrayWithCapacity:10];
+    
+    
     VegVanStopLocation *annotation = nil;
     if ([searchTerm length]>0)
     {
-        // search areas
-        matchingStopNames = [[[Utilities sharedAppDelegate] vegVanStopManager] stopNamesInArea: searchTerm];
+        // by postcodes
+        stopsByPostcode = [[[Utilities sharedAppDelegate] vegVanStopManager] stopNamesWithPostcode: searchTerm];
+        
+        // by streets
+        stopsByStreet = [[[Utilities sharedAppDelegate] vegVanStopManager] stopNamesWithStreetName: searchTerm];
+        
+        // by areas
+        stopsByArea = [[[Utilities sharedAppDelegate] vegVanStopManager] stopNamesInArea: searchTerm];
+        
+        [matchingStopNames addObjectsFromArray:stopsByPostcode];
+        
+        for (NSString *name in stopsByStreet)
+        {
+            if (![matchingStopNames containsObject:name])
+                [matchingStopNames addObject:name];
+        }
+        for (NSString *name in stopsByArea)
+        {
+            if (![matchingStopNames containsObject:name])
+                [matchingStopNames addObject:name];
+        }        
         
         if ([matchingStopNames count]>0)
         {

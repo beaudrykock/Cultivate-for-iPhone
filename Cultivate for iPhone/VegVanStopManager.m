@@ -169,6 +169,36 @@
     return stopNames;
 }
 
+-(NSMutableArray*)stopNamesWithStreetName:(NSString*)streetName
+{
+    NSMutableArray *stopNames = [NSMutableArray arrayWithCapacity:10];
+    VegVanStop *stop = nil;
+    for (NSString *aKey in vegVanStops)
+    {
+        stop = [vegVanStops objectForKey: aKey];
+        
+        if ([[[stop address] objectForKey:kStreetNameElement] rangeOfString:streetName options:NSCaseInsensitiveSearch].location != NSNotFound)
+            [stopNames addObject:[stop name]];
+    }
+    
+    return stopNames;
+}
+
+-(NSMutableArray*)stopNamesWithPostcode:(NSString*)postcode
+{
+    NSMutableArray *stopNames = [NSMutableArray arrayWithCapacity:10];
+    VegVanStop *stop = nil;
+    for (NSString *aKey in vegVanStops)
+    {
+        stop = [vegVanStops objectForKey: aKey];
+        NSLog(@"postcode = %@", [[stop address] objectForKey:kPostcodeElement]);
+        if ([[[stop address] objectForKey:kPostcodeElement] rangeOfString:postcode options:NSCaseInsensitiveSearch].location != NSNotFound)
+            [stopNames addObject:[stop name]];
+    }
+    
+    return stopNames;
+}
+
 // returns an array of 1 stop name per scheduled item in each stop
 -(NSMutableArray*)stopsForScheduledItems
 {

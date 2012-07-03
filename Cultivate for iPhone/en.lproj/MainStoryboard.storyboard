@@ -102,7 +102,7 @@
                                     <outlet property="delegate" destination="2" id="3O1-32-7gI"/>
                                 </connections>
                             </navigationBar>
-                            <searchBar contentMode="redraw" barStyle="blackOpaque" placeholder="area or postcode" id="7Uh-5G-mta">
+                            <searchBar contentMode="redraw" barStyle="blackOpaque" placeholder="e.g. OX4, east oxford" id="7Uh-5G-mta">
                                 <rect key="frame" x="0.0" y="0.0" width="215" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <textInputTraits key="textInputTraits"/>

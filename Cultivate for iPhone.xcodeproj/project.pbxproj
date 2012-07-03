@@ -12,6 +12,8 @@
 		9F01782E15666DC500D0370F /* NotificationSettingsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9F01782C15666DC500D0370F /* NotificationSettingsView.xib */; };
 		9F0178351566AA5A00D0370F /* schedule_help.png in Resources */ = {isa = PBXBuildFile; fileRef = 9F0178331566AA5A00D0370F /* schedule_help.png */; };
 		9F0178361566AA5A00D0370F /* schedule_help@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9F0178341566AA5A00D0370F /* schedule_help@2x.png */; };
+		9F020E5415A3841E00C3AC31 /* van_placeholder.png in Resources */ = {isa = PBXBuildFile; fileRef = 9F020E5215A3841E00C3AC31 /* van_placeholder.png */; };
+		9F020E5515A3841E00C3AC31 /* van_placeholder@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9F020E5315A3841E00C3AC31 /* van_placeholder@2x.png */; };
 		9F2F9EFC1581037900AC444A /* mylocation.png in Resources */ = {isa = PBXBuildFile; fileRef = 9F2F9EFA1581037900AC444A /* mylocation.png */; };
 		9F2F9EFD1581037900AC444A /* mylocation@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9F2F9EFB1581037900AC444A /* mylocation@2x.png */; };
 		9F3240AD155ADC7A00BCA8FB /* get_involved_btn.png in Resources */ = {isa = PBXBuildFile; fileRef = 9F3240A9155ADC7A00BCA8FB /* get_involved_btn.png */; };
@@ -237,6 +239,8 @@
 		9F01782C15666DC500D0370F /* NotificationSettingsView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NotificationSettingsView.xib; sourceTree = "<group>"; };
 		9F0178331566AA5A00D0370F /* schedule_help.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = schedule_help.png; sourceTree = "<group>"; };
 		9F0178341566AA5A00D0370F /* schedule_help@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "schedule_help@2x.png"; sourceTree = "<group>"; };
+		9F020E5215A3841E00C3AC31 /* van_placeholder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = van_placeholder.png; sourceTree = "<group>"; };
+		9F020E5315A3841E00C3AC31 /* van_placeholder@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "van_placeholder@2x.png"; sourceTree = "<group>"; };
 		9F2F9EFA1581037900AC444A /* mylocation.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mylocation.png; sourceTree = "<group>"; };
 		9F2F9EFB1581037900AC444A /* mylocation@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "mylocation@2x.png"; sourceTree = "<group>"; };
 		9F3240A9155ADC7A00BCA8FB /* get_involved_btn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = get_involved_btn.png; sourceTree = "<group>"; };
@@ -660,6 +664,8 @@
 		9F6A09141546D4C500B59D0F = {
 			isa = PBXGroup;
 			children = (
+				9F020E5215A3841E00C3AC31 /* van_placeholder.png */,
+				9F020E5315A3841E00C3AC31 /* van_placeholder@2x.png */,
 				9F33D15B157530FA00A4A876 /* libsqlite3.0.dylib */,
 				9FB46B9E1564119C004B464B /* icon@2x.png */,
 				9FB46B9C1564119A004B464B /* icon.png */,
@@ -1518,6 +1524,8 @@
 				9F2F9EFD1581037900AC444A /* mylocation@2x.png in Resources */,
 				9FC3A1A115A350FA00C8F9BF /* cultivan.png in Resources */,
 				9FC3A1A215A350FA00C8F9BF /* cultivan@2x.png in Resources */,
+				9F020E5415A3841E00C3AC31 /* van_placeholder.png in Resources */,
+				9F020E5515A3841E00C3AC31 /* van_placeholder@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

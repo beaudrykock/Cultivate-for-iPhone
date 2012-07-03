@@ -87,8 +87,8 @@
     cell.textLabel.font = [UIFont fontWithName:kTextFont size: 16.0];
     cell.detailTextLabel.font = [UIFont fontWithName:kTextFont size: 16.0];
     
-    NSString* imageFilename = [[NSBundle mainBundle] pathForResource:@"Cultivate_logo" ofType:@"png"];
-    UIImage *image = [Utilities scale: [[UIImage alloc] initWithContentsOfFile:imageFilename] toSize: CGSizeMake(50.0,25.0)];
+    NSString* imageFilename = [[NSBundle mainBundle] pathForResource:@"cultivan" ofType:@"png"];
+    UIImage *image = [Utilities scale: [[UIImage alloc] initWithContentsOfFile:imageFilename] toSize: CGSizeMake(40.0,30.0)];
     [cell.imageView setContentMode:UIViewContentModeScaleAspectFit];
     cell.imageView.image = image;//[[UIImage alloc] initWithContentsOfFile:testImageFilename];
     

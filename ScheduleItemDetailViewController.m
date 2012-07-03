@@ -42,7 +42,7 @@
     self.background_address.layer.cornerRadius = 8.0;
     self.background_blurb.layer.cornerRadius = 8.0;
     self.background_deets.layer.cornerRadius = 8.0;
-    
+    self.scrollView.layer.cornerRadius = 8.0;
     [self.stopAddress setFont: [UIFont fontWithName:kTextFont size:17]];
     //[self.stopName setFont: [UIFont fontWithName:kTextFont size:26]];
     [self.stopBlurb setFont: [UIFont fontWithName:kTextFont size:17]];
@@ -120,7 +120,7 @@
         frame.size = self.scrollView.frame.size;
         frame.size.width = 200.0;
         UIImageView *subview = [[UIImageView alloc] initWithFrame:frame];
-        NSString* testImageFilename = [[NSBundle mainBundle] pathForResource:@"Cultivate_logo" ofType:@"png"];
+        NSString* testImageFilename = [[NSBundle mainBundle] pathForResource:@"van_placeholder" ofType:@"png"];
         UIImage *image = [[UIImage alloc] initWithContentsOfFile:testImageFilename];
         [subview setImage: image];
         [subview setContentMode:UIViewContentModeScaleAspectFit];
@@ -135,6 +135,8 @@
     
     self.scrollView.contentSize = CGSizeMake(self.scrollView.frame.size.width * imageCount, self.scrollView.frame.size.height);
     //180
+    
+    [self.scrollView setBackgroundColor:[UIColor whiteColor]];
     CGRect pageControlFrame = CGRectMake(0.0, 168.0, self.view.frame.size.width, 20.0);
     self.pageControl = [[CustomPageControl alloc] initWithFrame:pageControlFrame];
     self.pageControl.numberOfPages = imageCount;

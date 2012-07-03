@@ -184,7 +184,7 @@
 							<object class="IBUILabel" id="878028256">
 								<reference key="NSNextResponder" ref="755793248"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{7, 9}, {72, 19}}</string>
+								<string key="NSFrame">{{12, 9}, {72, 19}}</string>
 								<reference key="NSSuperview" ref="755793248"/>
 								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="761657578"/>
@@ -208,7 +208,7 @@
 							<object class="IBUILabel" id="696527304">
 								<reference key="NSNextResponder" ref="755793248"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{7, 34}, {72, 21}}</string>
+								<string key="NSFrame">{{12, 34}, {72, 21}}</string>
 								<reference key="NSSuperview" ref="755793248"/>
 								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="1022107629"/>
@@ -229,10 +229,9 @@
 							<object class="IBUILabel" id="1022107629">
 								<reference key="NSNextResponder" ref="755793248"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{80, 33}, {194, 21}}</string>
+								<string key="NSFrame">{{85, 33}, {182, 21}}</string>
 								<reference key="NSSuperview" ref="755793248"/>
 								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClipsSubviews">YES</bool>
@@ -250,7 +249,7 @@
 							<object class="IBUILabel" id="761657578">
 								<reference key="NSNextResponder" ref="755793248"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{80, 8}, {194, 21}}</string>
+								<string key="NSFrame">{{85, 8}, {182, 21}}</string>
 								<reference key="NSSuperview" ref="755793248"/>
 								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="696527304"/>
@@ -301,6 +300,7 @@
 								<object class="NSMutableString" key="IBUIText">
 									<characters key="NS.bytes">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</characters>
 								</object>
+								<int key="IBUITextAlignment">1</int>
 								<object class="IBUITextInputTraits" key="IBUITextInputTraits">
 									<int key="IBUIAutocapitalizationType">2</int>
 									<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>

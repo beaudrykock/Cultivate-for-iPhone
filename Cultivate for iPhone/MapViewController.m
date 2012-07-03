@@ -324,9 +324,9 @@
     locateVanOptionsPosition = [NSNumber numberWithInt:0];
     
     CLLocationCoordinate2D zoomLocation;
-    zoomLocation.latitude = 51.751944;
-    zoomLocation.longitude= -1.257778;
-    MKCoordinateRegion viewRegion = MKCoordinateRegionMakeWithDistance(zoomLocation, 3.0*METERS_PER_MILE, 3.0*METERS_PER_MILE);
+    zoomLocation.latitude = 51.753815013860255;
+    zoomLocation.longitude= -1.250467300415039;
+    MKCoordinateRegion viewRegion = MKCoordinateRegionMakeWithDistance(zoomLocation, 5.0*METERS_PER_MILE, 9.0*METERS_PER_MILE);
     MKCoordinateRegion adjustedRegion = [_mapView regionThatFits:viewRegion];                
     [_mapView setRegion:adjustedRegion animated:YES]; 
     
@@ -775,10 +775,10 @@
         [[sidvc stopBlurb] setText: [stop blurb]];
         NSString *_lat = [[NSNumber numberWithFloat: [stop location].coordinate.latitude] stringValue];
         NSString *_long = [[NSNumber numberWithFloat: [stop location].coordinate.longitude] stringValue];
-        NSLog(@"lat = %@, long = %@", _lat, _long);
         [sidvc setLocation: [NSDictionary dictionaryWithObjectsAndKeys: _lat, @"latitude", _long, @"longitude", nil]];
         //[sdivc setStopImage
         [[sidvc stopManager] setText: [stop manager]];
+        [[sidvc stopManagerContact] setText: [stop contact]];
         [sidvc prettify];
         [UIView transitionFromView:self.view 
                             toView:sidvc.view 

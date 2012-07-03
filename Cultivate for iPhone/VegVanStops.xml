@@ -1,36 +1,17 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <vegvanstopdata>
-	<stop>
-		<name>Worcester College</name>
-		<area>Jericho</area>
-		<latitude>51.752487</latitude>
-		<longitude>-1.260338</longitude>
-		<streetNumber>5</streetNumber>
-		<streetName>Walton St</streetName>
-		<postcode>OX1 3QA</postcode>
-		<photoURL>http://www.cultivateoxford.org/image.png</photoURL>
-		<blurb>Great stop with great veggies</blurb>
-		<manager>JH</manager>
-		<scheduleItems>
-			<scheduleItem>
-				<stopDay>Wednesday</stopDay>
-                <stopTime>14:00</stopTime>
-				<stopFrequency>Weekly</stopFrequency>
-                <stopDuration>60</stopDuration>
-			</scheduleItem>
-		</scheduleItems>
-	</stop>
     <stop>
-		<name>Jericho Central</name>
+		<name>St Barnabas Church</name>
 		<area>Jericho</area>
-		<latitude>51.764122</latitude>
-		<longitude>-1.268921</longitude>
-		<streetNumber>5</streetNumber>
-		<streetName>Walton St</streetName>
-		<postcode>OX1 3QA</postcode>
+		<latitude>51.7586719</latitude>
+		<longitude>-1.2670418</longitude>
+		<streetNumber>50</streetNumber>
+		<streetName>Cardigan St</streetName>
+		<postcode>OX2 6BN</postcode>
 		<photoURL>http://www.cultivateoxford.org/image.png</photoURL>
 		<blurb>Great stop with great veggies</blurb>
-		<manager>SF</manager>
+		<manager>Sarah Flood</manager>
+        <contact>01865420624</contact>
 		<scheduleItems>
 			<scheduleItem>
 				<stopDay>Thursday</stopDay>
@@ -40,17 +21,39 @@
 			</scheduleItem>
 		</scheduleItems>
 	</stop>
+    <stop>
+		<name>Wine Cafe</name>
+		<area>Summertown</area>
+		<latitude>51.7782313</latitude>
+		<longitude>-1.2671206</longitude>
+		<streetNumber>38</streetNumber>
+		<streetName>South Parade</streetName>
+		<postcode>OX2 7JN</postcode>
+		<photoURL>http://www.cultivateoxford.org/image.png</photoURL>
+		<blurb>Great stop with great veggies</blurb>
+		<manager>Joe Hasell</manager>
+        <contact>01865420624</contact>>
+		<scheduleItems>
+			<scheduleItem>
+				<stopDay>Wednesday</stopDay>
+                <stopTime>17:30</stopTime>
+				<stopFrequency>Weekly</stopFrequency>
+                <stopDuration>30</stopDuration>
+			</scheduleItem>
+		</scheduleItems>
+	</stop>
 	<stop>
 		<name>St Michael's Church</name>
-		<area>Headington/Marston</area>
-		<latitude>51.743984</latitude>
-		<longitude>-1.235147</longitude>
-		<streetNumber>5</streetNumber>
-		<streetName>Walton St</streetName>
-		<postcode>OX1 3QA</postcode>
+		<area>New Marston</area>
+		<latitude>51.76274043738508</latitude>
+		<longitude>-1.2354040145874023</longitude>
+		<streetNumber>320</streetNumber>
+		<streetName>Marston Road</streetName>
+		<postcode>OX3 0EJ</postcode>
 		<photoURL>http://www.cultivateoxford.org/image.png</photoURL>
 		<blurb>Held in the St. Michael's Church car park</blurb>
-		<manager>SF</manager>
+		<manager>Sarah Flood</manager>
+        <contact>01865420624</contact>>
 		<scheduleItems>
 			<scheduleItem>
 				<stopDay>Wednesday</stopDay>
@@ -61,96 +64,38 @@
 		</scheduleItems>
 	</stop>
 	<stop>
-		<name>Montessori School</name>
-		<area>North Oxford</area>
-		<latitude>51.753602</latitude>
-		<longitude>-1.271281</longitude>
-		<streetNumber>5</streetNumber>
-		<streetName>Walton St</streetName>
-		<postcode>OX1 3QA</postcode>
-		<photoURL>http://www.cultivateoxford.org/image.png</photoURL>
-		<blurb>Held at the Montessori school</blurb>
-		<manager>EB</manager>
-		<scheduleItems>
-			<scheduleItem>
-				<stopDay>Wednesday</stopDay>
-                <stopTime>17:00</stopTime>
-				<stopFrequency>Weekly</stopFrequency>
-                <stopDuration>60</stopDuration>
-			</scheduleItem>
-		</scheduleItems>
-	</stop>
-	<stop>
-		<name>Kidlington Pub</name>
+		<name>Squire Bassett</name>
 		<area>Kidlington</area>
-		<latitude>51.758995</latitude>
-		<longitude>-1.253514</longitude>
-		<streetNumber>5</streetNumber>
-		<streetName>Walton St</streetName>
-		<postcode>OX1 3QA</postcode>
+		<latitude>51.8133181</latitude>
+		<longitude>-1.2809061</longitude>
+		<streetNumber>238</streetNumber>
+		<streetName>Oxford Road</streetName>
+		<postcode>OX5 1EA</postcode>
 		<photoURL>http://www.cultivateoxford.org/image.png</photoURL>
 		<blurb>In the car park at the Kidlington Pub</blurb>
-		<manager>DB</manager>
+		<manager>Dan Betterton</manager>
+        <contact>01865420624</contact>>
 		<scheduleItems>
 			<scheduleItem>
 				<stopDay>Wednesday</stopDay>
                 <stopTime>18:30</stopTime>
-				<stopFrequency>Weekly</stopFrequency>
-                <stopDuration>60</stopDuration>
-			</scheduleItem>
-		</scheduleItems>
-	</stop>
-	<stop>
-		<name>Larkrise</name>
-		<area>East Oxford</area>
-		<latitude>51.764122</latitude>
-		<longitude>-1.268921</longitude>
-		<streetNumber>5</streetNumber>
-		<streetName>Walton St</streetName>
-		<postcode>OX1 3QA</postcode>
-		<photoURL>http://www.cultivateoxford.org/image.png</photoURL>
-		<blurb>Larkrise School</blurb>
-		<manager>JC</manager>
-		<scheduleItems>
-			<scheduleItem>
-				<stopDay>Thursday</stopDay>
-                <stopTime>08:30</stopTime>
-				<stopFrequency>Weekly</stopFrequency>
-                <stopDuration>60</stopDuration>
-			</scheduleItem>
-		</scheduleItems>
-	</stop>
-    <stop>
-		<name>Oxford Music Hall</name>
-		<area>East Oxford</area>
-		<latitude>51.764122</latitude>
-		<longitude>-1.268921</longitude>
-		<streetNumber>5</streetNumber>
-		<streetName>Walton St</streetName>
-		<postcode>OX1 3QA</postcode>
-		<photoURL>http://www.cultivateoxford.org/image.png</photoURL>
-		<blurb>Great stop with great veggies!</blurb>
-		<manager>JC</manager>
-		<scheduleItems>
-			<scheduleItem>
-				<stopDay>Thursday</stopDay>
-                <stopTime>10:30</stopTime>
 				<stopFrequency>Weekly</stopFrequency>
                 <stopDuration>30</stopDuration>
 			</scheduleItem>
 		</scheduleItems>
 	</stop>
     <stop>
-		<name>Cowley Road</name>
+		<name>The New Internationalist</name>
 		<area>East Oxford</area>
-		<latitude>51.764122</latitude>
-		<longitude>-1.268921</longitude>
-		<streetNumber>5</streetNumber>
-		<streetName>Walton St</streetName>
-		<postcode>OX1 3QA</postcode>
+		<latitude>51.7500903</latitude>
+		<longitude>-1.2387948</longitude>
+		<streetNumber>55</streetNumber>
+		<streetName>Rectory Rd</streetName>
+		<postcode>OX4 1BW</postcode>
 		<photoURL>http://www.cultivateoxford.org/image.png</photoURL>
-		<blurb>Held at the New Internationalist on Rectory Road</blurb>
-		<manager>JH</manager>
+		<blurb>Great stop with great veggies!</blurb>
+		<manager>Julian Cottee</manager>
+        <contact>01865420624</contact>>
 		<scheduleItems>
 			<scheduleItem>
 				<stopDay>Thursday</stopDay>
@@ -161,16 +106,38 @@
 		</scheduleItems>
 	</stop>
     <stop>
+		<name>The Old Music Hall</name>
+		<area>East Oxford</area>
+		<latitude>51.7385123</latitude>
+		<longitude>-1.2203757</longitude>
+		<streetNumber>106</streetNumber>
+		<streetName>Cowley Road</streetName>
+		<postcode>OX4 1JE</postcode>
+		<photoURL>http://www.cultivateoxford.org/image.png</photoURL>
+		<blurb>Held at the New Internationalist on Rectory Road</blurb>
+		<manager>Joe Hasell</manager>
+        <contact>01865420624</contact>>
+		<scheduleItems>
+			<scheduleItem>
+				<stopDay>Thursday</stopDay>
+                <stopTime>10:30</stopTime>
+				<stopFrequency>Weekly</stopFrequency>
+                <stopDuration>30</stopDuration>
+			</scheduleItem>
+		</scheduleItems>
+	</stop>
+    <stop>
 		<name>Oxfam House</name>
 		<area>East Oxford</area>
-		<latitude>51.764122</latitude>
-		<longitude>-1.268921</longitude>
-		<streetNumber>5</streetNumber>
-		<streetName>Walton St</streetName>
-		<postcode>OX1 3QA</postcode>
+		<latitude>51.7304866</latitude>
+		<longitude>-1.205134</longitude>
+		<streetNumber>Oxfam</streetNumber>
+		<streetName>John Smith Drive</streetName>
+		<postcode>OX4 2JY</postcode>
 		<photoURL>http://www.cultivateoxford.org/image.png</photoURL>
 		<blurb>Great stop with great veggies!</blurb>
-		<manager>JH</manager>
+		<manager>Joe Hasell</manager>
+        <contact>01865420624</contact>>
 		<scheduleItems>
 			<scheduleItem>
 				<stopDay>Thursday</stopDay>
@@ -181,36 +148,17 @@
 		</scheduleItems>
 	</stop>
     <stop>
-		<name>East Oxford Business Park</name>
+		<name>The Goldfish Bowl</name>
 		<area>East Oxford</area>
-		<latitude>51.764122</latitude>
-		<longitude>-1.268921</longitude>
-		<streetNumber>5</streetNumber>
-		<streetName>Walton St</streetName>
-		<postcode>OX1 3QA</postcode>
-		<photoURL>http://www.cultivateoxford.org/image.png</photoURL>
-		<blurb>Great stop with great veggies!</blurb>
-		<manager>DB</manager>
-		<scheduleItems>
-			<scheduleItem>
-				<stopDay>Thursday</stopDay>
-                <stopTime>13:00</stopTime>
-				<stopFrequency>Weekly</stopFrequency>
-                <stopDuration>30</stopDuration>
-			</scheduleItem>
-		</scheduleItems>
-	</stop>
-    <stop>
-		<name>Magdalen Road</name>
-		<area>East Oxford</area>
-		<latitude>51.764122</latitude>
-		<longitude>-1.268921</longitude>
-		<streetNumber>5</streetNumber>
-		<streetName>Walton St</streetName>
-		<postcode>OX1 3QA</postcode>
+		<latitude>51.7429906</latitude>
+		<longitude>-1.2336376</longitude>
+		<streetNumber>118</streetNumber>
+		<streetName>Magdalen Rd</streetName>
+		<postcode>OX4 1RQ</postcode>
 		<photoURL>http://www.cultivateoxford.org/image.png</photoURL>
 		<blurb>Outside the Goldfish Bowl</blurb>
-		<manager>JC</manager>
+		<manager>Julian Cottee</manager>
+        <contact>01865420624</contact>>
 		<scheduleItems>
 			<scheduleItem>
 				<stopDay>Thursday</stopDay>
@@ -223,14 +171,15 @@
     <stop>
 		<name>Walton Manor</name>
 		<area>East Oxford</area>
-		<latitude>51.764122</latitude>
-		<longitude>-1.268921</longitude>
-		<streetNumber>5</streetNumber>
-		<streetName>Walton St</streetName>
-		<postcode>OX1 3QA</postcode>
+		<latitude>51.7665732</latitude>
+		<longitude>-1.2686525</longitude>
+		<streetNumber>19</streetNumber>
+		<streetName>St. Margaret's Road</streetName>
+		<postcode>OX2 6RX</postcode>
 		<photoURL>http://www.cultivateoxford.org/image.png</photoURL>
 		<blurb>St Margaret's Church car park</blurb>
-		<manager>JH</manager>
+		<manager>Joe Hasell</manager>
+        <contact>01865420624</contact>>
 		<scheduleItems>
 			<scheduleItem>
 				<stopDay>Thursday</stopDay>
@@ -241,16 +190,17 @@
 		</scheduleItems>
 	</stop>
     <stop>
-		<name>ECI</name>
-		<area>University Parks</area>
-		<latitude>51.764122</latitude>
-		<longitude>-1.268921</longitude>
-		<streetNumber>5</streetNumber>
-		<streetName>Walton St</streetName>
-		<postcode>OX1 3QA</postcode>
+		<name>School of Geog. and Env.</name>
+		<area>University Science Area</area>
+		<latitude>51.7589761</latitude>
+		<longitude>-1.2539391</longitude>
+		<streetNumber>ECI</streetNumber>
+		<streetName>South Parks Road</streetName>
+		<postcode>OX1 3QY</postcode>
 		<photoURL>http://www.cultivateoxford.org/image.png</photoURL>
 		<blurb>Great stop with great veggies</blurb>
-		<manager>JC</manager>
+		<manager>Julian Cottee</manager>
+        <contact>01865420624</contact>>
 		<scheduleItems>
 			<scheduleItem>
 				<stopDay>Thursday</stopDay>
@@ -261,16 +211,17 @@
 		</scheduleItems>
 	</stop>
     <stop>
-		<name>Florence Park</name>
+		<name>Florence Park Community Centre</name>
 		<area>East Oxford</area>
-		<latitude>51.764122</latitude>
-		<longitude>-1.268921</longitude>
-		<streetNumber>5</streetNumber>
-		<streetName>Walton St</streetName>
-		<postcode>OX1 3QA</postcode>
+		<latitude>51.73500209571538</latitude>
+		<longitude>-1.2320137023925781</longitude>
+		<streetNumber>141</streetNumber>
+		<streetName>Cornwallis Road</streetName>
+		<postcode>OX4 3JZ</postcode>
 		<photoURL>http://www.cultivateoxford.org/image.png</photoURL>
 		<blurb>Florence Park Community Center on Cornwallis Road</blurb>
-		<manager>JC</manager>
+		<manager>Julian Cottee</manager>
+        <contact>01865420624</contact>>
 		<scheduleItems>
 			<scheduleItem>
 				<stopDay>Thursday</stopDay>
@@ -281,16 +232,17 @@
 		</scheduleItems>
 	</stop>
     <stop>
-		<name>Abingdon School</name>
+		<name>The Northcourt Centre</name>
 		<area>Abingdon</area>
-		<latitude>51.764122</latitude>
-		<longitude>-1.268921</longitude>
-		<streetNumber>5</streetNumber>
-		<streetName>Walton St</streetName>
-		<postcode>OX1 3QA</postcode>
+		<latitude>51.683333</latitude>
+		<longitude>-1.276689</longitude>
+		<streetNumber>1</streetNumber>
+		<streetName>Brookside</streetName>
+		<postcode>OX14 1</postcode>
 		<photoURL>http://www.cultivateoxford.org/image.png</photoURL>
 		<blurb>Great stop with great veggies</blurb>
-		<manager>DB</manager>
+		<manager>Dan Betterton</manager>
+        <contact>01865420624</contact>>
 		<scheduleItems>
 			<scheduleItem>
 				<stopDay>Friday</stopDay>
@@ -301,56 +253,59 @@
 		</scheduleItems>
 	</stop>
     <stop>
-		<name>Milton Park</name>
-		<area>Didcot</area>
-		<latitude>51.764122</latitude>
-		<longitude>-1.268921</longitude>
-		<streetNumber>5</streetNumber>
-		<streetName>Walton St</streetName>
-		<postcode>OX1 3QA</postcode>
+		<name>The Appleford Kitchen</name>
+		<area>Appleford</area>
+		<latitude>51.637038</latitude>
+		<longitude>-1.241798</longitude>
+		<streetNumber>10</streetNumber>
+		<streetName>Main Rd</streetName>
+		<postcode>OX14 1PD</postcode>
 		<photoURL>http://www.cultivateoxford.org/image.png</photoURL>
 		<blurb>Great stop with great veggies</blurb>
-		<manager>JC/DB</manager>
+		<manager>Dan Betterton</manager>
+        <contact>01865420624</contact>>
 		<scheduleItems>
 			<scheduleItem>
 				<stopDay>Friday</stopDay>
-                <stopTime>09:30</stopTime>
+                <stopTime>10:30</stopTime>
 				<stopFrequency>Weekly</stopFrequency>
-                <stopDuration>60</stopDuration>
+                <stopDuration>30</stopDuration>
 			</scheduleItem>
 		</scheduleItems>
 	</stop>
     <stop>
-		<name>Charlgrove 1</name>
+		<name>Jennings Monument Business Park</name>
 		<area>Charlgrove</area>
-		<latitude>51.764122</latitude>
-		<longitude>-1.268921</longitude>
-		<streetNumber>5</streetNumber>
-		<streetName>Walton St</streetName>
-		<postcode>OX1 3QA</postcode>
+		<latitude>51.674099</latitude>
+		<longitude>-1.078548</longitude>
+		<streetNumber>Monument Park</streetNumber>
+		<streetName>Warpsgrove Lane</streetName>
+		<postcode>OX44 7RW</postcode>
 		<photoURL>http://www.cultivateoxford.org/image.png</photoURL>
 		<blurb>Great stop with great veggies</blurb>
-		<manager>JC/DB</manager>
+		<manager>Julian Cottee/Dan Betterton</manager>
+        <contact>01865420624</contact>>
 		<scheduleItems>
 			<scheduleItem>
 				<stopDay>Friday</stopDay>
                 <stopTime>11:30</stopTime>
 				<stopFrequency>Weekly</stopFrequency>
-                <stopDuration>60</stopDuration>
+                <stopDuration>45</stopDuration>
 			</scheduleItem>
 		</scheduleItems>
 	</stop>
     <stop>
-		<name>West Oxford Farmer's Market</name>
+		<name>West Oxford Community Centre</name>
 		<area>West Oxford</area>
-		<latitude>51.764122</latitude>
-		<longitude>-1.268921</longitude>
-		<streetNumber>5</streetNumber>
-		<streetName>Walton St</streetName>
-		<postcode>OX1 3QA</postcode>
+		<latitude>51.7524905</latitude>
+		<longitude>-1.2720508</longitude>
+		<streetNumber>60</streetNumber>
+		<streetName>Botley Road</streetName>
+		<postcode>OX2 0</postcode>
 		<photoURL>http://www.cultivateoxford.org/image.png</photoURL>
 		<blurb>Great stop with great veggies</blurb>
-		<manager>JC</manager>
+		<manager>Julian Cottee</manager>
+        <contact>01865420624</contact>>
 		<scheduleItems>
 			<scheduleItem>
 				<stopDay>Friday</stopDay>

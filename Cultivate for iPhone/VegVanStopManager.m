@@ -68,6 +68,7 @@
     CLLocation *location = [[CLLocation alloc] initWithLatitude: [latitudeStr floatValue] longitude: [longitudeStr floatValue]];
     [newStop setLocation:location];
     NSString *streetNumber = [self stringStrippedOfWhitespaceAndNewlines:[vegVanStopElement valueWithPath:kStreetNumberElement]];
+    NSLog(@"streetNumber length = %i", [streetNumber length]);
     NSString *streetName = [self stringStrippedOfWhitespaceAndNewlines:[vegVanStopElement valueWithPath:kStreetNameElement]];
     NSString *postcode = [self stringStrippedOfWhitespaceAndNewlines:[vegVanStopElement valueWithPath:kPostcodeElement]];
     
@@ -76,7 +77,7 @@
     [newStop setPhotoURL:[NSURL URLWithString:[self stringStrippedOfWhitespaceAndNewlines:[vegVanStopElement valueWithPath:kPhotoURLElement]]]];
     [newStop setBlurb: [self stringStrippedOfWhitespaceAndNewlines:[vegVanStopElement valueWithPath:kBlurbElement]]];
     [newStop setManager: [self stringStrippedOfWhitespaceAndNewlines:[vegVanStopElement valueWithPath:kManagerElement]]];
-    
+    [newStop setContact: [self stringStrippedOfWhitespaceAndNewlines:[vegVanStopElement valueWithPath:kContactElement]]];
     SMXMLElement *scheduleItemsElement = [vegVanStopElement childNamed:kScheduleItemsElement];
     
     if (scheduleItemsElement.name)

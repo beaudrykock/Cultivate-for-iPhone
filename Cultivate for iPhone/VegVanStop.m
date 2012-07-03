@@ -9,7 +9,7 @@
 #import "VegVanStop.h"
 
 @implementation VegVanStop
-@synthesize name, area, location, address, photoURL, blurb, manager, scheduleItems, nextScheduledStop;
+@synthesize name, area, location, address, photoURL, blurb, manager, scheduleItems, nextScheduledStop, contact;
 
 -(NSString*)addressAsString
 {

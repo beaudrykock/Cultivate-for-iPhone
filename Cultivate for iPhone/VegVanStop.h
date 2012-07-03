@@ -19,6 +19,7 @@
     NSURL *photoURL;
     NSString *blurb;
     NSString *manager;
+    NSString *contact;
     NSMutableArray *scheduleItems;
     VegVanScheduleItem *nextScheduledStop;
 }
@@ -30,6 +31,7 @@
 @property (nonatomic, strong) NSURL *photoURL;
 @property (nonatomic, strong) NSString *blurb;
 @property (nonatomic, strong) NSString *manager;
+@property (nonatomic, strong) NSString *contact;
 @property (nonatomic, strong) NSMutableArray *scheduleItems;
 @property (nonatomic, strong) VegVanScheduleItem *nextScheduledStop;
 

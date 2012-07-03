@@ -376,6 +376,7 @@
     [sidvc setLocation: [NSDictionary dictionaryWithObjectsAndKeys: _lat, @"latitude", _long, @"longitude", nil]];
     //[sdivc setStopImage
     [[sidvc stopManager] setText: [vegVanStop manager]];
+    [[sidvc stopManagerContact] setText: [vegVanStop contact]];
     [sidvc prettify];
     [UIView transitionFromView:self.view 
                         toView:sidvc.view 

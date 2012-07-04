@@ -31,6 +31,14 @@
     }
 }
 
++(NSString*)cachePath:(NSString *)filename
+{
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES);
+	NSString *cacheDirectory = [paths objectAtIndex:0];
+	NSString *cacheFolder = [cacheDirectory stringByAppendingPathComponent: @"com.bwc.cultivate"]; 
+    return [cacheFolder stringByAppendingPathComponent: filename];
+}
+
 +(BOOL)postcodeIsValid:(NSString*)postcode
 {
     NSPredicate *postcodeTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", kPostcodeRegex];

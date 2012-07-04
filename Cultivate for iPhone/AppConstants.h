@@ -12,6 +12,9 @@
 // UIVIEW TAGS
 #define kInternetOverlayViewTag 3
 
+// ARCHIVING
+#define kXmlDataFile @"xmlDataFile"
+
 // FONTS
 #define kTitleFont @"Calibri"//@"Euphemia UCAS"
 #define kTextFont @"Calibri"

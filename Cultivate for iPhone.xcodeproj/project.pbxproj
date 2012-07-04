@@ -1732,6 +1732,10 @@
 		9F6A09491546D4C500B59D0F /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Cultivate for iPhone/Cultivate for iPhone-Prefix.pch";
 				INFOPLIST_FILE = "Cultivate for iPhone/Cultivate for iPhone-Info.plist";
@@ -1748,6 +1752,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Beaudry Kock";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Cultivate for iPhone/Cultivate for iPhone-Prefix.pch";
 				INFOPLIST_FILE = "Cultivate for iPhone/Cultivate for iPhone-Info.plist";

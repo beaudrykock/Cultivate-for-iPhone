@@ -16,29 +16,34 @@
     NSString *objectXML = nil;
     NSData *data = nil;
     BOOL loadedSuccessfully = NO;
-    if (YES || ![Utilities hasInternet] || ![Utilities hostReachable])
+    if (![Utilities hasInternet])
     {
-        objectXML = [[NSBundle mainBundle] pathForResource:@"VegVanStops" ofType:@"xml"];
-        data = [NSData dataWithContentsOfFile:objectXML];
-                
+        data = [NSData dataWithContentsOfFile:[Utilities cachePath:kXmlDataFile]];
+        if (!data)
+        {
+            objectXML = [[NSBundle mainBundle] pathForResource:@"VegVanStops" ofType:@"xml"];
+            data = [NSData dataWithContentsOfFile:objectXML];
+        }
         loadedSuccessfully = YES;
     }
     else {
         // load from URL
-        NSString *urlString = @"http://www.cultivateoxford.org/vegvanstops.xml";
+        NSString *urlString = @"http://web62557.aiso.net/cultivate/VegVanStops.xml";//@"http://www.cultivateoxford.org/vegvanstops.xml";
         ASIHTTPRequest *request = [[ASIHTTPRequest alloc] initWithURL:[NSURL URLWithString:urlString]];
         [request startSynchronous];
         
         data = [request responseData];
         
         loadedSuccessfully = YES;
+        
+        BOOL writtenSuccessfully = [self writeDataToFile:data];
     }
     
     // create a new SMXMLDocument
     SMXMLDocument *document = [SMXMLDocument documentWithData:data error:NULL];
     
     // Debugging: demonstrate -description of document/element classes
-    NSLog(@"Document:\n %@", document);
+    // NSLog(@"Document:\n %@", document);
     
     // Pull out the <rdf> node
     SMXMLElement *root = document.root;
@@ -49,6 +54,11 @@
     }
 
     return loadedSuccessfully;
+}
+
+-(BOOL)writeDataToFile:(NSData*)data
+{
+    return [data writeToFile:[Utilities cachePath:kXmlDataFile] atomically:YES];
 }
 
 -(void)generateVegVanStopFromElement: (SMXMLElement *)vegVanStopElement

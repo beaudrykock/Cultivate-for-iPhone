@@ -34,5 +34,6 @@
 -(NSMutableArray*)stopNamesWithPostcode:(NSString*)postcode;
 -(NSMutableArray*)stopsForScheduledItems;
 -(NSMutableDictionary*)vegVanStopsByArea;
+-(BOOL)writeDataToFile:(NSData*)data;
 
 @end

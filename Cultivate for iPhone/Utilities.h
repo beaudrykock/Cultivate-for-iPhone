@@ -44,4 +44,5 @@
 +(void)prefMaintenance;
 +(NSArray*)getLocation;
 +(void)writeLocation:(CLLocation*)loc;
++(NSString*)cachePath:(NSString *)filename;
 @end

@@ -386,7 +386,7 @@
     // get stop and set sidvc parameters
     NSInteger absoluteIndex = [self getAbsoluteRowNumberForIndexPath:indexPath andArea: area];
     //NSLog(@"absoluteIndex = %i", absoluteIndex);
-    VegVanStop *vegVanStop = [[[[Utilities sharedAppDelegate] vegVanStopManager] vegVanStops] objectForKey: [stopsForEachItem objectAtIndex: absoluteIndex]];
+    VegVanStop *vegVanStop = [self stopForArea:area andIndexPath:indexPath];
     [vegVanStop description];
     [[sidvc stopName] setText: [vegVanStop name]];
     [[sidvc stopAddress] setText: [vegVanStop addressAsString]];

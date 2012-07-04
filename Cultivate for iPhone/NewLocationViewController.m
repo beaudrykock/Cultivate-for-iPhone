@@ -175,11 +175,16 @@
     [self addActivityOverlay];
     AKFusionTables *fusionTables = [[AKFusionTables alloc] initWithUsername:@"beaudrykock@gmail.com" password:@"hLsbp93iLUkbhaenQfcu"];
     
-    // TODO: customize with actual dates
-    NSString *tableID = @"1lx5fkmE4V0WAjhOhPmHxMtqmQT0Y1k1UWgU4UZk";
-    NSString *query = [NSString stringWithFormat:@"INSERT INTO %@ (Lat, Long, Desc, When, Time) VALUES('%@', '%@', '%@', '%@', '%@')", tableID, self.latitude.stringValue, self.longitude.stringValue, self.describeView.text, self.dayChosen, self.timeForDayChosen];
+    NSString *desc = [self.describeView text];
+    if ([desc isEqualToString:@"e.g. car park at Iffley and Magdalen, East Oxford"])
+        desc = @"no_desc";
+    
+    NSString *query = [NSString stringWithFormat:@"INSERT INTO 1v-9AZ0SUShqU-SbXWTFAUDN0zfk36x-HvXG4KCY (data_1, data_2, data_3, data_4, data_5) VALUES('%@', '%@', '%@', '%@', '%@')", self.latitude.stringValue, self.longitude.stringValue, desc, self.dayChosen, self.timeForDayChosen];
+    //NSString *query = [NSString stringWithFormat:@"INSERT INTO 1v-9AZ0SUShqU-SbXWTFAUDN0zfk36x-HvXG4KCY (Data, Data2) VALUES('%@', '%@')", @"blag", @"blag"];
+    //self.latitude.stringValue, self.longitude.stringValue, @"blag", self.dayChosen, self.timeForDayChosen
+    //NSLog(@"query = %@", query);
     // access
-    [fusionTables querySql:@"SELECT * FROM 1lx5fkmE4V0WAjhOhPmHxMtqmQT0Y1k1UWgU4UZk" completionHandler:^(NSData *data, NSError *error) {
+    /*[fusionTables querySql:@"SELECT * FROM 1lx5fkmE4V0WAjhOhPmHxMtqmQT0Y1k1UWgU4UZk" completionHandler:^(NSData *data, NSError *error) {
         [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
         if (error != nil){
             NSInteger code = [error code];
@@ -189,8 +194,7 @@
                                  initWithBytes:[data bytes] length:[data length] encoding:NSUTF8StringEncoding];
             NSLog(@"Content: %@", content);
         }
-    }];
-    
+    }];*/
     [fusionTables modifySql:query completionHandler:^(NSData *data, NSError *error) {
         [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
         [self removeActivityOverlay];

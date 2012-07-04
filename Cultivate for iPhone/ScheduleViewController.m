@@ -9,7 +9,7 @@
 #import "ScheduleViewController.h"
 
 @implementation ScheduleViewController
-@synthesize areas, managedObjectContext, scheduledStopStringsByArea, sidvc, removeSIDVCPane, stopsForEachItem, background, settingsBackground, notificationSettingsViewController, overlay, vegVanScheduleItems;
+@synthesize areas, managedObjectContext, scheduledStopStringsByArea, sidvc, removeSIDVCPane, stopsForEachItem, background, settingsBackground, notificationSettingsViewController, overlay, vegVanScheduleItems, stopsByArea;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -52,12 +52,19 @@
 	return [[self.scheduledStopStringsByArea valueForKey:area] count];
 }
 
+-(VegVanStop*)stopForArea:(NSString*)area andIndexPath:(NSIndexPath*)indexPath
+{
+    NSArray *stopsInArea = (NSArray*)[self.stopsByArea objectForKey:area];
+    
+    return [stopsInArea objectAtIndex:indexPath.row];
+}
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"ScheduledStopCell";
     NSString *area = [self tableView:self.tableView titleForHeaderInSection:indexPath.section];
     NSInteger absoluteIndex = [self getAbsoluteRowNumberForIndexPath:indexPath andArea: area];
-    VegVanStop *vegVanStop = [[[[Utilities sharedAppDelegate] vegVanStopManager] vegVanStops] objectForKey: [stopsForEachItem objectAtIndex: absoluteIndex]];
+    VegVanStop *vegVanStop = [self stopForArea:area andIndexPath:indexPath];
     if ([vegVanScheduleItems count] <= absoluteIndex)
     {
         [vegVanScheduleItems addObject: [vegVanStop getNextScheduledStop]];
@@ -81,7 +88,21 @@
         
         cell.accessoryView = switchview;
     }
-    
+    else 
+    {
+        UISwitch *switchview = (UISwitch*)cell.accessoryView;
+        if ([self localNotificationInSystemForStopAtIndex:absoluteIndex]) 
+        {
+            [switchview setOn: YES animated: NO];
+        }
+        else 
+        {
+            [switchview setOn: NO animated: NO];
+        }
+        
+        if (![Utilities localNotificationsEnabled])
+            [switchview setEnabled: NO];
+    }
 	cell.textLabel.text = [vegVanStop name];//[vegVanStop addressAsString];
     cell.detailTextLabel.text = [vegVanStop nextStopTimeAndDurationAsStringLessFrequency];
     cell.textLabel.font = [UIFont fontWithName:kTextFont size: 16.0];
@@ -104,8 +125,6 @@
 
 - (void)accessorySwitchChanged:(UIControl*)button withEvent:(UIEvent*)event
 {
-    
-    
     UISwitch *switch1 = (UISwitch *)button;
     UITableViewCell *cell = (UITableViewCell *)switch1.superview;
     NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
@@ -116,7 +135,7 @@
     
     NSString *area = [self tableView:self.tableView titleForHeaderInSection:indexPath.section];
     NSInteger absoluteIndex = [self getAbsoluteRowNumberForIndexPath:indexPath andArea: area];
-    VegVanStop *vegVanStop = [[[[Utilities sharedAppDelegate] vegVanStopManager] vegVanStops] objectForKey: [stopsForEachItem objectAtIndex: absoluteIndex]];
+    VegVanStop *vegVanStop = [self stopForArea:area andIndexPath:indexPath];
     
     if ([switch1 isOn])
     {
@@ -161,7 +180,6 @@
         while (!found && counter < [notifications count])
         {
             notif = [notifications objectAtIndex: counter];
-            NSLog(@"alertbody = %@", notif.alertBody);
             NSDictionary *userinfo = notif.userInfo;
             NSNumber *itemHash = [userinfo objectForKey: kScheduleItemRefKey]; 
             if ([itemHash intValue] == [[self.vegVanScheduleItems objectAtIndex: absoluteIndex] hash])
@@ -178,23 +196,25 @@
         if (found)
             [[UIApplication sharedApplication] cancelLocalNotification:[notifications objectAtIndex: foundIndex]];
     }
-    NSLog(@"switch changed in section %i and row %i", [indexPath section], [indexPath row]);
+    //NSLog(@"switch changed in section %i and row %i", [indexPath section], [indexPath row]);
 }
 
 -(BOOL)localNotificationInSystemForStopAtIndex:(NSInteger)index
 {
     NSArray *notifications = [[UIApplication sharedApplication] scheduledLocalNotifications];
+    //NSLog(@"notifications in memory = %i", [notifications count]);
+    
     BOOL found = NO;
     NSInteger counter = 0;
     UILocalNotification* notif = nil;
     while (!found && counter < [notifications count])
     {
         notif = [notifications objectAtIndex: counter];
-        NSLog(@"alertbody = %@", notif.alertBody);
+        //NSLog(@"alertbody = %@", notif.alertBody);
         NSDictionary *userinfo = notif.userInfo;
         NSNumber *itemHash = [userinfo objectForKey: kScheduleItemRefKey]; 
-        NSLog(@"notification hash = %i", [itemHash intValue]);
-        NSLog(@"stored item hash = %i", [[self.vegVanScheduleItems objectAtIndex: index] hash]);
+        //NSLog(@"notification hash = %i", [itemHash intValue]);
+        //NSLog(@"stored item hash = %i", [[self.vegVanScheduleItems objectAtIndex: index] hash]);
         if ([itemHash intValue] == [[self.vegVanScheduleItems objectAtIndex: index] hash])
         {
             found = YES;
@@ -309,9 +329,8 @@
     NSInteger absoluteRow = 0;
     for (int i = 0; i<indexPath.section; i++)
     { 
-        absoluteRow += [[self.scheduledStopStringsByArea valueForKey:[self.areas objectAtIndex:i]] count];
+        absoluteRow += [[self.stopsByArea valueForKey:[self.areas objectAtIndex:i]] count];
     }
-    
     absoluteRow += indexPath.row;
     
     return absoluteRow;
@@ -366,7 +385,7 @@
     
     // get stop and set sidvc parameters
     NSInteger absoluteIndex = [self getAbsoluteRowNumberForIndexPath:indexPath andArea: area];
-    NSLog(@"absoluteIndex = %i", absoluteIndex);
+    //NSLog(@"absoluteIndex = %i", absoluteIndex);
     VegVanStop *vegVanStop = [[[[Utilities sharedAppDelegate] vegVanStopManager] vegVanStops] objectForKey: [stopsForEachItem objectAtIndex: absoluteIndex]];
     [vegVanStop description];
     [[sidvc stopName] setText: [vegVanStop name]];
@@ -440,7 +459,7 @@
     self.stopsForEachItem = [[[Utilities sharedAppDelegate] vegVanStopManager] stopsForScheduledItems];
     self.scheduledStopStringsByArea = [[[Utilities sharedAppDelegate] vegVanStopManager] scheduledStopStringsByArea];
     self.areas = [[[Utilities sharedAppDelegate] vegVanStopManager] vegVanStopAreas];
-    
+    self.stopsByArea = [[[Utilities sharedAppDelegate] vegVanStopManager] vegVanStopsByArea];
     if ([Utilities isFirstLaunch])
     {
         background = [[UIView alloc] initWithFrame:CGRectMake(0.0,0.0,320,480)];

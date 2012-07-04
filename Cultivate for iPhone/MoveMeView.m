@@ -43,8 +43,8 @@
         [self.disclaimer_label setFont: [UIFont fontWithName:kTextFont size:12]];
         [self.email_label setFont: [UIFont fontWithName:kTextFont size:15]];
     
-        [[NSNotificationCenter defaultCenter] addObserver:self
-                                                 selector:@selector(doneWithKeyboard) name:@"UIKeyboardDidHideNotification" object:nil];
+        //[[NSNotificationCenter defaultCenter] addObserver:self
+        //                                         selector:@selector(doneWithKeyboard) name:@"UIKeyboardDidHideNotification" object:nil];
 //       [self performSelector:@selector(editFirstField) withObject:nil afterDelay:2.0];
     }
 	return self;
@@ -167,6 +167,12 @@
 
 #pragma mark -
 #pragma mark Keyboard management
+-(IBAction)registerKeyboardListener
+{
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(doneWithKeyboard) name:@"UIKeyboardDidHideNotification" object:nil];
+}
+
 -(void)hideKeyboard
 {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
@@ -198,7 +204,7 @@
     else
     {
         [self.postcode_field resignFirstResponder];
-        //[self updateCultiRideDetails: nil];
+        [self updateCultiRideDetails];
     }
 }
 
@@ -236,11 +242,11 @@
                                       withError:&error]) {
         NSLog(@"GANTracker error, %@", [error localizedDescription]);
     }
-    NSString *name = [name_field text];
-    NSString *mobile = [mobile_field text];
-    NSString *postcode = [postcode_field text];
+    NSString *name = [self.name_field text];
+    NSString *mobile = [self.mobile_field text];
+    NSString *postcode = [self.postcode_field text];
     NSString *email = [email_field text];
-    
+    NSLog(@"details = %@,%@,%@,%@",name, mobile, postcode, email);
     if ([name length]>0 && [mobile length]>0 && [postcode length] >0)
     {
         [Utilities setCultiRideDetailsForName: name mobile: mobile email: email postcode: postcode];

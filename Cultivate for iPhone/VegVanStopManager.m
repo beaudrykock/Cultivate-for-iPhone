@@ -68,7 +68,6 @@
     CLLocation *location = [[CLLocation alloc] initWithLatitude: [latitudeStr floatValue] longitude: [longitudeStr floatValue]];
     [newStop setLocation:location];
     NSString *streetNumber = [self stringStrippedOfWhitespaceAndNewlines:[vegVanStopElement valueWithPath:kStreetNumberElement]];
-    NSLog(@"streetNumber length = %i", [streetNumber length]);
     NSString *streetName = [self stringStrippedOfWhitespaceAndNewlines:[vegVanStopElement valueWithPath:kStreetNameElement]];
     NSString *postcode = [self stringStrippedOfWhitespaceAndNewlines:[vegVanStopElement valueWithPath:kPostcodeElement]];
     
@@ -99,6 +98,7 @@
         }
     }
     
+    [newStop description];
     [vegVanStops setObject:newStop forKey:[newStop name]];
     [vegVanStopNames addObject: [newStop name]];
     if (![vegVanStopAreas containsObject: [newStop area]])
@@ -205,7 +205,8 @@
     NSMutableArray *array = [NSMutableArray arrayWithCapacity:20];
     NSArray *stops = [vegVanStops allValues];
     
-    for (int i = 0; i<[stops count]; i++)
+    NSInteger count = [stops count];
+    for (int i = 0; i<count; i++)
     {
         VegVanStop *stop = (VegVanStop*)[stops objectAtIndex: i];
         NSMutableArray *scheduleItems = [stop scheduleItems];
@@ -215,6 +216,29 @@
         }
     }
     return array;
+}
+
+// returns a dictionary of arrays - each key is an area, and array contains all stops for that area
+-(NSMutableDictionary*)vegVanStopsByArea
+{
+    VegVanStop *stop = nil;
+    NSMutableDictionary *stopsByArea = [NSMutableDictionary dictionaryWithCapacity: 20];
+    
+    // create a new array for each area, ready for storing the actual stop strings
+    for (NSString *area in vegVanStopAreas)
+    {
+        [stopsByArea setObject: [NSMutableArray arrayWithCapacity: 5] forKey: area];
+    }
+    
+    for (NSString *aKey in vegVanStops)
+    {
+        stop = [vegVanStops objectForKey: aKey];
+        NSMutableArray * arrayForArea = [stopsByArea objectForKey: [stop area]];
+        
+        [arrayForArea addObject: stop];
+    }
+    
+    return stopsByArea;
 }
 
 // TODO: implement this

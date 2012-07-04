@@ -30,7 +30,8 @@
 	// Do any additional setup after loading the view.
     
     [Utilities refreshVolunteerDates]; // loads from online XML and merges with existing if necessary
-    self.volunteerDates = [Utilities getVolunteerDatesWithRequestStatus];
+    self.volunteerDates = [[NSMutableArray alloc] init];
+    [self.volunteerDates addObjectsFromArray: [Utilities getVolunteerDatesWithRequestStatus]];
     [self.viewTitle setTextColor: [Utilities colorWithHexString: kCultivateGreenColor]];
     [self.info setTextColor: [Utilities colorWithHexString: kCultivateGrayColor]];
     [self.viewTitle setFont: [UIFont fontWithName: kTitleFont size: 20.0]];
@@ -203,8 +204,21 @@
                 [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
                 AKFusionTables *fusionTables = [[AKFusionTables alloc] initWithUsername:@"beaudrykock@gmail.com" password:@"hLsbp93iLUkbhaenQfcu"];
                 
-                // TODO: customize with actual dates
+                // TEST
+                /*
                 [fusionTables modifySql:@"INSERT INTO 1XDJMKnYqaclEyzRHr0AuszDyv7Wb7G2zbHtCiyU (name, mobile, postcode, volunteerDate) VALUES('Jane Doe', 0777777777, 'OX1 1QA', '10/10/10')" completionHandler:^(NSData *data, NSError *error) {
+                    [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+                    if (error != nil){
+                        NSInteger code = [error code];
+                        NSLog(@"Error code %d", code);
+                    }
+                }
+                 ];*/
+                NSDictionary *details = [Utilities cultiRideDetails];
+                
+                NSString *sqlQuery = [NSString stringWithFormat: @"INSERT INTO 1XDJMKnYqaclEyzRHr0AuszDyv7Wb7G2zbHtCiyU (name, mobile, postcode, volunteerDate) VALUES('%@', '%@', '%@', '%@')", [details objectForKey: pref_nameID],[details objectForKey: pref_mobileID],[details objectForKey: pref_postcodeID], date];
+                NSLog(@"%@", sqlQuery);
+                [fusionTables modifySql:sqlQuery completionHandler:^(NSData *data, NSError *error) {
                     [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
                     if (error != nil){
                         NSInteger code = [error code];

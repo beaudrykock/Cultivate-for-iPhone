@@ -17,6 +17,7 @@
 {       
     NSMutableArray *areas;
     NSDictionary *scheduledStopStringsByArea;
+    NSDictionary *stopsByArea;
     ScheduleItemDetailViewController *sidvc;
     UIView *removeSIDVCPane;
     NSMutableArray *stopsForEachItem; // stop name reference for each schedule item
@@ -27,6 +28,7 @@
     NSMutableArray *vegVanScheduleItems;
 }
 
+@property (nonatomic, strong) NSDictionary *stopsByArea;
 @property (nonatomic, strong) NSMutableArray *vegVanScheduleItems;
 @property (nonatomic, strong) UIView *overlay;
 @property (nonatomic, strong) UIView *settingsBackground;

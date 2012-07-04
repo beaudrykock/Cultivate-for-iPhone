@@ -39,34 +39,15 @@
                                         +(([_nextScheduledStop getHourAsInteger]-1)*3600)
                                         +([_nextScheduledStop getMinuteAsInteger]*60);
     
-    BOOL scheduledDateEarlierInWeek = NO;
-    if ([_nextScheduledStop getDayAsInteger]<weekday_now)
-    {
-        scheduledDateEarlierInWeek = YES;
-    }
-    else if ([_nextScheduledStop getDayAsInteger]==weekday_now)
-    {
-        if ([_nextScheduledStop getHourAsInteger]<hour_now)
-        {
-            scheduledDateEarlierInWeek = YES;
-        }
-        else if ([_nextScheduledStop getHourAsInteger]==hour_now)
-        {
-            if ([_nextScheduledStop getMinuteAsInteger]<minute_now)
-            {
-                scheduledDateEarlierInWeek = YES;
-            }
-        }
-    }
-    NSLog(@"stop %@, weekSecondsElapsed_now = %i, weekSecondsElapsed_item = %i", [self name], weekSecondsElapsed_now, weekSecondsElapsed_item);
-    
-    if (scheduledDateEarlierInWeek)
+    BOOL specialFrequency = [_nextScheduledStop getDayAsInteger] == -1;
+    NSLog(@"computing seconds until next stp for stop %@", [self name]);
+    if (!specialFrequency)
     {
         return weekSecondsElapsed_item-weekSecondsElapsed_now;
     }
     else
     {
-        return weekSecondsElapsed_item-weekSecondsElapsed_now;
+        return 1000000;
     }
     // TEMPORARY ONLY - FOR TESTING
    // return (rand() / RAND_MAX) * 100;

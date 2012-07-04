@@ -33,5 +33,6 @@
 -(NSMutableArray*)stopNamesWithStreetName:(NSString*)streetName;
 -(NSMutableArray*)stopNamesWithPostcode:(NSString*)postcode;
 -(NSMutableArray*)stopsForScheduledItems;
+-(NSMutableDictionary*)vegVanStopsByArea;
 
 @end

@@ -190,9 +190,9 @@
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
-+(NSDictionary*)cultiRideDetails
++(NSMutableDictionary*)cultiRideDetails
 {
-    NSDictionary *details = [NSDictionary dictionary];
+    NSMutableDictionary *details = [[NSMutableDictionary alloc] init];
     
     [details setValue: [[NSUserDefaults standardUserDefaults] objectForKey:pref_nameID] forKey: pref_nameID];
     [details setValue: [[NSUserDefaults standardUserDefaults] objectForKey:pref_postcodeID] forKey: pref_postcodeID];
@@ -252,7 +252,7 @@
         // volunteerDates = NSMutableArray arrayWithArray: volunteerDatesFromXML]; 
         
         // TODO remove
-        volunteerDates = [NSMutableArray arrayWithObjects: @"May 10", @"June 5", @"July 8", @"September 18", nil];
+        volunteerDates = [NSMutableArray arrayWithObjects: @"July 21", @"August 18", @"September 22", nil];
     }
     else {
         // merge existing with XML volunteer dates to avoid duplication

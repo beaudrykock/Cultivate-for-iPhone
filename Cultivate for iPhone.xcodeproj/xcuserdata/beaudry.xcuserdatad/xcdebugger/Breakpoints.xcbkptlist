@@ -281,11 +281,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Cultivate for iPhone/VegVanStop.m"
-         timestampString = "363038742.591214"
+         timestampString = "363210781.224391"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "55"
-         endingLineNumber = "55"
+         startingLineNumber = "65"
+         endingLineNumber = "65"
          landmarkName = "@implementation VegVanStop"
          landmarkType = "3">
       </FileBreakpoint>
@@ -957,11 +957,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Cultivate for iPhone/VegVanStopManager.m"
-         timestampString = "363116392.963614"
+         timestampString = "363186843.806538"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "164"
-         endingLineNumber = "164"
+         startingLineNumber = "178"
+         endingLineNumber = "178"
          landmarkName = "-scheduledStopStringsByArea"
          landmarkType = "5">
       </FileBreakpoint>
@@ -970,11 +970,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Cultivate for iPhone/VegVanStopManager.m"
-         timestampString = "363116392.963614"
+         timestampString = "363186843.806538"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "80"
-         endingLineNumber = "80"
+         startingLineNumber = "94"
+         endingLineNumber = "94"
          landmarkName = "-generateVegVanStopFromElement:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -996,11 +996,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Cultivate for iPhone/VegVanStopManager.m"
-         timestampString = "363116392.963614"
+         timestampString = "363186843.806538"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "209"
-         endingLineNumber = "209"
+         startingLineNumber = "223"
+         endingLineNumber = "223"
          landmarkName = "-stopNamesWithPostcode:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -1041,32 +1041,6 @@
          startingLineNumber = "612"
          endingLineNumber = "612"
          landmarkName = "-showNextStopLocation:"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "No"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         filePath = "Cultivate for iPhone/VegVanStop.m"
-         timestampString = "363038742.591214"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "44"
-         endingLineNumber = "44"
-         landmarkName = "-secondsUntilNextScheduledStop"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "No"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         filePath = "Cultivate for iPhone/VegVanStop.m"
-         timestampString = "363038762.031035"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "50"
-         endingLineNumber = "50"
-         landmarkName = "-secondsUntilNextScheduledStop"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
@@ -1204,11 +1178,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Cultivate for iPhone/VegVanStopManager.m"
-         timestampString = "363116392.963614"
+         timestampString = "363186843.806538"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "40"
-         endingLineNumber = "40"
+         startingLineNumber = "54"
+         endingLineNumber = "54"
          landmarkName = "-loadVegVanStops"
          landmarkType = "5">
       </FileBreakpoint>

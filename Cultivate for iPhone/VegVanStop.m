@@ -39,16 +39,26 @@
                                         +(([_nextScheduledStop getHourAsInteger]-1)*3600)
                                         +([_nextScheduledStop getMinuteAsInteger]*60);
     
+    NSInteger secondsInOneWeek = 3600*24*7;
     BOOL specialFrequency = [_nextScheduledStop getDayAsInteger] == -1;
     NSLog(@"computing seconds until next stp for stop %@", [self name]);
+    
     if (!specialFrequency)
     {
-        return weekSecondsElapsed_item-weekSecondsElapsed_now;
+        if (weekSecondsElapsed_now>weekSecondsElapsed_item)
+        {
+            // stop will not be until next week; add item seconds to week total-current
+            return weekSecondsElapsed_item+(secondsInOneWeek-weekSecondsElapsed_now);
+        }
+        else if (weekSecondsElapsed_now<=weekSecondsElapsed_item)
+        {
+            return weekSecondsElapsed_item-weekSecondsElapsed_now;
+        }
     }
-    else
-    {
+    else {
         return 1000000;
     }
+    
     // TEMPORARY ONLY - FOR TESTING
    // return (rand() / RAND_MAX) * 100;
 }

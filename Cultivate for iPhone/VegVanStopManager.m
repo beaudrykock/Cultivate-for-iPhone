@@ -30,11 +30,25 @@
         // load from URL
         NSString *urlString = @"http://web62557.aiso.net/cultivate/VegVanStops.xml";//@"http://www.cultivateoxford.org/vegvanstops.xml";
         ASIHTTPRequest *request = [[ASIHTTPRequest alloc] initWithURL:[NSURL URLWithString:urlString]];
+        [request setTimeOutSeconds:10.0];
         [request startSynchronous];
         
         data = [request responseData];
         
-        loadedSuccessfully = YES;
+        if (!data)
+        {
+            data = [NSData dataWithContentsOfFile:[Utilities cachePath:kXmlDataFile]];
+            if (!data)
+            {
+                objectXML = [[NSBundle mainBundle] pathForResource:@"VegVanStops" ofType:@"xml"];
+                data = [NSData dataWithContentsOfFile:objectXML];
+            }
+            loadedSuccessfully = YES;
+        }
+        else 
+        {
+            loadedSuccessfully = YES;
+        }
         
         BOOL writtenSuccessfully = [self writeDataToFile:data];
     }

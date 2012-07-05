@@ -590,7 +590,7 @@
         annotation = [_mapView.annotations objectAtIndex:counter];
         if (![annotation isKindOfClass:[MKUserLocation class]] && ![annotation isKindOfClass:[FarmAnnotation class]])
         {
-            
+            NSLog(@"stop name = %@", [annotation stopName]);
             timeToNextStop = [[[Utilities sharedAppDelegate] vegVanStopManager] secondsUntilNextScheduledStopWithName: [annotation stopName]];
             NSLog(@"timeToNextStop = %i", timeToNextStop);
             if (counter==0)

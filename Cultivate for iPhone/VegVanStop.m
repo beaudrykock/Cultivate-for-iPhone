@@ -41,7 +41,7 @@
     
     NSInteger secondsInOneWeek = 3600*24*7;
     BOOL specialFrequency = [_nextScheduledStop getDayAsInteger] == -1;
-    NSLog(@"computing seconds until next stp for stop %@", [self name]);
+    //NSLog(@"computing seconds until next stp for stop %@", [self name]);
     
     if (!specialFrequency)
     {

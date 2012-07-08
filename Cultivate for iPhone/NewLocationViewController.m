@@ -201,7 +201,7 @@
         [self dismiss];
         if (error != nil){
             NSInteger code = [error code];
-            NSLog(@"Error code %d, desc %@", code, [error description]);
+            //NSLog(@"Error code %d, desc %@", code, [error description]);
         }
     }
      ];
@@ -244,7 +244,7 @@
             placemark = [placemarks objectAtIndex:0];
             self.latitude = [NSNumber numberWithFloat:placemark.location.coordinate.latitude];
             self.longitude = [NSNumber numberWithFloat:placemark.location.coordinate.longitude];
-            NSLog(@"lat = %f, long = %f", placemark.location.coordinate.latitude, placemark.location.coordinate.longitude);
+            //NSLog(@"lat = %f, long = %f", placemark.location.coordinate.latitude, placemark.location.coordinate.longitude);
         }];
     return placemark;
 }
@@ -255,7 +255,7 @@
     CLGeocoder * geoCoder = [[CLGeocoder alloc] init];
     [geoCoder reverseGeocodeLocation:loc completionHandler:^(NSArray *placemarks, NSError *error) {
             placemark = [placemarks objectAtIndex:0];
-        NSLog(@"postal code = %@", placemark.postalCode);
+        //NSLog(@"postal code = %@", placemark.postalCode);
         
         if (placemark.postalCode != NULL)
         {

@@ -387,7 +387,7 @@
     NSInteger absoluteIndex = [self getAbsoluteRowNumberForIndexPath:indexPath andArea: area];
     //NSLog(@"absoluteIndex = %i", absoluteIndex);
     VegVanStop *vegVanStop = [self stopForArea:area andIndexPath:indexPath];
-    [vegVanStop description];
+    //[vegVanStop description];
     [[sidvc stopName] setText: [vegVanStop name]];
     [[sidvc stopAddress] setText: [vegVanStop addressAsString]];
     [[sidvc stopBlurb] setText: [vegVanStop blurb]];

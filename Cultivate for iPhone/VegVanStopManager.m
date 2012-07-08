@@ -28,7 +28,8 @@
     }
     else {
         // load from URL
-        NSString *urlString = @"http://web62557.aiso.net/cultivate/VegVanStops.xml";//@"http://www.cultivateoxford.org/vegvanstops.xml";
+        NSString *urlString = @"http://www.cultivateoxford.org/wp-content/uploads/VegVanStops.xml";
+        // alternative: @"http://web62557.aiso.net/cultivate/VegVanStops.xml";
         ASIHTTPRequest *request = [[ASIHTTPRequest alloc] initWithURL:[NSURL URLWithString:urlString]];
         [request setTimeOutSeconds:10.0];
         [request startSynchronous];
@@ -158,22 +159,22 @@
     
     for (NSString *aKey in vegVanStops)
     {
-        NSLog(@"key = %@", aKey);
+        //NSLog(@"key = %@", aKey);
         stop = [vegVanStops objectForKey: aKey];
         NSMutableArray * arrayForArea = [scheduledStopStringsByArea objectForKey: [stop area]];
         
         for (VegVanScheduleItem *item in [stop scheduleItems])
         {
-            NSLog(@"Adding to array %@", [item scheduleDetailAsString]);
+            //NSLog(@"Adding to array %@", [item scheduleDetailAsString]);
             [arrayForArea addObject: [item scheduleDetailAsString]];
         }
     }
     
     for (NSString *aKey in scheduledStopStringsByArea)
     {
-        NSLog(@"For area %@", aKey);
+       // NSLog(@"For area %@", aKey);
         NSMutableArray *arr = [scheduledStopStringsByArea objectForKey: aKey];
-        NSLog(@"Count = %i", [arr count]);
+        //NSLog(@"Count = %i", [arr count]);
     }
     return scheduledStopStringsByArea;
 }
@@ -215,7 +216,7 @@
     for (NSString *aKey in vegVanStops)
     {
         stop = [vegVanStops objectForKey: aKey];
-        NSLog(@"postcode = %@", [[stop address] objectForKey:kPostcodeElement]);
+        //NSLog(@"postcode = %@", [[stop address] objectForKey:kPostcodeElement]);
         if ([[[stop address] objectForKey:kPostcodeElement] rangeOfString:postcode options:NSCaseInsensitiveSearch].location != NSNotFound)
             [stopNames addObject:[stop name]];
     }

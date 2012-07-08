@@ -109,7 +109,7 @@
     
     if (secondsbefore != nil)
     {
-        NSLog(@"Default seconds before = %i", [prefs integerForKey:pref_timeBeforeID]);
+        //NSLog(@"Default seconds before = %i", [prefs integerForKey:pref_timeBeforeID]);
         return [prefs integerForKey:pref_timeBeforeID];
     }
     return 600; // otherwise return default
@@ -332,7 +332,7 @@
     
     if (nil == [[NSUserDefaults standardUserDefaults] valueForKey:pref_applySettingsToAllRemindersID])
     {
-        NSLog(@"Utilities says it has fixed a missing pref_applySettingsToAllRemindersID setting");
+        //NSLog(@"Utilities says it has fixed a missing pref_applySettingsToAllRemindersID setting");
         [prefs setBool:NO forKey:pref_applySettingsToAllRemindersID];
         [prefs synchronize];
     }

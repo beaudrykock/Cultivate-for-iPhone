@@ -62,19 +62,19 @@
 -(void)scheduleNotification 
 {
     eventDate = [self getRealDateFromItem];
-    NSLog(@"SCHEDULING NOTIFICATION...");
-    NSLog(@"scheduleNotification: eventDate = %@", [eventDate description]);
+    //NSLog(@"SCHEDULING NOTIFICATION...");
+    //NSLog(@"scheduleNotification: eventDate = %@", [eventDate description]);
     UILocalNotification *localNotif = [[UILocalNotification alloc] init];
     if (localNotif == nil)
     return;
-    NSLog(@"scheduleNotification: stopName = %@", self.stopName);
-    NSLog(@"scheduleNotification: secondsbefore = %i", secondsBefore);
-    NSLog(@"scheduleNotification: repeatPattern = %i", repeatPattern);
+   // NSLog(@"scheduleNotification: stopName = %@", self.stopName);
+   // NSLog(@"scheduleNotification: secondsbefore = %i", secondsBefore);
+   // NSLog(@"scheduleNotification: repeatPattern = %i", repeatPattern);
     localNotif.fireDate = [eventDate dateByAddingTimeInterval:-1*secondsBefore];
     localNotif.timeZone = [NSTimeZone systemTimeZone];
-    NSLog(@"fire date = %@", localNotif.fireDate.description);
+   // NSLog(@"fire date = %@", localNotif.fireDate.description);
     NSString *address = [[[[[Utilities sharedAppDelegate] vegVanStopManager] vegVanStops] objectForKey: stopName] addressAsString]; 
-    NSLog(@"scheduleNotification: address = %@", address);
+   // NSLog(@"scheduleNotification: address = %@", address);
     localNotif.alertBody = [NSString stringWithFormat:NSLocalizedString(@"The veg van will be arriving at %@ in %i minutes.", nil),
                             address, (secondsBefore/60)];
     localNotif.alertAction = NSLocalizedString(@"View Details", nil);

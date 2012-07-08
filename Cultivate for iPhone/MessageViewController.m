@@ -88,7 +88,7 @@
     {
         NSDictionary *user = (NSDictionary*)[dict objectForKey:@"user"];
         [tweetImageURLs addObject: [user objectForKey:@"profile_image_url"]];
-        NSLog(@"%@",[user objectForKey:@"profile_image_url"]);
+        //NSLog(@"%@",[user objectForKey:@"profile_image_url"]);
         UIImage *image = nil;
         #ifdef kDownloadProfileImage
             NSData *data = [NSData dataWithContentsOfURL:[NSURL URLWithString:[tweetImageURLs objectAtIndex:count]]];
@@ -341,7 +341,7 @@
             labelSize.height = 70.0;
         
         [tableViewCellSizes addObject:[NSValue valueWithCGSize:labelSize] ];
-        NSLog(@"tableViewCellSizes count = %i", [tableViewCellSizes count]);
+        //NSLog(@"tableViewCellSizes count = %i", [tableViewCellSizes count]);
     }    
     return labelSize.height + 20;
 }
@@ -435,7 +435,7 @@
 
 #pragma mark - Pull-to-refresh functionality
 -(void) loadingComplete  {
-    
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
     self.loading = NO;
 }
 -(void) doRefresh  {
@@ -448,13 +448,14 @@
                                       withError:&error]) {
         NSLog(@"GANTracker error, %@", [error localizedDescription]);
     }
-    [self performSelectorInBackground:@selector(reloadTweetTable) withObject:nil];
-    //[self performSelector:@selector(loadingComplete) withObject:nil afterDelay:2];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadTweetTable) name:kTweetsLoaded object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loadingComplete) name:kTweetsLoadingFailed object:nil];
+    [[Utilities sharedAppDelegate] getPublicTimelineInBackground];
+
 }
 
 -(void)reloadTweetTable
 {   
-    
     self.tweets = [[Utilities sharedAppDelegate] tweets];
     if (!self.tweetImageURLs)
     {

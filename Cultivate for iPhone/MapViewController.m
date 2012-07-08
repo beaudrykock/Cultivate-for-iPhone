@@ -329,9 +329,7 @@
     {
         self.currentLocation = newLocation;
         [Utilities writeLocation: self.currentLocation];
-        NSLog(@"latitude %+.6f, longitude %+.6f\n",
-              newLocation.coordinate.latitude,
-              newLocation.coordinate.longitude);
+        // NSLog(@"latitude %+.6f, longitude %+.6f\n", newLocation.coordinate.latitude, newLocation.coordinate.longitude);
     }
     // else skip the event and process the next one.
 }
@@ -590,9 +588,9 @@
         annotation = [_mapView.annotations objectAtIndex:counter];
         if (![annotation isKindOfClass:[MKUserLocation class]] && ![annotation isKindOfClass:[FarmAnnotation class]])
         {
-            NSLog(@"stop name = %@", [annotation stopName]);
+            //NSLog(@"stop name = %@", [annotation stopName]);
             timeToNextStop = [[[Utilities sharedAppDelegate] vegVanStopManager] secondsUntilNextScheduledStopWithName: [annotation stopName]];
-            NSLog(@"timeToNextStop = %i", timeToNextStop);
+            //NSLog(@"timeToNextStop = %i", timeToNextStop);
             if (counter==0)
             {
                 shortestTime = timeToNextStop;
@@ -625,7 +623,7 @@
         [geocoder geocodeAddressString:postcode completionHandler:^(NSArray *placemarks, NSError *error) {
             placemark = [placemarks objectAtIndex:0];
             
-            NSLog(@"lat = %f, long = %f", placemark.location.coordinate.latitude, placemark.location.coordinate.longitude);
+            //NSLog(@"lat = %f, long = %f", placemark.location.coordinate.latitude, placemark.location.coordinate.longitude);
         }];
     }
     else

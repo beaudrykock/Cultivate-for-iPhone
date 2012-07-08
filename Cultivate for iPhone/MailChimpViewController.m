@@ -324,8 +324,8 @@
 #pragma mark - 
 #pragma mark MailChimp
 - (void)ckRequestSucceeded:(ChimpKit *)ckRequest {
-    NSLog(@"HTTP Status Code: %d", [ckRequest responseStatusCode]);
-    NSLog(@"Response String: %@", [ckRequest responseString]);
+    //NSLog(@"HTTP Status Code: %d", [ckRequest responseStatusCode]);
+    //NSLog(@"Response String: %@", [ckRequest responseString]);
     
     [self notifySubscriptionSuccess:YES];
     
@@ -336,11 +336,11 @@
 
 - (void)ckRequestFailed:(ChimpKit *)ckRequest andError:(NSError *)error
 {
-    NSLog(@"Response Error: %@", error);
+    //NSLog(@"Response Error: %@", error);
 
     NSDictionary *jsonDict = [[ckRequest responseString] JSONValue]; 
 
-    NSLog(@"Response data from failure: %@", [jsonDict description]);
+    //NSLog(@"Response data from failure: %@", [jsonDict description]);
     
      [self notifySubscriptionSuccess:NO];
 }
@@ -448,7 +448,7 @@
     [mergeVars setValue:[NSArray arrayWithObjects:groups, nil] forKey:@"GROUPINGS"];
     [params setValue:mergeVars forKey:@"merge_vars"];
     //[params setValue:@"1" forKey: @"weekly"];
-    NSLog(@"desc = %@", [params description]);
+    //NSLog(@"desc = %@", [params description]);
     
     [ck callApiMethod:@"listSubscribe" withParams:params];
 }
@@ -523,14 +523,14 @@
                     {
                         finalStr = [finalStr stringByAppendingFormat:@"%@%@",string,@","];
                     }
-                    NSLog(@"finalstr = %@", finalStr);
+                    //NSLog(@"finalstr = %@", finalStr);
                     [groups setValue:finalStr forKey:@"groups"];
                 }
                 else
                 {
                     [groups setValue:@"4913" forKey:@"id"];
                     [groups setValue:volunteerFrequencySelection forKey:@"groups"];
-                    NSLog(@"vfs = %@", volunteerFrequencySelection);
+                    //NSLog(@"vfs = %@", volunteerFrequencySelection);
                     [mergeVars setValue:postcode forKey:@"MMERGE4"];
                     
                 }

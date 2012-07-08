@@ -30,5 +30,6 @@
 -(BOOL)areTweetsLoaded;
 -(void)checkNotificationsEnabledStatus;
 -(void)startGoogleAnalytics;
+-(void)getPublicTimelineInBackground;
 
 @end

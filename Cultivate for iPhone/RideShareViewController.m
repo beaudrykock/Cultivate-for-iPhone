@@ -79,7 +79,7 @@
         } else {
             NSString *content = [[NSString alloc]
                                  initWithBytes:[data bytes] length:[data length] encoding:NSUTF8StringEncoding];
-            NSLog(@"Content: %@", content);
+            //NSLog(@"Content: %@", content);
         }
     }];
     
@@ -217,7 +217,7 @@
                 NSDictionary *details = [Utilities cultiRideDetails];
                 
                 NSString *sqlQuery = [NSString stringWithFormat: @"INSERT INTO 1XDJMKnYqaclEyzRHr0AuszDyv7Wb7G2zbHtCiyU (name, mobile, postcode, volunteerDate) VALUES('%@', '%@', '%@', '%@')", [details objectForKey: pref_nameID],[details objectForKey: pref_mobileID],[details objectForKey: pref_postcodeID], date];
-                NSLog(@"%@", sqlQuery);
+               // NSLog(@"%@", sqlQuery);
                 [fusionTables modifySql:sqlQuery completionHandler:^(NSData *data, NSError *error) {
                     [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
                     if (error != nil){

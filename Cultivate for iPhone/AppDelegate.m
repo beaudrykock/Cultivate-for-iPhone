@@ -60,6 +60,19 @@
     }
 }
 
+-(void)getPublicTimelineInBackground
+{
+    if ([Utilities hasInternet])
+    {
+        //[self getPublicTimeline];
+        [self performSelectorInBackground:@selector(getPublicTimeline) withObject:nil];
+    }
+    else 
+    {
+        [[NSNotificationCenter defaultCenter] postNotificationName:kTweetsLoadingFailed object:nil];
+    }
+}
+
 - (void)getPublicTimeline 
 {
 	// Create a request, which in this example, grabs the public timeline.
@@ -88,7 +101,7 @@
             //NSDictionary *errorDict = [NSJSONSerialization JSONObjectWithData:responseData options:0 error:&jsonParsingError];
             //NSLog(@"error desc = %@", [errorDict description]);
 		}
-		NSLog(@"output = %@", output);
+		//NSLog(@"output = %@", output);
         
 	}];
 }

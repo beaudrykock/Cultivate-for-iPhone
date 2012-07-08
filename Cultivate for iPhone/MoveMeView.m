@@ -246,7 +246,7 @@
     NSString *mobile = [self.mobile_field text];
     NSString *postcode = [self.postcode_field text];
     NSString *email = [email_field text];
-    NSLog(@"details = %@,%@,%@,%@",name, mobile, postcode, email);
+    //NSLog(@"details = %@,%@,%@,%@",name, mobile, postcode, email);
     if ([name length]>0 && [mobile length]>0 && [postcode length] >0)
     {
         [Utilities setCultiRideDetailsForName: name mobile: mobile email: email postcode: postcode];

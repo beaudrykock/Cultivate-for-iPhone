@@ -51,7 +51,7 @@ static NSString *const GOOGLE_QUERY_URL = @"https://www.google.com/fusiontables/
             if (error == nil){
                 NSString *content = [[NSString alloc]
                                      initWithBytes:[data bytes] length:[data length] encoding:NSUTF8StringEncoding];
-                NSLog(@"Auth content: %@", content);
+                //NSLog(@"Auth content: %@", content);
                 authToken = [AKFusionTables parseAuthToken:content];
                 [content release];
                 
@@ -61,7 +61,7 @@ static NSString *const GOOGLE_QUERY_URL = @"https://www.google.com/fusiontables/
                 }
             } else {
                 NSInteger code = [error code];
-                NSLog(@"Error code during auth: %d", code);
+                //NSLog(@"Error code during auth: %d", code);
             }
         }
          ];

@@ -123,7 +123,7 @@
         }
     }
     
-    [newStop description];
+    //[newStop description];
     [vegVanStops setObject:newStop forKey:[newStop name]];
     [vegVanStopNames addObject: [newStop name]];
     if (![vegVanStopAreas containsObject: [newStop area]])

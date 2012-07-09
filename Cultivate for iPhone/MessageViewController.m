@@ -73,21 +73,24 @@
 
 -(void)populateTweetTable
 {   
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:kTweetsLoaded object:self];
     self.tweets = [[Utilities sharedAppDelegate] tweets];
 
-    if (!self.tweetImageURLs)
+    if (self.tweetImageURLs)
     {
-        self.tweetImageURLs  = [NSMutableArray arrayWithCapacity: [tweets count]];
-        self.tableViewCellSizes = [NSMutableArray arrayWithCapacity:[tweets count]];
-        self.tableViewCellImages = [NSMutableArray arrayWithCapacity:[tweets count]];
+        self.tweetImageURLs = nil;
+        self.tableViewCellSizes = nil;
+        self.tableViewCellImages = nil;
     }
+    
+    self.tweetImageURLs  = [NSMutableArray arrayWithCapacity: [tweets count]];
+    self.tableViewCellSizes = [NSMutableArray arrayWithCapacity:[tweets count]];
+    self.tableViewCellImages = [NSMutableArray arrayWithCapacity:[tweets count]];
     
     NSInteger count = 0;
     for (NSDictionary *dict in tweets)
     {
         NSDictionary *user = (NSDictionary*)[dict objectForKey:@"user"];
-        [tweetImageURLs addObject: [user objectForKey:@"profile_image_url"]];
+        [self.tweetImageURLs addObject: [user objectForKey:@"profile_image_url"]];
         //NSLog(@"%@",[user objectForKey:@"profile_image_url"]);
         UIImage *image = nil;
         #ifdef kDownloadProfileImage
@@ -96,18 +99,19 @@
         #else
             image = [UIImage imageNamed:@"droplet_normal.png"];
         #endif
-        [tableViewCellImages addObject: image];
+        [self.tableViewCellImages addObject: image];
         CGSize labelSize = [[dict objectForKey:@"text"] sizeWithFont:[UIFont fontWithName:kTextFont size:14.0] 
                                                   constrainedToSize:CGSizeMake(240.0f, MAXFLOAT) 
                                                       lineBreakMode:UILineBreakModeWordWrap];
         if (labelSize.height < 70) 
             labelSize.height = 70.0;
             
-        [tableViewCellSizes addObject:[NSValue valueWithCGSize:labelSize]];
+        [self.tableViewCellSizes addObject:[NSValue valueWithCGSize:labelSize]];
         count++;
     }
     [self removeLoadingOverlay];
     [self.tableView reloadData];
+    [self loadingComplete];
 }
 
 - (void)getPublicTimeline 
@@ -205,8 +209,11 @@
 
 -(void)removeLoadingOverlay
 {
-    overlayAdded = NO;
-    [loadingOverlay removeFromSuperview];
+    if (self.loadingOverlay)
+    {
+        overlayAdded = NO;
+        [loadingOverlay removeFromSuperview];
+    }
 }
 
 
@@ -435,7 +442,8 @@
 
 #pragma mark - Pull-to-refresh functionality
 -(void) loadingComplete  {
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:kTweetsLoaded object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:kTweetsLoadingFailed object:nil];
     self.loading = NO;
 }
 -(void) doRefresh  {
@@ -448,7 +456,7 @@
                                       withError:&error]) {
         NSLog(@"GANTracker error, %@", [error localizedDescription]);
     }
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadTweetTable) name:kTweetsLoaded object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(populateTweetTable) name:kTweetsLoaded object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loadingComplete) name:kTweetsLoadingFailed object:nil];
     [[Utilities sharedAppDelegate] getPublicTimelineInBackground];
 

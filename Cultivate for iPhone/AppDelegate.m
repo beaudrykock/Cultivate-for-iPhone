@@ -80,7 +80,7 @@
 	// This may need to be changed to whichever version is currently appropriate.
 	TWRequest *postRequest = [[TWRequest alloc] initWithURL:[NSURL URLWithString:@"http://api.twitter.com/1/statuses/user_timeline/CultivateOxford.json"] parameters:nil requestMethod:TWRequestMethodGET];
 	
-	// Perform the request created above and create a handler block to handle the response.
+    // Perform the request created above and create a handler block to handle the response.
 	[postRequest performRequestWithHandler:^(NSData *responseData, NSHTTPURLResponse *urlResponse, NSError *error) {
 		NSString *output;
 		if ([urlResponse statusCode] == 200) {
@@ -93,6 +93,7 @@
             tweetsLoaded = YES;
             [self performSelectorOnMainThread:@selector(notifyNewTweetCount) withObject:nil waitUntilDone:NO];
             [self performSelectorOnMainThread:@selector(notifySuccessToTweetTab) withObject:nil waitUntilDone:NO];
+            
 		}
 		else {
 			output = [NSString stringWithFormat:@"HTTP response status: %i\nerror: %@", [urlResponse statusCode], [error description]];

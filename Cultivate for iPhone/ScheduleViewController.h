@@ -26,8 +26,10 @@
     UIView *overlay;
     NotificationSettingsViewController* notificationSettingsViewController;
     NSMutableArray *vegVanScheduleItems;
+    NSIndexPath *accessorySwitchIndexPath;
 }
 
+@property (nonatomic, strong) NSIndexPath *accessorySwitchIndexPath;
 @property (nonatomic, strong) NSDictionary *stopsByArea;
 @property (nonatomic, strong) NSMutableArray *vegVanScheduleItems;
 @property (nonatomic, strong) UIView *overlay;
@@ -49,5 +51,7 @@
 -(BOOL)localNotificationInSystemForStopAtIndex:(NSInteger)indexPath;
 -(void)loadingComplete;
 -(void)doRefresh;
+-(void)dismissNotificationSettingsViewControllerAndRestoreSwitch;
+
 @end
 

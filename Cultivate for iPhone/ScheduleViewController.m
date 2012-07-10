@@ -9,7 +9,7 @@
 #import "ScheduleViewController.h"
 
 @implementation ScheduleViewController
-@synthesize areas, managedObjectContext, scheduledStopStringsByArea, sidvc, removeSIDVCPane, stopsForEachItem, background, settingsBackground, notificationSettingsViewController, overlay, vegVanScheduleItems, stopsByArea;
+@synthesize areas, managedObjectContext, scheduledStopStringsByArea, sidvc, removeSIDVCPane, stopsForEachItem, background, settingsBackground, notificationSettingsViewController, overlay, vegVanScheduleItems, stopsByArea, accessorySwitchIndexPath;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -126,9 +126,10 @@
 - (void)accessorySwitchChanged:(UIControl*)button withEvent:(UIEvent*)event
 {
     UISwitch *switch1 = (UISwitch *)button;
+    
     UITableViewCell *cell = (UITableViewCell *)switch1.superview;
     NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
-    
+    self.accessorySwitchIndexPath = indexPath;
     //NSIndexPath * indexPath = [showLocationTableView indexPathForRowAtPoint: [[[event touchesForView: button] anyObject] locationInView: showLocationTableView]];
     if ( indexPath == nil )
         return;
@@ -236,6 +237,9 @@
     [overlay setBackgroundColor:[UIColor blackColor]];
     [overlay setAlpha:0.0];
     [settingsBackground addSubview:overlay];
+    UITapGestureRecognizer *tapToCancel = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissNotificationSettingsViewControllerAndRestoreSwitch)];
+    [self.overlay addGestureRecognizer:tapToCancel];
+    
     [self.view addSubview:settingsBackground];
     
     notificationSettingsViewController = [[NotificationSettingsViewController alloc] init];
@@ -338,6 +342,28 @@
 
 -(void)dismissNotificationSettingsViewController
 {
+    self.tableView.scrollEnabled = YES;
+    [UIView beginAnimations:nil context:NULL];  
+    
+    [UIView setAnimationDuration:0.4];
+    
+    [UIView setAnimationDelegate:self];
+    [UIView setAnimationDidStopSelector:@selector(removeNotificationSettingsViews)];
+    CGRect animateToFrame = notificationSettingsViewController.view.frame;
+    animateToFrame.origin.y = -303.0;
+    notificationSettingsViewController.view.frame = animateToFrame;  
+    [overlay setAlpha:0.0];
+    [UIView commitAnimations];
+}
+
+// call this when the controller is canceled out of
+// so that the accessory button can be reset
+-(void)dismissNotificationSettingsViewControllerAndRestoreSwitch
+{
+    UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:self.accessorySwitchIndexPath];
+    UISwitch *accSwitch = (UISwitch*)cell.accessoryView;
+    [accSwitch setOn:NO];
+    
     self.tableView.scrollEnabled = YES;
     [UIView beginAnimations:nil context:NULL];  
     

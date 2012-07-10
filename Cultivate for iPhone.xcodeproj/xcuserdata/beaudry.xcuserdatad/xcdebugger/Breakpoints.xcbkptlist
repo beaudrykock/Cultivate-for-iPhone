@@ -138,11 +138,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Cultivate for iPhone/ScheduleViewController.m"
-         timestampString = "363109667.383708"
+         timestampString = "363643501.372072"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "395"
-         endingLineNumber = "395"
+         startingLineNumber = "421"
+         endingLineNumber = "421"
          landmarkName = "-tableView:didSelectRowAtIndexPath:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -151,11 +151,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Cultivate for iPhone/ScheduleViewController.m"
-         timestampString = "363109667.383708"
+         timestampString = "363643501.372072"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "463"
-         endingLineNumber = "463"
+         startingLineNumber = "489"
+         endingLineNumber = "489"
          landmarkName = "-viewDidLoad"
          landmarkType = "5">
       </FileBreakpoint>
@@ -164,11 +164,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Cultivate for iPhone/ScheduleViewController.m"
-         timestampString = "363109667.383708"
+         timestampString = "363643501.372072"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "333"
-         endingLineNumber = "333"
+         startingLineNumber = "337"
+         endingLineNumber = "337"
          landmarkName = "-getAbsoluteRowNumberForIndexPath:andArea:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -177,11 +177,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Cultivate for iPhone/ScheduleViewController.m"
-         timestampString = "363109667.383708"
+         timestampString = "363643501.372072"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "191"
-         endingLineNumber = "191"
+         startingLineNumber = "192"
+         endingLineNumber = "192"
          landmarkName = "-accessorySwitchChanged:withEvent:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -541,11 +541,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Cultivate for iPhone/ScheduleViewController.m"
-         timestampString = "363109569.364328"
+         timestampString = "363643501.372072"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "209"
-         endingLineNumber = "209"
+         startingLineNumber = "210"
+         endingLineNumber = "210"
          landmarkName = "-localNotificationInSystemForStopAtIndex:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -554,11 +554,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Cultivate for iPhone/ScheduleViewController.m"
-         timestampString = "363109569.364328"
+         timestampString = "363643501.372072"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "167"
-         endingLineNumber = "167"
+         startingLineNumber = "168"
+         endingLineNumber = "168"
          landmarkName = "-accessorySwitchChanged:withEvent:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -931,11 +931,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Cultivate for iPhone/ScheduleViewController.m"
-         timestampString = "363109667.383708"
+         timestampString = "363643501.372072"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "464"
-         endingLineNumber = "464"
+         startingLineNumber = "490"
+         endingLineNumber = "490"
          landmarkName = "-viewDidLoad"
          landmarkType = "5">
       </FileBreakpoint>
@@ -1061,11 +1061,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Cultivate for iPhone/ScheduleViewController.m"
-         timestampString = "363109667.383708"
+         timestampString = "363643501.372072"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "462"
-         endingLineNumber = "462"
+         startingLineNumber = "488"
+         endingLineNumber = "488"
          landmarkName = "-viewDidLoad"
          landmarkType = "5">
       </FileBreakpoint>
@@ -1087,11 +1087,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Cultivate for iPhone/ScheduleViewController.m"
-         timestampString = "363109667.383708"
+         timestampString = "363643501.372072"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "216"
-         endingLineNumber = "216"
+         startingLineNumber = "217"
+         endingLineNumber = "217"
          landmarkName = "-localNotificationInSystemForStopAtIndex:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -1249,6 +1249,19 @@
          startingLineNumber = "412"
          endingLineNumber = "412"
          landmarkName = "-handleTweetNotification:"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "Cultivate for iPhone/NotificationSettingsViewController.m"
+         timestampString = "363643058.13526"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "24"
+         endingLineNumber = "24"
+         landmarkName = "-stepperPressed:"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>

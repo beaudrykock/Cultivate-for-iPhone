@@ -40,7 +40,7 @@
                 newLabel = @"1 day";
                 break;
         }
-        NSString *label = [NSString stringWithFormat:@"%i%@",newLabel, @" before"];
+        NSString *label = [NSString stringWithFormat:@"%@%@",newLabel, @" before"];
         [self.minutesBeforeLabel setText:label];
 }
 

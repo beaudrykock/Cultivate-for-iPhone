@@ -396,7 +396,7 @@
     [UIView setAnimationCurve: UIViewAnimationCurveLinear];	
     [_mapView setFrame:newFrame];
     CGRect frame = overlay.frame;
-    frame.origin.y = _mapView.frame.size.height;
+    frame.origin.y = _mapView.frame.size.height+44.0;
     [overlay setFrame:frame];
     [UIView commitAnimations];
 }

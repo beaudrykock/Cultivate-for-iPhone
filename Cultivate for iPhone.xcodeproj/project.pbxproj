@@ -122,6 +122,8 @@
 		9F7E822015613B83002C472F /* 210-twitterbird.png in Resources */ = {isa = PBXBuildFile; fileRef = 9F7E821E15613B83002C472F /* 210-twitterbird.png */; };
 		9F7E822115613B83002C472F /* 210-twitterbird@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9F7E821F15613B83002C472F /* 210-twitterbird@2x.png */; };
 		9F7E8225156149CD002C472F /* TweetHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F7E8224156149CD002C472F /* TweetHeaderView.m */; };
+		9F87FC9815B023C0008A1D6B /* carrot_57.png in Resources */ = {isa = PBXBuildFile; fileRef = 9F87FC9715B023C0008A1D6B /* carrot_57.png */; };
+		9F87FC9B15B023C4008A1D6B /* carrot_114.png in Resources */ = {isa = PBXBuildFile; fileRef = 9F87FC9A15B023C4008A1D6B /* carrot_114.png */; };
 		9F977EE0155018C3002D04A6 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F977EDF155018C3002D04A6 /* QuartzCore.framework */; };
 		9F995C6515581E29007DCA58 /* AKFusionTables.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F995C6415581E29007DCA58 /* AKFusionTables.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		9F995C6A15581ED1007DCA58 /* 112-group.png in Resources */ = {isa = PBXBuildFile; fileRef = 9F995C6815581ED1007DCA58 /* 112-group.png */; };
@@ -405,6 +407,8 @@
 		9F7E821F15613B83002C472F /* 210-twitterbird@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "210-twitterbird@2x.png"; sourceTree = "<group>"; };
 		9F7E8223156149CC002C472F /* TweetHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TweetHeaderView.h; sourceTree = "<group>"; };
 		9F7E8224156149CD002C472F /* TweetHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TweetHeaderView.m; sourceTree = "<group>"; };
+		9F87FC9715B023C0008A1D6B /* carrot_57.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = carrot_57.png; sourceTree = "<group>"; };
+		9F87FC9A15B023C4008A1D6B /* carrot_114.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = carrot_114.png; sourceTree = "<group>"; };
 		9F977EDF155018C3002D04A6 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		9F995C6315581E29007DCA58 /* AKFusionTables.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AKFusionTables.h; sourceTree = "<group>"; };
 		9F995C6415581E29007DCA58 /* AKFusionTables.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AKFusionTables.m; sourceTree = "<group>"; };
@@ -664,6 +668,8 @@
 		9F6A09141546D4C500B59D0F = {
 			isa = PBXGroup;
 			children = (
+				9F87FC9A15B023C4008A1D6B /* carrot_114.png */,
+				9F87FC9715B023C0008A1D6B /* carrot_57.png */,
 				9F020E5215A3841E00C3AC31 /* van_placeholder.png */,
 				9F020E5315A3841E00C3AC31 /* van_placeholder@2x.png */,
 				9F33D15B157530FA00A4A876 /* libsqlite3.0.dylib */,
@@ -1526,6 +1532,8 @@
 				9FC3A1A215A350FA00C8F9BF /* cultivan@2x.png in Resources */,
 				9F020E5415A3841E00C3AC31 /* van_placeholder.png in Resources */,
 				9F020E5515A3841E00C3AC31 /* van_placeholder@2x.png in Resources */,
+				9F87FC9815B023C0008A1D6B /* carrot_57.png in Resources */,
+				9F87FC9B15B023C4008A1D6B /* carrot_114.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -13,6 +13,7 @@
 @end
 
 @implementation ComposeTweetViewController
+@synthesize tweetField, cultivateTweet, cultivateTweetText;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -27,6 +28,8 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
+    [self.tweetField becomeFirstResponder];
+    [self.cultivateTweet setText:cultivateTweetText];
 }
 
 - (void)viewDidUnload
@@ -38,6 +41,16 @@
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
+}
+
+-(BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text
+{
+    if([text isEqualToString:@"\n"]) {
+        [self.tweetField resignFirstResponder];
+        return NO;
+    }
+    
+    return YES;
 }
 
 @end

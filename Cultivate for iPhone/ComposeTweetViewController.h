@@ -8,6 +8,15 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ComposeTweetViewController : UIViewController
+@interface ComposeTweetViewController : UIViewController <UITextViewDelegate>
+{
+    NSString *cultivateTweetText;
+    UILabel *cultivateTweet;
+    UITextView *tweetField;
+}
+
+@property (nonatomic, copy) NSString *cultivateTweetText;
+@property (nonatomic, strong) IBOutlet UILabel *cultivateTweet;
+@property (nonatomic, strong) IBOutlet UITextView *tweetField;
 
 @end

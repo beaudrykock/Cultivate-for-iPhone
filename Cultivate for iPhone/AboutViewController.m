@@ -10,94 +10,10 @@
 
 @implementation AboutViewController
 @synthesize share, getInvolved, mainPara, secondPara, scrollView, pageControl;
--(IBAction)showGetInvolvedActionSheet
-{
-	UIActionSheet *actionsheet = [[UIActionSheet alloc] 
-                                  initWithTitle:@"Get involved!"
-                                  delegate:self 
-                                  cancelButtonTitle:@"Cancel" 
-                                  destructiveButtonTitle:nil
-                                  otherButtonTitles:@"Join mailing list", @"Volunteer", @"Suggest VegVan stop", @"Contact us", nil
-								  ];
-	[actionsheet showFromTabBar:self.tabBarController.tabBar];
-}
 
--(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+-(IBAction)contactCultivate:(id)sender
 {
-    [getInvolved setNeedsDisplay];
-    [share setNeedsDisplay];
-    if (buttonIndex ==0)
-    {
-        NSError *error;
-        if (![[GANTracker sharedTracker] trackEvent:kFeedbackEvent
-                                             action:@"Open main mailing list form"
-                                              label:@""
-                                              value:0
-                                          withError:&error]) {
-            NSLog(@"GANTracker error, %@", [error localizedDescription]);
-        }
-        tappedListType = kJoinMainMailingList;
-        [self performSegueWithIdentifier: @"join mailing list" sender: self];
-        
-    }
-    else if (buttonIndex ==1)
-    {
-        NSError *error;
-        if (![[GANTracker sharedTracker] trackEvent:kFeedbackEvent
-                                             action:@"Open volunteer mailing list form"
-                                              label:@""
-                                              value:0
-                                          withError:&error]) {
-            NSLog(@"GANTracker error, %@", [error localizedDescription]);
-        }
-        tappedListType = kJoinVolunteerMailingList;
-        [self performSegueWithIdentifier: @"join mailing list" sender: self];
-    }
-    else if (buttonIndex ==2)
-    {
-        [self performSegueWithIdentifier: @"suggest location" sender:self];
-    }
-    else if (buttonIndex ==3)
-    {
-        [self showPicker: nil];
-    }
-    
-	//NSLog(@"button %i clicked", buttonIndex );
-}
-
-- (void)mailChimpViewControllerDidCancel
-{
-	[self dismissViewControllerAnimated:YES completion:nil];
-    [getInvolved setNeedsDisplay];
-}
-
--(void)dismissVegVanLocationSuggestionView
-{
-    [self dismissViewControllerAnimated:YES completion:nil];
-    [getInvolved setNeedsDisplay];
-}
-
--(IBAction)share:(id)selector
-{
-    NSError *error;
-    if (![[GANTracker sharedTracker] trackEvent:kSharingEvent
-                                         action:@"Share Cultivate with others"
-                                          label:@""
-                                          value:0
-                                      withError:&error]) {
-        NSLog(@"GANTracker error, %@", [error localizedDescription]);
-    }
-    // Create the item to share (in this example, a url)
-	NSURL *url = [NSURL URLWithString:@"http://www.cultivateoxford.org"];
-	SHKItem *item = [SHKItem URL:url title:@"Cultivate Oxford"];
-    item.text = @"Check out these guys - people-powered food!";
-    //item.image = ?;
-    
-	// Get the ShareKit action sheet
-	SHKActionSheet *actionSheet = [SHKActionSheet actionSheetForItem:item];
-    
-	// Display the action sheet
-	[actionSheet showFromTabBar:self.tabBarController.tabBar];
+    [self showPicker: nil];
 }
 
 #pragma mark -
@@ -134,10 +50,8 @@
 {
     [super viewDidLoad];
     
-    [self.share setButtonTitle: @"Share"];
-    [self.getInvolved setButtonTitle: @"Get Involved"];
+    [self.share setButtonTitle: @"Contact Cultivate"];
     [self.share setSize: CGSizeMake(130.0, 37.0)];
-    [self.getInvolved setSize: CGSizeMake(130.0, 37.0)];
     [mainPara setFont: [UIFont fontWithName: kTextFont size:self.mainPara.font.pointSize]];
     pageControlBeingUsed = YES;
     [self addScrollingText];
@@ -188,21 +102,6 @@
     [self.view addSubview:self.pageControl];
 }
 
--(void)shake
-{
-    CAKeyframeAnimation * anim = [ CAKeyframeAnimation animationWithKeyPath:@"transform" ] ;
-    anim.values = [ NSArray arrayWithObjects:
-                   [ NSValue valueWithCATransform3D:CATransform3DMakeTranslation(-5.0f, 0.0f, 0.0f) ],
-                   [ NSValue valueWithCATransform3D:CATransform3DMakeTranslation(5.0f, 0.0f, 0.0f) ], 
-                   nil ] ;
-    anim.autoreverses = YES ;
-    anim.repeatCount = 2.0f ;
-    anim.duration = 0.07f ;
-    
-    [shakeView.layer addAnimation:anim forKey:@"nil" ] ;
-
-}
-
 - (void)viewDidUnload
 {
     [super viewDidUnload];
@@ -215,25 +114,6 @@
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
    return (interfaceOrientation == UIInterfaceOrientationPortrait);
-}
-
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender 
-{
-    if ([segue.identifier isEqualToString:@"join mailing list"])
-    {
-        // Get reference to the destination view controller
-        MailChimpViewController *mcvc = [segue destinationViewController];
-        
-        // Pass any objects to the view controller here, like...
-        [mcvc setListType:tappedListType];
-        [mcvc setDelegate: self];
-    }
-    else if ([segue.identifier isEqualToString:@"suggest location"])
-    {
-        NewLocationViewController *nlvc = [segue destinationViewController];
-        
-        [nlvc setDelegate:self];
-    }
 }
 
 #pragma mark -

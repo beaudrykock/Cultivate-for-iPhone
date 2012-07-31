@@ -57,7 +57,6 @@
 		9F57B638156118FC00615DEB /* libicucore.A.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F57B637156118FC00615DEB /* libicucore.A.dylib */; };
 		9F57B640156127CF00615DEB /* TweetTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F57B63F156127CF00615DEB /* TweetTableViewCell.m */; };
 		9F57B64C156131B300615DEB /* SVWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F57B64B156131B300615DEB /* SVWebViewController.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		9F5C979A157FAF5E0034F870 /* NewLocationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F5C9799157FAF5E0034F870 /* NewLocationViewController.m */; };
 		9F60768015483FCE00105643 /* VegVanStopNotification.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F60767F15483FCE00105643 /* VegVanStopNotification.m */; };
 		9F60769415484AE000105643 /* 20-gear2.png in Resources */ = {isa = PBXBuildFile; fileRef = 9F60769215484AE000105643 /* 20-gear2.png */; };
 		9F60769515484AE000105643 /* 20-gear2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9F60769315484AE000105643 /* 20-gear2@2x.png */; };
@@ -114,7 +113,6 @@
 		9F6A09E71546FE7400B59D0F /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F6A09E61546FE7400B59D0F /* libz.dylib */; };
 		9F6A09EA1546FEE900B59D0F /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F6A09E91546FEE900B59D0F /* Reachability.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		9F6A09ED1546FF7B00B59D0F /* VegVanStopLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F6A09EC1546FF7B00B59D0F /* VegVanStopLocation.m */; };
-		9F77B65A1576329C002FF320 /* MoveMeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F77B6591576329C002FF320 /* MoveMeView.m */; };
 		9F77B660157644A9002FF320 /* details_complete.png in Resources */ = {isa = PBXBuildFile; fileRef = 9F77B65C157644A8002FF320 /* details_complete.png */; };
 		9F77B661157644A9002FF320 /* details_complete@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9F77B65D157644A8002FF320 /* details_complete@2x.png */; };
 		9F77B662157644A9002FF320 /* details_incomplete.png in Resources */ = {isa = PBXBuildFile; fileRef = 9F77B65E157644A8002FF320 /* details_incomplete.png */; };
@@ -128,7 +126,6 @@
 		9F995C6515581E29007DCA58 /* AKFusionTables.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F995C6415581E29007DCA58 /* AKFusionTables.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		9F995C6A15581ED1007DCA58 /* 112-group.png in Resources */ = {isa = PBXBuildFile; fileRef = 9F995C6815581ED1007DCA58 /* 112-group.png */; };
 		9F995C6B15581ED1007DCA58 /* 112-group@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9F995C6915581ED1007DCA58 /* 112-group@2x.png */; };
-		9F995C6E15581EFD007DCA58 /* RideShareViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F995C6D15581EFD007DCA58 /* RideShareViewController.m */; };
 		9F9962EE155822FC007DCA58 /* GDataAuthenticationFetcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F9962ED155822FC007DCA58 /* GDataAuthenticationFetcher.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		9F9962F11558230E007DCA58 /* GDataHTTPFetcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F9962F01558230E007DCA58 /* GDataHTTPFetcher.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		9F9962F515582384007DCA58 /* GTMHTTPFetcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F9962F415582384007DCA58 /* GTMHTTPFetcher.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -223,8 +220,6 @@
 		9FF1E362154F01BE000C0337 /* CKAuthViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FF1E35C154F01BE000C0337 /* CKAuthViewController.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		9FF1E363154F01BE000C0337 /* SubscribeAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FF1E35E154F01BE000C0337 /* SubscribeAlertView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		9FF1E364154F01BE000C0337 /* CKAuthViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9FF1E360154F01BE000C0337 /* CKAuthViewController.xib */; };
-		9FF1E38D154F02F4000C0337 /* MailChimpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FF1E38C154F02F4000C0337 /* MailChimpViewController.m */; };
-		9FF78E96155FA8DD00FAAE67 /* CultiRideDetailsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9FF78E94155FA8DD00FAAE67 /* CultiRideDetailsView.xib */; };
 		9FF78E9D155FB14900FAAE67 /* 298-circlex.png in Resources */ = {isa = PBXBuildFile; fileRef = 9FF78E9B155FB14900FAAE67 /* 298-circlex.png */; };
 		9FF78E9E155FB14900FAAE67 /* 298-circlex@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9FF78E9C155FB14900FAAE67 /* 298-circlex@2x.png */; };
 		9FF78EA1155FBB7300FAAE67 /* 298-circlex-gray.png in Resources */ = {isa = PBXBuildFile; fileRef = 9FF78E9F155FBB7300FAAE67 /* 298-circlex-gray.png */; };
@@ -303,8 +298,6 @@
 		9F57B63F156127CF00615DEB /* TweetTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TweetTableViewCell.m; sourceTree = "<group>"; };
 		9F57B64A156131B300615DEB /* SVWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVWebViewController.h; sourceTree = "<group>"; };
 		9F57B64B156131B300615DEB /* SVWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVWebViewController.m; sourceTree = "<group>"; };
-		9F5C9798157FAF5E0034F870 /* NewLocationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewLocationViewController.h; sourceTree = "<group>"; };
-		9F5C9799157FAF5E0034F870 /* NewLocationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewLocationViewController.m; sourceTree = "<group>"; };
 		9F60767E15483FCE00105643 /* VegVanStopNotification.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VegVanStopNotification.h; path = "Cultivate for iPhone/VegVanStopNotification.h"; sourceTree = "<group>"; };
 		9F60767F15483FCE00105643 /* VegVanStopNotification.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VegVanStopNotification.m; path = "Cultivate for iPhone/VegVanStopNotification.m"; sourceTree = "<group>"; };
 		9F60769215484AE000105643 /* 20-gear2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "20-gear2.png"; sourceTree = "<group>"; };
@@ -397,8 +390,6 @@
 		9F6A09E91546FEE900B59D0F /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 		9F6A09EB1546FF7B00B59D0F /* VegVanStopLocation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VegVanStopLocation.h; path = "Cultivate for iPhone/VegVanStopLocation.h"; sourceTree = "<group>"; };
 		9F6A09EC1546FF7B00B59D0F /* VegVanStopLocation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VegVanStopLocation.m; path = "Cultivate for iPhone/VegVanStopLocation.m"; sourceTree = "<group>"; };
-		9F77B6581576329C002FF320 /* MoveMeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoveMeView.h; sourceTree = "<group>"; };
-		9F77B6591576329C002FF320 /* MoveMeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoveMeView.m; sourceTree = "<group>"; };
 		9F77B65C157644A8002FF320 /* details_complete.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = details_complete.png; sourceTree = "<group>"; };
 		9F77B65D157644A8002FF320 /* details_complete@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "details_complete@2x.png"; sourceTree = "<group>"; };
 		9F77B65E157644A8002FF320 /* details_incomplete.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = details_incomplete.png; sourceTree = "<group>"; };
@@ -414,8 +405,6 @@
 		9F995C6415581E29007DCA58 /* AKFusionTables.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AKFusionTables.m; sourceTree = "<group>"; };
 		9F995C6815581ED1007DCA58 /* 112-group.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "112-group.png"; sourceTree = "<group>"; };
 		9F995C6915581ED1007DCA58 /* 112-group@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "112-group@2x.png"; sourceTree = "<group>"; };
-		9F995C6C15581EFD007DCA58 /* RideShareViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RideShareViewController.h; sourceTree = "<group>"; };
-		9F995C6D15581EFD007DCA58 /* RideShareViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RideShareViewController.m; sourceTree = "<group>"; };
 		9F9962EC155822FC007DCA58 /* GDataAuthenticationFetcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GDataAuthenticationFetcher.h; sourceTree = "<group>"; };
 		9F9962ED155822FC007DCA58 /* GDataAuthenticationFetcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GDataAuthenticationFetcher.m; sourceTree = "<group>"; };
 		9F9962EF1558230E007DCA58 /* GDataHTTPFetcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GDataHTTPFetcher.h; sourceTree = "<group>"; };
@@ -594,9 +583,6 @@
 		9FF1E35D154F01BE000C0337 /* SubscribeAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SubscribeAlertView.h; path = Classes/SubscribeAlertView.h; sourceTree = "<group>"; };
 		9FF1E35E154F01BE000C0337 /* SubscribeAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SubscribeAlertView.m; path = Classes/SubscribeAlertView.m; sourceTree = "<group>"; };
 		9FF1E360154F01BE000C0337 /* CKAuthViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CKAuthViewController.xib; sourceTree = "<group>"; };
-		9FF1E38B154F02F4000C0337 /* MailChimpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MailChimpViewController.h; sourceTree = "<group>"; };
-		9FF1E38C154F02F4000C0337 /* MailChimpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MailChimpViewController.m; sourceTree = "<group>"; };
-		9FF78E94155FA8DD00FAAE67 /* CultiRideDetailsView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CultiRideDetailsView.xib; sourceTree = "<group>"; };
 		9FF78E9B155FB14900FAAE67 /* 298-circlex.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "298-circlex.png"; sourceTree = "<group>"; };
 		9FF78E9C155FB14900FAAE67 /* 298-circlex@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "298-circlex@2x.png"; sourceTree = "<group>"; };
 		9FF78E9F155FBB7300FAAE67 /* 298-circlex-gray.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "298-circlex-gray.png"; sourceTree = "<group>"; };
@@ -641,8 +627,6 @@
 				9F33D13D15750E3F00A4A876 /* PullToRefreshViewController.m */,
 				9F33D13815750E0500A4A876 /* EGORefreshTableHeaderView.h */,
 				9F33D13915750E0500A4A876 /* EGORefreshTableHeaderView.m */,
-				9F77B6581576329C002FF320 /* MoveMeView.h */,
-				9F77B6591576329C002FF320 /* MoveMeView.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -798,22 +782,16 @@
 				9F6A09391546D4C500B59D0F /* MapViewController.m */,
 				9FC91DBC154710EF008A976E /* AboutViewController.h */,
 				9FC91DBD154710EF008A976E /* AboutViewController.m */,
-				9FF1E38B154F02F4000C0337 /* MailChimpViewController.h */,
-				9FF1E38C154F02F4000C0337 /* MailChimpViewController.m */,
 				9F7E8223156149CC002C472F /* TweetHeaderView.h */,
 				9F7E8224156149CD002C472F /* TweetHeaderView.m */,
 				9F99E0C715481E7900485A23 /* SectionHeaderView.h */,
 				9F99E0C815481E7900485A23 /* SectionHeaderView.m */,
 				9F524B0C1551A10E000846E7 /* ScheduleItemDetailViewController.h */,
 				9F524B0D1551A10E000846E7 /* ScheduleItemDetailViewController.m */,
-				9F995C6C15581EFD007DCA58 /* RideShareViewController.h */,
-				9F995C6D15581EFD007DCA58 /* RideShareViewController.m */,
 				9F57B62415610A3E00615DEB /* MessageViewController.h */,
 				9F57B62515610A3E00615DEB /* MessageViewController.m */,
 				9F57B64A156131B300615DEB /* SVWebViewController.h */,
 				9F57B64B156131B300615DEB /* SVWebViewController.m */,
-				9F5C9798157FAF5E0034F870 /* NewLocationViewController.h */,
-				9F5C9799157FAF5E0034F870 /* NewLocationViewController.m */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -1337,7 +1315,6 @@
 			children = (
 				9F01782C15666DC500D0370F /* NotificationSettingsView.xib */,
 				9F524B0E1551A10E000846E7 /* ScheduleItemDetailView.xib */,
-				9FF78E94155FA8DD00FAAE67 /* CultiRideDetailsView.xib */,
 			);
 			name = Nibs;
 			sourceTree = "<group>";
@@ -1496,7 +1473,6 @@
 				9F3240AE155ADC7A00BCA8FB /* get_involved_btn@2x.png in Resources */,
 				9F3240AF155ADC7A00BCA8FB /* share_btn.png in Resources */,
 				9F3240B0155ADC7A00BCA8FB /* share_btn@2x.png in Resources */,
-				9FF78E96155FA8DD00FAAE67 /* CultiRideDetailsView.xib in Resources */,
 				9FF78E9D155FB14900FAAE67 /* 298-circlex.png in Resources */,
 				9FF78E9E155FB14900FAAE67 /* 298-circlex@2x.png in Resources */,
 				9FF78EA1155FBB7300FAAE67 /* 298-circlex-gray.png in Resources */,
@@ -1636,7 +1612,6 @@
 				9FF1E361154F01BE000C0337 /* ChimpKit.m in Sources */,
 				9FF1E362154F01BE000C0337 /* CKAuthViewController.m in Sources */,
 				9FF1E363154F01BE000C0337 /* SubscribeAlertView.m in Sources */,
-				9FF1E38D154F02F4000C0337 /* MailChimpViewController.m in Sources */,
 				9FB2B5A2154F0736000F2410 /* SBJSON.m in Sources */,
 				9FB2B5A3154F0736000F2410 /* SBJsonBase.m in Sources */,
 				9FB2B5A4154F0736000F2410 /* SBJsonParser.m in Sources */,
@@ -1647,7 +1622,6 @@
 				9F524B0615519139000846E7 /* SMXMLDocument.m in Sources */,
 				9F524B0F1551A10E000846E7 /* ScheduleItemDetailViewController.m in Sources */,
 				9F995C6515581E29007DCA58 /* AKFusionTables.m in Sources */,
-				9F995C6E15581EFD007DCA58 /* RideShareViewController.m in Sources */,
 				9F9962EE155822FC007DCA58 /* GDataAuthenticationFetcher.m in Sources */,
 				9F9962F11558230E007DCA58 /* GDataHTTPFetcher.m in Sources */,
 				9F9962F515582384007DCA58 /* GTMHTTPFetcher.m in Sources */,
@@ -1665,8 +1639,6 @@
 				9F33D13E15750E3F00A4A876 /* PullToRefreshViewController.m in Sources */,
 				9F33D14915751ADE00A4A876 /* CustomPageControl.m in Sources */,
 				9F33D152157522C200A4A876 /* FarmAnnotation.m in Sources */,
-				9F77B65A1576329C002FF320 /* MoveMeView.m in Sources */,
-				9F5C979A157FAF5E0034F870 /* NewLocationViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -14,8 +14,9 @@
 #import "SVWebViewController.h"
 #import "TweetHeaderView.h"
 #import "PullToRefreshViewController.h"
+#import "ComposeTweetViewController.h"
 
-@interface MessageViewController : PullToRefreshViewController
+@interface MessageViewController : PullToRefreshViewController <TweetTableViewCellDelegate>
 {
     NSArray *tweets;
     NSMutableArray *tweetImageURLs;
@@ -25,6 +26,8 @@
     BOOL overlayAdded;
     UILabel *downloadingUpdateLabel;
     UIActivityIndicatorView *activityWheel;
+    BOOL loadTextField;
+    NSString *replyCellTweetContents;
 }
 
 @property (nonatomic, strong) UIActivityIndicatorView *activityWheel;
@@ -41,5 +44,6 @@
 -(NSMutableArray*)tweetTextsFromTweets;
 -(void)loadingComplete;
 -(void)doRefresh;
+-(void)tweetReply;
 
 @end

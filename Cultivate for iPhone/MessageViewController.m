@@ -100,8 +100,8 @@
             image = [UIImage imageNamed:@"droplet_normal.png"];
         #endif
         [self.tableViewCellImages addObject: image];
-        CGSize labelSize = [[dict objectForKey:@"text"] sizeWithFont:[UIFont fontWithName:kTextFont size:14.0] 
-                                                  constrainedToSize:CGSizeMake(240.0f, MAXFLOAT) 
+        CGSize labelSize = [[dict objectForKey:@"text"] sizeWithFont:[UIFont fontWithName:kTextFont size:12.0]
+                                                  constrainedToSize:CGSizeMake(220.0f, MAXFLOAT)
                                                       lineBreakMode:UILineBreakModeWordWrap];
         if (labelSize.height < 70) 
             labelSize.height = 70.0;
@@ -260,11 +260,15 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"Cell";
+    
     TweetTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
         cell = [[TweetTableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
+        cell.delegate = self;
     }
        
+    [cell setIndex: indexPath.row];
+    
     if (!overlayAdded)
     {
     NSDictionary *aTweet = [tweets objectAtIndex:[indexPath row]];
@@ -291,8 +295,8 @@
     CGSize labelSize;
     if (!sizeValue)
     {
-        labelSize = [[aTweet objectForKey:@"text"] sizeWithFont:[UIFont fontWithName:kTextFont size:14.0] 
-                       constrainedToSize:CGSizeMake(240.0f, MAXFLOAT) 
+        labelSize = [[aTweet objectForKey:@"text"] sizeWithFont:[UIFont fontWithName:kTextFont size:12.0]
+                       constrainedToSize:CGSizeMake(200.0f, MAXFLOAT)
                            lineBreakMode:UILineBreakModeWordWrap];
         if (labelSize.height < 70) 
             labelSize.height = 70.0;
@@ -326,6 +330,65 @@
 	cell.selectionStyle = UITableViewCellSelectionStyleNone;*/
     return cell;
 
+}
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([[segue identifier] isEqualToString:@"compose-tweet"])
+    {
+        ComposeTweetViewController *vc = [segue destinationViewController];
+        
+        [vc setCultivateTweetText: replyCellTweetContents];
+    }
+}
+
+-(void)tweetReplyAtCellIndex:(NSInteger)index
+{
+    NSDictionary *aTweet = [tweets objectAtIndex:index];
+    replyCellTweetContents = [aTweet objectForKey:@"text"];
+    
+    [self performSegueWithIdentifier:@"compose-tweet" sender:nil];
+    
+    if ([TWTweetComposeViewController canSendTweet])
+    {
+            // Create account store, followed by a twitter account identifier
+            // At this point, twitter is the only account type available
+        ACAccountStore *account = [[ACAccountStore alloc] init];
+        ACAccountType *accountType = [account accountTypeWithAccountTypeIdentifier:ACAccountTypeIdentifierTwitter];
+        
+            // Request access from the user to access their Twitter account
+        [account requestAccessToAccountsWithType:accountType withCompletionHandler:^(BOOL granted, NSError *error)
+         {
+                 // Did user allow us access?
+             if (granted == YES)
+             {
+                     // Populate array with all available Twitter accounts
+                 NSArray *arrayOfAccounts = [account accountsWithAccountType:accountType];
+                 
+                     // Sanity check
+                 if ([arrayOfAccounts count] > 0)
+                 {
+                         // Keep it simple, use the first account available
+                     ACAccount *acct = [arrayOfAccounts objectAtIndex:0];
+                     
+                         // Build a twitter request
+                     TWRequest *postRequest = [[TWRequest alloc] initWithURL:
+                                               [NSURL URLWithString:@"http://api.twitter.com/1/statuses/update.json"]
+                                                                  parameters:[NSDictionary dictionaryWithObject:@"Test test"
+                                                                                                         forKey:@"status"] requestMethod:TWRequestMethodPOST];
+                     
+                         // Post the request
+                     [postRequest setAccount:acct];
+                     
+                         // Block handler to manage the response
+                     [postRequest performRequestWithHandler:^(NSData *responseData, NSHTTPURLResponse *urlResponse, NSError *error) 
+                      {
+                          NSLog(@"Twitter response, HTTP response: %i", [urlResponse statusCode]);
+                      }];
+                 }
+             }
+         }];
+    }
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath

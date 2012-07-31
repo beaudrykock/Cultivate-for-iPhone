@@ -385,11 +385,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Cultivate for iPhone/MessageViewController.m"
-         timestampString = "363516847.427686"
+         timestampString = "365457372.944727"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "322"
-         endingLineNumber = "322"
+         startingLineNumber = "326"
+         endingLineNumber = "326"
          landmarkName = "-tableView:cellForRowAtIndexPath:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -398,11 +398,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Cultivate for iPhone/MessageViewController.m"
-         timestampString = "363516847.427686"
+         timestampString = "365457372.944727"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "418"
-         endingLineNumber = "418"
+         startingLineNumber = "481"
+         endingLineNumber = "481"
          landmarkName = "-handleTweetNotification:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -463,11 +463,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Cultivate for iPhone/MessageViewController.m"
-         timestampString = "363516847.427686"
+         timestampString = "365457372.944727"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "350"
-         endingLineNumber = "350"
+         startingLineNumber = "413"
+         endingLineNumber = "413"
          landmarkName = "-tableView:heightForRowAtIndexPath:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -489,11 +489,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Cultivate for iPhone/MessageViewController.m"
-         timestampString = "363516847.427686"
+         timestampString = "365457372.944727"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "285"
-         endingLineNumber = "285"
+         startingLineNumber = "289"
+         endingLineNumber = "289"
          landmarkName = "-tableView:cellForRowAtIndexPath:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -502,11 +502,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Cultivate for iPhone/MessageViewController.m"
-         timestampString = "363516847.427686"
+         timestampString = "365457372.944727"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "271"
-         endingLineNumber = "271"
+         startingLineNumber = "275"
+         endingLineNumber = "275"
          landmarkName = "-tableView:cellForRowAtIndexPath:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -671,11 +671,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Cultivate for iPhone/MessageViewController.m"
-         timestampString = "363518310.927803"
+         timestampString = "365457372.944727"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "492"
-         endingLineNumber = "492"
+         startingLineNumber = "555"
+         endingLineNumber = "555"
          landmarkName = "-reloadTweetTable"
          landmarkType = "5">
       </FileBreakpoint>
@@ -788,11 +788,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Cultivate for iPhone/MessageViewController.m"
-         timestampString = "363516847.427686"
+         timestampString = "365457372.944727"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "411"
-         endingLineNumber = "411"
+         startingLineNumber = "474"
+         endingLineNumber = "474"
          landmarkName = "-handleTweetNotification:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -1191,11 +1191,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Cultivate for iPhone/MessageViewController.m"
-         timestampString = "363518310.927803"
+         timestampString = "365457372.944727"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "451"
-         endingLineNumber = "451"
+         startingLineNumber = "514"
+         endingLineNumber = "514"
          landmarkName = "-doRefresh"
          landmarkType = "5">
       </FileBreakpoint>
@@ -1230,11 +1230,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Cultivate for iPhone/MessageViewController.m"
-         timestampString = "363516847.427686"
+         timestampString = "365457372.944727"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "412"
-         endingLineNumber = "412"
+         startingLineNumber = "475"
+         endingLineNumber = "475"
          landmarkName = "-handleTweetNotification:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -1249,6 +1249,45 @@
          startingLineNumber = "24"
          endingLineNumber = "24"
          landmarkName = "-stepperPressed:"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "Cultivate for iPhone/MessageViewController.m"
+         timestampString = "365457372.944727"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "352"
+         endingLineNumber = "352"
+         landmarkName = "-tweetReplyAtCellIndex:"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "Cultivate for iPhone/MessageViewController.m"
+         timestampString = "365457394.334802"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "347"
+         endingLineNumber = "347"
+         landmarkName = "-tweetReplyAtCellIndex:"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "Cultivate for iPhone/MessageViewController.m"
+         timestampString = "365457422.198773"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "337"
+         endingLineNumber = "337"
+         landmarkName = "-prepareForSegue:sender:"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>

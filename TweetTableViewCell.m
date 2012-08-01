@@ -50,7 +50,7 @@
     if (labelSize.height < 70.0) 
         labelSize.height = 70.0;
     tweetLabel = [[IFTweetLabel alloc] initWithFrame:CGRectMake(60.0, 0.0, labelSize.width, labelSize.height+20.0)];
-    [self.tweetLabel setFont:[UIFont fontWithName:kTextFont size:12.0]];
+    [self.tweetLabel setFont:[UIFont fontWithName:kTextFont size:13.0]];
     [self.tweetLabel setTextColor:[UIColor blackColor]];
     [self.tweetLabel setBackgroundColor:[UIColor clearColor]];
     [self.tweetLabel setNumberOfLines:0];

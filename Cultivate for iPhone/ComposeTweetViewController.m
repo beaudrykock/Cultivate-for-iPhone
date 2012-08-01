@@ -13,7 +13,7 @@
 @end
 
 @implementation ComposeTweetViewController
-@synthesize tweetField, cultivateTweet, cultivateTweetText, charCount, charCountLabel, delegate, replyLabel, clearButton, replyButton, clearLabel, profileImage, imagePicker, imageButton, imageLabel, removeImageButton, containerView, cancelButton, cancelLabel;
+@synthesize tweetField, cultivateTweet, cultivateTweetText, charCount, charCountLabel, delegate, replyLabel, clearButton, replyButton, clearLabel, profileImage, imagePicker, imageButton, imageLabel, containerView, cancelButton, cancelLabel;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -32,15 +32,20 @@
     [self.cultivateTweet setText:cultivateTweetText];
     
     [self.tweetField setFont:[UIFont fontWithName:kTextFont size:16.0]];
-    [self.cultivateTweet setFont:[UIFont fontWithName:kTextFont size:12.0]];
+    if (self.cultivateTweet.text.length>100)
+    {
+        [self.cultivateTweet setFont:[UIFont fontWithName:kTextFont size:12.0]];
+    }
+    else
+    {
+        [self.cultivateTweet setFont:[UIFont fontWithName:kTextFont size:14.0]];
+    }
     [self.replyLabel setFont:[UIFont fontWithName:kTextFont size:16.0]];
     [self.imageLabel setFont:[UIFont fontWithName:kTextFont size:16.0]];
     [self.clearLabel setFont:[UIFont fontWithName:kTextFont size:16.0]];
     [self.cancelLabel setFont:[UIFont fontWithName:kTextFont size:16.0]];
     [self.charCountLabel setFont:[UIFont fontWithName:kTextFont size:16.0]];
-    [self.removeImageButton.titleLabel setFont:[UIFont fontWithName:kTextFont size:16.0]];
-    [self.charCountLabel setText:@"17/140 + 0 images"];
-    [self.removeImageButton setHidden:YES];
+    [self.charCountLabel setText:@"123"];
     
     CALayer * profileImageLayer = [self.profileImage layer];
     [profileImageLayer setMasksToBounds:YES];
@@ -76,17 +81,15 @@
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
     
     selectedImage = [info objectForKey:UIImagePickerControllerOriginalImage];
-    [self.removeImageButton setHidden:NO];
-    [self.charCountLabel setText:[NSString stringWithFormat:@"%i/140 + 1 image", self.tweetField.text.length]];
+    [self.charCountLabel setText:[NSString stringWithFormat:@"%i/140", self.tweetField.text.length]];
     
     [self dismissModalViewControllerAnimated:YES];
 }
 
 -(IBAction)deleteImage:(id)sender
 {
-    [self.removeImageButton setHidden:YES];
     selectedImage = nil;
-    [self.charCountLabel setText:[NSString stringWithFormat:@"%i/140 + 0 images", self.tweetField.text.length]];
+    [self.charCountLabel setText:[NSString stringWithFormat:@"%i/140", self.tweetField.text.length]];
 }
 
 - (void)viewDidUnload
@@ -123,15 +126,8 @@
             return NO;
         }
         else {
-            if (selectedImage)
-            {
-                [self.charCountLabel setText:[NSString stringWithFormat:@"%i/140 + 1 image", newText.length]];
-            }
-            else
-            {
-                [self.charCountLabel setText:[NSString stringWithFormat:@"%i/140 + 0 images", newText.length]];
-            }
-            
+            [self.charCountLabel setText:[NSString stringWithFormat:@"%i", 140-newText.length]];
+                        
             [self.charCountLabel setTextColor:[UIColor blackColor]];
             return YES;
         }
@@ -164,6 +160,7 @@
 {
     [self.clearButton setHighlighted:NO];
     [self.tweetField setText:@"@CultivateOxford "];
+    [self.charCountLabel setText:@"123"];
 }
 
 -(IBAction)sendTweet:(id)sender

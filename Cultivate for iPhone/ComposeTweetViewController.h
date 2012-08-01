@@ -34,7 +34,6 @@
     UIImage* selectedImage;
     UIButton *imageButton;
     UIButton *cancelButton;
-    UIButton *removeImageButton;
     UIView *containerView;
 }
 
@@ -44,7 +43,6 @@
 @property (nonatomic, strong) UIImagePickerController *imagePicker;
 @property (nonatomic, strong) IBOutlet UIImageView *profileImage;
 @property (nonatomic, strong) IBOutlet UIButton *replyButton;
-@property (nonatomic, strong) IBOutlet UIButton *removeImageButton;
 @property (nonatomic, strong) IBOutlet UIButton *clearButton;
 @property (nonatomic, strong) IBOutlet UILabel *replyLabel;
 @property (nonatomic, strong) IBOutlet UILabel *cancelLabel;

@@ -456,14 +456,27 @@
                          // Block handler to manage the response
                      [postRequest performRequestWithHandler:^(NSData *responseData, NSHTTPURLResponse *urlResponse, NSError *error)
                       {
-                          NSLog(@"Twitter response, HTTP response: %i", [urlResponse statusCode]);
-                          NSLog(@"Error = %@", [NSHTTPURLResponse localizedStringForStatusCode: [urlResponse statusCode]]);
+                              //NSLog(@"Twitter response, HTTP response: %i", [urlResponse statusCode]);
+                              //NSLog(@"Error = %@", [NSHTTPURLResponse localizedStringForStatusCode: [urlResponse statusCode]]);
                           
+                          if ([urlResponse statusCode]==200)
+                          {
+                              dispatch_sync(dispatch_get_main_queue(), ^{
+                                  
+                                  [self addTweetBelowTweetWithText:text];                              
+                                  
+                              });//end block
+                          }
+                          else
+                          {
+                              UIAlertView *tweetFailed = [[UIAlertView alloc] initWithTitle:@"Tweet failed" message:@"Please try again later" delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
+                              [tweetFailed show];
+                          }
                       }];
                  }
              }
          }];
-        [self addTweetBelowTweetWithText:text];
+        
     }
 }
 

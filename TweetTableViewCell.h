@@ -31,6 +31,6 @@
 @property (nonatomic, strong) IFTweetLabel *tweetLabel;
 @property (nonatomic, strong) UIImageView *profileImage;
 
--(void)setupWithText:(NSString*)text /*andImageURLString:(NSString*)urlString*/ andSize:(NSValue*)sizeAsValue andImage:(UIImage*)image;
+-(void)setupWithText:(NSString*)text /*andImageURLString:(NSString*)urlString*/ andSize:(NSValue*)sizeAsValue andImage:(UIImage*)image andType:(NSInteger)type;
 
 @end

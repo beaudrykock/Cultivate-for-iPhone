@@ -16,6 +16,8 @@
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 {
     VegVanStopManager* vegVanStopManager;
+    UIImage *userProfileImage;
+    NSString *screenName;
     NSArray *tweets;
     BOOL tweetsLoaded;
     NSInteger newTweetCount;
@@ -25,6 +27,8 @@
 @property (strong, nonatomic) UIWindow *window;
 @property (strong, nonatomic) VegVanStopManager *vegVanStopManager;
 @property (strong, nonatomic) NSArray *tweets;
+@property (copy, nonatomic) NSString *screenName;
+@property (strong, nonatomic) UIImage *userProfileImage;
 
 -(NSInteger)getNewTweetCount;
 -(BOOL)areTweetsLoaded;

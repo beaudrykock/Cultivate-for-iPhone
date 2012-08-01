@@ -28,7 +28,7 @@
     // Configure the view for the selected state
 }
 
--(void)setupWithText:(NSString*)text /*andImageURLString:(NSString*)urlString*/ andSize:(NSValue*)sizeAsValue andImage:(UIImage*)image
+-(void)setupWithText:(NSString*)text /*andImageURLString:(NSString*)urlString*/ andSize:(NSValue*)sizeAsValue andImage:(UIImage*)image andType:(NSInteger)type
 {
     CGSize labelSize;
     if (sizeAsValue != nil)
@@ -58,25 +58,33 @@
     [self.tweetLabel setLinksEnabled:YES];
     [self addSubview:tweetLabel];
     
-    self.replyButton = [[UIButton alloc] initWithFrame:CGRectMake(287.0, 35.0, 26.0, 20.0)];
-    [self.replyButton setBackgroundImage:[UIImage imageNamed:@"213-reply.png"] forState:UIControlStateNormal];
-    [self.replyButton setAlpha:0.8];
-    [self.replyButton addTarget:self action:@selector(reply) forControlEvents:UIControlEventTouchUpInside];
-    
-    [self addSubview:self.replyButton];
+    if (type==kTweet)
+    {
+        self.replyButton = [[UIButton alloc] initWithFrame:CGRectMake(285.0, 35.0, 26.0, 20.0)];
+        [self.replyButton setBackgroundImage:[UIImage imageNamed:@"213-reply.png"] forState:UIControlStateNormal];
+        [self.replyButton setAlpha:0.8];
+        [self.replyButton addTarget:self action:@selector(reply) forControlEvents:UIControlEventTouchUpInside];
+        
+        [self addSubview:self.replyButton];
+        
+        UIView *target = [[UIView alloc] initWithFrame:CGRectMake(277.0, 23.0, 44.0, 44.0)];
+        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(reply)];
+        [target addGestureRecognizer:tap];
+        [self addSubview:target];
+    }
     //NSLog(@"frame height = %f", self.frame.size.height);
     //NSData *data = [NSData dataWithContentsOfURL:[NSURL URLWithString:urlString]];
     
-    if (profileImage == nil)
-    {
-        profileImage = [[UIImageView alloc] initWithImage:image];//[[UIImageView alloc] initWithImage: [UIImage imageWithData:data]]; 
-        [profileImage setFrame: CGRectMake(5.0,((labelSize.height+20.0)-50)/2.0,50.0,50.0)];
-        profileImage.contentMode = UIViewContentModeScaleAspectFit;
-        CALayer * profileImageLayer = [profileImage layer];
-        [profileImageLayer setMasksToBounds:YES];
-        [profileImageLayer setCornerRadius:8.0];
-        [self addSubview:profileImage];
-    }
+    if (self.profileImage.superclass)
+        [profileImage removeFromSuperview];
+    
+    self.profileImage = [[UIImageView alloc] initWithImage:image];//[[UIImageView alloc] initWithImage: [UIImage imageWithData:data]];
+    [self.profileImage setFrame: CGRectMake(5.0,((labelSize.height+20.0)-50)/2.0,50.0,50.0)];
+    self.profileImage.contentMode = UIViewContentModeScaleAspectFit;
+    CALayer * profileImageLayer = [profileImage layer];
+    [profileImageLayer setMasksToBounds:YES];
+    [profileImageLayer setCornerRadius:8.0];
+    [self addSubview:self.profileImage];
 }
 
 -(void)reply

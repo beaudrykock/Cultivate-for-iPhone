@@ -18,7 +18,8 @@
 
 @interface MessageViewController : PullToRefreshViewController <TweetTableViewCellDelegate, ComposeTweetViewControllerDelegate>
 {
-    NSArray *tweets;
+    NSMutableArray *tweets;
+    NSMutableArray *replies;
     NSMutableArray *tweetImageURLs;
     NSMutableArray *tableViewCellSizes;
     NSMutableArray *tableViewCellImages;
@@ -29,11 +30,16 @@
     BOOL loadTextField;
     NSString *replyCellTweetContents;
     NSString *replyID;
+    NSString *screenName;
+    UIImage *userProfileImage;
 }
 
+@property (nonatomic, strong) UIImage *userProfileImage;
+@property (nonatomic, copy) NSString *screenName;
 @property (nonatomic, strong) UIActivityIndicatorView *activityWheel;
 @property (nonatomic, strong) UILabel *downloadingUpdateLabel;
-@property (nonatomic, strong) NSArray *tweets;
+@property (nonatomic, strong) NSMutableArray *tweets;
+@property (nonatomic, strong) NSMutableArray *replies;
 @property (nonatomic, strong) NSMutableArray *tweetImageURLs;
 @property (nonatomic, strong) NSMutableArray *tableViewCellSizes;
 @property (nonatomic, strong) NSMutableArray *tableViewCellImages;

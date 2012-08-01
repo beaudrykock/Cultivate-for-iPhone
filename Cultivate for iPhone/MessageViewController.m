@@ -13,7 +13,7 @@
 @end
 
 @implementation MessageViewController
-@synthesize tweets, tweetImageURLs, loadingOverlay, tableViewCellSizes, tableViewCellImages, downloadingUpdateLabel, activityWheel;
+@synthesize tweets, tweetImageURLs, loadingOverlay, tableViewCellSizes, tableViewCellImages, downloadingUpdateLabel, activityWheel, replies, screenName, userProfileImage;
 /*
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -36,6 +36,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    [self readUserReplies];
     
     [self addLoadingOverlay];
     //[self performSelectorInBackground:@selector(getPublicTimeline) withObject:nil];
@@ -64,6 +66,8 @@
     }
 }
 
+
+
 -(void)updateFailureOverlay
 {
     [[NSNotificationCenter defaultCenter] removeObserver:self name:kTweetsLoadingFailed object:self];
@@ -72,9 +76,43 @@
 }
 
 -(void)populateTweetTable
-{   
-    self.tweets = [[Utilities sharedAppDelegate] tweets];
-
+{
+    self.tweets = [NSMutableArray arrayWithCapacity:[[[Utilities sharedAppDelegate] tweets] count]];
+    self.userProfileImage = [[Utilities sharedAppDelegate] userProfileImage];
+    
+    NSMutableArray *repliesToRemove = [NSMutableArray arrayWithCapacity:20];
+    for (NSDictionary *tweet in [[Utilities sharedAppDelegate] tweets])
+    {
+        [self.tweets addObject:tweet];
+        if ([self.replies count]>0)
+        {
+            for (NSDictionary* reply in self.replies)
+            {
+                NSString *associatedText = [reply objectForKey:@"in_reply_to_tweet_text"];
+                if ([[tweet objectForKey:@"text"] isEqualToString: associatedText])
+                {
+                    [self.tweets addObject:reply];
+                }
+            }
+        }
+    }
+        // no recent replies and Cultivate tweets have changed
+    for (NSDictionary* reply in self.replies)
+    {
+        if (![self.tweets containsObject:reply])
+        {
+            [repliesToRemove addObject:reply];
+        }
+    }
+    
+    for (NSDictionary *reply in repliesToRemove)
+    {
+        [self.replies removeObject:reply];
+    }
+    
+    if ([self.replies count]>0)
+        [self writeUserReplies];
+    
     if (self.tweetImageURLs)
     {
         self.tweetImageURLs = nil;
@@ -99,8 +137,31 @@
         #else
             image = [UIImage imageNamed:@"droplet_normal.png"];
         #endif
-        [self.tableViewCellImages addObject: image];
-        CGSize labelSize = [[dict objectForKey:@"text"] sizeWithFont:[UIFont fontWithName:kTextFont size:12.0]
+        
+        if ([dict objectForKey:@"isReply"])
+        {
+            NSLog(@"isReply = YES");
+        }
+        else
+        {
+            NSLog(@"isReply = NO");
+        }
+        if ([dict objectForKey:@"isReply"] && userProfileImage)
+        {
+            NSLog(@"adding user profile image");
+            [self.tableViewCellImages addObject: self.userProfileImage];
+        }
+        else if ([dict objectForKey:@"isReply"] && !userProfileImage)
+        {
+            NSLog(@"adding placeholder user profile image");
+            [self.tableViewCellImages addObject: [UIImage imageNamed:@"profileImagePlaceholder.png"]];
+        }
+        else
+        {
+            NSLog(@"adding cultivate image");
+            [self.tableViewCellImages addObject: image];
+        }
+            CGSize labelSize = [[dict objectForKey:@"text"] sizeWithFont:[UIFont fontWithName:kTextFont size:12.0]
                                                   constrainedToSize:CGSizeMake(220.0f, MAXFLOAT)
                                                       lineBreakMode:UILineBreakModeWordWrap];
         if (labelSize.height < 70) 
@@ -109,6 +170,9 @@
         [self.tableViewCellSizes addObject:[NSValue valueWithCGSize:labelSize]];
         count++;
     }
+    
+    
+    
     [self removeLoadingOverlay];
     [self.tableView reloadData];
     [self loadingComplete];
@@ -266,7 +330,10 @@
         cell = [[TweetTableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
         cell.delegate = self;
     }
-       
+    else
+    {
+        cell.profileImage.image = nil;
+    }
     [cell setIndex: indexPath.row];
     
     if (!overlayAdded)
@@ -277,15 +344,11 @@
     {
         image = [tableViewCellImages objectAtIndex:[indexPath row]];
     }
-    
-    if (!image)
+    else
     {
-        //NSLog(@"url = %@", [aTweet objectForKey: @"profile_image_url"]);
-        NSData *data = [NSData dataWithContentsOfURL:[NSURL URLWithString:[tweetImageURLs objectAtIndex:indexPath.row]]];
-        image = [UIImage imageWithData:data];
-        [tableViewCellImages addObject: image];
+        image = [UIImage imageNamed:@"droplet_normal.png"];
     }
-    
+
     NSValue* sizeValue = nil;
     if ([tableViewCellSizes count]>indexPath.row)
     {
@@ -307,7 +370,14 @@
         labelSize = [sizeValue CGSizeValue];
     }
     //NSString *imageURLString = [tweetImageURLs objectAtIndex: [indexPath row]];
-    [cell setupWithText:[aTweet objectForKey:@"text"] andSize:[NSValue valueWithCGSize:labelSize] andImage:image];
+        if (![aTweet objectForKey:@"isReply"])
+        {
+            [cell setupWithText:[aTweet objectForKey:@"text"] andSize:[NSValue valueWithCGSize:labelSize] andImage:image andType:kTweet];
+        }
+        else
+        {
+            [cell setupWithText:[aTweet objectForKey:@"text"] andSize:[NSValue valueWithCGSize:labelSize] andImage:image andType:kReply];
+        }
     }
     //NSDictionary *aTweet = [tweets objectAtIndex:[indexPath row]];
     //NSString *imageURLString = [tweetImageURLs objectAtIndex: [indexPath row]];
@@ -388,11 +458,33 @@
                       {
                           NSLog(@"Twitter response, HTTP response: %i", [urlResponse statusCode]);
                           NSLog(@"Error = %@", [NSHTTPURLResponse localizedStringForStatusCode: [urlResponse statusCode]]);
+                          
                       }];
                  }
              }
          }];
+        [self addTweetBelowTweetWithText:text];
     }
+}
+
+-(void)addTweetBelowTweetWithText:(NSString*)text
+{
+    if (!replies)
+    {
+        self.replies = [NSMutableArray arrayWithCapacity:20];
+    }
+    
+    NSDictionary *user = [NSDictionary dictionaryWithObject:@"NO_URL" forKey:@"profile_image_url"];
+    NSDictionary *replyTweet = [NSDictionary dictionaryWithObjectsAndKeys:
+                                    text, @"text",
+                                    [NSNumber numberWithBool:YES], @"isReply",
+                                    user, @"user",
+                                    replyCellTweetContents, @"in_reply_to_tweet_text", nil];
+    [self.replies addObject:replyTweet];
+    
+    [self writeUserReplies];
+    
+    [self populateTweetTable];
 }
 
 -(void)tweetReplyAtCellIndex:(NSInteger)index
@@ -400,9 +492,9 @@
     if ([TWTweetComposeViewController canSendTweet])
     {
         NSDictionary *aTweet = [tweets objectAtIndex:index];
-            NSDictionary *user = (NSDictionary*)[aTweet objectForKey:@"user"];
-            replyID = (NSString*)[user objectForKey:@"id_str"];
-            //replyID = (NSString*)[aTweet objectForKey:@"id_str"];
+            //NSDictionary *user = (NSDictionary*)[aTweet objectForKey:@"user"];
+            //replyID = (NSString*)[user objectForKey:@"id_str"];
+            replyID = (NSString*)[aTweet objectForKey:@"id_str"];
         replyCellTweetContents = [aTweet objectForKey:@"text"];
         
         [self performSegueWithIdentifier:@"compose-tweet" sender:nil];
@@ -548,15 +640,14 @@
 
 }
 
--(void)reloadTweetTable
-{   
-    self.tweets = [[Utilities sharedAppDelegate] tweets];
-    if (!self.tweetImageURLs)
-    {
-        self.tweetImageURLs  = [NSMutableArray arrayWithCapacity: [tweets count]];
-        self.tableViewCellSizes = [NSMutableArray arrayWithCapacity:[tweets count]];
-        self.tableViewCellImages = [NSMutableArray arrayWithCapacity:[tweets count]];
-    }
+-(void)reloadTweetTableWithUpdate:(BOOL)update
+{
+    if (update)
+        self.tweets = [[Utilities sharedAppDelegate] tweets];
+    
+    self.tweetImageURLs  = [NSMutableArray arrayWithCapacity: [tweets count]];
+    self.tableViewCellSizes = [NSMutableArray arrayWithCapacity:[tweets count]];
+    self.tableViewCellImages = [NSMutableArray arrayWithCapacity:[tweets count]];
     
     NSInteger count = 0;
     for (NSDictionary *dict in tweets)
@@ -577,6 +668,28 @@
     }
     [self.tableView reloadData];
     [self loadingComplete]; 
+}
+
+-(void)writeUserReplies
+{
+    NSDictionary *dict = [NSDictionary dictionaryWithObject:self.replies forKey:kUserRepliesKey];
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsDirectory = [paths objectAtIndex:0];
+    NSString *dataFilename = [documentsDirectory stringByAppendingPathComponent:kUserRepliesFilename];
+    [dict writeToFile:dataFilename atomically:YES];
+}
+
+-(void)readUserReplies
+{
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsDirectory = [paths objectAtIndex:0];
+    NSString *dataFilename = [documentsDirectory stringByAppendingPathComponent:kUserRepliesFilename];
+    
+    if ([[NSFileManager defaultManager] fileExistsAtPath:dataFilename])
+    {
+        NSDictionary *dict = [NSDictionary dictionaryWithContentsOfFile:dataFilename];
+        self.replies = (NSMutableArray*)[dict objectForKey:kUserRepliesKey];
+    }
 }
 
 @end

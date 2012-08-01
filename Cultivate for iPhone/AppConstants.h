@@ -9,6 +9,13 @@
 #define METERS_PER_MILE 1609.344
 //#define kDownloadProfileImage // uncomment if want to use Twitter profile image from Cultivate feed
 
+// TWEETING
+#define kTweet 0
+#define kReply 1
+#define kUserRepliesKey @"userRepliesKey"
+#define kUserRepliesFilename @"userReplies"
+#define kUserProfileImageFilename @"userProfileImage"
+
 // UIVIEW TAGS
 #define kInternetOverlayViewTag 3
 #define kContainerViewTag 100

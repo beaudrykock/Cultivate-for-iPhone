@@ -16,7 +16,7 @@
 #import "PullToRefreshViewController.h"
 #import "ComposeTweetViewController.h"
 
-@interface MessageViewController : PullToRefreshViewController <TweetTableViewCellDelegate>
+@interface MessageViewController : PullToRefreshViewController <TweetTableViewCellDelegate, ComposeTweetViewControllerDelegate>
 {
     NSArray *tweets;
     NSMutableArray *tweetImageURLs;
@@ -28,6 +28,7 @@
     UIActivityIndicatorView *activityWheel;
     BOOL loadTextField;
     NSString *replyCellTweetContents;
+    NSString *replyID;
 }
 
 @property (nonatomic, strong) UIActivityIndicatorView *activityWheel;

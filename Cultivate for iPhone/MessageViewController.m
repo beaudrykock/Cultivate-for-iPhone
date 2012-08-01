@@ -339,16 +339,17 @@
         ComposeTweetViewController *vc = [segue destinationViewController];
         
         [vc setCultivateTweetText: replyCellTweetContents];
+        [vc setDelegate:self];
     }
 }
 
--(void)tweetReplyAtCellIndex:(NSInteger)index
+-(void)dismissTweetView
 {
-    NSDictionary *aTweet = [tweets objectAtIndex:index];
-    replyCellTweetContents = [aTweet objectForKey:@"text"];
-    
-    [self performSegueWithIdentifier:@"compose-tweet" sender:nil];
-    
+    [self dismissModalViewControllerAnimated:YES];
+}
+
+-(void)sendTweetWithText:(NSString*)text
+{
     if ([TWTweetComposeViewController canSendTweet])
     {
             // Create account store, followed by a twitter account identifier
@@ -370,24 +371,46 @@
                  {
                          // Keep it simple, use the first account available
                      ACAccount *acct = [arrayOfAccounts objectAtIndex:0];
-                     
+                                          
                          // Build a twitter request
+                     NSLog(@"status text = %@", text);
+                     NSLog(@"reply id = %@", replyID);
                      TWRequest *postRequest = [[TWRequest alloc] initWithURL:
                                                [NSURL URLWithString:@"http://api.twitter.com/1/statuses/update.json"]
-                                                                  parameters:[NSDictionary dictionaryWithObject:@"Test test"
-                                                                                                         forKey:@"status"] requestMethod:TWRequestMethodPOST];
-                     
+                                                                  parameters:[NSDictionary dictionaryWithObjectsAndKeys: replyID, @"in_reply_to_status_id", text, @"status", nil] requestMethod:TWRequestMethodPOST];
+                         // [NSDictionary dictionaryWithObject:@"Test test"                 forKey:@"status"]
+
                          // Post the request
                      [postRequest setAccount:acct];
                      
                          // Block handler to manage the response
-                     [postRequest performRequestWithHandler:^(NSData *responseData, NSHTTPURLResponse *urlResponse, NSError *error) 
+                     [postRequest performRequestWithHandler:^(NSData *responseData, NSHTTPURLResponse *urlResponse, NSError *error)
                       {
                           NSLog(@"Twitter response, HTTP response: %i", [urlResponse statusCode]);
+                          NSLog(@"Error = %@", [NSHTTPURLResponse localizedStringForStatusCode: [urlResponse statusCode]]);
                       }];
                  }
              }
          }];
+    }
+}
+
+-(void)tweetReplyAtCellIndex:(NSInteger)index
+{
+    if ([TWTweetComposeViewController canSendTweet])
+    {
+        NSDictionary *aTweet = [tweets objectAtIndex:index];
+            NSDictionary *user = (NSDictionary*)[aTweet objectForKey:@"user"];
+            replyID = (NSString*)[user objectForKey:@"id_str"];
+            //replyID = (NSString*)[aTweet objectForKey:@"id_str"];
+        replyCellTweetContents = [aTweet objectForKey:@"text"];
+        
+        [self performSegueWithIdentifier:@"compose-tweet" sender:nil];
+    }
+    else
+    {
+        UIAlertView *noTweetPossible = [[UIAlertView alloc] initWithTitle:@"Tweets unavailable" message:@"You have no Twitter accounts currently available. Try again later." delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
+        [noTweetPossible show];
     }
 }
 

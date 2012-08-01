@@ -11,6 +11,7 @@
 
 // UIVIEW TAGS
 #define kInternetOverlayViewTag 3
+#define kContainerViewTag 100
 
 // ARCHIVING
 #define kXmlDataFile @"xmlDataFile"

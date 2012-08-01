@@ -78,8 +78,11 @@
 	// Create a request, which in this example, grabs the public timeline.
 	// This example uses version 1 of the Twitter API.
 	// This may need to be changed to whichever version is currently appropriate.
-	TWRequest *postRequest = [[TWRequest alloc] initWithURL:[NSURL URLWithString:@"http://api.twitter.com/1/statuses/user_timeline/CultivateOxford.json"] parameters:nil requestMethod:TWRequestMethodGET];
+	//TWRequest *postRequest = [[TWRequest alloc] initWithURL:[NSURL URLWithString:@"http://api.twitter.com/1/statuses/user_timeline/CultivateOxford.json"] parameters:nil requestMethod:TWRequestMethodGET];
 	
+    TWRequest *postRequest = [[TWRequest alloc] initWithURL:[NSURL URLWithString:@"http://api.twitter.com/1/statuses/user_timeline/TestUse05477637.json"] parameters:nil requestMethod:TWRequestMethodGET];
+	
+    
     // Perform the request created above and create a handler block to handle the response.
 	[postRequest performRequestWithHandler:^(NSData *responseData, NSHTTPURLResponse *urlResponse, NSError *error) {
 		NSString *output;
@@ -102,7 +105,7 @@
             //NSDictionary *errorDict = [NSJSONSerialization JSONObjectWithData:responseData options:0 error:&jsonParsingError];
             //NSLog(@"error desc = %@", [errorDict description]);
 		}
-		//NSLog(@"output = %@", output);
+		NSLog(@"output = %@", output);
         
 	}];
 }

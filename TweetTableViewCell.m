@@ -58,12 +58,12 @@
     [self.tweetLabel setLinksEnabled:YES];
     [self addSubview:tweetLabel];
     
-    self.replyButton = [[UIButton alloc] initWithFrame:CGRectMake(300.0, 50.0, 20.0, 20.0)];
+    self.replyButton = [[UIButton alloc] initWithFrame:CGRectMake(287.0, 35.0, 26.0, 20.0)];
     [self.replyButton setBackgroundImage:[UIImage imageNamed:@"213-reply.png"] forState:UIControlStateNormal];
     [self.replyButton setAlpha:0.8];
     [self.replyButton addTarget:self action:@selector(reply) forControlEvents:UIControlEventTouchUpInside];
     
-    self.accessoryView = self.replyButton;
+    [self addSubview:self.replyButton];
     //NSLog(@"frame height = %f", self.frame.size.height);
     //NSData *data = [NSData dataWithContentsOfURL:[NSURL URLWithString:urlString]];
     

@@ -35,10 +35,20 @@
     //[self tintSearchBarBackground];
     [self registerForKeyboardNotifications];
     [stopSearchBar setDelegate: self];
-    self.findButton.titleLabel.font = [UIFont fontWithName:kTextFont size:20.0];//size:self.findButton.titleLabel.font.pointSize]; 
+        //self.findButton.titleLabel.font = [UIFont fontWithName:kTextFont size:20.0];//size:self.findButton.titleLabel.font.pointSize];
     [self.nearestMeLabel setFont: [UIFont fontWithName:kTextFont size:self.nearestMeLabel.font.pointSize]];
     [self.nextLabel setFont: [UIFont fontWithName:kTextFont size:self.nextLabel.font.pointSize]];
     [self.farmLabel setFont: [UIFont fontWithName:kTextFont size:self.farmLabel.font.pointSize]];
+    
+    UITapGestureRecognizer *tap_1 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showNearestStopLocation:)];
+    [self.nearestMeLabel addGestureRecognizer:tap_1];
+    
+    UITapGestureRecognizer *tap_2 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showNextStopLocation:)];
+    [self.nextLabel addGestureRecognizer:tap_2];
+    
+    UITapGestureRecognizer *tap_3 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showFarmLocation:)];
+    [self.farmLabel addGestureRecognizer:tap_3];
+    
     _mapView.zoomEnabled = YES;
     
     [self tabBarController].moreNavigationController.navigationBar.barStyle = UIBarStyleBlackOpaque;

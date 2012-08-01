@@ -108,7 +108,7 @@
             //NSDictionary *errorDict = [NSJSONSerialization JSONObjectWithData:responseData options:0 error:&jsonParsingError];
             //NSLog(@"error desc = %@", [errorDict description]);
 		}
-		NSLog(@"output = %@", output);
+            //NSLog(@"output = %@", output);
         
 	}];
 }

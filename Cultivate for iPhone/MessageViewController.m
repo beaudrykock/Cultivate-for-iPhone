@@ -138,31 +138,23 @@
             image = [UIImage imageNamed:@"droplet_normal.png"];
         #endif
         
-        if ([dict objectForKey:@"isReply"])
-        {
-            NSLog(@"isReply = YES");
-        }
-        else
-        {
-            NSLog(@"isReply = NO");
-        }
         if ([dict objectForKey:@"isReply"] && userProfileImage)
         {
-            NSLog(@"adding user profile image");
+                //NSLog(@"adding user profile image");
             [self.tableViewCellImages addObject: self.userProfileImage];
         }
         else if ([dict objectForKey:@"isReply"] && !userProfileImage)
         {
-            NSLog(@"adding placeholder user profile image");
+                //NSLog(@"adding placeholder user profile image");
             [self.tableViewCellImages addObject: [UIImage imageNamed:@"profileImagePlaceholder.png"]];
         }
         else
         {
-            NSLog(@"adding cultivate image");
+                //NSLog(@"adding cultivate image");
             [self.tableViewCellImages addObject: image];
         }
             CGSize labelSize = [[dict objectForKey:@"text"] sizeWithFont:[UIFont fontWithName:kTextFont size:12.0]
-                                                  constrainedToSize:CGSizeMake(220.0f, MAXFLOAT)
+                                                  constrainedToSize:CGSizeMake(kMaxTweetLabelSize, MAXFLOAT)
                                                       lineBreakMode:UILineBreakModeWordWrap];
         if (labelSize.height < 70) 
             labelSize.height = 70.0;
@@ -317,7 +309,7 @@
 
 -(UIView*)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
-    TweetHeaderView* headerView = [[TweetHeaderView alloc] initWithFrame:CGRectMake(0.0, 0.0, self.tableView.bounds.size.width, 45.0) title:@"Cultivate tweets" delegate:self];
+    TweetHeaderView* headerView = [[TweetHeaderView alloc] initWithFrame:CGRectMake(0.0, 0.0, self.tableView.bounds.size.width, 45.0) title:@"Get involved in the VegVan conversation!" delegate:self];
     return headerView;
 }
 
@@ -359,7 +351,7 @@
     if (!sizeValue)
     {
         labelSize = [[aTweet objectForKey:@"text"] sizeWithFont:[UIFont fontWithName:kTextFont size:12.0]
-                       constrainedToSize:CGSizeMake(200.0f, MAXFLOAT)
+                       constrainedToSize:CGSizeMake(kMaxTweetLabelSize, MAXFLOAT)
                            lineBreakMode:UILineBreakModeWordWrap];
         if (labelSize.height < 70) 
             labelSize.height = 70.0;
@@ -443,8 +435,8 @@
                      ACAccount *acct = [arrayOfAccounts objectAtIndex:0];
                                           
                          // Build a twitter request
-                     NSLog(@"status text = %@", text);
-                     NSLog(@"reply id = %@", replyID);
+                         //NSLog(@"status text = %@", text);
+                         //NSLog(@"reply id = %@", replyID);
                      TWRequest *postRequest = [[TWRequest alloc] initWithURL:
                                                [NSURL URLWithString:@"http://api.twitter.com/1/statuses/update.json"]
                                                                   parameters:[NSDictionary dictionaryWithObjectsAndKeys: replyID, @"in_reply_to_status_id", text, @"status", nil] requestMethod:TWRequestMethodPOST];
@@ -514,7 +506,7 @@
     }
     else
     {
-        UIAlertView *noTweetPossible = [[UIAlertView alloc] initWithTitle:@"Tweets unavailable" message:@"You have no Twitter accounts currently available. Try again later." delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
+        UIAlertView *noTweetPossible = [[UIAlertView alloc] initWithTitle:@"Chat unavailable" message:@"You have no Twitter accounts setup on this device" delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
         [noTweetPossible show];
     }
 }
@@ -533,7 +525,7 @@
         NSString *string = [[tweets objectAtIndex: indexPath.row] objectForKey:@"text"];
         
         labelSize = [string sizeWithFont:[UIFont fontWithName:kTextFont size:14.0] 
-                              constrainedToSize:CGSizeMake(240.0f, MAXFLOAT) 
+                              constrainedToSize:CGSizeMake(kMaxTweetLabelSize, MAXFLOAT)
                                   lineBreakMode:UILineBreakModeWordWrap];
         if (labelSize.height < 70) 
             labelSize.height = 70.0;
@@ -671,7 +663,7 @@
         UIImage *image = [UIImage imageWithData:data];
         [tableViewCellImages addObject: image];
         CGSize labelSize = [[dict objectForKey:@"text"] sizeWithFont:[UIFont fontWithName:kTextFont size:14.0] 
-                                                   constrainedToSize:CGSizeMake(240.0f, MAXFLOAT) 
+                                                   constrainedToSize:CGSizeMake(kMaxTweetLabelSize, MAXFLOAT)
                                                        lineBreakMode:UILineBreakModeWordWrap];
         if (labelSize.height < 70) 
             labelSize.height = 70.0;

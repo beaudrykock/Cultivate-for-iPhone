@@ -15,6 +15,7 @@
 #define kUserRepliesKey @"userRepliesKey"
 #define kUserRepliesFilename @"userReplies"
 #define kUserProfileImageFilename @"userProfileImage"
+#define kMaxTweetLabelSize 220.0f
 
 // UIVIEW TAGS
 #define kInternetOverlayViewTag 3
@@ -119,7 +120,7 @@
 #define kNewTweetCountGenerated @"New tweet count generated"
 #define kTweetsLoaded @"Tweets loaded"
 #define kScheduleItemRefKey @"scheduleItemRefKey"
-#define kTweetTabIndex 3
+#define kTweetTabIndex 2
 #define kRemoveCultiRideDetailsView @"removeCultiRideDetailsView"
 #define kTweetsLoadingFailed @"tweetsLoadingFailed"
 

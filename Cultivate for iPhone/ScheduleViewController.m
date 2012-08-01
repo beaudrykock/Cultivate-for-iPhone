@@ -246,7 +246,7 @@
     [notificationSettingsViewController setVegVanStop: vegVanStop];
     [notificationSettingsViewController setDelegate:self];
     [notificationSettingsViewController setVegVanScheduleItem:item];
-    [notificationSettingsViewController.view setFrame:CGRectMake(0.0, -303.0, notificationSettingsViewController.view.frame.size.width, notificationSettingsViewController.view.frame.size.height)];
+    [notificationSettingsViewController.view setFrame:CGRectMake(0.0, -294.0, notificationSettingsViewController.view.frame.size.width, notificationSettingsViewController.view.frame.size.height)];
     CGRect animateToFrame = notificationSettingsViewController.view.frame;
     animateToFrame.origin.y = 0.0;
     [self.view addSubview:notificationSettingsViewController.view];

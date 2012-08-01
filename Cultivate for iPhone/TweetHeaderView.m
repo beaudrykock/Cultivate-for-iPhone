@@ -31,11 +31,11 @@
         }
         
         // Create and configure the title label.
-        CGRect titleLabelFrame = CGRectMake(self.bounds.origin.x+5.0, self.bounds.origin.y, self.bounds.size.width/2.0, self.bounds.size.height);
+        CGRect titleLabelFrame = CGRectMake(self.bounds.origin.x+5.0, self.bounds.origin.y, self.bounds.size.width-5.0, self.bounds.size.height);
         titleLabelFrame.origin.y -= 11;
         titleLabel = [[UILabel alloc] initWithFrame:titleLabelFrame];
         titleLabel.text = title;
-        titleLabel.textAlignment = UITextAlignmentLeft;
+        titleLabel.textAlignment = UITextAlignmentCenter;
         titleLabel.font = [UIFont fontWithName:kTitleFont size:15.0];
         titleLabel.textColor = [UIColor whiteColor];
         titleLabel.backgroundColor = [UIColor clearColor];

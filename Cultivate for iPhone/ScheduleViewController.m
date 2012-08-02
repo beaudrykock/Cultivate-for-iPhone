@@ -9,7 +9,7 @@
 #import "ScheduleViewController.h"
 
 @implementation ScheduleViewController
-@synthesize areas, managedObjectContext, scheduledStopStringsByArea, sidvc, removeSIDVCPane, stopsForEachItem, background, settingsBackground, notificationSettingsViewController, overlay, vegVanScheduleItems, stopsByArea, accessorySwitchIndexPath;
+@synthesize areas, managedObjectContext, scheduledStopStringsByArea, sidvc, removeSIDVCPane, stopsForEachItem, background, settingsBackground, overlay, vegVanScheduleItems, stopsByArea, accessorySwitchIndexPath, timeBeforeOptions, repeatOptions, secondsBefore, repeatPattern, notificationScheduleItem;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -161,15 +161,9 @@
         }
     }
     
-    if ([switch1 isOn] && ![Utilities applySettingsToAllNotifications])
+    if ([switch1 isOn])
     {
         [self promptForNotificationSettingsWithStop:vegVanStop andItem:[vegVanScheduleItems objectAtIndex: absoluteIndex]];
-    }
-    else if ([switch1 isOn] && [Utilities applySettingsToAllNotifications])
-    {
-        VegVanStopNotification *notification = [[VegVanStopNotification alloc] initWithVegVanScheduleItem: [vegVanScheduleItems objectAtIndex: absoluteIndex] andRepeat:[Utilities getDefaultRepeatPattern] andSecondsBefore:[Utilities getDefaultSecondsBefore]];
-        
-        [notification scheduleNotification];
     }
     else
     {
@@ -182,8 +176,9 @@
         {
             notif = [notifications objectAtIndex: counter];
             NSDictionary *userinfo = notif.userInfo;
-            NSNumber *itemHash = [userinfo objectForKey: kScheduleItemRefKey]; 
-            if ([itemHash intValue] == [[self.vegVanScheduleItems objectAtIndex: absoluteIndex] hash])
+            NSNumber *itemHash = [userinfo objectForKey: kScheduleItemRefKey];
+            VegVanScheduleItem *item = (VegVanScheduleItem*)[self.vegVanScheduleItems objectAtIndex: absoluteIndex];
+            if ([itemHash intValue] ==  [item scheduleItemHash])
             {
                 found = YES;
                 foundIndex = counter;
@@ -203,20 +198,24 @@
 -(BOOL)localNotificationInSystemForStopAtIndex:(NSInteger)index
 {
     NSArray *notifications = [[UIApplication sharedApplication] scheduledLocalNotifications];
-    //NSLog(@"notifications in memory = %i", [notifications count]);
+        //NSLog(@"notifications in memory = %i", [notifications count]);
     
     BOOL found = NO;
     NSInteger counter = 0;
     UILocalNotification* notif = nil;
     while (!found && counter < [notifications count])
     {
+            /// NSLog(@"absolute index = %i", index);
         notif = [notifications objectAtIndex: counter];
-        //NSLog(@"alertbody = %@", notif.alertBody);
+            //NSLog(@"alertbody = %@", notif.alertBody);
         NSDictionary *userinfo = notif.userInfo;
         NSNumber *itemHash = [userinfo objectForKey: kScheduleItemRefKey]; 
-        //NSLog(@"notification hash = %i", [itemHash intValue]);
-        //NSLog(@"stored item hash = %i", [[self.vegVanScheduleItems objectAtIndex: index] hash]);
-        if ([itemHash intValue] == [[self.vegVanScheduleItems objectAtIndex: index] hash])
+            //NSLog(@"notification hash = %i", [itemHash intValue]);
+        
+        VegVanScheduleItem*item = (VegVanScheduleItem*)[self.vegVanScheduleItems objectAtIndex:index];
+            //NSLog(@"stored item hash = %i\n", [item scheduleItemHash]);
+            //NSLog(@"Stop name = %@", item.stopName);
+        if ([itemHash intValue] == [item scheduleItemHash])
         {
             found = YES;
         }
@@ -227,50 +226,166 @@
     return found;
 }
 
+#pragma mark - Picker
 -(void)promptForNotificationSettingsWithStop:(VegVanStop*)vegVanStop andItem:(VegVanScheduleItem*)item
 {
     self.tableView.scrollEnabled = NO;
     
-    settingsBackground = [[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, 320.0, 480.0)];
-    [settingsBackground setBackgroundColor:[UIColor clearColor]];
-    overlay = [[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, 320.0, 480.0)];
-    [overlay setBackgroundColor:[UIColor blackColor]];
-    [overlay setAlpha:0.0];
-    [settingsBackground addSubview:overlay];
-    UITapGestureRecognizer *tapToCancel = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissNotificationSettingsViewControllerAndRestoreSwitch)];
-    [self.overlay addGestureRecognizer:tapToCancel];
+    actionSheet = [[UIActionSheet alloc] initWithTitle:@"Set your reminder details"
+                                                             delegate:nil
+                                                    cancelButtonTitle:nil
+                                               destructiveButtonTitle:nil
+                                                    otherButtonTitles:nil];
     
-    [self.view addSubview:settingsBackground];
+    [actionSheet setActionSheetStyle:UIActionSheetStyleBlackTranslucent];
     
-    notificationSettingsViewController = [[NotificationSettingsViewController alloc] init];
-    [notificationSettingsViewController setVegVanStop: vegVanStop];
-    [notificationSettingsViewController setDelegate:self];
-    [notificationSettingsViewController setVegVanScheduleItem:item];
-    [notificationSettingsViewController.view setFrame:CGRectMake(0.0, -294.0, notificationSettingsViewController.view.frame.size.width, notificationSettingsViewController.view.frame.size.height)];
-    CGRect animateToFrame = notificationSettingsViewController.view.frame;
-    animateToFrame.origin.y = 0.0;
-    [self.view addSubview:notificationSettingsViewController.view];
-    [UIView beginAnimations:nil context:NULL];  
+    CGRect pickerFrame = CGRectMake(0, 40, 0, 0);
     
-    [UIView setAnimationDuration:0.4];
+    UIPickerView *pickerView = [[UIPickerView alloc] initWithFrame:pickerFrame];
+    pickerView.showsSelectionIndicator = YES;
+    pickerView.dataSource = self;
+    pickerView.delegate = self;
+    [pickerView selectRow:1 inComponent:0 animated:NO];
+    [pickerView selectRow:1 inComponent:1 animated:NO];
+    [actionSheet addSubview:pickerView];
     
-    [UIView setAnimationDelegate:self];
-    //[UIView setAnimationDidStopSelector:@selector(_shrinkDidEnd:finished:contextInfo:)];
-    notificationSettingsViewController.view.frame = animateToFrame;  
-    [overlay setAlpha:0.8];
-    [UIView commitAnimations];
+    UISegmentedControl *closeButton = [[UISegmentedControl alloc] initWithItems:[NSArray arrayWithObject:@"Done"]];
+    closeButton.momentary = YES;
+    closeButton.frame = CGRectMake(260, 7.0f, 50.0f, 30.0f);
+    closeButton.segmentedControlStyle = UISegmentedControlStyleBar;
+    closeButton.tintColor = [UIColor blackColor];
+    [closeButton addTarget:self action:@selector(dismissActionSheet:) forControlEvents:UIControlEventValueChanged];
+    [actionSheet addSubview:closeButton];
     
-    /*
-    CABasicAnimation *slideAnimation = [CABasicAnimation animationWithKeyPath:@"transform.translation.y"];
-    slideAnimation.toValue = [NSNumber numberWithDouble:0];
+    UISegmentedControl *cancelButton = [[UISegmentedControl alloc] initWithItems:[NSArray arrayWithObject:@"Cancel"]];
+    cancelButton.momentary = YES;
+    cancelButton.frame = CGRectMake(10.0, 7.0f, 50.0f, 30.0f);
+    cancelButton.segmentedControlStyle = UISegmentedControlStyleBar;
+    cancelButton.tintColor = [UIColor blackColor];
+    [cancelButton addTarget:self action:@selector(cancelActionSheet:) forControlEvents:UIControlEventValueChanged];
+    [actionSheet addSubview:cancelButton];
     
-    CABasicAnimation *fadeInAnimation = [CABasicAnimation animationWithKeyPath:@"opacity"];
-    [fadeOutAnimation setToValue:[NSNumber numberWithFloat:0.3]];
-    fadeOutAnimation.fillMode = kCAFillModeForwards;
-    fadeOutAnimation.removedOnCompletion = NO;
-    */
     
-}       
+    [actionSheet showFromTabBar:self.tabBarController.tabBar];
+    
+    [actionSheet setBounds:CGRectMake(0, 0, 320, 485)];
+    
+    self.notificationScheduleItem = item;
+}
+
+-(IBAction)dismissActionSheet:(id)sender
+{
+        // send notification
+    VegVanStopNotification *notification = [[VegVanStopNotification alloc] initWithVegVanScheduleItem: self.notificationScheduleItem andRepeat:repeatPattern andSecondsBefore:secondsBefore];
+    
+    [notification scheduleNotification];
+    
+    self.notificationScheduleItem = nil;
+    
+    [actionSheet dismissWithClickedButtonIndex:0 animated:YES];
+    
+    self.tableView.scrollEnabled = YES;
+}
+
+-(IBAction)cancelActionSheet:(id)sender
+{
+    self.notificationScheduleItem = nil;
+    
+    [actionSheet dismissWithClickedButtonIndex:0 animated:YES];
+    
+    UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:self.accessorySwitchIndexPath];
+    UISwitch *accSwitch = (UISwitch*)cell.accessoryView;
+    [accSwitch setOn:NO];
+    
+    self.tableView.scrollEnabled = YES;
+}
+
+
+- (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView
+{
+    return 2;
+}
+
+- (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
+{
+    switch (component) {
+        case 0:
+            return [self.timeBeforeOptions count];
+            break;
+            
+        case 1:
+            return [self.repeatOptions count];
+            break;
+        default:
+            return 0;
+            break;
+    }
+}
+
+- (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
+{
+    switch (component) {
+        case 0:
+            return [self.timeBeforeOptions objectAtIndex:row];
+            break;
+            
+        case 1:
+            return [self.repeatOptions objectAtIndex:row];
+            break;
+        default:
+            break;
+    }
+}
+
+- (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
+{
+    
+    switch (component) {
+        case 0:
+            switch (row)
+            {
+                case 0:
+                    secondsBefore = 600;
+                    break;
+                case 1:
+                    secondsBefore = 1800;
+                    break;
+                case 2:
+                    secondsBefore = 3600;
+                    break;
+                case 3:
+                    secondsBefore = 86400;
+                    break;
+            }
+            break;
+            
+        case 1:
+            repeatPattern = row;
+            break;
+        default:
+            break;
+    }
+}
+
+- (CGFloat)pickerView:(UIPickerView *)pickerView rowHeightForComponent:(NSInteger)component
+{
+    return 40.0;
+}
+
+- (CGFloat)pickerView:(UIPickerView *)pickerView widthForComponent:(NSInteger)component
+{
+    switch (component) {
+        case 0:
+            return 200.0;
+            break;
+            
+        case 1:
+            return 120.0;
+            break;
+        default:
+            break;
+    }
+}
 
 #pragma mark - Pull-to-refresh functionality
 -(void) loadingComplete  {
@@ -338,52 +453,6 @@
     absoluteRow += indexPath.row;
     
     return absoluteRow;
-}
-
--(void)dismissNotificationSettingsViewController
-{
-    self.tableView.scrollEnabled = YES;
-    [UIView beginAnimations:nil context:NULL];  
-    
-    [UIView setAnimationDuration:0.4];
-    
-    [UIView setAnimationDelegate:self];
-    [UIView setAnimationDidStopSelector:@selector(removeNotificationSettingsViews)];
-    CGRect animateToFrame = notificationSettingsViewController.view.frame;
-    animateToFrame.origin.y = -303.0;
-    notificationSettingsViewController.view.frame = animateToFrame;  
-    [overlay setAlpha:0.0];
-    [UIView commitAnimations];
-}
-
-// call this when the controller is canceled out of
-// so that the accessory button can be reset
--(void)dismissNotificationSettingsViewControllerAndRestoreSwitch
-{
-    UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:self.accessorySwitchIndexPath];
-    UISwitch *accSwitch = (UISwitch*)cell.accessoryView;
-    [accSwitch setOn:NO];
-    
-    self.tableView.scrollEnabled = YES;
-    [UIView beginAnimations:nil context:NULL];  
-    
-    [UIView setAnimationDuration:0.4];
-    
-    [UIView setAnimationDelegate:self];
-    [UIView setAnimationDidStopSelector:@selector(removeNotificationSettingsViews)];
-    CGRect animateToFrame = notificationSettingsViewController.view.frame;
-    animateToFrame.origin.y = -303.0;
-    notificationSettingsViewController.view.frame = animateToFrame;  
-    [overlay setAlpha:0.0];
-    [UIView commitAnimations];
-}
-
--(void)removeNotificationSettingsViews
-{
-    [settingsBackground removeFromSuperview];
-    settingsBackground = nil;
-    [notificationSettingsViewController.view removeFromSuperview];
-    notificationSettingsViewController = nil;
 }
 
 #pragma mark - Table view delegate
@@ -486,6 +555,11 @@
     self.scheduledStopStringsByArea = [[[Utilities sharedAppDelegate] vegVanStopManager] scheduledStopStringsByArea];
     self.areas = [[[Utilities sharedAppDelegate] vegVanStopManager] vegVanStopAreas];
     self.stopsByArea = [[[Utilities sharedAppDelegate] vegVanStopManager] vegVanStopsByArea];
+    self.repeatOptions = [NSArray arrayWithObjects:@"One-off", @"Weekly", @"Monthly", nil];
+    self.timeBeforeOptions = [NSArray arrayWithObjects:@"10 minutes before",@"30 minutes before", @"1 hour before", @"1 day before", nil];
+    self.repeatPattern = 1;
+    self.secondsBefore = 1800;
+    
     if ([Utilities isFirstLaunch])
     {
         background = [[UIView alloc] initWithFrame:CGRectMake(0.0,0.0,320,480)];
@@ -498,7 +572,7 @@
         NSString* overlayPath = [[NSBundle mainBundle] pathForResource:@"schedule_help" ofType:@"png"];
         UIImage* overlayImage = [[UIImage alloc] initWithContentsOfFile:overlayPath];
         UIImageView *overlayView = [[UIImageView alloc] initWithImage:overlayImage];
-        [overlayView setFrame: CGRectMake(35,25,250.0,370.0)];
+        [overlayView setFrame: CGRectMake(35,25,261.0,299.0)];
         [background addSubview:overlayView];
         [self.view addSubview: background];
         

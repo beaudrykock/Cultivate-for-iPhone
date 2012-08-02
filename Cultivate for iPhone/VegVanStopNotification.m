@@ -67,9 +67,9 @@
     UILocalNotification *localNotif = [[UILocalNotification alloc] init];
     if (localNotif == nil)
     return;
-   // NSLog(@"scheduleNotification: stopName = %@", self.stopName);
-   // NSLog(@"scheduleNotification: secondsbefore = %i", secondsBefore);
-   // NSLog(@"scheduleNotification: repeatPattern = %i", repeatPattern);
+    NSLog(@"scheduleNotification: stopName = %@", self.stopName);
+    NSLog(@"scheduleNotification: secondsbefore = %i", secondsBefore);
+    NSLog(@"scheduleNotification: repeatPattern = %i", repeatPattern);
     localNotif.fireDate = [eventDate dateByAddingTimeInterval:-1*secondsBefore];
     localNotif.timeZone = [NSTimeZone systemTimeZone];
    // NSLog(@"fire date = %@", localNotif.fireDate.description);
@@ -92,7 +92,8 @@
         localNotif.repeatInterval = NSMonthCalendarUnit; // repeats weekly
     }
     
-    NSDictionary *infoDict = [NSDictionary dictionaryWithObject:[NSNumber numberWithInt: [item hash]] forKey:kScheduleItemRefKey];
+    NSLog(@"adding notification with item hash %i", [self.item scheduleItemHash]);
+    NSDictionary *infoDict = [NSDictionary dictionaryWithObject:[NSNumber numberWithInt: [self.item scheduleItemHash]] forKey:kScheduleItemRefKey];
     localNotif.userInfo = infoDict;
 
     [[UIApplication sharedApplication] scheduleLocalNotification:localNotif];

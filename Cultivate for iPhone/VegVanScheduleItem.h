@@ -31,7 +31,7 @@
 -(NSInteger)getDayAsInteger;
 -(NSInteger)getDurationAsInteger;
 -(void)description;
--(NSInteger)hash; // returns a consistent hash based on ivars
+-(NSInteger)scheduleItemHash; // returns a consistent hash based on ivars
 -(NSArray*)getFrequencyBrokenDown;
 
 @end

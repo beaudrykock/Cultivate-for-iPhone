@@ -10,10 +10,9 @@
 #import "SectionHeaderView.h"
 #import "VegVanStopNotification.h"
 #import "ScheduleItemDetailViewController.h"
-#import "NotificationSettingsViewController.h"
 #import "PullToRefreshViewController.h"
 
-@interface ScheduleViewController : PullToRefreshViewController <SectionHeaderViewDelegate, ScheduleItemDetailViewControllerDelegate, NotificationSettingsViewControllerDelegate>
+@interface ScheduleViewController : PullToRefreshViewController <SectionHeaderViewDelegate, ScheduleItemDetailViewControllerDelegate, UIPickerViewDataSource, UIPickerViewDelegate>
 {       
     NSMutableArray *areas;
     NSDictionary *scheduledStopStringsByArea;
@@ -24,11 +23,23 @@
     UIView *background;
     UIView *settingsBackground;
     UIView *overlay;
-    NotificationSettingsViewController* notificationSettingsViewController;
     NSMutableArray *vegVanScheduleItems;
     NSIndexPath *accessorySwitchIndexPath;
+    NSArray *timeBeforeOptions;
+    NSArray *repeatOptions;
+    VegVanScheduleItem *notificationScheduleItem;
+    
+        // picker
+    NSInteger secondsBefore;
+    NSInteger repeatPattern;
+    UIActionSheet *actionSheet;
 }
 
+@property (nonatomic, retain) VegVanScheduleItem *notificationScheduleItem;
+@property (nonatomic) NSInteger secondsBefore;
+@property (nonatomic) NSInteger repeatPattern;
+@property (nonatomic, strong) NSArray *timeBeforeOptions;
+@property (nonatomic, strong) NSArray *repeatOptions;
 @property (nonatomic, strong) NSIndexPath *accessorySwitchIndexPath;
 @property (nonatomic, strong) NSDictionary *stopsByArea;
 @property (nonatomic, strong) NSMutableArray *vegVanScheduleItems;
@@ -41,7 +52,6 @@
 @property (nonatomic, strong) NSDictionary* scheduledStopStringsByArea;
 @property (nonatomic,strong) NSManagedObjectContext* managedObjectContext;
 @property (nonatomic,strong) ScheduleItemDetailViewController *sidvc;
-@property (nonatomic, strong) NotificationSettingsViewController* notificationSettingsViewController;
 
 -(void)hideSIDVC;
 -(NSInteger)getAbsoluteRowNumberForIndexPath:(NSIndexPath*)indexPath andArea: (NSString*)area;

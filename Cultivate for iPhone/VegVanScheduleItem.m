@@ -51,11 +51,17 @@
 }
 
 
--(NSInteger)hash
+-(NSInteger)scheduleItemHash
 {
-    NSString *hashStr = [NSString stringWithFormat:@"%@%@%i",[stopTime substringToIndex: 2],[stopTime substringFromIndex: 3],[stopName hash]];
+    NSInteger stopNameHash = [self.stopName hash];
     
-    return [hashStr integerValue];
+    if (stopNameHash<0) stopNameHash*=-1;
+        //NSLog(@"stopname hash = %i", stopNameHash);
+    NSString *hashStr = [NSString stringWithFormat:@"%@%@%i",[stopTime substringToIndex: 2],[stopTime substringFromIndex: 3],stopNameHash];
+        //NSLog(@"hashStr for stop %@ = %@", self.stopName, hashStr);
+        //NSLog(@"hashStr integerValue for stop %@ = %i", self.stopName, [[hashStr substringToIndex:8] integerValue]);
+    
+    return [[hashStr substringToIndex:8] integerValue];
 }
 
 -(NSInteger)getHourAsInteger

@@ -20,6 +20,22 @@
     return self;
 }
 
+#pragma mark - Calling manager
+-(IBAction)call:(id)sender
+{
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:[stopManagerContact text] message:nil delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Call", nil];
+    [alert show];
+}
+
+- (void)alertView:(UIAlertView *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex == 1)
+    {
+        NSURL *url = [[NSURL alloc] initWithString:[NSString stringWithFormat:@"tel://%@", [stopManagerContact text]]];
+        [[UIApplication sharedApplication] openURL:url];
+    }
+}
+
 -(void)addGestureRecognizers
 {
     //UITapGestureRecognizer *gestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(removeView)];

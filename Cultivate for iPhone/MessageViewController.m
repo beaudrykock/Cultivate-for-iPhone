@@ -37,6 +37,11 @@
 {
     [super viewDidLoad];
     
+    if(&UIApplicationWillEnterForegroundNotification != nil)
+    {
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshAfterForegrounding) name:UIApplicationWillEnterForegroundNotification object:nil];
+    }
+    
     [self readUserReplies];
     
     [self addLoadingOverlay];
@@ -162,9 +167,7 @@
         [self.tableViewCellSizes addObject:[NSValue valueWithCGSize:labelSize]];
         count++;
     }
-    
-    
-    
+
     [self removeLoadingOverlay];
     [self.tableView reloadData];
     [self loadingComplete];
@@ -643,6 +646,13 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loadingComplete) name:kTweetsLoadingFailed object:nil];
     [[Utilities sharedAppDelegate] getPublicTimelineInBackground];
 
+}
+
+-(void)refreshAfterForegrounding
+{
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(populateTweetTable) name:kTweetsLoaded object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loadingComplete) name:kTweetsLoadingFailed object:nil];
+    [[Utilities sharedAppDelegate] getPublicTimelineInBackground];
 }
 
 -(void)reloadTweetTableWithUpdate:(BOOL)update

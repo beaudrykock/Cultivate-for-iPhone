@@ -481,6 +481,11 @@
     if (sidvc == nil)
     {
         sidvc = [[ScheduleItemDetailViewController alloc] initWithNibName:@"ScheduleItemDetailView" bundle:nil];
+        if ([Utilities iPhone5])
+        {
+            CGRect iPhone5_frame = CGRectMake(0.0, 0.0, 320.0, 568.0);
+            sidvc.view.frame = iPhone5_frame;
+        }
         [self.view addSubview: sidvc.view];
         [sidvc addGestureRecognizers];
         [sidvc setDelegate: self];

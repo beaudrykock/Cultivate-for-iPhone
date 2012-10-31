@@ -361,4 +361,20 @@
     return [[NSUserDefaults standardUserDefaults] objectForKey:@"kLocationKey"];
 }
 
++(BOOL)iPhone5
+{
+    if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone)
+    {
+        CGSize result = [[UIScreen mainScreen] bounds].size;
+        if(result.height == 480)
+        {
+            return NO;
+        }
+        if(result.height == 568)
+        {
+            return YES;
+        }
+    }
+}
+
 @end

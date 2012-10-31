@@ -387,7 +387,10 @@
     // resize mapview 420 316
     CGRect newFrame = CGRectMake(_mapView.frame.origin.x, _mapView.frame.origin.y, _mapView.frame.size.width, _mapView.frame.size.height-44.0);
 
-    UIView *overlay = [[UIView alloc] initWithFrame:CGRectMake(0.0, 420.0, 320, 44.0)];
+    float overlay_y = 420.0;
+    if ([Utilities iPhone5]) overlay_y+=88.0;
+    
+    UIView *overlay = [[UIView alloc] initWithFrame:CGRectMake(0.0, overlay_y, 320, 44.0)];
     [overlay setTag:kInternetOverlayViewTag];
     [overlay setBackgroundColor:[Utilities colorWithHexString:kCultivateGreenColor]];
     UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0.0,0.0, 320.0, 44.0)];

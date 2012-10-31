@@ -50,6 +50,11 @@
 {
     [super viewDidLoad];
     
+    if ([Utilities iPhone5])
+    {
+        [self.scrollView setFrame:CGRectMake(self.scrollView.frame.origin.x, self.scrollView.frame.origin.y, self.scrollView.frame.size.width, self.scrollView.frame.size.height+88.0)];
+    }
+    
     [self.share setButtonTitle: @"Contact Cultivate"];
     [self.share setSize: CGSizeMake(130.0, 37.0)];
     [mainPara setFont: [UIFont fontWithName: kTextFont size:self.mainPara.font.pointSize]];
@@ -94,7 +99,10 @@
     
     self.scrollView.contentSize = CGSizeMake(self.scrollView.frame.size.width * 3, self.scrollView.frame.size.height);
     
-    CGRect pageControlFrame = CGRectMake(0.0, 312.0, self.view.frame.size.width, 20.0);
+    float pageControl_y = 312.0;
+    if ([Utilities iPhone5]) pageControl_y += 88.0;
+    
+    CGRect pageControlFrame = CGRectMake(0.0, pageControl_y, self.view.frame.size.width, 20.0);
     self.pageControl = [[CustomPageControl alloc] initWithFrame:pageControlFrame];
     self.pageControl.numberOfPages = 3;
     self.pageControl.backgroundColor = [UIColor clearColor];

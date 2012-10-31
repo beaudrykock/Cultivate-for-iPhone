@@ -7,8 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "SHKConfiguration.h"
-#import "SHKFacebook.h"
 #import "VegVanStopManager.h"
 #import <Twitter/Twitter.h>
 #import <Accounts/Accounts.h>

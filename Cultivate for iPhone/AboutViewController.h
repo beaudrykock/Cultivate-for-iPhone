@@ -7,19 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "SHK.h"
-#import "SHKItem.h"
-#import "ChimpKit.h"
-#import "MailChimpViewController.h"
 #import <QuartzCore/QuartzCore.h>
 #import <MessageUI/MessageUI.h>
 #import <MessageUI/MFMailComposeViewController.h>
 #import "CustomButton.h"
 #import "SVWebViewController.h"
 #import "CustomPageControl.h"
-#import "NewLocationViewController.h"
 
-@interface AboutViewController : UIViewController <UIActionSheetDelegate, ChimpKitDelegate, MailChimpViewControllerDelegate, NewLocationViewControllerDelegate>
+@interface AboutViewController : UIViewController <UIActionSheetDelegate>
 {
     NSString *tappedListType;
     UIView *shakeView;

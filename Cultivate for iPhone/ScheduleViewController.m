@@ -390,6 +390,7 @@
 #pragma mark - Pull-to-refresh functionality
 -(void) loadingComplete  {
     
+    [self.tableView reloadData];
     self.loading = NO;
 }
 -(void) doRefresh  {
@@ -401,6 +402,13 @@
                                           value:0
                                       withError:&error]) {
         NSLog(@"GANTracker error, %@", [error localizedDescription]);
+    }
+    if ([[[Utilities sharedAppDelegate] vegVanStopManager] loadVegVanStops])
+    {
+        self.stopsForEachItem = [[[Utilities sharedAppDelegate] vegVanStopManager] stopsForScheduledItems];
+        self.scheduledStopStringsByArea = [[[Utilities sharedAppDelegate] vegVanStopManager] scheduledStopStringsByArea];
+        self.areas = [[[Utilities sharedAppDelegate] vegVanStopManager] vegVanStopAreas];
+        self.stopsByArea = [[[Utilities sharedAppDelegate] vegVanStopManager] vegVanStopsByArea];
     }
     [self performSelector:@selector(loadingComplete) withObject:nil afterDelay:2];
 }

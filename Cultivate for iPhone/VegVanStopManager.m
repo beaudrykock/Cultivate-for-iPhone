@@ -16,7 +16,7 @@
     NSString *objectXML = nil;
     NSData *data = nil;
     BOOL loadedSuccessfully = NO;
-    if (![Utilities hasInternet])
+    if (YES)//![Utilities hasInternet]) // TODO: RETURN THIS TO NORMAL WHEN FINISHED TESTING
     {
         data = [NSData dataWithContentsOfFile:[Utilities cachePath:kXmlDataFile]];
         if (!data)

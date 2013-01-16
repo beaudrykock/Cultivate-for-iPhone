@@ -27,12 +27,16 @@
     NSInteger hours = [self getHourAsInteger];
     NSInteger minutes = [self getMinuteAsInteger];
     
-    minutes += [self getDurationAsInteger];
+    NSInteger additionalHours = [self getDurationAsInteger]/60;
+    
+    hours+=additionalHours;
+    
+    minutes += [self getDurationAsInteger]%60;
     
     if (minutes>=60)
     {
+        minutes = 0;
         hours++;
-        minutes = minutes-60;
     }
     
     NSNumber *newHours = [NSNumber numberWithInt:hours];

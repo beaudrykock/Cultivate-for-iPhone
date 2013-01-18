@@ -25,6 +25,8 @@
     vegVanStopManager = [[VegVanStopManager alloc] init];
     BOOL successfulLoad = [vegVanStopManager loadVegVanStops];
     
+    [[NotificationManager sharedInstance] updateNotifications];
+    
     NSAssert(successfulLoad, @"Stops not loaded");
     
     // clear the badge number
@@ -40,6 +42,8 @@
     }
     tabBarController = (UITabBarController *)self.window.rootViewController;
     tabBarController.moreNavigationController.navigationBar.hidden = YES;
+    
+    [self getStatusUpdate];
     
     [self startGoogleAnalytics];
     
@@ -79,7 +83,83 @@
     }
 }
 
-- (void)getPublicTimeline 
+-(void)getStatusUpdate
+{
+    if ([Utilities hasInternet])
+    {
+        NSString *urlString = @"http://www.cultivateoxford.org/ipr/vegVanStatusUpdate.xml";
+        ASIHTTPRequest *request = [[ASIHTTPRequest alloc] initWithURL:[NSURL URLWithString:urlString]];
+        [request setDidFinishSelector:@selector(latestUpdates:)];
+        [request setTimeOutSeconds:10.0];
+        [request startAsynchronous];
+    }
+    else
+    {
+        [self latestUpdates:nil];
+    }
+}
+
+-(void)latestUpdates:(ASIHTTPRequest*)request
+{
+    NSString *objectXML = nil;
+    NSData *data;
+    if (!request)
+    {
+        objectXML = [[NSBundle mainBundle] pathForResource:@"vegVanStatusUpdate" ofType:@"xml"];
+        data = [NSData dataWithContentsOfFile:objectXML];
+    }
+    else
+    {
+        data = [request responseData];
+    }
+    
+    // create a new SMXMLDocument
+    SMXMLDocument *document = [SMXMLDocument documentWithData:data error:NULL];
+    
+    // Debugging: demonstrate -description of document/element classes
+    //NSLog(@"Document:\n %@", document);
+    
+    // Pull out the <rdf> node
+    SMXMLElement *root = document.root;
+    
+    NSMutableString *updates = [[NSMutableString alloc] initWithCapacity:1000];
+    for (SMXMLElement *updateElement in [root childrenNamed:kUpdateElement])
+    {
+        NSString *stringToAppend = [NSString stringWithFormat:@"%@\n\n",[self statusUpdateFromElement:updateElement]];
+        [updates appendString:stringToAppend];
+    }
+    
+    self.vegVanStatusUpdate = [updates copy];
+    
+    NSLog(@"vegVanStatusUpdate = %@", self.vegVanStatusUpdate);
+    NSLog(@"vegVanStatusUpdate from archive = %@", [self readStatusUpdateFromArchive]);
+    if ([self readStatusUpdateFromArchive]!=nil && ![self.vegVanStatusUpdate isEqualToString:[self readStatusUpdateFromArchive]])
+    {
+        [[[[tabBarController tabBar] items] objectAtIndex:3] setBadgeValue:@"1"];
+    }
+    
+    [self writeStatusUpdate];
+}
+
+-(void)writeStatusUpdate
+{
+    [[NSUserDefaults standardUserDefaults] setObject:self.vegVanStatusUpdate forKey:@"statusUpdate"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
+
+-(NSString*)readStatusUpdateFromArchive
+{
+    NSString *news = (NSString*)[[NSUserDefaults standardUserDefaults] objectForKey:@"statusUpdate"];
+    
+    return news;
+}
+
+-(NSString*)statusUpdateFromElement:(SMXMLElement*)updateElement
+{
+    return (NSString*)[updateElement value];
+}
+
+- (void)getPublicTimeline
 {
 	// Create a request, which in this example, grabs the public timeline.
 	// This example uses version 1 of the Twitter API.

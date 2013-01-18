@@ -45,5 +45,6 @@
 +(NSArray*)getLocation;
 +(void)writeLocation:(CLLocation*)loc;
 +(NSString*)cachePath:(NSString *)filename;
++(NSString *)documentsPath:(NSString *)filename;
 +(BOOL)iPhone5;
 @end

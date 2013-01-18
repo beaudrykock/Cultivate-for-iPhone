@@ -24,6 +24,7 @@
     VegVanScheduleItem *nextScheduledStop;
 }
 
+@property (nonatomic) BOOL active;
 @property (nonatomic, strong) NSString *name;
 @property (nonatomic, strong) NSString *area;
 @property (nonatomic, strong) CLLocation *location;

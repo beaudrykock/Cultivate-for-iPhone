@@ -16,7 +16,7 @@
     NSString *objectXML = nil;
     NSData *data = nil;
     BOOL loadedSuccessfully = NO;
-    if (YES)//![Utilities hasInternet]) // TODO: RETURN THIS TO NORMAL WHEN FINISHED TESTING
+    if (YES)//[Utilities hasInternet]) // TODO: RETURN THIS TO NORMAL WHEN FINISHED TESTING
     {
         data = [NSData dataWithContentsOfFile:[Utilities cachePath:kXmlDataFile]];
         if (!data)
@@ -67,8 +67,33 @@
     {
         [self generateVegVanStopFromElement: vegVanStopElement];
     }
+    
+    [self removeInactiveAreas];
 
     return loadedSuccessfully;
+}
+
+-(void)removeInactiveAreas
+{
+    NSMutableArray *areasToRemove = [NSMutableArray arrayWithCapacity:5];
+    for (NSString *area in vegVanStopAreas)
+    {
+        BOOL activeArea = NO;
+        for (NSString *stopName in vegVanStopNames)
+        {
+            VegVanStop *stop = [vegVanStops objectForKey:stopName];
+            if ([stop.area isEqualToString:area] && stop.active)
+            {
+                activeArea = YES;
+            }
+        }
+        
+        if (!activeArea)
+            [areasToRemove addObject:area];
+    }
+    
+    for (NSString *area in areasToRemove)
+        [vegVanStopAreas removeObject:area];
 }
 
 -(BOOL)writeDataToFile:(NSData*)data
@@ -83,6 +108,10 @@
     
     if (vegVanStopAreas == nil)
         vegVanStopAreas = [NSMutableArray arrayWithCapacity: 10];
+    
+    if (vegVanStopNames == nil)
+        vegVanStopNames = [NSMutableArray arrayWithCapacity: 10];
+    
     
     VegVanStop *newStop = [[VegVanStop alloc] init];
     
@@ -102,6 +131,9 @@
     [newStop setBlurb: [self stringStrippedOfWhitespaceAndNewlines:[vegVanStopElement valueWithPath:kBlurbElement]]];
     [newStop setManager: [self stringStrippedOfWhitespaceAndNewlines:[vegVanStopElement valueWithPath:kManagerElement]]];
     [newStop setContact: [self stringStrippedOfWhitespaceAndNewlines:[vegVanStopElement valueWithPath:kContactElement]]];
+    NSString *isActive = [self stringStrippedOfWhitespaceAndNewlines:[vegVanStopElement valueWithPath:kActiveElement]];
+    [newStop setActive:[isActive boolValue]];
+    
     SMXMLElement *scheduleItemsElement = [vegVanStopElement childNamed:kScheduleItemsElement];
     
     if (scheduleItemsElement.name)
@@ -161,12 +193,16 @@
     {
         //NSLog(@"key = %@", aKey);
         stop = [vegVanStops objectForKey: aKey];
-        NSMutableArray * arrayForArea = [scheduledStopStringsByArea objectForKey: [stop area]];
         
-        for (VegVanScheduleItem *item in [stop scheduleItems])
+        if (stop.active)
         {
-            //NSLog(@"Adding to array %@", [item scheduleDetailAsString]);
-            [arrayForArea addObject: [item scheduleDetailAsString]];
+            NSMutableArray * arrayForArea = [scheduledStopStringsByArea objectForKey: [stop area]];
+            
+            for (VegVanScheduleItem *item in [stop scheduleItems])
+            {
+                //NSLog(@"Adding to array %@", [item scheduleDetailAsString]);
+                [arrayForArea addObject: [item scheduleDetailAsString]];
+            }
         }
     }
     
@@ -187,7 +223,8 @@
     {
         stop = [vegVanStops objectForKey: aKey];
         
-        if ([[stop area] rangeOfString:area options:NSCaseInsensitiveSearch].location != NSNotFound)
+        if ([[stop area] rangeOfString:area options:NSCaseInsensitiveSearch].location != NSNotFound &&
+            [stop active])
             [stopNames addObject:[stop name]];
     }
     
@@ -202,7 +239,8 @@
     {
         stop = [vegVanStops objectForKey: aKey];
         
-        if ([[[stop address] objectForKey:kStreetNameElement] rangeOfString:streetName options:NSCaseInsensitiveSearch].location != NSNotFound)
+        if ([[[stop address] objectForKey:kStreetNameElement] rangeOfString:streetName options:NSCaseInsensitiveSearch].location != NSNotFound  &&
+            [stop active])
             [stopNames addObject:[stop name]];
     }
     
@@ -217,7 +255,8 @@
     {
         stop = [vegVanStops objectForKey: aKey];
         //NSLog(@"postcode = %@", [[stop address] objectForKey:kPostcodeElement]);
-        if ([[[stop address] objectForKey:kPostcodeElement] rangeOfString:postcode options:NSCaseInsensitiveSearch].location != NSNotFound)
+        if ([[[stop address] objectForKey:kPostcodeElement] rangeOfString:postcode options:NSCaseInsensitiveSearch].location != NSNotFound  &&
+            [stop active])
             [stopNames addObject:[stop name]];
     }
     
@@ -234,10 +273,13 @@
     for (int i = 0; i<count; i++)
     {
         VegVanStop *stop = (VegVanStop*)[stops objectAtIndex: i];
-        NSMutableArray *scheduleItems = [stop scheduleItems];
-        for (VegVanScheduleItem *item in scheduleItems)
+        if  ([stop active])
         {
-            [array addObject: [item stopName]];
+            NSMutableArray *scheduleItems = [stop scheduleItems];
+            for (VegVanScheduleItem *item in scheduleItems)
+            {
+                [array addObject: [item stopName]];
+            }
         }
     }
     return array;

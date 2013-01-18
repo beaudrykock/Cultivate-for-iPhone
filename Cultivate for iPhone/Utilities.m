@@ -39,6 +39,13 @@
     return [cacheFolder stringByAppendingPathComponent: filename];
 }
 
++(NSString *)documentsPath:(NSString *)filename
+{
+	NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+	NSString *documentsDirectory = [paths objectAtIndex:0];
+	return [documentsDirectory stringByAppendingPathComponent:filename];
+}
+
 +(BOOL)postcodeIsValid:(NSString*)postcode
 {
     NSPredicate *postcodeTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", kPostcodeRegex];

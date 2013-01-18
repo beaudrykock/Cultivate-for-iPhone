@@ -120,6 +120,8 @@
 		9FA5493415542DBF00CA04C7 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 9FA5493315542DBF00CA04C7 /* Default.png */; };
 		9FA5493615542DC300CA04C7 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9FA5493515542DC300CA04C7 /* Default@2x.png */; };
 		9FA7D6631578F65300F45A50 /* droplet_normal.png in Resources */ = {isa = PBXBuildFile; fileRef = 9FA7D6621578F65300F45A50 /* droplet_normal.png */; };
+		9FA98F9E16A9B2B300DD5696 /* NotificationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FA98F9D16A9B2B300DD5696 /* NotificationManager.m */; };
+		9FA98FAB16A9DEDD00DD5696 /* vegVanStatusUpdate.xml in Resources */ = {isa = PBXBuildFile; fileRef = 9FA98FAA16A9DEDD00DD5696 /* vegVanStatusUpdate.xml */; };
 		9FB46B9D1564119A004B464B /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 9FB46B9C1564119A004B464B /* icon.png */; };
 		9FB46B9F1564119C004B464B /* icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9FB46B9E1564119C004B464B /* icon@2x.png */; };
 		9FC3A1A115A350FA00C8F9BF /* cultivan.png in Resources */ = {isa = PBXBuildFile; fileRef = 9FC3A19F15A350FA00C8F9BF /* cultivan.png */; };
@@ -313,6 +315,9 @@
 		9FA5493315542DBF00CA04C7 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		9FA5493515542DC300CA04C7 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		9FA7D6621578F65300F45A50 /* droplet_normal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = droplet_normal.png; sourceTree = "<group>"; };
+		9FA98F9C16A9B2B300DD5696 /* NotificationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NotificationManager.h; path = "Cultivate for iPhone/NotificationManager.h"; sourceTree = "<group>"; };
+		9FA98F9D16A9B2B300DD5696 /* NotificationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NotificationManager.m; path = "Cultivate for iPhone/NotificationManager.m"; sourceTree = "<group>"; };
+		9FA98FAA16A9DEDD00DD5696 /* vegVanStatusUpdate.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = vegVanStatusUpdate.xml; sourceTree = "<group>"; };
 		9FB46B9C1564119A004B464B /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
 		9FB46B9E1564119C004B464B /* icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon@2x.png"; sourceTree = "<group>"; };
 		9FC3A19F15A350FA00C8F9BF /* cultivan.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cultivan.png; sourceTree = "<group>"; };
@@ -399,6 +404,7 @@
 		9F6A09141546D4C500B59D0F = {
 			isa = PBXGroup;
 			children = (
+				9FA98FAA16A9DEDD00DD5696 /* vegVanStatusUpdate.xml */,
 				9FF6159D16414DF10093AF55 /* Default-568h@2x.png */,
 				9F87FC9A15B023C4008A1D6B /* carrot_114.png */,
 				9F87FC9715B023C0008A1D6B /* carrot_57.png */,
@@ -614,6 +620,8 @@
 				9F6A09EC1546FF7B00B59D0F /* VegVanStopLocation.m */,
 				9F524AF9155183B1000846E7 /* VegVanStopManager.h */,
 				9F524AFA155183B1000846E7 /* VegVanStopManager.m */,
+				9FA98F9C16A9B2B300DD5696 /* NotificationManager.h */,
+				9FA98F9D16A9B2B300DD5696 /* NotificationManager.m */,
 				9F524AF2155180E6000846E7 /* VegVanStop.h */,
 				9F524AF3155180E6000846E7 /* VegVanStop.m */,
 				9F3240BA155AE36F00BCA8FB /* CustomButton.h */,
@@ -832,6 +840,7 @@
 				9F38AFBE15CA797C005C2B5E /* schedule_help.png in Resources */,
 				9F38AFBF15CA797C005C2B5E /* schedule_help@2x.png in Resources */,
 				9FF6159E16414DF10093AF55 /* Default-568h@2x.png in Resources */,
+				9FA98FAB16A9DEDD00DD5696 /* vegVanStatusUpdate.xml in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -892,6 +901,7 @@
 				9F33D14915751ADE00A4A876 /* CustomPageControl.m in Sources */,
 				9F33D152157522C200A4A876 /* FarmAnnotation.m in Sources */,
 				9F32D14115C86BDA0087EB9A /* ComposeTweetViewController.m in Sources */,
+				9FA98F9E16A9B2B300DD5696 /* NotificationManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -93,7 +93,7 @@
     }
     
     NSLog(@"adding notification with item hash %i", [self.item scheduleItemHash]);
-    NSDictionary *infoDict = [NSDictionary dictionaryWithObject:[NSNumber numberWithInt: [self.item scheduleItemHash]] forKey:kScheduleItemRefKey];
+    NSDictionary *infoDict = [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt: [self.item scheduleItemHash]],kScheduleItemRefKey, self.item.stopName, kScheduleItemNameKey, self.item.stopDay, kScheduleItemDayKey, self.item.stopTime, kScheduleItemTimeKey, nil];
     localNotif.userInfo = infoDict;
 
     [[UIApplication sharedApplication] scheduleLocalNotification:localNotif];

@@ -12,6 +12,7 @@
 		<blurb>PLEASE NOTE: 2013 times for this stop have yet to be confirmed</blurb>
 		<manager>Julian Cottee</manager>
         <contact>07579965374</contact>
+        <active>0</active>
 		<scheduleItems>
 			<scheduleItem>
 				<stopDay>Wednesday</stopDay>
@@ -33,6 +34,7 @@
 		<blurb>PLEASE NOTE: 2013 times for this stop have yet to be confirmed</blurb>
 		<manager>Joe Hasell</manager>
         <contact>07579965374</contact>
+        <active>0</active>
 		<scheduleItems>
 			<scheduleItem>
 				<stopDay>Wednesday</stopDay>
@@ -54,6 +56,7 @@
 		<blurb>PLEASE NOTE: 2013 times for this stop have yet to be confirmed</blurb>
 		<manager>Julian Cottee</manager>
         <contact>07579965374</contact>
+        <active>0</active>
 		<scheduleItems>
 			<scheduleItem>
 				<stopDay>Thursday</stopDay>
@@ -75,6 +78,7 @@
 		<blurb>Out in front of the Rusty Bicycle pub</blurb>
 		<manager>Julian Cottee</manager>
         <contact>07579965374</contact>
+        <active>1</active>
 		<scheduleItems>
 			<scheduleItem>
 				<stopDay>Thursday</stopDay>
@@ -96,6 +100,7 @@
 		<blurb>PLEASE NOTE: 2013 times for this stop have yet to be confirmed</blurb>
 		<manager>Dan Betterton</manager>
         <contact>07579965374</contact>
+        <active>0</active>
 		<scheduleItems>
 			<scheduleItem>
 				<stopDay>Friday</stopDay>
@@ -117,6 +122,7 @@
 		<blurb>Pick up great veggies on the way back into town!</blurb>
 		<manager>Julian Cottee</manager>
         <contact>07579965374</contact>
+        <active>0</active>
 		<scheduleItems>
 			<scheduleItem>
 				<stopDay>Friday</stopDay>

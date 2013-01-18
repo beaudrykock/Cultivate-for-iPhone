@@ -27,6 +27,7 @@
     BOOL pageControlBeingUsed;
 }
 
+@property (nonatomic, copy) NSString *vegVanStatusUpdate;
 @property(nonatomic, strong) IBOutlet CustomButton*share;
 @property(nonatomic, strong) IBOutlet CustomButton*getInvolved;
 @property(nonatomic, strong) IBOutlet UILabel *mainPara;

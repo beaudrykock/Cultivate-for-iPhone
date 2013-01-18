@@ -10,6 +10,7 @@
 #import "VegVanStopManager.h"
 #import <Twitter/Twitter.h>
 #import <Accounts/Accounts.h>
+#import "NotificationManager.h"
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 {
@@ -27,6 +28,7 @@
 @property (strong, nonatomic) NSArray *tweets;
 @property (copy, nonatomic) NSString *screenName;
 @property (strong, nonatomic) UIImage *userProfileImage;
+@property (nonatomic, copy) NSString *vegVanStatusUpdate;
 
 -(NSInteger)getNewTweetCount;
 -(BOOL)areTweetsLoaded;

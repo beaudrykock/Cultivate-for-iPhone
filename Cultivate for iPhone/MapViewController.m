@@ -686,11 +686,15 @@
     for (NSString *eachKey in [[[Utilities sharedAppDelegate] vegVanStopManager] vegVanStops])
     {
         vegVanStop = [[[[Utilities sharedAppDelegate] vegVanStopManager] vegVanStops] objectForKey:eachKey];
-        CLLocationCoordinate2D coordinate;
-        coordinate.latitude = vegVanStop.location.coordinate.latitude;
-        coordinate.longitude = vegVanStop.location.coordinate.longitude;            
-        VegVanStopLocation *annotation = [[VegVanStopLocation alloc] initWithName: [vegVanStop name] address: [vegVanStop addressAsString] time: [NSString stringWithFormat:@"%@%@", @"Next stop: ",[vegVanStop nextStopTimeAsStringLessFrequency]] coordinate:coordinate];
-        [_mapView addAnnotation:annotation]; 
+        
+        if (vegVanStop.active)
+        {
+            CLLocationCoordinate2D coordinate;
+            coordinate.latitude = vegVanStop.location.coordinate.latitude;
+            coordinate.longitude = vegVanStop.location.coordinate.longitude;            
+            VegVanStopLocation *annotation = [[VegVanStopLocation alloc] initWithName: [vegVanStop name] address: [vegVanStop addressAsString] time: [NSString stringWithFormat:@"%@%@", @"Next stop: ",[vegVanStop nextStopTimeAsStringLessFrequency]] coordinate:coordinate];
+            [_mapView addAnnotation:annotation];
+        }
     }
 }
 

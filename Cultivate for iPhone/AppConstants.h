@@ -115,6 +115,10 @@
 #define kStopTimeElement @"stopTime"
 #define kStopDurationElement @"stopDuration"
 #define kContactElement @"contact"
+#define kActiveElement @"active"
+
+// LATEST NEWS XML PARSING
+#define kUpdateElement @"update"
 
 // NOTIFICATIONS
 #define kNewTweetCountGenerated @"New tweet count generated"
@@ -123,6 +127,9 @@
 #define kTweetTabIndex 2
 #define kRemoveCultiRideDetailsView @"removeCultiRideDetailsView"
 #define kTweetsLoadingFailed @"tweetsLoadingFailed"
+#define kScheduleItemDayKey @"scheduleItemDayKey"
+#define kScheduleItemTimeKey @"scheduleItemTimeKey"
+#define kScheduleItemNameKey @"scheduleItemNameKey"
 
 // GOOGLE ANALYTICS
 // Dispatch period in seconds - every 5 mins only

@@ -494,6 +494,89 @@
         <image name="next_nearest_icon.png" width="96" height="112"/>
         <image name="radar.png" width="172" height="172"/>
     </resources>
+    <classes>
+        <class className="AboutViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/AboutViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="changePage"/>
+                <relationship kind="action" name="launchCultivateWebsite"/>
+                <relationship kind="action" name="share:"/>
+                <relationship kind="action" name="showPicker:"/>
+                <relationship kind="outlet" name="getInvolved" candidateClass="CustomButton"/>
+                <relationship kind="outlet" name="mainPara" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="pageControl" candidateClass="CustomPageControl"/>
+                <relationship kind="outlet" name="scrollView" candidateClass="UIScrollView"/>
+                <relationship kind="outlet" name="secondPara" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="share" candidateClass="CustomButton"/>
+            </relationships>
+        </class>
+        <class className="ComposeTweetViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ComposeTweetViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="attachImage:"/>
+                <relationship kind="action" name="clearText:"/>
+                <relationship kind="action" name="deleteImage:"/>
+                <relationship kind="action" name="dismissFromTap:"/>
+                <relationship kind="action" name="highlightCancelButton:"/>
+                <relationship kind="action" name="highlightClearButton:"/>
+                <relationship kind="action" name="highlightImageButton:"/>
+                <relationship kind="action" name="highlightReplyButton:"/>
+                <relationship kind="action" name="sendTweet:"/>
+                <relationship kind="outlet" name="cancelButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="cancelLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="charCountLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="clearButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="clearLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="containerView" candidateClass="UIView"/>
+                <relationship kind="outlet" name="cultivateTweet" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="imageButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="imageLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="profileImage" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="replyButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="replyLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="tweetField" candidateClass="UITextView"/>
+            </relationships>
+        </class>
+        <class className="CustomButton" superclassName="UIButton">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/CustomButton.h"/>
+        </class>
+        <class className="CustomPageControl" superclassName="UIView">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/CustomPageControl.h"/>
+        </class>
+        <class className="MapViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/MapViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="dropdownLocateVanOptionsFromButton:"/>
+                <relationship kind="action" name="showFarmLocation:"/>
+                <relationship kind="action" name="showNearestStopLocation:"/>
+                <relationship kind="action" name="showNextStopLocation:"/>
+                <relationship kind="action" name="showUserLocation:"/>
+                <relationship kind="outlet" name="_mapView" candidateClass="MKMapView"/>
+                <relationship kind="outlet" name="bar" candidateClass="UINavigationBar"/>
+                <relationship kind="outlet" name="farmLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="findButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="locateDropdown" candidateClass="UIView"/>
+                <relationship kind="outlet" name="mapView" candidateClass="UIWebView"/>
+                <relationship kind="outlet" name="nearestMeLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="nextLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="searchBarBackground" candidateClass="UIView"/>
+                <relationship kind="outlet" name="showUserLocationButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="stopSearchBar" candidateClass="UISearchBar"/>
+            </relationships>
+        </class>
+        <class className="MessageViewController" superclassName="PullToRefreshViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/MessageViewController.h"/>
+        </class>
+        <class className="PullToRefreshViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/PullToRefreshViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
+            </relationships>
+        </class>
+        <class className="ScheduleViewController" superclassName="PullToRefreshViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ScheduleViewController.h"/>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

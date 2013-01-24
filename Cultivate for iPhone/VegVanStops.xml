@@ -53,14 +53,14 @@
 		<streetName>John Smith Drive</streetName>
 		<postcode>OX4 2JY</postcode>
 		<photoURL>http://www.cultivateoxford.org/image.png</photoURL>
-		<blurb>PLEASE NOTE: 2013 times for this stop have yet to be confirmed</blurb>
+		<blurb>Right outside Oxfam HQ in the Oxford Business Park</blurb>
 		<manager>Julian Cottee</manager>
         <contact>07579965374</contact>
-        <active>0</active>
+        <active>1</active>
 		<scheduleItems>
 			<scheduleItem>
-				<stopDay>Thursday</stopDay>
-                <stopTime>12:00</stopTime>
+				<stopDay>Friday</stopDay>
+                <stopTime>12:30</stopTime>
 				<stopFrequency>Weekly</stopFrequency>
                 <stopDuration>60</stopDuration>
 			</scheduleItem>
@@ -84,7 +84,29 @@
 				<stopDay>Thursday</stopDay>
                 <stopTime>16:30</stopTime>
 				<stopFrequency>Weekly</stopFrequency>
-                <stopDuration>150</stopDuration>
+                <stopDuration>60</stopDuration>
+			</scheduleItem>
+		</scheduleItems>
+	</stop>
+    <stop>
+		<name>South Oxford Farmer's Market</name>
+		<area>South Oxford</area>
+		<latitude>51.738935</latitude>
+		<longitude>-1.256508</longitude>
+		<streetNumber>Lake Street Community Centre</streetNumber>
+		<streetName>Lake Street</streetName>
+		<postcode>OX4 4RP</postcode>
+		<photoURL>http://www.cultivateoxford.org/image.png</photoURL>
+		<blurb>Farmer's Market at the Lake Street Community Centre</blurb>
+		<manager>Julian Cottee</manager>
+        <contact>07579965374</contact>
+        <active>1</active>
+		<scheduleItems>
+			<scheduleItem>
+				<stopDay>Sunday</stopDay>
+                <stopTime>09:30</stopTime>
+				<stopFrequency>Weekly</stopFrequency>
+                <stopDuration>60</stopDuration>
 			</scheduleItem>
 		</scheduleItems>
 	</stop>
@@ -122,13 +144,13 @@
 		<blurb>Pick up great veggies on the way back into town!</blurb>
 		<manager>Julian Cottee</manager>
         <contact>07579965374</contact>
-        <active>0</active>
+        <active>1</active>
 		<scheduleItems>
 			<scheduleItem>
 				<stopDay>Friday</stopDay>
                 <stopTime>15:30</stopTime>
 				<stopFrequency>Weekly</stopFrequency>
-                <stopDuration>210</stopDuration>
+                <stopDuration>60</stopDuration>
 			</scheduleItem>
 		</scheduleItems>
 	</stop>

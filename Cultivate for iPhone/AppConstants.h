@@ -96,6 +96,7 @@
 #define kDropdownActive_y 40
 
 // XML PARSING
+#define kVegVanStopXMLURL @"http://www.cultivateoxford.org/ipr/VegVanStops.xml"
 #define kVegVanStopElement @"stop"
 #define kNameElement @"name"
 #define kAreaElement @"area"

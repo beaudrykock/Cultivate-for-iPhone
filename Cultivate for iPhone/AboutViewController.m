@@ -79,7 +79,7 @@
 {
     NSArray *textarr = [NSArray arrayWithObjects:self.vegVanStatusUpdate, @"Cultivate is about new ways of feeding Oxford. We’re a local food co-operative working to bring fresh, local food from our 5-acre market garden and from other Oxfordshire growers directly to you! Cultivate is people-powered! We are a co-operative owned, run and ﬁnanced by our members.",@"The VegVan, our mobile greengrocery, has a set of stops which are the same from week-to-week. You can use this app to find the one closest to you - your home, work, children’s school, church? And if you can’t find a location that works for you, let us know via the Feedback button below. We’re actively looking for new places to stop, so tell us where we should go, and we’ll hope to be near you soon.",@"Cultivate is about bringing people together. We have regular volunteer days and events, where you can learn about what we do and get stuck in. Check out the website (http://www.cultivateoxford.org) to find out what’s coming up soon. We are a membership-based organisation, so if you like what we do and want to get involved (or even if you’d just like a 10% discount on your veg) you can sign up for membership here: http://www.cultivateoxford.org/get-involved/membership.", nil];
     
-    NSArray *titlearr = [NSArray arrayWithObjects:@"VegVan Status Updates", @"About Us", @"VegVan", @"Join Us", nil];
+    NSArray *titlearr = [NSArray arrayWithObjects:@"VegVan Status Update", @"About Us", @"VegVan", @"Join Us", nil];
     
     for (int i = 0; i<4; i++)
     {

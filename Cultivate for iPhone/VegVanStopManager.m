@@ -16,7 +16,7 @@
     NSString *objectXML = nil;
     NSData *data = nil;
     BOOL loadedSuccessfully = NO;
-    if (YES)//[Utilities hasInternet]) // TODO: RETURN THIS TO NORMAL WHEN FINISHED TESTING
+    if (![Utilities hasInternet]) // TODO: RETURN THIS TO NORMAL WHEN FINISHED TESTING
     {
         data = [NSData dataWithContentsOfFile:[Utilities cachePath:kXmlDataFile]];
         if (!data)
@@ -28,7 +28,7 @@
     }
     else {
         // load from URL
-        NSString *urlString = @"http://www.cultivateoxford.org/wp-content/uploads/VegVanStops.xml";
+        NSString *urlString = kVegVanStopXMLURL;
         // alternative: @"http://web62557.aiso.net/cultivate/VegVanStops.xml";
         ASIHTTPRequest *request = [[ASIHTTPRequest alloc] initWithURL:[NSURL URLWithString:urlString]];
         [request setTimeOutSeconds:10.0];

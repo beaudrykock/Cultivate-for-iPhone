@@ -89,6 +89,7 @@
     {
         NSString *urlString = @"http://www.cultivateoxford.org/ipr/vegVanStatusUpdate.xml";
         ASIHTTPRequest *request = [[ASIHTTPRequest alloc] initWithURL:[NSURL URLWithString:urlString]];
+        [request setDelegate:self];
         [request setDidFinishSelector:@selector(latestUpdates:)];
         [request setTimeOutSeconds:10.0];
         [request startAsynchronous];
@@ -131,8 +132,8 @@
     
     self.vegVanStatusUpdate = [updates copy];
     
-    NSLog(@"vegVanStatusUpdate = %@", self.vegVanStatusUpdate);
-    NSLog(@"vegVanStatusUpdate from archive = %@", [self readStatusUpdateFromArchive]);
+    //NSLog(@"vegVanStatusUpdate = %@", self.vegVanStatusUpdate);
+    //NSLog(@"vegVanStatusUpdate from archive = %@", [self readStatusUpdateFromArchive]);
     if ([self readStatusUpdateFromArchive]!=nil && ![self.vegVanStatusUpdate isEqualToString:[self readStatusUpdateFromArchive]])
     {
         [[[[tabBarController tabBar] items] objectAtIndex:3] setBadgeValue:@"1"];

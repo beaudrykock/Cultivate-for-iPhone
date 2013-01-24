@@ -317,7 +317,7 @@
 		9FA7D6621578F65300F45A50 /* droplet_normal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = droplet_normal.png; sourceTree = "<group>"; };
 		9FA98F9C16A9B2B300DD5696 /* NotificationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NotificationManager.h; path = "Cultivate for iPhone/NotificationManager.h"; sourceTree = "<group>"; };
 		9FA98F9D16A9B2B300DD5696 /* NotificationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NotificationManager.m; path = "Cultivate for iPhone/NotificationManager.m"; sourceTree = "<group>"; };
-		9FA98FAA16A9DEDD00DD5696 /* vegVanStatusUpdate.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = vegVanStatusUpdate.xml; sourceTree = "<group>"; };
+		9FA98FAA16A9DEDD00DD5696 /* vegVanStatusUpdate.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = vegVanStatusUpdate.xml; path = ../vegVanStatusUpdate.xml; sourceTree = "<group>"; };
 		9FB46B9C1564119A004B464B /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
 		9FB46B9E1564119C004B464B /* icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon@2x.png"; sourceTree = "<group>"; };
 		9FC3A19F15A350FA00C8F9BF /* cultivan.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cultivan.png; sourceTree = "<group>"; };
@@ -401,10 +401,18 @@
 			name = SMXML;
 			sourceTree = "<group>";
 		};
+		9F59B99D16B15E0C00E03337 /* XML */ = {
+			isa = PBXGroup;
+			children = (
+				9F524B0715519517000846E7 /* VegVanStops.xml */,
+				9FA98FAA16A9DEDD00DD5696 /* vegVanStatusUpdate.xml */,
+			);
+			name = XML;
+			sourceTree = "<group>";
+		};
 		9F6A09141546D4C500B59D0F = {
 			isa = PBXGroup;
 			children = (
-				9FA98FAA16A9DEDD00DD5696 /* vegVanStatusUpdate.xml */,
 				9FF6159D16414DF10093AF55 /* Default-568h@2x.png */,
 				9F87FC9A15B023C4008A1D6B /* carrot_114.png */,
 				9F87FC9715B023C0008A1D6B /* carrot_57.png */,
@@ -507,7 +515,7 @@
 				9FF78EA7155FC0CB00FAAE67 /* Calibri Bold.ttf */,
 				9FF78EA5155FBF7600FAAE67 /* Calibri.ttf */,
 				9FF78EA3155FBC7E00FAAE67 /* nobile.ttf */,
-				9F524B0715519517000846E7 /* VegVanStops.xml */,
+				9F59B99D16B15E0C00E03337 /* XML */,
 				9FF78E9A155FAC6000FAAE67 /* Miscellaneous images */,
 				9FF78E99155FAC4600FAAE67 /* Button images */,
 				9F6A095C1546E52D00B59D0F /* Tab icons */,
@@ -975,6 +983,7 @@
 		9F6A09491546D4C500B59D0F /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Beaudry Kock";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
@@ -988,6 +997,7 @@
 					"\"$(SRCROOT)/Cultivate for iPhone\"",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "A05236D6-8BF4-45E3-87C9-B0E0CAD1279A";
 				TARGETED_DEVICE_FAMILY = 1;
 				VALID_ARCHS = armv7;
 				WRAPPER_EXTENSION = app;
@@ -1011,7 +1021,7 @@
 					"\"$(SRCROOT)/Cultivate for iPhone\"",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "BA9D565E-8D8D-433D-90FC-121700110263";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "A05236D6-8BF4-45E3-87C9-B0E0CAD1279A";
 				TARGETED_DEVICE_FAMILY = 1;
 				VALID_ARCHS = armv7;
 				WRAPPER_EXTENSION = app;

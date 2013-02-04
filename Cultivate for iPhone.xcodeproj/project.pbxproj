@@ -112,8 +112,6 @@
 		9F78F4B415C98CD1007ED548 /* 09-chat-2.png in Resources */ = {isa = PBXBuildFile; fileRef = 9F78F4B215C98CD1007ED548 /* 09-chat-2.png */; };
 		9F78F4B515C98CD1007ED548 /* 09-chat-2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9F78F4B315C98CD1007ED548 /* 09-chat-2@2x.png */; };
 		9F7E8225156149CD002C472F /* TweetHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F7E8224156149CD002C472F /* TweetHeaderView.m */; };
-		9F87FC9815B023C0008A1D6B /* carrot_57.png in Resources */ = {isa = PBXBuildFile; fileRef = 9F87FC9715B023C0008A1D6B /* carrot_57.png */; };
-		9F87FC9B15B023C4008A1D6B /* carrot_114.png in Resources */ = {isa = PBXBuildFile; fileRef = 9F87FC9A15B023C4008A1D6B /* carrot_114.png */; };
 		9F977EE0155018C3002D04A6 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F977EDF155018C3002D04A6 /* QuartzCore.framework */; };
 		9F99E0C915481E7900485A23 /* SectionHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F99E0C815481E7900485A23 /* SectionHeaderView.m */; };
 		9F99E0CC154821EC00485A23 /* Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F99E0CB154821EC00485A23 /* Utilities.m */; };
@@ -143,6 +141,8 @@
 		9FF78EA4155FBC7E00FAAE67 /* nobile.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9FF78EA3155FBC7E00FAAE67 /* nobile.ttf */; };
 		9FF78EA6155FBF7600FAAE67 /* Calibri.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9FF78EA5155FBF7600FAAE67 /* Calibri.ttf */; };
 		9FF78EA8155FC0CB00FAAE67 /* Calibri Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9FF78EA7155FC0CB00FAAE67 /* Calibri Bold.ttf */; };
+		9FF9B14116BFE571005BA65D /* app-icon-v4.png in Resources */ = {isa = PBXBuildFile; fileRef = 9FF9B14016BFE571005BA65D /* app-icon-v4.png */; };
+		9FF9B14316BFE574005BA65D /* app-icon-v4@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9FF9B14216BFE574005BA65D /* app-icon-v4@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -342,6 +342,8 @@
 		9FF78EA3155FBC7E00FAAE67 /* nobile.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = nobile.ttf; sourceTree = "<group>"; };
 		9FF78EA5155FBF7600FAAE67 /* Calibri.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Calibri.ttf; sourceTree = "<group>"; };
 		9FF78EA7155FC0CB00FAAE67 /* Calibri Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Calibri Bold.ttf"; sourceTree = "<group>"; };
+		9FF9B14016BFE571005BA65D /* app-icon-v4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "app-icon-v4.png"; sourceTree = "<group>"; };
+		9FF9B14216BFE574005BA65D /* app-icon-v4@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "app-icon-v4@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -413,6 +415,8 @@
 		9F6A09141546D4C500B59D0F = {
 			isa = PBXGroup;
 			children = (
+				9FF9B14216BFE574005BA65D /* app-icon-v4@2x.png */,
+				9FF9B14016BFE571005BA65D /* app-icon-v4.png */,
 				9FF6159D16414DF10093AF55 /* Default-568h@2x.png */,
 				9F87FC9A15B023C4008A1D6B /* carrot_114.png */,
 				9F87FC9715B023C0008A1D6B /* carrot_57.png */,
@@ -831,8 +835,6 @@
 				9FC3A1A215A350FA00C8F9BF /* cultivan@2x.png in Resources */,
 				9F020E5415A3841E00C3AC31 /* van_placeholder.png in Resources */,
 				9F020E5515A3841E00C3AC31 /* van_placeholder@2x.png in Resources */,
-				9F87FC9815B023C0008A1D6B /* carrot_57.png in Resources */,
-				9F87FC9B15B023C4008A1D6B /* carrot_114.png in Resources */,
 				9F32D13A15C863FF0087EB9A /* 213-reply.png in Resources */,
 				9F32D13B15C863FF0087EB9A /* 213-reply@2x.png in Resources */,
 				9F11266215C9298500D0CACC /* 86-camera.png in Resources */,
@@ -849,6 +851,8 @@
 				9F38AFBF15CA797C005C2B5E /* schedule_help@2x.png in Resources */,
 				9FF6159E16414DF10093AF55 /* Default-568h@2x.png in Resources */,
 				9FA98FAB16A9DEDD00DD5696 /* vegVanStatusUpdate.xml in Resources */,
+				9FF9B14116BFE571005BA65D /* app-icon-v4.png in Resources */,
+				9FF9B14316BFE574005BA65D /* app-icon-v4@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -983,7 +987,7 @@
 		9F6A09491546D4C500B59D0F /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Beaudry Kock";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Beaudry Kock (W87XANQFRB)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
@@ -997,7 +1001,7 @@
 					"\"$(SRCROOT)/Cultivate for iPhone\"",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "A05236D6-8BF4-45E3-87C9-B0E0CAD1279A";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "66332FC0-C539-438F-B0D6-F25B6A9094BE";
 				TARGETED_DEVICE_FAMILY = 1;
 				VALID_ARCHS = armv7;
 				WRAPPER_EXTENSION = app;

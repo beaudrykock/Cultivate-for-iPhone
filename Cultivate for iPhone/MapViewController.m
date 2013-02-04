@@ -357,9 +357,9 @@
     locateVanOptionsPosition = [NSNumber numberWithInt:0];
     
     CLLocationCoordinate2D zoomLocation;
-    zoomLocation.latitude = 51.753815013860255;
-    zoomLocation.longitude= -1.250467300415039;
-    MKCoordinateRegion viewRegion = MKCoordinateRegionMakeWithDistance(zoomLocation, 5.0*METERS_PER_MILE, 9.0*METERS_PER_MILE);
+    zoomLocation.latitude = 51.750946;
+    zoomLocation.longitude= -1.245918;
+    MKCoordinateRegion viewRegion = MKCoordinateRegionMakeWithDistance(zoomLocation, 3*METERS_PER_MILE,4*METERS_PER_MILE);
     MKCoordinateRegion adjustedRegion = [_mapView regionThatFits:viewRegion];                
     [_mapView setRegion:adjustedRegion animated:YES]; 
     
